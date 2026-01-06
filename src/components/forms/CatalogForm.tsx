@@ -1,0 +1,112 @@
+import { useState } from "react";
+import { FormInput } from "./FormElements";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { Download, Loader2 } from "lucide-react";
+
+interface CatalogFormProps {
+  className?: string;
+}
+
+export function CatalogForm({ className }: CatalogFormProps) {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
+    }
+    if (!formData.company.trim()) newErrors.company = "Company name is required";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validate()) return;
+    
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    
+    toast({
+      title: "Catalog Request Received!",
+      description: "Check your email for the download link.",
+    });
+    
+    setFormData({
+      name: "",
+      email: "",
+      company: "",
+    });
+    setIsSubmitting(false);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className={`space-y-4 ${className}`}>
+      <FormInput
+        label="Full Name"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        error={errors.name}
+        required
+        placeholder="John Smith"
+      />
+      <FormInput
+        label="Business Email"
+        name="email"
+        type="email"
+        value={formData.email}
+        onChange={handleChange}
+        error={errors.email}
+        required
+        placeholder="john@company.com"
+      />
+      <FormInput
+        label="Company Name"
+        name="company"
+        value={formData.company}
+        onChange={handleChange}
+        error={errors.company}
+        required
+        placeholder="ABC Trading Co."
+      />
+      <Button type="submit" size="lg" disabled={isSubmitting} className="w-full">
+        {isSubmitting ? (
+          <>
+            <Loader2 className="h-5 w-5 animate-spin" />
+            Processing...
+          </>
+        ) : (
+          <>
+            <Download className="h-5 w-5" />
+            Download Catalog
+          </>
+        )}
+      </Button>
+    </form>
+  );
+}
