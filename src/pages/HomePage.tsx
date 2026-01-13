@@ -31,14 +31,14 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
         <div className="container relative">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-primary-foreground">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-on-primary">
               <Leaf className="h-4 w-4" />
               USDA & EU Organic Certified
             </div>
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-primary-foreground sm:text-5xl lg:text-6xl">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-on-primary sm:text-5xl lg:text-6xl">
               {companyInfo.tagline}
             </h1>
-            <p className="mb-8 text-lg text-primary-foreground/80 sm:text-xl">
+            <p className="mb-8 text-lg text-on-primary-muted sm:text-xl">
               Premium dried fruits, vacuum fried snacks, and spices from Indonesia. 
               Direct from source to B2B buyers worldwide.
             </p>
@@ -47,7 +47,7 @@ export default function HomePage() {
                 Request Quote
                 <ArrowRight className="h-5 w-5" />
               </PrimaryButton>
-              <SecondaryButton to="/samples" size="lg" className="bg-primary-foreground/10 text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/20">
+              <SecondaryButton to="/samples" size="lg" className="bg-primary-foreground/10 text-on-primary border-primary-foreground/30 hover:bg-primary-foreground/20">
                 Request Samples
               </SecondaryButton>
               <WhatsAppButton size="lg" />
@@ -65,8 +65,8 @@ export default function HomePage() {
               { value: `${companyInfo.stats.productVarieties}`, label: "Product Varieties" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <p className="text-3xl font-bold text-primary-foreground lg:text-4xl">{stat.value}</p>
-                <p className="text-sm text-primary-foreground/70">{stat.label}</p>
+                <p className="text-3xl font-bold text-on-primary lg:text-4xl">{stat.value}</p>
+                <p className="text-sm text-on-primary-muted">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -135,13 +135,13 @@ export default function HomePage() {
               <Link
                 key={category.id}
                 to={`/products/${category.id}`}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-tropical-green-light p-8 text-primary-foreground transition-transform hover:scale-[1.02]"
+                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-tropical-green-light p-8 text-on-primary transition-transform hover:scale-[1.02]"
               >
                 <div className="relative z-10">
-                  <Package className="h-12 w-12 mb-4 opacity-80" />
-                  <h3 className="text-2xl font-bold mb-2">{category.name}</h3>
-                  <p className="text-primary-foreground/80 mb-4">{category.description}</p>
-                  <div className="flex items-center gap-2 text-sm font-medium">
+                  <Package className="h-12 w-12 mb-4 text-on-primary-muted" />
+                  <h3 className="text-2xl font-bold mb-2 text-on-primary">{category.name}</h3>
+                  <p className="text-on-primary-muted mb-4">{category.description}</p>
+                  <div className="flex items-center gap-2 text-sm font-medium text-on-primary">
                     {category.productCount} Products
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
                   </div>
@@ -273,15 +273,15 @@ export default function HomePage() {
         <div className="container">
           <div className="mx-auto max-w-4xl">
             <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-              <div className="text-primary-foreground">
-                <h2 className="text-3xl font-bold sm:text-4xl mb-4">
+              <div className="text-on-primary">
+                <h2 className="text-3xl font-bold sm:text-4xl mb-4 text-on-primary">
                   Download Our Product Catalog
                 </h2>
-                <p className="text-lg text-primary-foreground/80 mb-6">
+                <p className="text-lg text-on-primary-muted mb-6">
                   Get our complete product catalog with specifications, pricing guidance, 
                   and packaging options. Perfect for your procurement team.
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-3 text-on-primary">
                   {[
                     "Complete product specifications",
                     "FOB pricing guidelines",

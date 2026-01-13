@@ -70,6 +70,7 @@ export default {
         "earth-brown": {
           DEFAULT: "hsl(var(--earth-brown))",
           light: "hsl(var(--earth-brown-light))",
+          dark: "hsl(var(--earth-brown-dark))",
         },
         whatsapp: {
           DEFAULT: "hsl(var(--whatsapp))",

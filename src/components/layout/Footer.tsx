@@ -32,7 +32,7 @@ const socialIcons = {
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="bg-foreground text-on-dark">
       {/* Main Footer */}
       <div className="container py-16">
         <div className="grid gap-12 lg:grid-cols-5">
@@ -43,11 +43,11 @@ export function Footer() {
                 <Leaf className="h-6 w-6" />
               </div>
               <div>
-                <p className="font-bold text-background leading-tight">{companyInfo.shortName}</p>
-                <p className="text-xs text-background/60">Est. {companyInfo.established}</p>
+                <p className="font-bold text-on-dark leading-tight">{companyInfo.shortName}</p>
+                <p className="text-xs text-on-dark-muted">Est. {companyInfo.established}</p>
               </div>
             </Link>
-            <p className="text-background/80 mb-6 max-w-sm">
+            <p className="text-on-dark-muted mb-6 max-w-sm">
               {companyInfo.tagline}. Premium dried fruits, vacuum fried snacks, and spices for global B2B buyers.
             </p>
             
@@ -55,23 +55,23 @@ export function Footer() {
             <div className="space-y-3">
               <a 
                 href={`mailto:${companyInfo.email}`}
-                className="flex items-center gap-3 text-background/80 hover:text-primary transition-colors"
+                className="flex items-center gap-3 text-on-dark-muted hover:text-primary transition-colors"
               >
                 <Mail className="h-5 w-5" />
                 {companyInfo.email}
               </a>
               <a 
                 href={`tel:${companyInfo.phone}`}
-                className="flex items-center gap-3 text-background/80 hover:text-primary transition-colors"
+                className="flex items-center gap-3 text-on-dark-muted hover:text-primary transition-colors"
               >
                 <Phone className="h-5 w-5" />
                 {companyInfo.phone}
               </a>
-              <div className="flex items-start gap-3 text-background/80">
+              <div className="flex items-start gap-3 text-on-dark-muted">
                 <MapPin className="h-5 w-5 mt-0.5" />
                 <span>{companyInfo.address.full}</span>
               </div>
-              <div className="flex items-center gap-3 text-background/80">
+              <div className="flex items-center gap-3 text-on-dark-muted">
                 <Clock className="h-5 w-5" />
                 {companyInfo.workingHours.full}
               </div>
@@ -80,13 +80,13 @@ export function Footer() {
 
           {/* Products */}
           <div>
-            <h3 className="font-semibold text-background mb-4">Products</h3>
+            <h3 className="font-semibold text-on-dark mb-4">Products</h3>
             <ul className="space-y-2">
               {footerLinks.products.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.href}
-                    className="text-background/70 hover:text-primary transition-colors"
+                    className="text-on-dark-muted hover:text-primary transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -97,13 +97,13 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-semibold text-background mb-4">Company</h3>
+            <h3 className="font-semibold text-on-dark mb-4">Company</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.href}
-                    className="text-background/70 hover:text-primary transition-colors"
+                    className="text-on-dark-muted hover:text-primary transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -114,13 +114,13 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-semibold text-background mb-4">Services</h3>
+            <h3 className="font-semibold text-on-dark mb-4">Services</h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.href}
-                    className="text-background/70 hover:text-primary transition-colors"
+                    className="text-on-dark-muted hover:text-primary transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -131,14 +131,14 @@ export function Footer() {
         </div>
 
         {/* Certifications & Social */}
-        <div className="mt-12 pt-8 border-t border-background/20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div className="mt-12 pt-8 border-t border-on-dark-subtle/30 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           {/* Certifications */}
           <div className="flex flex-wrap items-center gap-4">
-            <span className="text-sm text-background/60">Certified:</span>
+            <span className="text-sm text-on-dark-subtle">Certified:</span>
             {certifications.map((cert) => (
               <div 
                 key={cert.id}
-                className="flex items-center gap-1 text-sm text-background/80 bg-background/10 px-3 py-1 rounded-full"
+                className="flex items-center gap-1 text-sm text-on-dark-muted bg-on-dark/10 px-3 py-1 rounded-full"
               >
                 <Leaf className="h-4 w-4" />
                 {cert.name}
@@ -148,7 +148,7 @@ export function Footer() {
 
           {/* Social Links */}
           <div className="flex items-center gap-4">
-            <span className="text-sm text-background/60">Follow us:</span>
+            <span className="text-sm text-on-dark-subtle">Follow us:</span>
             {Object.entries(socialLinks).map(([key, url]) => {
               const Icon = socialIcons[key as keyof typeof socialIcons];
               return (
@@ -157,7 +157,7 @@ export function Footer() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-background/10 text-background/80 hover:bg-primary hover:text-primary-foreground transition-colors"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-on-dark/10 text-on-dark-muted hover:bg-primary hover:text-primary-foreground transition-colors"
                   aria-label={`Follow us on ${key}`}
                 >
                   <Icon className="h-5 w-5" />
@@ -169,16 +169,16 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-background/20">
+      <div className="border-t border-on-dark-subtle/30">
         <div className="container py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <p className="text-sm text-background/60">
+          <p className="text-sm text-on-dark-subtle">
             © {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link to="/privacy" className="text-sm text-background/60 hover:text-primary transition-colors">
+            <Link to="/privacy" className="text-sm text-on-dark-subtle hover:text-primary transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms" className="text-sm text-background/60 hover:text-primary transition-colors">
+            <Link to="/terms" className="text-sm text-on-dark-subtle hover:text-primary transition-colors">
               Terms of Service
             </Link>
           </div>
