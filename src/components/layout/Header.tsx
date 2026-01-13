@@ -18,10 +18,6 @@ const navigation = [
   },
   { name: "About Us", href: "/about" },
   { name: "Certifications", href: "/certifications" },
-  { name: "Sustainability", href: "/sustainability" },
-  { name: "Shipping", href: "/shipping" },
-  { name: "Private Label", href: "/private-label" },
-  { name: "FAQ", href: "/faq" },
 ];
 
 export function Header() {
@@ -94,10 +90,10 @@ export function Header() {
         {/* Desktop CTA */}
         <div className="hidden lg:flex lg:items-center lg:gap-3">
           <Button variant="outline" size="sm" asChild>
-            <Link to="/samples">Request Sample</Link>
+            <Link to="/samples">Free Samples</Link>
           </Button>
           <Button size="sm" asChild>
-            <Link to="/contact">Request Quote</Link>
+            <Link to="/contact">Contact</Link>
           </Button>
         </div>
 
@@ -159,10 +155,10 @@ export function Header() {
             ))}
             <div className="pt-4 space-y-2 border-t border-border">
               <Button variant="outline" className="w-full" asChild>
-                <Link to="/samples" onClick={() => setMobileMenuOpen(false)}>Request Sample</Link>
+                <Link to="/samples" onClick={() => setMobileMenuOpen(false)}>Free Samples</Link>
               </Button>
               <Button className="w-full" asChild>
-                <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Request Quote</Link>
+                <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
               </Button>
             </div>
           </div>
