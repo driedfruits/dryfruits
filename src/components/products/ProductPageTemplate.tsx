@@ -79,16 +79,16 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
         {/* Breadcrumb */}
         <div className="bg-muted/50 py-4">
           <div className="container">
-            <nav className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-              <ChevronRight className="h-4 w-4" />
-              <Link to="/products" className="hover:text-primary transition-colors">Wholesale Dried Fruits</Link>
-              <ChevronRight className="h-4 w-4" />
-              <Link to={`/products/${product.category}`} className="hover:text-primary transition-colors">
+            <nav className="flex items-center gap-2 text-sm text-muted-foreground overflow-x-auto scrollbar-hide whitespace-nowrap pb-1">
+              <Link to="/" className="hover:text-primary transition-colors shrink-0">Home</Link>
+              <ChevronRight className="h-4 w-4 shrink-0" />
+              <Link to="/products" className="hover:text-primary transition-colors shrink-0">Products</Link>
+              <ChevronRight className="h-4 w-4 shrink-0" />
+              <Link to={`/products/${product.category}`} className="hover:text-primary transition-colors shrink-0">
                 {categoryLabels[product.category]}
               </Link>
-              <ChevronRight className="h-4 w-4" />
-              <span className="text-foreground font-medium">{product.name} Bulk</span>
+              <ChevronRight className="h-4 w-4 shrink-0" />
+              <span className="text-foreground font-medium truncate max-w-[150px] sm:max-w-none">{product.name}</span>
             </nav>
           </div>
         </div>
@@ -214,10 +214,10 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
               <div>
                 <h2 className="text-2xl font-bold text-foreground mb-4">Industrial Applications</h2>
                 <div className="bg-card rounded-xl p-6 shadow-soft">
-                  <ul className="grid grid-cols-2 gap-2">
+                  <ul className="grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))' }}>
                     {product.applications.map((app) => (
                       <li key={app} className="flex items-center gap-2 text-sm">
-                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                         {app}
                       </li>
                     ))}
