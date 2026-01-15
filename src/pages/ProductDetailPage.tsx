@@ -25,5 +25,9 @@ export default function ProductDetailPage() {
     );
   }
 
-  return <ProductPageTemplate product={product} />;
+  return (
+    <Layout>
+      <ProductPageTemplate product={product} />
+    </Layout>
+  );
 }
