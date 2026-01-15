@@ -1,5 +1,6 @@
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { MobileBottomNav } from "./MobileBottomNav";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { generateOrganizationSchema, generateLocalBusinessSchema } from "@/lib/schema";
 
@@ -24,9 +25,12 @@ export function Layout({ children }: LayoutProps) {
         }}
       />
       <Header />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 pb-16 lg:pb-0">{children}</main>
       <Footer />
-      <WhatsAppButton variant="floating" />
+      {/* Floating WhatsApp - hidden on mobile, shown on desktop */}
+      <WhatsAppButton variant="floating" className="hidden lg:flex" />
+      {/* Mobile bottom navigation */}
+      <MobileBottomNav />
     </div>
   );
 }
