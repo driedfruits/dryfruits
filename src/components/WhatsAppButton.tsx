@@ -24,7 +24,7 @@ export function WhatsAppButton({
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-primary-foreground shadow-lg transition-transform hover:scale-110 animate-pulse-glow ${className}`}
+        className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-primary-foreground shadow-lg transition-transform hover:scale-110 animate-[pulse-glow_8s_ease-in-out_infinite] [animation-delay:3s] hover:[animation-play-state:paused] motion-reduce:animate-none ${className}`}
         aria-label="Contact us on WhatsApp"
       >
         <MessageCircle className="h-7 w-7" />
