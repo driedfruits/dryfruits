@@ -3,6 +3,7 @@ import { Layout } from "@/components/layout";
 import { PrimaryButton, SecondaryButton, AccentButton } from "@/components/CTAButton";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CatalogForm } from "@/components/forms";
+import { generateWebSiteSchema } from "@/lib/schema";
 import { 
   companyInfo, 
   certifications, 
@@ -26,6 +27,14 @@ import {
 export default function HomePage() {
   return (
     <Layout>
+      {/* WebSite Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateWebSiteSchema()),
+        }}
+      />
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-tropical-green-dark via-primary to-tropical-green-light py-20 lg:py-32">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />

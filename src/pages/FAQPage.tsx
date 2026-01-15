@@ -2,6 +2,7 @@ import { Layout } from "@/components/layout";
 import { faqItems, companyInfo } from "@/data/companyData";
 import { PrimaryButton } from "@/components/CTAButton";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { generateFAQSchema } from "@/lib/schema";
 import {
   Accordion,
   AccordionContent,
@@ -12,6 +13,14 @@ import {
 export default function FAQPage() {
   return (
     <Layout>
+      {/* FAQPage Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateFAQSchema(faqItems)),
+        }}
+      />
+
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container">
