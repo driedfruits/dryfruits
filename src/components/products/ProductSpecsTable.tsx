@@ -27,9 +27,9 @@ export function ProductSpecsTable({ product }: ProductSpecsTableProps) {
   return (
     <section className="py-12 bg-muted/30">
       <div className="container">
-        <h2 className="text-2xl font-bold text-foreground mb-6">Technical Specifications & Quality Parameters</h2>
-        <div className="bg-card rounded-xl overflow-hidden shadow-soft">
-          <Table>
+      <h2 className="text-2xl font-bold text-foreground mb-6">Technical Specifications & Quality Parameters</h2>
+        <div className="bg-card rounded-xl overflow-hidden shadow-soft overflow-x-auto">
+          <Table className="min-w-[400px]">
             <TableHeader>
               <TableRow className="bg-muted/50">
                 <TableHead className="font-semibold text-foreground w-1/3">Parameter</TableHead>

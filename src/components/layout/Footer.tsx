@@ -32,7 +32,7 @@ export function Footer() {
     <footer className="bg-foreground text-on-dark">
       {/* Main Footer */}
       <div className="container py-16">
-        <div className="grid gap-12 lg:grid-cols-5">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
           {/* Company Info */}
           <div className="lg:col-span-2">
             <Link to="/" className="inline-flex items-center gap-2 mb-6">
