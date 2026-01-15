@@ -43,6 +43,14 @@ export function SecondaryButton({ children, ...props }: CTAButtonProps) {
   );
 }
 
+export function SecondaryLightButton({ children, ...props }: CTAButtonProps) {
+  return (
+    <CTAButton variant="outline-light" {...props}>
+      {children}
+    </CTAButton>
+  );
+}
+
 export function AccentButton({ children, ...props }: CTAButtonProps) {
   return (
     <CTAButton variant="accent" {...props}>
