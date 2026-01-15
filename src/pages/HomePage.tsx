@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
-import { PrimaryButton, SecondaryButton, AccentButton } from "@/components/CTAButton";
+import { PrimaryButton, SecondaryButton, SecondaryLightButton, AccentButton } from "@/components/CTAButton";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CatalogForm } from "@/components/forms";
 import { generateWebSiteSchema } from "@/lib/schema";
@@ -63,9 +63,9 @@ export default function HomePage() {
                 Request Quote
                 <ArrowRight className="h-5 w-5" />
               </PrimaryButton>
-              <SecondaryButton to="/samples" size="lg" className="bg-primary-foreground/10 text-on-primary border-primary-foreground/30 hover:bg-primary-foreground/20">
+              <SecondaryLightButton to="/samples" size="lg">
                 Request Samples
-              </SecondaryButton>
+              </SecondaryLightButton>
               <WhatsAppButton size="lg" />
             </div>
           </div>

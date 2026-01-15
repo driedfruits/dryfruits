@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { companyInfo, exportCountries } from "@/data/companyData";
-import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
+import { PrimaryButton, SecondaryLightButton } from "@/components/CTAButton";
 import { 
   Truck, 
   FileText, 
@@ -253,9 +253,9 @@ export default function ShippingPage() {
             <PrimaryButton to="/contact?type=quote" variant="gold" size="xl">
               Request Quote
             </PrimaryButton>
-            <SecondaryButton to="/faq" className="bg-primary-foreground/10 text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/20">
+            <SecondaryLightButton to="/faq">
               View FAQ
-            </SecondaryButton>
+            </SecondaryLightButton>
           </div>
         </div>
       </section>
