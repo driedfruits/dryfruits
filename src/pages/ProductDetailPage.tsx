@@ -47,7 +47,9 @@ export default function ProductDetailPage() {
         <ProductPageSkeleton />
       ) : (
         <Suspense fallback={<ProductPageSkeleton />}>
-          <ProductPageTemplate product={product} />
+          <div className="animate-content-reveal">
+            <ProductPageTemplate product={product} />
+          </div>
         </Suspense>
       )}
     </Layout>
