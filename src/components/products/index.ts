@@ -1,5 +1,6 @@
 export { ProductPageTemplate } from "./ProductPageTemplate";
 export { ProductPageSkeleton } from "./ProductPageSkeleton";
+export { CategoryPageSkeleton } from "./CategoryPageSkeleton";
 export { ProductSpecsTable } from "./ProductSpecsTable";
 export { ProductPriceTiers } from "./ProductPriceTiers";
 export { ProductLogistics } from "./ProductLogistics";
