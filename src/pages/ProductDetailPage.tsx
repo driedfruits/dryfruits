@@ -1,10 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { ProductPageTemplate } from "@/components/products";
 import { getProductById } from "@/data/companyData";
+import { getProductRedirect } from "@/lib/redirects";
 
 export default function ProductDetailPage() {
-  const { productId } = useParams();
+  const { category, productId } = useParams();
+  
+  // Check if productId is an alias that needs redirecting
+  const redirectProductId = productId ? getProductRedirect(productId) : null;
+  if (redirectProductId) {
+    return <Navigate to={`/products/${category}/${redirectProductId}`} replace />;
+  }
+  
   const product = getProductById(productId || "");
 
   if (!product) {
