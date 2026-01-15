@@ -307,4 +307,13 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  /* Safe area utilities for mobile bottom nav */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .bottom-safe {
+    bottom: env(safe-area-inset-bottom, 0px);
+  }
 }
