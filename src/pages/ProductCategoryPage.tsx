@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { getProductsByCategory, productCategories } from "@/data/companyData";
+import { generateItemListSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { Package, Leaf, ChevronRight } from "lucide-react";
 
 const categoryLabels: Record<string, string> = {
@@ -19,8 +20,32 @@ export default function ProductCategoryPage() {
     return <Layout><div className="container py-20 text-center"><h1 className="text-2xl font-bold">Category not found</h1></div></Layout>;
   }
 
+  const breadcrumbItems = [
+    { name: "Home", url: "https://dryfruits.biz" },
+    { name: "Products", url: "https://dryfruits.biz/products" },
+    { name: categoryInfo.name, url: `https://dryfruits.biz/products/${category}` },
+  ];
+
   return (
     <Layout>
+      {/* ItemList Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateItemListSchema(products, categoryInfo.name, `https://dryfruits.biz/products/${category}`)
+          ),
+        }}
+      />
+
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
+      />
+
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container text-center text-primary-foreground">
           <h1 className="text-4xl font-bold sm:text-5xl mb-4">{categoryInfo.name}</h1>

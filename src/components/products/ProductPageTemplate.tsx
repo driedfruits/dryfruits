@@ -11,6 +11,7 @@ import { ProductFAQ } from "./ProductFAQ";
 import { ProductCompliance } from "./ProductCompliance";
 import { ProductSeasonality } from "./ProductSeasonality";
 import { StickyInquiryBar } from "./StickyInquiryBar";
+import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 
 interface ProductPageTemplateProps {
   product: Product;
@@ -26,34 +27,40 @@ const categoryLabels: Record<string, string> = {
 export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
   const relatedProducts = getRelatedProducts(product.id);
 
+  const breadcrumbItems = [
+    { name: "Home", url: "https://dryfruits.biz" },
+    { name: "Wholesale Dried Fruits", url: "https://dryfruits.biz/products" },
+    { name: categoryLabels[product.category], url: `https://dryfruits.biz/products/${product.category}` },
+    { name: `${product.name} Bulk`, url: `https://dryfruits.biz/products/${product.category}/${product.id}` },
+  ];
+
   return (
     <>
-      {/* JSON-LD Schema */}
+      {/* Product Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org/",
-            "@type": "Product",
-            name: `Wholesale ${product.name} - Indonesian Origin`,
-            description: product.metaDescription || product.description,
-            sku: product.sku,
-            brand: { "@type": "Brand", name: companyInfo.name },
-            offers: {
-              "@type": "AggregateOffer",
-              priceCurrency: "USD",
-              availability: product.availability?.currentStatus === "in-stock" 
-                ? "https://schema.org/InStock" 
-                : "https://schema.org/PreOrder",
-            },
-            audience: {
-              "@type": "BusinessAudience",
-              audienceType: "Wholesale Importers, Food Manufacturers",
-            },
-            countryOfOrigin: "Indonesia",
-          }),
+          __html: JSON.stringify(generateProductSchema(product)),
         }}
       />
+
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
+      />
+
+      {/* Product FAQ Schema */}
+      {product.faqs && product.faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateFAQSchema(product.faqs)),
+          }}
+        />
+      )}
 
       <div className="min-h-screen bg-background pb-20 lg:pb-0">
         {/* Breadcrumb */}
