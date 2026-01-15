@@ -16,7 +16,7 @@ export default function ProductsPage() {
 
       <section className="py-20">
         <div className="container">
-          <div className="grid gap-8 md:grid-cols-3 mb-16">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-16">
             {productCategories.map((cat) => (
               <Link key={cat.id} to={`/products/${cat.id}`} className="group rounded-2xl bg-gradient-to-br from-primary to-tropical-green-light p-8 text-primary-foreground hover:scale-[1.02] transition-transform">
                 <Package className="h-12 w-12 mb-4 opacity-80" />

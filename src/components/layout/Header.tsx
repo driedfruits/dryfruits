@@ -12,6 +12,7 @@ const navigation = [
     children: [
       { name: "All Products", href: "/products" },
       { name: "Dried Fruits", href: "/products/dried-fruits" },
+      { name: "Powdered Dried Fruits", href: "/products/powdered-fruits" },
       { name: "Vacuum Fried Fruits", href: "/products/vacuum-fried" },
       { name: "Ginger & Turmeric", href: "/products/ginger-turmeric" },
     ],
