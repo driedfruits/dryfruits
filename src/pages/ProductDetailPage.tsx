@@ -1,18 +1,34 @@
+import { Suspense, lazy, useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { Layout } from "@/components/layout";
-import { ProductPageTemplate } from "@/components/products";
+import { ProductPageSkeleton } from "@/components/products";
 import { getProductById } from "@/data/companyData";
 import { getProductRedirect } from "@/lib/redirects";
 
+// Lazy load the heavy template component
+const ProductPageTemplate = lazy(() =>
+  import("@/components/products/ProductPageTemplate").then((module) => ({
+    default: module.ProductPageTemplate,
+  }))
+);
+
 export default function ProductDetailPage() {
   const { category, productId } = useParams();
-  
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Brief loading state for perceived performance on route changes
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 300);
+    return () => clearTimeout(timer);
+  }, [productId]);
+
   // Check if productId is an alias that needs redirecting
   const redirectProductId = productId ? getProductRedirect(productId) : null;
   if (redirectProductId) {
     return <Navigate to={`/products/${category}/${redirectProductId}`} replace />;
   }
-  
+
   const product = getProductById(productId || "");
 
   if (!product) {
@@ -27,7 +43,13 @@ export default function ProductDetailPage() {
 
   return (
     <Layout>
-      <ProductPageTemplate product={product} />
+      {isLoading ? (
+        <ProductPageSkeleton />
+      ) : (
+        <Suspense fallback={<ProductPageSkeleton />}>
+          <ProductPageTemplate product={product} />
+        </Suspense>
+      )}
     </Layout>
   );
 }
