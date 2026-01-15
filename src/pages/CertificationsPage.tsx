@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { certifications, companyInfo } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { Leaf, Shield, FileCheck, Download, CheckCircle } from "lucide-react";
@@ -15,6 +16,11 @@ const qualityDocuments = [
   "Health Certificate",
 ];
 
+const breadcrumbItems = [
+  { name: "Home", url: "https://dryfruits.lovable.app" },
+  { name: "Certifications", url: "https://dryfruits.lovable.app/certifications" },
+];
+
 export default function CertificationsPage() {
   return (
     <Layout>
@@ -23,6 +29,12 @@ export default function CertificationsPage() {
         description="View our food safety and organic certifications: USDA Organic, EU Organic, HACCP, and Halal. Complete export documentation for seamless customs clearance."
         keywords={["USDA organic dried fruit", "EU organic certification", "HACCP certified manufacturer", "Halal dried fruit", "food safety certifications"]}
         canonical="/certifications"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
       />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">

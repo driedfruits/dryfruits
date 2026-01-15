@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { ContactForm } from "@/components/forms";
 import { companyInfo } from "@/data/companyData";
 import { PrimaryButton } from "@/components/CTAButton";
@@ -44,6 +45,11 @@ const packagingOptions = [
   { name: "Gift Boxes", sizes: "Custom sizes available" },
 ];
 
+const breadcrumbItems = [
+  { name: "Home", url: "https://dryfruits.lovable.app" },
+  { name: "Private Label", url: "https://dryfruits.lovable.app/private-label" },
+];
+
 export default function PrivateLabelPage() {
   return (
     <Layout>
@@ -52,6 +58,12 @@ export default function PrivateLabelPage() {
         description="Launch your own brand with our private label dried fruit solutions. Custom packaging, flexible MOQ, complete OEM services. From 500kg. Artwork support included."
         keywords={["private label dried fruit", "OEM fruit manufacturer", "white label dried fruit", "custom packaging fruit", "branded dried fruit"]}
         canonical="/private-label"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
       />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">

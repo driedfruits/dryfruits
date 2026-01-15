@@ -1,7 +1,13 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { CatalogForm } from "@/components/forms";
 import { CheckCircle, FileText, Download } from "lucide-react";
+
+const breadcrumbItems = [
+  { name: "Home", url: "https://dryfruits.lovable.app" },
+  { name: "Product Catalog", url: "https://dryfruits.lovable.app/catalog" },
+];
 
 export default function CatalogPage() {
   return (
@@ -11,6 +17,12 @@ export default function CatalogPage() {
         description="Download our complete dried fruit catalog with product specifications, FOB pricing guidelines, packaging options, MOQs, and certification details. PDF format."
         keywords={["dried fruit catalog", "product catalog download", "price list dried fruit", "wholesale catalog"]}
         canonical="/catalog"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
       />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">

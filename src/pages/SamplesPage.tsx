@@ -1,9 +1,15 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { ContactForm } from "@/components/forms";
 import { companyInfo } from "@/data/companyData";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Package, CheckCircle, Clock, Truck } from "lucide-react";
+
+const breadcrumbItems = [
+  { name: "Home", url: "https://dryfruits.lovable.app" },
+  { name: "Request Samples", url: "https://dryfruits.lovable.app/samples" },
+];
 
 export default function SamplesPage() {
   return (
@@ -13,6 +19,12 @@ export default function SamplesPage() {
         description="Request free dried fruit samples for quality evaluation. 50g-500g sample packs available. DHL/FedEx express shipping. Processing time 3-5 business days."
         keywords={["dried fruit samples", "free product samples", "fruit sample request", "quality evaluation samples"]}
         canonical="/samples"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
       />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
