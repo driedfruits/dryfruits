@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
 import { ContactForm } from "@/components/forms";
 import { companyInfo } from "@/data/companyData";
 import { PrimaryButton } from "@/components/CTAButton";
@@ -46,6 +47,12 @@ const packagingOptions = [
 export default function PrivateLabelPage() {
   return (
     <Layout>
+      <SEO
+        title="Private Label & OEM Dried Fruit Services"
+        description="Launch your own brand with our private label dried fruit solutions. Custom packaging, flexible MOQ, complete OEM services. From 500kg. Artwork support included."
+        keywords={["private label dried fruit", "OEM fruit manufacturer", "white label dried fruit", "custom packaging fruit", "branded dried fruit"]}
+        canonical="/private-label"
+      />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container">

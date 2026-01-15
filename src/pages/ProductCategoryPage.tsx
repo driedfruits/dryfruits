@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
 import { getProductsByCategory, productCategories } from "@/data/companyData";
 import { generateItemListSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { Package, Leaf, ChevronRight } from "lucide-react";
@@ -28,6 +29,12 @@ export default function ProductCategoryPage() {
 
   return (
     <Layout>
+      <SEO
+        title={`Wholesale ${categoryInfo.name} - Bulk Export from Indonesia`}
+        description={`Premium ${categoryInfo.name.toLowerCase()} from Indonesia. Direct manufacturer with USDA/EU Organic certification. MOQ 500kg. ${products.length} products available. Export to 18+ countries.`}
+        keywords={[`wholesale ${categoryInfo.name.toLowerCase()}`, `bulk ${categoryInfo.name.toLowerCase()} Indonesia`, `${categoryInfo.name.toLowerCase()} supplier`]}
+        canonical={`/products/${category}`}
+      />
       {/* ItemList Schema */}
       <script
         type="application/ld+json"

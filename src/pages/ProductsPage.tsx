@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
 import { productCategories, products } from "@/data/companyData";
 import { PrimaryButton } from "@/components/CTAButton";
 import { Package, ArrowRight, Leaf } from "lucide-react";
@@ -7,6 +8,12 @@ import { Package, ArrowRight, Leaf } from "lucide-react";
 export default function ProductsPage() {
   return (
     <Layout>
+      <SEO
+        title="Wholesale Dried Fruit Products - Bulk Export from Indonesia"
+        description="Browse our complete range of wholesale dried fruits, vacuum-fried snacks, fruit powders, and spices. USDA & EU Organic certified. MOQ 500kg. Direct from Indonesian manufacturer."
+        keywords={["wholesale dried fruit products", "bulk dried fruit Indonesia", "dried fruit catalog", "organic dried fruit range"]}
+        canonical="/products"
+      />
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container text-center text-primary-foreground">
           <h1 className="text-4xl font-bold sm:text-5xl mb-4">Our Products</h1>

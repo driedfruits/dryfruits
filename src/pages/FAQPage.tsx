@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
 import { faqItems, companyInfo } from "@/data/companyData";
 import { PrimaryButton } from "@/components/CTAButton";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -13,6 +14,12 @@ import {
 export default function FAQPage() {
   return (
     <Layout>
+      <SEO
+        title="FAQ - Wholesale Dried Fruit Questions Answered"
+        description="Frequently asked questions about ordering wholesale dried fruits from Indonesia. Learn about MOQ, shipping, certifications, lead times, and payment terms."
+        keywords={["dried fruit FAQ", "wholesale fruit questions", "MOQ dried fruit", "shipping dried fruit Indonesia"]}
+        canonical="/faq"
+      />
       {/* FAQPage Schema */}
       <script
         type="application/ld+json"

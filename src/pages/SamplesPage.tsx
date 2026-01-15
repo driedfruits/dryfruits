@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
 import { ContactForm } from "@/components/forms";
 import { companyInfo } from "@/data/companyData";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -7,6 +8,12 @@ import { Package, CheckCircle, Clock, Truck } from "lucide-react";
 export default function SamplesPage() {
   return (
     <Layout>
+      <SEO
+        title="Request Free Product Samples"
+        description="Request free dried fruit samples for quality evaluation. 50g-500g sample packs available. DHL/FedEx express shipping. Processing time 3-5 business days."
+        keywords={["dried fruit samples", "free product samples", "fruit sample request", "quality evaluation samples"]}
+        canonical="/samples"
+      />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container">

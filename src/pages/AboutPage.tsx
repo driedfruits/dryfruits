@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
 import { companyInfo, teamMembers, certifications } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { 
@@ -15,6 +16,12 @@ import {
 export default function AboutPage() {
   return (
     <Layout>
+      <SEO
+        title="About DFT Indonesia - Dried Fruit Manufacturer Since 2015"
+        description={`Learn about ${companyInfo.name}, Indonesia's leading dried fruit manufacturer. Established ${companyInfo.established}, exporting to ${companyInfo.stats.exportCountries} countries with ${companyInfo.stats.productionCapacity} capacity.`}
+        keywords={["about DFT Indonesia", "dried fruit manufacturer Indonesia", "Indonesian food exporter", "tropical fruit processor"]}
+        canonical="/about"
+      />
       {/* Hero */}
       <section className="py-20 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container">
