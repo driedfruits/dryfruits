@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { companyInfo } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { 
@@ -59,6 +60,11 @@ const sustainabilityPillars = [
   },
 ];
 
+const breadcrumbItems = [
+  { name: "Home", url: "https://dryfruits.lovable.app" },
+  { name: "Sustainability", url: "https://dryfruits.lovable.app/sustainability" },
+];
+
 export default function SustainabilityPage() {
   return (
     <Layout>
@@ -67,6 +73,12 @@ export default function SustainabilityPage() {
         description="Learn about our commitment to sustainable farming, eco-friendly processing, and fair trade partnerships with Indonesian farmers. Organic certified supply chain."
         keywords={["sustainable dried fruit", "fair trade fruit Indonesia", "eco-friendly food processing", "organic farmer partnerships"]}
         canonical="/sustainability"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
       />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">

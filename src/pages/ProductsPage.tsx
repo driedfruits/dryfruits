@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { productCategories, products } from "@/data/companyData";
 import { PrimaryButton } from "@/components/CTAButton";
 import { Package, ArrowRight, Leaf } from "lucide-react";
+
+const breadcrumbItems = [
+  { name: "Home", url: "https://dryfruits.lovable.app" },
+  { name: "Products", url: "https://dryfruits.lovable.app/products" },
+];
 
 export default function ProductsPage() {
   return (
@@ -13,6 +19,12 @@ export default function ProductsPage() {
         description="Browse our complete range of wholesale dried fruits, vacuum-fried snacks, fruit powders, and spices. USDA & EU Organic certified. MOQ 500kg. Direct from Indonesian manufacturer."
         keywords={["wholesale dried fruit products", "bulk dried fruit Indonesia", "dried fruit catalog", "organic dried fruit range"]}
         canonical="/products"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
       />
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container text-center text-primary-foreground">

@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { ContactForm } from "@/components/forms";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { companyInfo, socialLinks } from "@/data/companyData";
@@ -22,6 +23,11 @@ const socialIcons = {
   youtube: Youtube,
 };
 
+const breadcrumbItems = [
+  { name: "Home", url: "https://dryfruits.lovable.app" },
+  { name: "Contact", url: "https://dryfruits.lovable.app/contact" },
+];
+
 export default function ContactPage() {
   const [searchParams] = useSearchParams();
   const formType = searchParams.get("type") as "contact" | "quote" | "sample" || "quote";
@@ -39,6 +45,12 @@ export default function ContactPage() {
         description={`Contact ${companyInfo.shortName} export team for bulk quotes, samples, and inquiries. Phone: ${companyInfo.phone}. Email: ${companyInfo.email}. Response within 24 hours.`}
         keywords={["contact dried fruit supplier", "bulk quote request", "dried fruit samples", "Indonesian exporter contact"]}
         canonical="/contact"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
       />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">

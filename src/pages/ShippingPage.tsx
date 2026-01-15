@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { companyInfo, exportCountries } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { 
@@ -59,6 +60,11 @@ const exportDocs = [
   "Insurance Certificate (if required)",
 ];
 
+const breadcrumbItems = [
+  { name: "Home", url: "https://dryfruits.lovable.app" },
+  { name: "Shipping & Export", url: "https://dryfruits.lovable.app/shipping" },
+];
+
 export default function ShippingPage() {
   return (
     <Layout>
@@ -67,6 +73,12 @@ export default function ShippingPage() {
         description={`Seamless export process to ${companyInfo.stats.exportCountries} countries. FOB & CIF terms available. Complete documentation for customs clearance. Lead time ${companyInfo.paymentTerms.leadTime}.`}
         keywords={["dried fruit shipping", "FOB Indonesia", "export dried fruit", "container shipping fruit", "international fruit delivery"]}
         canonical="/shipping"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
       />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">

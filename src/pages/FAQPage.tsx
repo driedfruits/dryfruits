@@ -1,15 +1,20 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { faqItems, companyInfo } from "@/data/companyData";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { PrimaryButton } from "@/components/CTAButton";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { generateFAQSchema } from "@/lib/schema";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
+const breadcrumbItems = [
+  { name: "Home", url: "https://dryfruits.lovable.app" },
+  { name: "FAQ", url: "https://dryfruits.lovable.app/faq" },
+];
 
 export default function FAQPage() {
   return (
@@ -20,7 +25,14 @@ export default function FAQPage() {
         keywords={["dried fruit FAQ", "wholesale fruit questions", "MOQ dried fruit", "shipping dried fruit Indonesia"]}
         canonical="/faq"
       />
-      {/* FAQPage Schema */}
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
+      />
+      {/* FAQ Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

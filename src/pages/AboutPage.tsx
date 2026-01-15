@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { companyInfo, teamMembers, certifications } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { 
@@ -13,6 +14,11 @@ import {
   MapPin
 } from "lucide-react";
 
+const breadcrumbItems = [
+  { name: "Home", url: "https://dryfruits.lovable.app" },
+  { name: "About Us", url: "https://dryfruits.lovable.app/about" },
+];
+
 export default function AboutPage() {
   return (
     <Layout>
@@ -21,6 +27,12 @@ export default function AboutPage() {
         description={`Learn about ${companyInfo.name}, Indonesia's leading dried fruit manufacturer. Established ${companyInfo.established}, exporting to ${companyInfo.stats.exportCountries} countries with ${companyInfo.stats.productionCapacity} capacity.`}
         keywords={["about DFT Indonesia", "dried fruit manufacturer Indonesia", "Indonesian food exporter", "tropical fruit processor"]}
         canonical="/about"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
       />
       {/* Hero */}
       <section className="py-20 bg-gradient-to-br from-primary to-tropical-green-light">
