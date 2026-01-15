@@ -2,8 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { redirectRules } from "@/lib/redirects";
 
 // Lazy load pages for performance
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -51,6 +52,16 @@ const App = () => (
             <Route path="/private-label" element={<PrivateLabelPage />} />
             <Route path="/samples" element={<SamplesPage />} />
             <Route path="/catalog" element={<CatalogPage />} />
+            
+            {/* 301 Redirects for SEO */}
+            {redirectRules.map((rule) => (
+              <Route
+                key={rule.from}
+                path={rule.from}
+                element={<Navigate to={rule.to} replace />}
+              />
+            ))}
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

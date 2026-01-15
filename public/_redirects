@@ -1,0 +1,73 @@
+# 301 Redirect System - Preserve SEO Equity
+# Format: from  to  status-code
+
+# Legacy URL redirects
+/home                       /                              301
+/index.html                 /                              301
+/index                      /                              301
+
+# Page aliases and common paths
+/product                    /products                      301
+/catalogue                  /catalog                       301
+/sample                     /samples                       301
+/sample-request             /samples                       301
+
+# About page variants
+/about-us                   /about                         301
+/aboutus                    /about                         301
+/company                    /about                         301
+/who-we-are                 /about                         301
+
+# Contact page variants
+/contact-us                 /contact                       301
+/contactus                  /contact                       301
+/get-quote                  /contact                       301
+/inquiry                    /contact                       301
+/enquiry                    /contact                       301
+
+# FAQ variants
+/faqs                       /faq                           301
+/questions                  /faq                           301
+/help                       /faq                           301
+
+# Certification variants
+/certificates               /certifications                301
+/certification              /certifications                301
+/quality                    /certifications                301
+
+# Shipping variants
+/logistics                  /shipping                      301
+/delivery                   /shipping                      301
+/export                     /shipping                      301
+
+# Private label variants
+/oem                        /private-label                 301
+/white-label                /private-label                 301
+/custom-packaging           /private-label                 301
+/privatelabel               /private-label                 301
+
+# Sustainability variants
+/eco                        /sustainability                301
+/green                      /sustainability                301
+/environment                /sustainability                301
+
+# Category redirects (common misspellings)
+/products/dried-fruit       /products/dried-fruits         301
+/products/dried             /products/dried-fruits         301
+/products/powder            /products/powdered-fruits      301
+/products/powders           /products/powdered-fruits      301
+/products/fruit-powder      /products/powdered-fruits      301
+/products/vacuum            /products/vacuum-fried         301
+/products/vacuum-fry        /products/vacuum-fried         301
+/products/chips             /products/vacuum-fried         301
+/products/ginger            /products/ginger-turmeric      301
+/products/turmeric          /products/ginger-turmeric      301
+/products/spices            /products/ginger-turmeric      301
+
+# Old product URL structures
+/dried-fruits/*             /products/dried-fruits/:splat  301
+/powdered-fruits/*          /products/powdered-fruits/:splat 301
+/vacuum-fried/*             /products/vacuum-fried/:splat  301
+
+# SPA fallback (must be last)
+/*                          /index.html                    200
