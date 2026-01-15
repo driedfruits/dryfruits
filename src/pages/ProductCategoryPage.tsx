@@ -67,14 +67,14 @@ export default function ProductCategoryPage() {
         }}
       />
 
-      <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
+      <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light animate-content-reveal">
         <div className="container text-center text-primary-foreground">
           <h1 className="text-4xl font-bold sm:text-5xl mb-4">{categoryInfo.name}</h1>
           <p className="text-xl text-primary-foreground/80">{categoryInfo.description}</p>
         </div>
       </section>
 
-      <div className="bg-muted/50 py-4">
+      <div className="bg-muted/50 py-4 animate-content-reveal animation-delay-75">
         <div className="container">
           <nav className="flex items-center gap-2 text-sm text-muted-foreground">
             <Link to="/" className="hover:text-primary">Home</Link>
@@ -89,8 +89,13 @@ export default function ProductCategoryPage() {
       <section className="py-20">
         <div className="container">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product) => (
-              <Link key={product.id} to={`/products/${category}/${product.id}`} className="group rounded-xl bg-card overflow-hidden shadow-soft hover:shadow-glow transition-all">
+            {products.map((product, index) => (
+              <Link 
+                key={product.id} 
+                to={`/products/${category}/${product.id}`} 
+                className="group rounded-xl bg-card overflow-hidden shadow-soft hover:shadow-glow transition-all animate-content-reveal opacity-0"
+                style={{ animationDelay: `${150 + index * 50}ms`, animationFillMode: 'forwards' }}
+              >
                 <div className="aspect-square bg-gradient-to-br from-secondary to-muted flex items-center justify-center relative">
                   <Package className="h-20 w-20 text-muted-foreground/30 group-hover:scale-110 transition-transform" />
                   {product.isOrganic && <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full flex items-center gap-1"><Leaf className="h-3 w-3" />Organic</span>}
