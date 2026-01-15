@@ -144,6 +144,13 @@ export interface Product {
   sku?: string;
   hsCode?: string;
   
+  // Images (optional - uses placeholder if not set)
+  images?: {
+    main?: string;           // Main product image URL
+    thumbnail?: string;      // Low-quality placeholder for blur-up
+    gallery?: string[];      // Additional product images
+  };
+  
   // Content & SEO
   tagline: string;
   description: string;

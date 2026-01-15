@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { Badge } from "@/components/ui/badge";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Leaf, Package, FileText, ChevronRight } from "lucide-react";
 import { ProductSpecsTable } from "./ProductSpecsTable";
 import { ProductPriceTiers } from "./ProductPriceTiers";
@@ -98,13 +99,17 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
             <div className="grid gap-10 lg:grid-cols-2">
               {/* Product Image */}
               <div className="relative">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-secondary to-muted overflow-hidden">
-                  <div className="flex h-full items-center justify-center text-muted-foreground">
-                    <Package className="h-32 w-32 opacity-30" />
-                  </div>
-                </div>
+                <OptimizedImage
+                  src={product.images?.main || ""}
+                  alt={`${product.name} - Bulk Wholesale from Indonesia`}
+                  aspectRatio="square"
+                  placeholderSrc={product.images?.thumbnail}
+                  priority={true}
+                  className="rounded-2xl"
+                  fallbackIcon={<Package className="h-32 w-32 text-muted-foreground/30" />}
+                />
                 {product.isOrganic && (
-                  <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">
+                  <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground z-10">
                     <Leaf className="h-3 w-3 mr-1" />
                     Organic Certified
                   </Badge>
@@ -244,9 +249,13 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                     to={`/products/${related.category}/${related.id}`}
                     className="group bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-glow transition-all"
                   >
-                    <div className="aspect-square bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-                      <Package className="h-12 w-12 text-muted-foreground/30 group-hover:scale-110 transition-transform" />
-                    </div>
+                    <OptimizedImage
+                      src={related.images?.main || ""}
+                      alt={related.name}
+                      aspectRatio="square"
+                      className="group-hover:scale-105 transition-transform duration-300"
+                      fallbackIcon={<Package className="h-12 w-12 text-muted-foreground/30 group-hover:scale-110 transition-transform" />}
+                    />
                     <div className="p-4">
                       <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
                         {related.name}

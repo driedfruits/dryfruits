@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { CategoryPageSkeleton } from "@/components/products";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { getProductsByCategory, productCategories } from "@/data/companyData";
 import { generateItemListSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { Package, Leaf, ChevronRight } from "lucide-react";
@@ -96,9 +97,19 @@ export default function ProductCategoryPage() {
                 className="group rounded-xl bg-card overflow-hidden shadow-soft hover:shadow-glow transition-all animate-content-reveal opacity-0"
                 style={{ animationDelay: `${150 + index * 50}ms`, animationFillMode: 'forwards' }}
               >
-                <div className="aspect-square bg-gradient-to-br from-secondary to-muted flex items-center justify-center relative">
-                  <Package className="h-20 w-20 text-muted-foreground/30 group-hover:scale-110 transition-transform" />
-                  {product.isOrganic && <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full flex items-center gap-1"><Leaf className="h-3 w-3" />Organic</span>}
+                <div className="relative">
+                  <OptimizedImage
+                    src={product.images?.main || ""}
+                    alt={product.name}
+                    aspectRatio="square"
+                    placeholderSrc={product.images?.thumbnail}
+                    fallbackIcon={<Package className="h-20 w-20 text-muted-foreground/30 group-hover:scale-110 transition-transform" />}
+                  />
+                  {product.isOrganic && (
+                    <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full flex items-center gap-1 z-10">
+                      <Leaf className="h-3 w-3" />Organic
+                    </span>
+                  )}
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-2">{product.name}</h3>
