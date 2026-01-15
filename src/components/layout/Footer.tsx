@@ -12,14 +12,11 @@ const footerLinks = {
   company: [
     { name: "About Us", href: "/about" },
     { name: "Certifications", href: "/certifications" },
-    { name: "Sustainability", href: "/sustainability" },
-    { name: "FAQ", href: "/faq" },
   ],
-  services: [
-    { name: "Private Label", href: "/private-label" },
-    { name: "Shipping & Export", href: "/shipping" },
-    { name: "Request Samples", href: "/samples" },
+  resources: [
+    { name: "Free Samples", href: "/samples" },
     { name: "Download Catalog", href: "/catalog" },
+    { name: "Contact Us", href: "/contact" },
   ],
 };
 
@@ -112,11 +109,11 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Resources */}
           <div>
-            <h3 className="font-semibold text-on-dark mb-4">Services</h3>
+            <h3 className="font-semibold text-on-dark mb-4">Resources</h3>
             <ul className="space-y-2">
-              {footerLinks.services.map((link) => (
+              {footerLinks.resources.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.href}
