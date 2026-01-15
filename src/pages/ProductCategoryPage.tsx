@@ -5,6 +5,7 @@ import { Package, Leaf, ChevronRight } from "lucide-react";
 
 const categoryLabels: Record<string, string> = {
   "dried-fruits": "Dried Fruits",
+  "powdered-fruits": "Powdered Dried Fruits",
   "vacuum-fried": "Vacuum Fried Fruits", 
   "ginger-turmeric": "Ginger & Turmeric",
 };

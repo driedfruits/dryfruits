@@ -5,9 +5,9 @@ import { Leaf, Mail, Phone, MapPin, Clock, Linkedin, Instagram, Facebook, Youtub
 const footerLinks = {
   products: [
     { name: "Dried Fruits", href: "/products/dried-fruits" },
+    { name: "Powdered Fruits", href: "/products/powdered-fruits" },
     { name: "Vacuum Fried Fruits", href: "/products/vacuum-fried" },
     { name: "Ginger & Turmeric", href: "/products/ginger-turmeric" },
-    { name: "All Products", href: "/products" },
   ],
   company: [
     { name: "About Us", href: "/about" },
