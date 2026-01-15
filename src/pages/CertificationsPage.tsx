@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
 import { certifications, companyInfo } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { Leaf, Shield, FileCheck, Download, CheckCircle } from "lucide-react";
@@ -17,6 +18,12 @@ const qualityDocuments = [
 export default function CertificationsPage() {
   return (
     <Layout>
+      <SEO
+        title="Certifications & Quality - USDA Organic, EU Organic, HACCP"
+        description="View our food safety and organic certifications: USDA Organic, EU Organic, HACCP, and Halal. Complete export documentation for seamless customs clearance."
+        keywords={["USDA organic dried fruit", "EU organic certification", "HACCP certified manufacturer", "Halal dried fruit", "food safety certifications"]}
+        canonical="/certifications"
+      />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container">

@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
 import { companyInfo } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { 
@@ -61,6 +62,12 @@ const sustainabilityPillars = [
 export default function SustainabilityPage() {
   return (
     <Layout>
+      <SEO
+        title="Sustainability & Farmer Partnerships"
+        description="Learn about our commitment to sustainable farming, eco-friendly processing, and fair trade partnerships with Indonesian farmers. Organic certified supply chain."
+        keywords={["sustainable dried fruit", "fair trade fruit Indonesia", "eco-friendly food processing", "organic farmer partnerships"]}
+        canonical="/sustainability"
+      />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container">

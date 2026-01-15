@@ -1,10 +1,17 @@
 import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
 import { CatalogForm } from "@/components/forms";
 import { CheckCircle, FileText, Download } from "lucide-react";
 
 export default function CatalogPage() {
   return (
     <Layout>
+      <SEO
+        title="Download Product Catalog - Specifications & Pricing"
+        description="Download our complete dried fruit catalog with product specifications, FOB pricing guidelines, packaging options, MOQs, and certification details. PDF format."
+        keywords={["dried fruit catalog", "product catalog download", "price list dried fruit", "wholesale catalog"]}
+        canonical="/catalog"
+      />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container">

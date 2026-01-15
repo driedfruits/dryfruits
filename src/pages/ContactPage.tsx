@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
 import { ContactForm } from "@/components/forms";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { companyInfo, socialLinks } from "@/data/companyData";
@@ -25,8 +26,20 @@ export default function ContactPage() {
   const [searchParams] = useSearchParams();
   const formType = searchParams.get("type") as "contact" | "quote" | "sample" || "quote";
 
+  const seoTitle = formType === "sample" 
+    ? "Request Product Samples - Contact DFT Indonesia" 
+    : formType === "quote" 
+    ? "Request a Bulk Quote - Contact DFT Indonesia"
+    : "Contact Us - DFT Indonesia Export Team";
+
   return (
     <Layout>
+      <SEO
+        title={seoTitle}
+        description={`Contact ${companyInfo.shortName} export team for bulk quotes, samples, and inquiries. Phone: ${companyInfo.phone}. Email: ${companyInfo.email}. Response within 24 hours.`}
+        keywords={["contact dried fruit supplier", "bulk quote request", "dried fruit samples", "Indonesian exporter contact"]}
+        canonical="/contact"
+      />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container">

@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
 import { companyInfo, exportCountries } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { 
@@ -61,6 +62,12 @@ const exportDocs = [
 export default function ShippingPage() {
   return (
     <Layout>
+      <SEO
+        title="Shipping & Export - Global Dried Fruit Delivery"
+        description={`Seamless export process to ${companyInfo.stats.exportCountries} countries. FOB & CIF terms available. Complete documentation for customs clearance. Lead time ${companyInfo.paymentTerms.leadTime}.`}
+        keywords={["dried fruit shipping", "FOB Indonesia", "export dried fruit", "container shipping fruit", "international fruit delivery"]}
+        canonical="/shipping"
+      />
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container">

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { type Product, getRelatedProducts, companyInfo } from "@/data/companyData";
+import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { Badge } from "@/components/ui/badge";
@@ -27,6 +28,10 @@ const categoryLabels: Record<string, string> = {
 export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
   const relatedProducts = getRelatedProducts(product.id);
 
+  const seoTitle = product.metaTitle || `Wholesale ${product.name} - Bulk Export from Indonesia`;
+  const seoDescription = product.metaDescription || `Direct manufacturer of premium ${product.name.toLowerCase()} from Indonesia. ${product.isOrganic ? "USDA/EU Organic certified. " : ""}Bulk packaging available. MOQ ${product.pricing.moq}. View specs & pricing.`;
+  const seoKeywords = product.keywords || [`bulk ${product.name.toLowerCase()}`, `wholesale ${product.name.toLowerCase()} Indonesia`, `${product.name.toLowerCase()} supplier`];
+
   const breadcrumbItems = [
     { name: "Home", url: "https://dryfruits.biz" },
     { name: "Wholesale Dried Fruits", url: "https://dryfruits.biz/products" },
@@ -36,6 +41,13 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
 
   return (
     <>
+      <SEO
+        title={seoTitle}
+        description={seoDescription}
+        keywords={seoKeywords}
+        canonical={`/products/${product.category}/${product.id}`}
+        ogType="product"
+      />
       {/* Product Schema */}
       <script
         type="application/ld+json"
