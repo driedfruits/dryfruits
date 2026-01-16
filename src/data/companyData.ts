@@ -160,7 +160,7 @@ export interface Product {
   metaDescription?: string;
   keywords?: string[];
   
-  // Specifications (enhanced)
+  // Specifications (enhanced for B2B)
   specifications: {
     size?: string;
     moisture?: string;
@@ -175,6 +175,24 @@ export interface Product {
     foreignMatter?: string;
     processingMethod?: string;
     grade?: string;
+    // Ginger/turmeric specific B2B specs
+    volatileOil?: string;
+    gingerolContent?: string;
+    totalAsh?: string;
+    acidInsolubleAsh?: string;
+    particleSize?: string;
+    purity?: string;
+    defects?: string;
+    fatContent?: string;
+    starchContent?: string;
+    chromeTest?: string;
+    astaColor?: string;
+    // Microbial limits
+    salmonella?: string;
+    eColi?: string;
+    aflatoxins?: string;
+    // Quality testing
+    testingMethod?: string;
   };
   
   // Seasonal availability
@@ -1176,30 +1194,43 @@ export const products: Product[] = [
     category: "ginger-turmeric",
     sku: "DFT-DG-001",
     hsCode: "0910.11.00",
-    tagline: "Premium Indonesian ginger",
-    description: "High-quality dried ginger slices and cuts. Strong, aromatic flavor from Java's finest ginger varieties. Ideal for tea and culinary applications.",
-    flavorProfile: "Strong, spicy-warm with zesty citrus notes",
-    texture: "Firm, fibrous slices",
-    metaTitle: "Wholesale Dried Ginger - Bulk Export from Indonesia",
-    metaDescription: "Premium dried ginger from Indonesia. Strong aroma. USDA/EU Organic certified. Bulk 25kg bags. Direct from manufacturer.",
-    keywords: ["dried ginger wholesale", "Indonesian ginger", "ginger supplier"],
+    tagline: "Premium Indonesian ginger for B2B buyers",
+    description: "High-quality dried ginger in whole, splits, slices, and flakes. Strong aromatic flavor from Java's finest ginger varieties (Zingiber officinale). Ideal for tea blends, confectionery, spice processing, and pharmaceutical applications. Sun-dried for optimal volatile oil retention.",
+    flavorProfile: "Strong, spicy-warm with zesty citrus notes and pungent finish",
+    texture: "Firm, fibrous slices with clean break",
+    metaTitle: "Wholesale Dried Ginger (Whole/Splits/Slices) - Bulk Export from Indonesia",
+    metaDescription: "Premium dried ginger from Indonesia. 1.5-3% volatile oil, 1-2.5% gingerol. USDA/EU Organic certified. 12-18 MT per 20ft container. Direct from manufacturer.",
+    keywords: ["dried ginger wholesale", "Indonesian ginger", "ginger supplier", "bulk ginger export", "ginger slices B2B"],
     specifications: {
-      size: "Slices, Cuts, Whole",
-      moisture: "10-12%",
-      color: "Light Yellow to Brown",
+      size: "Whole, Splits, Slices, Flakes",
+      moisture: "≤12%",
+      color: "Golden-Yellow to Light Brown",
       shelfLife: "24 months",
       origin: "Central Java, Indonesia",
-      additives: "No additives",
-      foreignMatter: "0%",
-      processingMethod: "Sun-dried",
+      volatileOil: "1.5-3%",
+      gingerolContent: "1-2.5%",
+      totalAsh: "≤8%",
+      acidInsolubleAsh: "≤2%",
+      defects: "≤2%",
+      foreignMatter: "≤1%",
+      purity: "Free of off-odors, PAH, pesticide residues",
+      processingMethod: "Sun-dried (traditional)",
       grade: "Grade A Export Quality",
+      salmonella: "Absent in 25g",
+      eColi: "Absent",
+      aflatoxins: "<5 ppb (EU compliant)",
+      additives: "None",
     },
     availability: {
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
-    applications: ["Tea blends", "Cooking", "Beverages", "Herbal products", "Confectionery", "Pharmaceuticals"],
-    packaging: { bulk: "25 kg bags", retail: "100g-500g pouches", custom: true },
+    applications: ["Tea blends", "Confectionery", "Spice processing", "Herbal products", "Beverages", "Pharmaceuticals", "Essential oil extraction"],
+    packaging: { 
+      bulk: "25-50kg PP woven bags with HDPE liner; ventilated for moisture control", 
+      retail: "100g-500g vacuum pouches", 
+      custom: true 
+    },
     pricing: {
       fobBase: "From $4.00/kg FOB",
       moq: "1 ton",
@@ -1212,6 +1243,35 @@ export const products: Product[] = [
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
+    logistics: {
+      portOfLoading: "Semarang / Tanjung Perak (Surabaya), Indonesia",
+      incoterms: ["FOB", "CIF", "CFR"],
+      containerLoad20ft: "12-18 MT",
+      containerLoad40ft: "24-26 MT",
+    },
+    compliance: {
+      usa: "FDA facility registered; Prior Notice compliant; meets Import Alert 99-41 standards",
+      eu: "Phytosanitary certified; MRL compliant (Reg. 396/2005); aflatoxins <5 ppb",
+      global: "CODEX CXS 343-2021 compliant; ISO 17025 lab tested",
+    },
+    faqs: [
+      {
+        question: "What testing do you provide for dried ginger?",
+        answer: "We provide Certificate of Analysis (CoA) with each shipment including volatile oil content (1.5-3%), gingerol levels, moisture, heavy metals, pesticide residues, and microbial tests. Testing is done by ISO 17025 accredited labs."
+      },
+      {
+        question: "How many tons fit in a 40ft container?",
+        answer: "A 40ft container can hold 24-26 MT of dried ginger in 25-50kg bags. For 20ft containers, capacity is 12-18 MT depending on packaging density."
+      },
+      {
+        question: "What certifications are included for EU/US import?",
+        answer: "We provide Phytosanitary Certificate, Certificate of Origin, HACCP documentation, and organic certificates (USDA/EU). Fumigation certificate (methyl bromide free) available upon request."
+      },
+      {
+        question: "What is the difference between Grade A and Grade B ginger?",
+        answer: "Grade A features uniform golden color, premium aroma, lower defects (<2%), and higher volatile oil (>2%). Grade B is cost-effective with slightly higher defects, suitable for extraction or processing applications."
+      },
+    ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
     relatedProducts: ["ginger-powder", "dried-turmeric", "turmeric-powder"],
@@ -1221,32 +1281,44 @@ export const products: Product[] = [
     name: "Ginger Powder",
     category: "ginger-turmeric",
     sku: "DFT-GP-001",
-    hsCode: "0910.11.00",
-    tagline: "Concentrated ginger flavor",
-    description: "Fine ginger powder made from premium dried ginger. Intense flavor for culinary and health applications. Consistent quality guaranteed.",
-    flavorProfile: "Concentrated spicy-warm, aromatic",
+    hsCode: "0910.12.00",
+    tagline: "Concentrated ginger flavor for food manufacturing",
+    description: "Fine ginger powder made from premium Grade A dried ginger. 80-100 mesh particle size ideal for uniform blending in spice mixes, beverages, and supplements. Steam-treated for microbial reduction without irradiation. ISO 1003:2025 compliant.",
+    flavorProfile: "Concentrated spicy-warm with intense aromatic pungency",
     texture: "Fine, free-flowing powder",
-    metaTitle: "Wholesale Ginger Powder - Bulk Export from Indonesia",
-    metaDescription: "Premium ginger powder from Indonesia. Strong flavor. USDA/EU Organic certified. Bulk 25kg bags. Direct from manufacturer.",
-    keywords: ["ginger powder wholesale", "Indonesian ginger powder", "organic ginger powder"],
+    metaTitle: "Wholesale Ginger Powder (80-100 Mesh) - Bulk Export from Indonesia",
+    metaDescription: "Premium ginger powder from Indonesia. 80-100 mesh, 5-7% gingerol, steam-treated. USDA/EU Organic certified. Bulk 12.5-25kg bags. ISO 1003 compliant.",
+    keywords: ["ginger powder wholesale", "Indonesian ginger powder", "organic ginger powder", "bulk ginger powder", "ginger powder B2B"],
     specifications: {
-      size: "80-120 mesh",
-      meshSize: "80-120 mesh",
-      moisture: "8-10%",
-      color: "Light Yellow",
+      particleSize: "80-100 mesh",
+      meshSize: "80-100 mesh",
+      moisture: "≤8-10%",
+      color: "Light Yellow to Cream",
       shelfLife: "24 months",
       origin: "Central Java, Indonesia",
-      additives: "No additives",
+      volatileOil: "1-3%",
+      gingerolContent: "5-7%",
+      totalAsh: "≤6-8%",
+      acidInsolubleAsh: "≤1-2%",
+      fatContent: "5-8%",
       foreignMatter: "0%",
-      processingMethod: "Hammer-milled",
-      grade: "Food Grade",
+      processingMethod: "Hammer-milled from Grade A dried ginger; steam-treated",
+      grade: "Food Grade (ISO 1003:2025 compliant)",
+      salmonella: "Absent in 25g",
+      eColi: "Absent",
+      aflatoxins: "<10 ppb",
+      additives: "None - 100% pure ginger",
     },
     availability: {
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
-    applications: ["Baking", "Beverages", "Supplements", "Spice blends", "Health products", "Pharmaceuticals"],
-    packaging: { bulk: "25 kg bags", retail: "50g-500g jars/pouches", custom: true },
+    applications: ["Baking", "Beverages", "Supplements", "Spice blends", "Health products", "Pharmaceuticals", "Confectionery"],
+    packaging: { 
+      bulk: "12.5-25kg multi-wall laminated bags with PE/foil liner; heat-sealed", 
+      retail: "50g-500g jars/pouches", 
+      custom: true 
+    },
     pricing: {
       fobBase: "From $5.00/kg FOB",
       moq: "1 ton",
@@ -1259,6 +1331,35 @@ export const products: Product[] = [
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
+    logistics: {
+      portOfLoading: "Semarang / Tanjung Perak (Surabaya), Indonesia",
+      incoterms: ["FOB", "CIF", "CFR"],
+      containerLoad20ft: "14-16 MT",
+      containerLoad40ft: "20-22 MT",
+    },
+    compliance: {
+      usa: "FDA facility registered; Prior Notice compliant; steam-treated (no irradiation)",
+      eu: "Phytosanitary certified; MRL compliant; steam treatment preferred",
+      global: "ISO 1003:2025 compliant; CODEX standards met",
+    },
+    faqs: [
+      {
+        question: "What particle size is best for food manufacturing?",
+        answer: "80-100 mesh is ideal for uniform blending in spice mixes, beverages, and supplements. Finer grinding (120+ mesh) available for specialized applications upon request."
+      },
+      {
+        question: "How do you prevent moisture and clumping?",
+        answer: "We use multi-layer laminated bags with HDPE/foil liners maintaining moisture below 10%. Silica gel sachets included for humid climate destinations."
+      },
+      {
+        question: "Is your ginger powder steam-treated or irradiated?",
+        answer: "We use steam treatment for microbial reduction - preferred by EU and organic buyers. Irradiation is NOT used. This preserves volatile oils and complies with organic standards."
+      },
+      {
+        question: "What is the difference between 80 mesh and 100 mesh?",
+        answer: "100 mesh is finer and dissolves more easily in beverages. 80 mesh provides better texture for baking and spice blends. Both meet food-grade standards."
+      },
+    ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
     relatedProducts: ["dried-ginger", "turmeric-powder", "dried-turmeric"],
@@ -1269,31 +1370,45 @@ export const products: Product[] = [
     category: "ginger-turmeric",
     sku: "DFT-DT-001",
     hsCode: "0910.30.00",
-    tagline: "Golden superfood from Indonesia",
-    description: "Premium dried turmeric fingers and cuts. High curcumin content from Java's best turmeric. Ideal for supplements and culinary use.",
-    flavorProfile: "Earthy, slightly bitter with warm peppery notes",
-    texture: "Hard, dense fingers",
-    metaTitle: "Wholesale Dried Turmeric - High Curcumin from Indonesia",
-    metaDescription: "Premium dried turmeric from Indonesia. High curcumin content. USDA/EU Organic certified. Bulk 25kg bags. Direct from manufacturer.",
-    keywords: ["dried turmeric wholesale", "Indonesian turmeric", "high curcumin turmeric"],
+    tagline: "High-curcumin golden superfood for B2B buyers",
+    description: "Premium dried turmeric fingers (polished), bulbs, splits, and slices. High curcumin content (3-5% HPLC tested) from Java's best Curcuma longa. Boiled, sun-dried, and polished per traditional methods. Chrome test negative - no synthetic dyes. Ideal for supplements, spice blends, and extraction.",
+    flavorProfile: "Earthy, slightly bitter with warm peppery notes and woody undertones",
+    texture: "Hard, dense fingers with uniform deep orange color",
+    metaTitle: "Wholesale Dried Turmeric (Fingers/Polished) - High Curcumin from Indonesia",
+    metaDescription: "Premium dried turmeric from Indonesia. 3-5% curcumin (HPLC tested), chrome test negative. USDA/EU Organic certified. 18-25 MT per container. Direct from manufacturer.",
+    keywords: ["dried turmeric wholesale", "Indonesian turmeric", "high curcumin turmeric", "turmeric fingers bulk", "organic turmeric supplier"],
     specifications: {
-      size: "Fingers, Cuts, Slices",
-      moisture: "10-12%",
-      color: "Deep Orange-Yellow",
+      size: "Fingers (polished), Bulbs, Splits, Slices",
+      moisture: "≤10-12%",
+      color: "Deep Orange-Yellow (uniform)",
       shelfLife: "24 months",
       origin: "Central Java, Indonesia",
-      curcuminContent: "3-5% (high curcumin)",
-      additives: "No additives",
-      foreignMatter: "0%",
-      processingMethod: "Boiled & Sun-dried",
-      grade: "Grade A Export Quality",
+      curcuminContent: "3-5% (HPLC tested)",
+      totalAsh: "≤9%",
+      acidInsolubleAsh: "≤1.5%",
+      purity: "99.5%",
+      starchContent: "≤50%",
+      chromeTest: "Negative (no synthetic dyes)",
+      defects: "≤1%",
+      foreignMatter: "≤2%",
+      processingMethod: "Boiled, Sun-dried, Polished",
+      grade: "Grade A / FAQ Export Quality",
+      salmonella: "Absent in 25g",
+      eColi: "Absent",
+      aflatoxins: "<5 ppb (EU compliant)",
+      testingMethod: "HPLC for curcumin content",
+      additives: "None",
     },
     availability: {
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
-    applications: ["Curry blends", "Health supplements", "Tea", "Natural coloring", "Beverages", "Pharmaceuticals"],
-    packaging: { bulk: "25 kg bags", retail: "100g-500g pouches", custom: true },
+    applications: ["Curry blends", "Health supplements", "Tea", "Natural coloring", "Beverages", "Pharmaceuticals", "Curcumin extraction"],
+    packaging: { 
+      bulk: "25kg PP woven bags with PE liner; optional vacuum seal", 
+      retail: "100g-500g pouches", 
+      custom: true 
+    },
     pricing: {
       fobBase: "From $3.50/kg FOB",
       moq: "1 ton",
@@ -1306,6 +1421,35 @@ export const products: Product[] = [
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
+    logistics: {
+      portOfLoading: "Semarang / Tanjung Perak (Surabaya), Indonesia",
+      incoterms: ["FOB", "CIF", "CFR"],
+      containerLoad20ft: "18 MT",
+      containerLoad40ft: "22-25 MT (900-1000 x 25kg bags)",
+    },
+    compliance: {
+      usa: "FDA facility registered; Prior Notice compliant; lead <2.5 ppm per Import Alert 99-41",
+      eu: "Phytosanitary certified; aflatoxins <5 ppb; TRACES registration supported",
+      global: "ISO 5562 (turmeric) compliant; CODEX standards met",
+    },
+    faqs: [
+      {
+        question: "What curcumin levels do you guarantee?",
+        answer: "Our Indonesian turmeric consistently delivers 3-5% curcumin content, tested by HPLC method. Each shipment includes Certificate of Analysis with exact curcumin percentage."
+      },
+      {
+        question: "How do you verify there's no adulteration?",
+        answer: "We perform chrome test (negative result required), starch content analysis, and third-party lab testing for synthetic dyes. Lead content verified below 2.5 ppm for US FDA compliance."
+      },
+      {
+        question: "What documents are needed for EU import?",
+        answer: "EU requires: Phytosanitary Certificate, Health Certificate, Certificate of Analysis (curcumin, heavy metals, aflatoxins <5 ppb), Certificate of Origin. We provide all documents and TRACES registration support."
+      },
+      {
+        question: "Can you supply premium high-curcumin grades?",
+        answer: "Yes, we can source specialty grades with 5-7% curcumin for nutraceutical applications. Contact us for custom requirements and lead times."
+      },
+    ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
     relatedProducts: ["turmeric-powder", "dried-ginger", "ginger-powder"],
@@ -1316,32 +1460,45 @@ export const products: Product[] = [
     category: "ginger-turmeric",
     sku: "DFT-TP-001",
     hsCode: "0910.30.00",
-    tagline: "High-curcumin golden powder",
-    description: "Fine turmeric powder with high curcumin content. Vibrant color and potent health benefits. Perfect for supplements and food manufacturing.",
-    flavorProfile: "Earthy, warm, slightly bitter with mustard-like depth",
-    texture: "Fine, vibrant golden powder",
-    metaTitle: "Wholesale Turmeric Powder - High Curcumin from Indonesia",
-    metaDescription: "Premium turmeric powder from Indonesia. High curcumin content. USDA/EU Organic certified. Bulk 25kg bags. Direct from manufacturer.",
-    keywords: ["turmeric powder wholesale", "high curcumin powder", "organic turmeric powder"],
+    tagline: "High-curcumin golden powder for supplements & food",
+    description: "Fine turmeric powder with high curcumin content (3-5% HPLC tested). Bright orange-yellow color (ASTA >200). 80-200 mesh particle sizes for food, beverage, and nutraceutical applications. Chrome test negative - no adulterants. Perfect for supplements, golden milk, curry blends, and natural coloring.",
+    flavorProfile: "Earthy, warm, slightly bitter with mustard-like depth and aromatic complexity",
+    texture: "Fine, vibrant golden powder with excellent solubility",
+    metaTitle: "Wholesale Turmeric Powder (80-200 Mesh) - High Curcumin from Indonesia",
+    metaDescription: "Premium turmeric powder from Indonesia. 3-5% curcumin (HPLC), ASTA >200 color. Food grade & nutraceutical grade. Bulk 25kg bags. Direct from manufacturer.",
+    keywords: ["turmeric powder wholesale", "high curcumin powder", "organic turmeric powder", "turmeric powder B2B", "nutraceutical turmeric"],
     specifications: {
-      size: "80-120 mesh",
-      meshSize: "80-120 mesh",
-      moisture: "8-10%",
-      color: "Bright Orange-Yellow",
-      shelfLife: "24 months",
+      particleSize: "80-200 mesh",
+      meshSize: "80-200 mesh",
+      moisture: "≤10%",
+      color: "Bright Orange-Yellow (ASTA >200)",
+      astaColor: ">200",
+      shelfLife: "12-24 months (proper storage)",
       origin: "Central Java, Indonesia",
-      curcuminContent: "3-5% (high curcumin)",
-      additives: "No additives",
+      curcuminContent: "3-5% (HPLC tested)",
+      totalAsh: "≤6.5%",
+      acidInsolubleAsh: "≤0.6%",
+      purity: "No adulterants (starch, dyes)",
+      chromeTest: "Negative",
       foreignMatter: "0%",
-      processingMethod: "Hammer-milled",
-      grade: "Food Grade",
+      processingMethod: "Hammer-milled from Grade A fingers",
+      grade: "Food Grade / Nutraceutical Grade available",
+      salmonella: "Absent in 25g",
+      eColi: "Absent",
+      aflatoxins: "<5 ppb",
+      testingMethod: "HPLC for curcumin; ISO 17025 lab certified",
+      additives: "None - 100% pure turmeric",
     },
     availability: {
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
-    applications: ["Curry powder", "Golden milk", "Supplements", "Natural coloring", "Health products", "Beverages"],
-    packaging: { bulk: "25 kg bags", retail: "50g-500g jars/pouches", custom: true },
+    applications: ["Curry powder", "Golden milk", "Supplements & capsules", "Natural coloring", "Health products", "Beverages", "Cosmetics"],
+    packaging: { 
+      bulk: "25kg laminated kraft bags with foil liner; airtight seal", 
+      retail: "50g-500g jars/pouches", 
+      custom: true 
+    },
     pricing: {
       fobBase: "From $4.00/kg FOB",
       moq: "1 ton",
@@ -1354,6 +1511,35 @@ export const products: Product[] = [
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
+    logistics: {
+      portOfLoading: "Semarang / Tanjung Perak (Surabaya), Indonesia",
+      incoterms: ["FOB", "CIF", "CFR"],
+      containerLoad20ft: "14-16 MT",
+      containerLoad40ft: "18-20 MT",
+    },
+    compliance: {
+      usa: "FDA facility registered; Prior Notice compliant; meets Import Alert 99-41 (lead <2.5 ppm)",
+      eu: "Phytosanitary certified; aflatoxins <5 ppb; no irradiation",
+      global: "ISO 5562 compliant; CODEX CXS 343-2021 standards",
+    },
+    faqs: [
+      {
+        question: "What's the difference between food grade and nutraceutical grade?",
+        answer: "Food grade (3-5% curcumin) suits curry blends, coloring, and beverages. Nutraceutical grade (5%+ curcumin) is for supplements and health products with additional heavy metal and pesticide testing per pharmacopeia standards."
+      },
+      {
+        question: "What particle size do supplement manufacturers need?",
+        answer: "Supplement capsules typically require 100-200 mesh for optimal solubility and bioavailability. Food coloring applications work well with 80-100 mesh for even dispersion."
+      },
+      {
+        question: "How do you ensure consistent curcumin levels batch to batch?",
+        answer: "We source from verified farms in Central Java, test incoming raw materials, and perform HPLC testing on finished powder. Each batch comes with Certificate of Analysis guaranteeing spec compliance."
+      },
+      {
+        question: "What FDA requirements apply to US imports?",
+        answer: "US imports require: FDA Facility Registration, Prior Notice filing (72 hrs), FSVP compliance. We provide COA for lead (<2.5 ppm), aflatoxins, and pathogen testing per FDA Import Alert 99-41 standards."
+      },
+    ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
     relatedProducts: ["dried-turmeric", "ginger-powder", "dried-ginger"],
