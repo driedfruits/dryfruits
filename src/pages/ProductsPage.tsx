@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { productCategories, products } from "@/data/companyData";
 import { GradientCard } from "@/components/ui/gradient-card";
+import { ProductComparisonTable } from "@/components/products";
 import { Package, ArrowRight, Leaf } from "lucide-react";
 
 const breadcrumbItems = [
@@ -35,6 +36,7 @@ export default function ProductsPage() {
 
       <section className="py-20">
         <div className="container">
+          {/* Category Cards */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-16">
             {productCategories.map((cat) => (
               <GradientCard key={cat.id} to={`/products/${cat.id}`}>
@@ -46,6 +48,12 @@ export default function ProductsPage() {
             ))}
           </div>
 
+          {/* Product Comparison Tool */}
+          <div className="mb-16">
+            <ProductComparisonTable />
+          </div>
+
+          {/* All Products Grid */}
           <h2 className="text-3xl font-bold text-foreground mb-8">All Products</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {products.map((product) => (
