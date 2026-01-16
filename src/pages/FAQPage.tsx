@@ -4,12 +4,7 @@ import { faqItems, companyInfo } from "@/data/companyData";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { PrimaryButton } from "@/components/CTAButton";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { FAQAccordion } from "@/components/ui/faq-accordion";
 
 const breadcrumbItems = [
   { name: "Home", url: "https://dryfruits.lovable.app" },
@@ -58,22 +53,7 @@ export default function FAQPage() {
       <section className="py-20">
         <div className="container">
           <div className="mx-auto max-w-3xl">
-            <Accordion type="single" collapsible className="space-y-4">
-              {faqItems.map((item, index) => (
-                <AccordionItem 
-                  key={index} 
-                  value={`item-${index}`}
-                  className="bg-card rounded-xl px-6 shadow-soft border-none"
-                >
-                  <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary hover:no-underline py-6">
-                    {item.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-6">
-                    {item.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <FAQAccordion items={[...faqItems]} variant="separated" />
           </div>
         </div>
       </section>

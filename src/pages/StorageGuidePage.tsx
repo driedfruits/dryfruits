@@ -20,8 +20,9 @@ import {
   Sparkles,
   Apple
 } from "lucide-react";
-import { storageGuidelines, products } from "@/data/companyData";
+import { storageGuidelines, products, storageFAQs } from "@/data/companyData";
 import { generateFAQSchema } from "@/lib/schema";
+import { FAQAccordion } from "@/components/ui/faq-accordion";
 
 const categoryIcons: Record<string, React.ReactNode> = {
   "apple": <Apple className="h-6 w-6" />,
@@ -38,13 +39,6 @@ const practiceIcons: Record<string, React.ReactNode> = {
   "shield": <Shield className="h-5 w-5" />,
   "wind": <Wind className="h-5 w-5" />,
 };
-
-// Generate FAQ items for schema
-const storageFAQs = [
-  { question: "What is water activity (aw) and why does it matter?", answer: "Water activity measures moisture available for microbial growth. Dried fruits with aw ≤0.60 prevent bacteria and mold growth, extending shelf life to 18-24 months." },
-  { question: "What temperature should I store dried fruits at?", answer: "Most dried fruits should be stored at 10-20°C (50-68°F). Powders require stricter 10-18°C (50-64°F). Avoid temperature fluctuations." },
-  { question: "How does humidity affect dried fruit storage?", answer: "High humidity causes moisture reabsorption, leading to mold growth and quality degradation. Keep relative humidity below 60% for dried fruits and below 50% for powders." },
-];
 
 export default function StorageGuidePage() {
   // Get unique products with storage specs for reference table
@@ -335,13 +329,25 @@ export default function StorageGuidePage() {
             </table>
           </div>
           
-          <p className="text-center text-sm text-muted-foreground mt-4">
-            View individual product pages for complete specifications and COA downloads.
-          </p>
-        </div>
-      </section>
+        <p className="text-center text-sm text-muted-foreground mt-4">
+          View individual product pages for complete specifications and COA downloads.
+        </p>
+      </div>
+    </section>
 
-      {/* CTA Section */}
+    {/* Storage FAQ Section */}
+    <section className="py-12 lg:py-16">
+      <div className="container">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
+            Storage FAQ
+          </h2>
+          <FAQAccordion items={[...storageFAQs]} variant="separated" />
+        </div>
+      </div>
+    </section>
+
+    {/* CTA Section */}
       <section className="py-16">
         <div className="container text-center">
           <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">

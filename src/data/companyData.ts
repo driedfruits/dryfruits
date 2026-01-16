@@ -2271,6 +2271,22 @@ export const faqItems = [
   },
 ] as const;
 
+// Storage-related FAQs (used on Storage Guide page)
+export const storageFAQs = [
+  { 
+    question: "What is water activity (aw) and why does it matter?", 
+    answer: "Water activity measures moisture available for microbial growth. Dried fruits with aw ≤0.60 prevent bacteria and mold growth, extending shelf life to 18-24 months." 
+  },
+  { 
+    question: "What temperature should I store dried fruits at?", 
+    answer: "Most dried fruits should be stored at 10-20°C (50-68°F). Powders require stricter 10-18°C (50-64°F). Avoid temperature fluctuations." 
+  },
+  { 
+    question: "How does humidity affect dried fruit storage?", 
+    answer: "High humidity causes moisture reabsorption, leading to mold growth and quality degradation. Keep relative humidity below 60% for dried fruits and below 50% for powders." 
+  },
+] as const;
+
 export const targetSegments = [
   {
     name: "Food Manufacturers",
