@@ -12,6 +12,7 @@ import { ProductLogistics } from "./ProductLogistics";
 import { ProductFAQ } from "./ProductFAQ";
 import { ProductCompliance } from "./ProductCompliance";
 import { ProductSeasonality } from "./ProductSeasonality";
+import { ProductQualitySpecs } from "./ProductQualitySpecs";
 import { StickyInquiryBar } from "./StickyInquiryBar";
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 
@@ -178,6 +179,9 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
 
         {/* Specifications Table */}
         <ProductSpecsTable product={product} />
+
+        {/* Chemical Analysis Cards (Ginger/Turmeric only) */}
+        <ProductQualitySpecs product={product} />
 
         {/* Logistics & Packaging */}
         <ProductLogistics product={product} />
