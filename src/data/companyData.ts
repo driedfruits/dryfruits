@@ -86,6 +86,107 @@ export const socialLinks = {
   youtube: "https://youtube.com/@dftindonesia",
 } as const;
 
+// Storage Guidelines Data
+export const storageGuidelines = {
+  categories: [
+    {
+      name: "Dried Fruits",
+      tempRange: "10-20°C (50-68°F)",
+      humidityMax: "<60% RH",
+      waterActivity: "≤0.60 aw",
+      shelfLife: "12-24 months",
+      icon: "apple",
+      tips: ["Store in cool, dark area", "Keep sealed when not in use", "Check for condensation regularly"],
+    },
+    {
+      name: "Fruit Powders",
+      tempRange: "10-18°C (50-64°F)",
+      humidityMax: "<50% RH",
+      waterActivity: "≤0.45 aw",
+      shelfLife: "18-24 months",
+      icon: "sparkles",
+      tips: ["Highly hygroscopic - minimize air exposure", "Use desiccants in storage", "Nitrogen-flush after opening"],
+    },
+    {
+      name: "Vacuum Fried",
+      tempRange: "15-25°C (59-77°F)",
+      humidityMax: "<55% RH",
+      waterActivity: "≤0.40 aw",
+      shelfLife: "12-18 months",
+      icon: "snowflake",
+      tips: ["Protect from light exposure", "Keep away from heat sources", "Crispy texture sensitive to humidity"],
+    },
+    {
+      name: "Ginger & Turmeric",
+      tempRange: "10-20°C (50-68°F)",
+      humidityMax: "<55% RH",
+      waterActivity: "≤0.50 aw",
+      shelfLife: "18-24 months",
+      icon: "leaf",
+      tips: ["Store away from strong odors", "Curcumin is light-sensitive", "Maintain volatile oil content"],
+    },
+  ],
+  bestPractices: [
+    {
+      title: "Temperature Monitoring",
+      description: "Use data loggers to track 24/7 temperature. Set alerts for deviations >2°C from target range.",
+      icon: "thermometer",
+    },
+    {
+      title: "Humidity Control",
+      description: "Install industrial dehumidifiers in tropical climates. Maintain consistent RH levels year-round.",
+      icon: "droplets",
+    },
+    {
+      title: "Pallet Placement",
+      description: "Keep pallets minimum 10cm off floor and 50cm from walls. Allows air circulation and prevents condensation.",
+      icon: "package",
+    },
+    {
+      title: "FIFO Rotation",
+      description: "First-In-First-Out system is essential. Label all incoming stock with receipt dates clearly visible.",
+      icon: "timer",
+    },
+    {
+      title: "Pest Control",
+      description: "Regular fumigation schedule. Use pheromone traps for early detection. Seal all entry points.",
+      icon: "shield",
+    },
+    {
+      title: "Ventilation",
+      description: "Ensure adequate air circulation to prevent moisture pockets. Avoid dead zones in warehouse corners.",
+      icon: "wind",
+    },
+  ],
+  commonMistakes: [
+    {
+      mistake: "Storing near heat sources",
+      consequence: "Accelerates oxidation, causes moisture migration, and degrades color/flavor compounds",
+      solution: "Maintain 2+ meter distance from heaters, machinery, or sun-exposed walls",
+    },
+    {
+      mistake: "Direct sunlight exposure",
+      consequence: "UV degradation of natural pigments (carotenoids, anthocyanins) and vitamins",
+      solution: "Use opaque packaging and store in windowless areas or use UV-blocking films",
+    },
+    {
+      mistake: "Humidity fluctuations",
+      consequence: "Causes moisture cycling - products absorb/release water, leading to caking and mold",
+      solution: "Maintain steady RH with HVAC systems; avoid opening warehouse doors frequently",
+    },
+    {
+      mistake: "Improper sealing after sampling",
+      consequence: "Exposed product absorbs ambient moisture rapidly, especially powders",
+      solution: "Use heat sealers or zip-lock closures immediately. Never leave bags open overnight",
+    },
+    {
+      mistake: "Floor storage without pallets",
+      consequence: "Ground condensation transfers moisture to bottom cartons; pest access easier",
+      solution: "Always use pallets. Consider moisture-barrier floor sheets in humid climates",
+    },
+  ],
+} as const;
+
 export const certifications = [
   {
     id: "usda-organic",
