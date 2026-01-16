@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button, type ButtonProps } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface CTAButtonProps extends Omit<ButtonProps, "asChild"> {
   to?: string;
   href?: string;
   children: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 }
 
 export function CTAButton({ to, href, children, ...props }: CTAButtonProps) {
@@ -62,6 +64,14 @@ export function AccentButton({ children, ...props }: CTAButtonProps) {
 export function GoldButton({ children, ...props }: CTAButtonProps) {
   return (
     <CTAButton variant="gold" {...props}>
+      {children}
+    </CTAButton>
+  );
+}
+
+export function IconButton({ children, className, ...props }: CTAButtonProps) {
+  return (
+    <CTAButton variant="ghost" size="icon" className={cn("p-2", className)} {...props}>
       {children}
     </CTAButton>
   );

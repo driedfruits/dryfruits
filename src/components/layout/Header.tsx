@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { companyInfo } from "@/data/companyData";
+import { PrimaryButton, SecondaryButton, IconButton } from "@/components/CTAButton";
 import { Menu, X, ChevronDown, Leaf } from "lucide-react";
 
 const navigation = [
@@ -90,26 +89,26 @@ export function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex lg:items-center lg:gap-3">
-          <Button variant="outline" size="sm" asChild>
-            <Link to="/samples">Free Samples</Link>
-          </Button>
-          <Button size="sm" asChild>
-            <Link to="/contact">Contact</Link>
-          </Button>
+          <SecondaryButton to="/samples" size="sm">
+            Free Samples
+          </SecondaryButton>
+          <PrimaryButton to="/contact" size="sm">
+            Contact
+          </PrimaryButton>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          type="button"
-          className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+        <IconButton
+          className="lg:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
         >
           {mobileMenuOpen ? (
             <X className="h-6 w-6 text-foreground" />
           ) : (
             <Menu className="h-6 w-6 text-foreground" />
           )}
-        </button>
+        </IconButton>
       </nav>
 
       {/* Mobile Menu */}
@@ -155,12 +154,12 @@ export function Header() {
               )
             ))}
             <div className="pt-4 space-y-2 border-t border-border">
-              <Button variant="outline" className="w-full" asChild>
-                <Link to="/samples" onClick={() => setMobileMenuOpen(false)}>Free Samples</Link>
-              </Button>
-              <Button className="w-full" asChild>
-                <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-              </Button>
+              <SecondaryButton to="/samples" className="w-full" onClick={() => setMobileMenuOpen(false)}>
+                Free Samples
+              </SecondaryButton>
+              <PrimaryButton to="/contact" className="w-full" onClick={() => setMobileMenuOpen(false)}>
+                Contact
+              </PrimaryButton>
             </div>
           </div>
         </div>
