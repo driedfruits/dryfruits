@@ -14,6 +14,7 @@ import { ProductCompliance } from "./ProductCompliance";
 import { ProductSeasonality } from "./ProductSeasonality";
 import { ProductQualitySpecs } from "./ProductQualitySpecs";
 import { StickyInquiryBar } from "./StickyInquiryBar";
+import { ContainerCalculator } from "./ContainerCalculator";
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 
 interface ProductPageTemplateProps {
@@ -185,6 +186,13 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
 
         {/* Logistics & Packaging */}
         <ProductLogistics product={product} />
+
+        {/* Container Calculator */}
+        <section className="py-12">
+          <div className="container max-w-3xl">
+            <ContainerCalculator defaultProductId={product.id} compact={true} />
+          </div>
+        </section>
 
         {/* Compliance */}
         <ProductCompliance product={product} />
