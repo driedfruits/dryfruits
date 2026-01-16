@@ -1,9 +1,9 @@
 # Robots.txt for Tropical Garden Organics
 # Premium Dried Fruits & Spices from Indonesia
-# Website: https://tropical-garden-organics.lovable.app
+# Website: https://dryfruits.biz
 
 # Sitemap location
-Sitemap: https://tropical-garden-organics.lovable.app/sitemap.xml
+Sitemap: https://dryfruits.biz/sitemap.xml
 
 # Google
 User-agent: Googlebot
@@ -61,4 +61,4 @@ Disallow: /node_modules/
 Disallow: /*?*
 
 # Host directive
-Host: https://tropical-garden-organics.lovable.app
+Host: https://dryfruits.biz
