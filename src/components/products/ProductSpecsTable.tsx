@@ -35,6 +35,13 @@ const specLabels: Record<string, string> = {
   eColi: "E. coli",
   aflatoxins: "Aflatoxins (max)",
   testingMethod: "Testing Method",
+  // B2B dried/powdered fruit specs
+  so2Level: "SO₂ / Preservatives",
+  totalPlateCount: "Total Plate Count (TPC)",
+  waterActivity: "Water Activity (aw)",
+  storageTemp: "Storage Temperature",
+  storageHumidity: "Storage Humidity",
+  yeastMold: "Yeast & Mold",
 };
 
 export function ProductSpecsTable({ product }: ProductSpecsTableProps) {
