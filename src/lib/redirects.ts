@@ -112,8 +112,8 @@ export const productAliases: Record<string, string> = {
   "papaya-powder": "papaya-fruit-powder",
   "dragon-powder": "dragon-fruit-powder",
   "dragonfruit-powder": "dragon-fruit-powder",
-  "ginger-powder": "ginger-root-powder",
-  "turmeric-powder": "turmeric-root-powder",
+  "ginger-root-powder": "ginger-powder",
+  "turmeric-root-powder": "turmeric-powder",
   
   // Vacuum fried aliases
   "banana-vacuum": "vacuum-banana",
