@@ -19,6 +19,22 @@ const specLabels: Record<string, string> = {
   foreignMatter: "Foreign Matter",
   processingMethod: "Processing Method",
   grade: "Grade",
+  // B2B ginger/turmeric specs
+  volatileOil: "Volatile Oil Content",
+  gingerolContent: "Gingerol Content",
+  totalAsh: "Total Ash",
+  acidInsolubleAsh: "Acid Insoluble Ash",
+  particleSize: "Particle Size",
+  purity: "Purity",
+  defects: "Defects (max)",
+  fatContent: "Fat Content",
+  starchContent: "Starch Content",
+  chromeTest: "Chrome Test (Adulteration)",
+  astaColor: "ASTA Color Value",
+  salmonella: "Salmonella",
+  eColi: "E. coli",
+  aflatoxins: "Aflatoxins (max)",
+  testingMethod: "Testing Method",
 };
 
 export function ProductSpecsTable({ product }: ProductSpecsTableProps) {
