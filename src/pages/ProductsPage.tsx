@@ -3,7 +3,7 @@ import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { productCategories, products } from "@/data/companyData";
-import { PrimaryButton } from "@/components/CTAButton";
+import { GradientCard } from "@/components/ui/gradient-card";
 import { Package, ArrowRight, Leaf } from "lucide-react";
 
 const breadcrumbItems = [
@@ -37,12 +37,12 @@ export default function ProductsPage() {
         <div className="container">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-16">
             {productCategories.map((cat) => (
-              <Link key={cat.id} to={`/products/${cat.id}`} className="group rounded-2xl bg-gradient-to-br from-primary to-tropical-green-light p-8 text-primary-foreground hover:scale-[1.02] transition-transform">
+              <GradientCard key={cat.id} to={`/products/${cat.id}`}>
                 <Package className="h-12 w-12 mb-4 opacity-80" />
                 <h2 className="text-2xl font-bold mb-2">{cat.name}</h2>
                 <p className="text-primary-foreground/80 mb-4">{cat.description}</p>
                 <span className="inline-flex items-center gap-2 text-sm font-medium">{cat.productCount} Products <ArrowRight className="h-4 w-4 group-hover:translate-x-2 transition-transform" /></span>
-              </Link>
+              </GradientCard>
             ))}
           </div>
 

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -129,31 +130,39 @@ const FormSelect = React.forwardRef<HTMLSelectElement, FormSelectProps>(
 );
 FormSelect.displayName = "FormSelect";
 
-export interface FormCheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
+export interface FormCheckboxProps {
   label: string;
   error?: string;
+  id?: string;
+  checked?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
+  disabled?: boolean;
+  required?: boolean;
+  className?: string;
 }
 
-const FormCheckbox = React.forwardRef<HTMLInputElement, FormCheckboxProps>(
-  ({ className, label, error, id, ...props }, ref) => {
+const FormCheckbox = React.forwardRef<HTMLButtonElement, FormCheckboxProps>(
+  ({ className, label, error, id, checked, onCheckedChange, disabled, required }, ref) => {
     const checkboxId = id || label.toLowerCase().replace(/\s+/g, "-");
     
     return (
       <div className="flex items-start space-x-3">
-        <input
-          type="checkbox"
+        <Checkbox
           id={checkboxId}
+          ref={ref}
+          checked={checked}
+          onCheckedChange={onCheckedChange}
+          disabled={disabled}
           className={cn(
-            "h-5 w-5 rounded border-input text-primary focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all duration-200 mt-0.5",
+            "mt-0.5",
             error && "border-destructive",
             className
           )}
-          ref={ref}
-          {...props}
         />
         <div className="space-y-1">
           <Label htmlFor={checkboxId} className={cn("cursor-pointer", error && "text-destructive")}>
             {label}
+            {required && <span className="text-destructive ml-1">*</span>}
           </Label>
           {error && (
             <p className="text-sm text-destructive">{error}</p>
