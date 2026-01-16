@@ -20,6 +20,7 @@ const ShippingPage = lazy(() => import("./pages/ShippingPage"));
 const PrivateLabelPage = lazy(() => import("./pages/PrivateLabelPage"));
 const SamplesPage = lazy(() => import("./pages/SamplesPage"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage"));
+const StorageGuidePage = lazy(() => import("./pages/StorageGuidePage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -52,6 +53,7 @@ const App = () => (
             <Route path="/private-label" element={<PrivateLabelPage />} />
             <Route path="/samples" element={<SamplesPage />} />
             <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/storage-guide" element={<StorageGuidePage />} />
             
             {/* 301 Redirects for SEO */}
             {redirectRules.map((rule) => (

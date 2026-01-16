@@ -5,7 +5,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { Badge } from "@/components/ui/badge";
 import { OptimizedImage } from "@/components/ui/optimized-image";
-import { Leaf, Package, FileText, ChevronRight } from "lucide-react";
+import { Leaf, Package, FileText, ChevronRight, Thermometer, ExternalLink } from "lucide-react";
 import { ProductSpecsTable } from "./ProductSpecsTable";
 import { ProductPriceTiers } from "./ProductPriceTiers";
 import { ProductLogistics } from "./ProductLogistics";
@@ -193,6 +193,36 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
             <ContainerCalculator defaultProductId={product.id} compact={true} />
           </div>
         </section>
+
+        {/* Storage Quick Reference */}
+        {(product.specifications.storageTemp || product.specifications.storageHumidity) && (
+          <section className="py-6">
+            <div className="container max-w-3xl">
+              <div className="bg-primary/5 border border-primary/20 rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <Thermometer className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground text-sm">Storage Conditions</p>
+                    <p className="text-xs text-muted-foreground">
+                      {product.specifications.storageTemp && `Temp: ${product.specifications.storageTemp}`}
+                      {product.specifications.storageTemp && product.specifications.storageHumidity && " | "}
+                      {product.specifications.storageHumidity && `Humidity: ${product.specifications.storageHumidity}`}
+                    </p>
+                  </div>
+                </div>
+                <Link 
+                  to="/storage-guide" 
+                  className="text-sm text-primary hover:underline flex items-center gap-1 shrink-0"
+                >
+                  Full Storage Guide
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Compliance */}
         <ProductCompliance product={product} />
