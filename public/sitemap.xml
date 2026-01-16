@@ -2,246 +2,264 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <!-- Products Hub -->
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <!-- Product Categories -->
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/dried-fruits</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/dried-fruits</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/powdered-fruits</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/powdered-fruits</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/vacuum-fried</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/vacuum-fried</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/ginger-turmeric</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/ginger-turmeric</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <!-- Dried Fruits Products -->
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/dried-fruits/dried-papaya</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/dried-fruits/dried-papaya</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/dried-fruits/dried-pineapple</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/dried-fruits/dried-pineapple</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/dried-fruits/dried-avocado</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/dried-fruits/dried-avocado</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/dried-fruits/dried-mango</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/dried-fruits/dried-mango</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/dried-fruits/dried-dragon-fruit</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/dried-fruits/dried-dragon-fruit</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/dried-fruits/dried-snake-fruit</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/dried-fruits/dried-snake-fruit</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/dried-fruits/dried-breadfruit</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/dried-fruits/dried-breadfruit</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/dried-fruits/dried-jackfruit</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/dried-fruits/dried-jackfruit</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/dried-fruits/dried-coconut</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/dried-fruits/dried-coconut</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dryfruits.biz/products/dried-fruits/dried-banana</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Powdered Fruits Products -->
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/powdered-fruits/papaya-powder</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/powdered-fruits/papaya-powder</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/powdered-fruits/pineapple-powder</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/powdered-fruits/pineapple-powder</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/powdered-fruits/mango-powder</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/powdered-fruits/mango-powder</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/powdered-fruits/dragon-fruit-powder</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/powdered-fruits/dragon-fruit-powder</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/powdered-fruits/coconut-powder</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/powdered-fruits/coconut-powder</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/powdered-fruits/jackfruit-powder</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/powdered-fruits/jackfruit-powder</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dryfruits.biz/products/powdered-fruits/avocado-powder</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dryfruits.biz/products/powdered-fruits/banana-powder</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Vacuum Fried Products -->
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/vacuum-fried/vacuum-papaya</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/vacuum-fried/vacuum-papaya</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/vacuum-fried/vacuum-banana</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/vacuum-fried/vacuum-banana</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/vacuum-fried/vacuum-pineapple</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/vacuum-fried/vacuum-pineapple</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/vacuum-fried/vacuum-mango</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/vacuum-fried/vacuum-mango</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Ginger & Turmeric Products -->
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/ginger-turmeric/dried-ginger</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/ginger-turmeric/dried-ginger</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/ginger-turmeric/ginger-powder</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/ginger-turmeric/ginger-powder</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/ginger-turmeric/dried-turmeric</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/ginger-turmeric/dried-turmeric</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/products/ginger-turmeric/turmeric-powder</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/products/ginger-turmeric/turmeric-powder</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Core Pages -->
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/about</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/about</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/contact</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/contact</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/sustainability</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/sustainability</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/shipping</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/shipping</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/private-label</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/private-label</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/samples</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/samples</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/catalog</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/catalog</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <!-- Utility Pages -->
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/faq</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/faq</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://tropical-garden-organics.lovable.app/certifications</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://dryfruits.biz/certifications</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
