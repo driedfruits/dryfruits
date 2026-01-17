@@ -9,14 +9,14 @@ interface StickyInquiryBarProps {
 
 export function StickyInquiryBar({ product }: StickyInquiryBarProps) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-t border-border shadow-lg lg:hidden">
-      <div className="container py-3">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-t border-border shadow-lg lg:hidden pb-safe">
+      <div className="container py-4">
         <div className="flex items-center justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-foreground truncate">
+            <p className="text-base font-medium text-foreground truncate">
               Bulk {product.name}?
             </p>
-            <p className="text-xs text-muted-foreground">{product.pricing.fobBase}</p>
+            <p className="text-sm text-muted-foreground">{product.pricing.fobBase}</p>
           </div>
           <div className="flex gap-2">
             <PrimaryButton to="/contact" size="sm">

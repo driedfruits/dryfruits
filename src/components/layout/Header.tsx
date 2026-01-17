@@ -120,7 +120,7 @@ export function Header() {
                 <div key={item.name}>
                   <button
                     onClick={() => setProductsOpen(!productsOpen)}
-                    className="flex w-full items-center justify-between px-3 py-2 text-base font-medium text-foreground rounded-lg hover:bg-muted"
+                    className="flex w-full items-center justify-between px-3 py-3 min-h-[48px] text-base font-medium text-foreground rounded-lg hover:bg-muted"
                   >
                     {item.name}
                     <ChevronDown className={`h-5 w-5 transition-transform ${productsOpen ? "rotate-180" : ""}`} />
@@ -132,7 +132,7 @@ export function Header() {
                           key={child.name}
                           to={child.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="block px-3 py-2 text-sm text-muted-foreground rounded-lg hover:bg-muted hover:text-foreground"
+                          className="block px-3 py-3 min-h-[44px] text-base text-muted-foreground rounded-lg hover:bg-muted hover:text-foreground"
                         >
                           {child.name}
                         </Link>
@@ -145,7 +145,7 @@ export function Header() {
                   key={item.name}
                   to={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-3 py-2 text-base font-medium rounded-lg hover:bg-muted ${
+                  className={`block px-3 py-3 min-h-[48px] text-base font-medium rounded-lg hover:bg-muted ${
                     isActive(item.href) ? "text-primary" : "text-foreground"
                   }`}
                 >
