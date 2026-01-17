@@ -21,7 +21,8 @@ import {
   Apple
 } from "lucide-react";
 import { storageGuidelines, products, storageFAQs } from "@/data/companyData";
-import { generateFAQSchema } from "@/lib/schema";
+import { generateFAQSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/constants";
 import { FAQAccordion } from "@/components/ui/faq-accordion";
 
 const categoryIcons: Record<string, React.ReactNode> = {
@@ -40,6 +41,11 @@ const practiceIcons: Record<string, React.ReactNode> = {
   "wind": <Wind className="h-5 w-5" />,
 };
 
+const breadcrumbItems = [
+  { name: "Home", url: SITE_URL },
+  { name: "Storage Guide", url: `${SITE_URL}/storage-guide` },
+];
+
 export default function StorageGuidePage() {
   // Get unique products with storage specs for reference table
   const productsWithStorage = products.filter(
@@ -53,6 +59,14 @@ export default function StorageGuidePage() {
         description="Expert guide on storing dried fruits and powders. Learn optimal temperature, humidity, water activity levels. Maximize shelf life for bulk wholesale orders."
         keywords={["dried fruit storage", "water activity", "humidity control warehouse", "dried fruit shelf life", "aw food safety"]}
         canonical="/storage-guide"
+      />
+      
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
+        }}
       />
       
       {/* FAQ Schema */}

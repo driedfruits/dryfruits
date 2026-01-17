@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/constants";
 import { productCategories, products } from "@/data/companyData";
 import { GradientCard } from "@/components/ui/gradient-card";
 import { ProductComparisonTable } from "@/components/products";
 import { Package, ArrowRight, Leaf } from "lucide-react";
 
 const breadcrumbItems = [
-  { name: "Home", url: "https://dryfruits.lovable.app" },
-  { name: "Products", url: "https://dryfruits.lovable.app/products" },
+  { name: "Home", url: SITE_URL },
+  { name: "Products", url: `${SITE_URL}/products` },
 ];
 
 export default function ProductsPage() {

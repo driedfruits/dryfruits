@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/constants";
 import { certifications, companyInfo } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { Leaf, Shield, FileCheck, Download, CheckCircle } from "lucide-react";
@@ -17,8 +18,8 @@ const qualityDocuments = [
 ];
 
 const breadcrumbItems = [
-  { name: "Home", url: "https://dryfruits.lovable.app" },
-  { name: "Certifications", url: "https://dryfruits.lovable.app/certifications" },
+  { name: "Home", url: SITE_URL },
+  { name: "Certifications", url: `${SITE_URL}/certifications` },
 ];
 
 export default function CertificationsPage() {
