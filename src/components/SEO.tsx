@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { companyInfo } from "@/data/companyData";
+import { SITE_URL } from "@/lib/constants";
 
 interface SEOProps {
   title?: string;
@@ -10,8 +11,6 @@ interface SEOProps {
   ogImage?: string;
   noIndex?: boolean;
 }
-
-const BASE_URL = "https://dryfruits.biz";
 const DEFAULT_OG_IMAGE = "https://lovable.dev/opengraph-image-p98pqg.png";
 
 export function SEO({
@@ -34,8 +33,8 @@ export function SEO({
   const fullCanonical = canonical
     ? canonical.startsWith("http")
       ? canonical
-      : `${BASE_URL}${canonical}`
-    : BASE_URL;
+      : `${SITE_URL}${canonical}`
+    : SITE_URL;
 
   const keywordsString = keywords.length > 0
     ? keywords.join(", ")
