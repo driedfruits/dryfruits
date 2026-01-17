@@ -1,7 +1,8 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/lib/schema";
-import { companyInfo, exportCountries } from "@/data/companyData";
+import { companyInfo, exportCountries, shippingProcess, exportDocs } from "@/data/companyData";
+import { SITE_URL } from "@/lib/constants";
 import { PrimaryButton, SecondaryLightButton } from "@/components/CTAButton";
 import { ContainerCalculator } from "@/components/products";
 import { 
@@ -15,55 +16,9 @@ import {
   Ship
 } from "lucide-react";
 
-const shippingProcess = [
-  {
-    step: "1",
-    title: "Order Confirmation",
-    description: "Receive proforma invoice, confirm order details and specifications",
-  },
-  {
-    step: "2",
-    title: "Deposit Payment",
-    description: "50% deposit via T/T or L/C opening",
-  },
-  {
-    step: "3",
-    title: "Production",
-    description: "2-3 weeks production and quality control",
-  },
-  {
-    step: "4",
-    title: "Balance Payment",
-    description: "50% balance before shipment",
-  },
-  {
-    step: "5",
-    title: "Shipment",
-    description: "Container loading and shipping with full documentation",
-  },
-  {
-    step: "6",
-    title: "Delivery",
-    description: "Arrival at destination port with customs-ready documents",
-  },
-];
-
-const exportDocs = [
-  "Commercial Invoice",
-  "Packing List",
-  "Bill of Lading",
-  "Certificate of Origin",
-  "Phytosanitary Certificate",
-  "Health Certificate",
-  "Certificate of Analysis",
-  "Organic Certificate",
-  "Fumigation Certificate (if required)",
-  "Insurance Certificate (if required)",
-];
-
 const breadcrumbItems = [
-  { name: "Home", url: "https://dryfruits.lovable.app" },
-  { name: "Shipping & Export", url: "https://dryfruits.lovable.app/shipping" },
+  { name: "Home", url: SITE_URL },
+  { name: "Shipping & Export", url: `${SITE_URL}/shipping` },
 ];
 
 export default function ShippingPage() {

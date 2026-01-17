@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { companyInfo, socialLinks, certifications } from "@/data/companyData";
-import { Leaf, Mail, Phone, MapPin, Clock, Linkedin, Instagram, Facebook, Youtube } from "lucide-react";
+import { socialIcons } from "@/lib/socialIcons";
+import { Leaf, Mail, Phone, MapPin, Clock } from "lucide-react";
 
 const footerLinks = {
   products: [
@@ -18,13 +19,6 @@ const footerLinks = {
     { name: "Download Catalog", href: "/catalog" },
     { name: "Contact Us", href: "/contact" },
   ],
-};
-
-const socialIcons = {
-  linkedin: Linkedin,
-  instagram: Instagram,
-  facebook: Facebook,
-  youtube: Youtube,
 };
 
 export function Footer() {

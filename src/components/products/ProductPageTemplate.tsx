@@ -16,17 +16,11 @@ import { ProductQualitySpecs } from "./ProductQualitySpecs";
 import { StickyInquiryBar } from "./StickyInquiryBar";
 import { ContainerCalculator } from "./ContainerCalculator";
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
+import { SITE_URL, categoryLabels } from "@/lib/constants";
 
 interface ProductPageTemplateProps {
   product: Product;
 }
-
-const categoryLabels: Record<string, string> = {
-  "dried-fruits": "Dried Fruits",
-  "powdered-fruits": "Powdered Dried Fruits",
-  "vacuum-fried": "Vacuum Fried Fruits",
-  "ginger-turmeric": "Ginger & Turmeric",
-};
 
 export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
   const relatedProducts = getRelatedProducts(product.id);
@@ -36,10 +30,10 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
   const seoKeywords = product.keywords || [`bulk ${product.name.toLowerCase()}`, `wholesale ${product.name.toLowerCase()} Indonesia`, `${product.name.toLowerCase()} supplier`];
 
   const breadcrumbItems = [
-    { name: "Home", url: "https://dryfruits.biz" },
-    { name: "Wholesale Dried Fruits", url: "https://dryfruits.biz/products" },
-    { name: categoryLabels[product.category], url: `https://dryfruits.biz/products/${product.category}` },
-    { name: `${product.name} Bulk`, url: `https://dryfruits.biz/products/${product.category}/${product.id}` },
+    { name: "Home", url: SITE_URL },
+    { name: "Wholesale Dried Fruits", url: `${SITE_URL}/products` },
+    { name: categoryLabels[product.category], url: `${SITE_URL}/products/${product.category}` },
+    { name: `${product.name} Bulk`, url: `${SITE_URL}/products/${product.category}/${product.id}` },
   ];
 
   return (

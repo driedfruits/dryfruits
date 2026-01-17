@@ -1,7 +1,6 @@
 // Centralized JSON-LD schema generators for SEO
 import { companyInfo, socialLinks, type Product } from "@/data/companyData";
-
-const SITE_URL = "https://dryfruits.biz";
+import { SITE_URL, categoryLabels } from "@/lib/constants";
 
 // Organization Schema - for company-wide presence
 export function generateOrganizationSchema() {
@@ -133,12 +132,6 @@ export function generateFAQSchema(faqs: ReadonlyArray<{ readonly question: strin
 
 // Product Schema - enhanced for B2B
 export function generateProductSchema(product: Product) {
-  const categoryLabels: Record<string, string> = {
-    "dried-fruits": "Dried Fruits",
-    "powdered-fruits": "Powdered Dried Fruits",
-    "vacuum-fried": "Vacuum Fried Fruits",
-    "ginger-turmeric": "Ginger & Turmeric",
-  };
 
   return {
     "@context": "https://schema.org",

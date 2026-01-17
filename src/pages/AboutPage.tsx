@@ -13,10 +13,11 @@ import {
   Mail,
   MapPin
 } from "lucide-react";
+import { SITE_URL } from "@/lib/constants";
 
 const breadcrumbItems = [
-  { name: "Home", url: "https://dryfruits.lovable.app" },
-  { name: "About Us", url: "https://dryfruits.lovable.app/about" },
+  { name: "Home", url: SITE_URL },
+  { name: "About Us", url: `${SITE_URL}/about` },
 ];
 
 export default function AboutPage() {
