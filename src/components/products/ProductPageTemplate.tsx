@@ -99,6 +99,8 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                   src={product.images?.main || ""}
                   alt={`${product.name} - Bulk Wholesale from Indonesia`}
                   aspectRatio="square"
+                  width={600}
+                  height={600}
                   placeholderSrc={product.images?.thumbnail}
                   priority={true}
                   className="rounded-2xl"
@@ -288,8 +290,10 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                   >
                     <OptimizedImage
                       src={related.images?.main || ""}
-                      alt={related.name}
+                      alt={`${related.name} - Indonesian wholesale dried fruit`}
                       aspectRatio="square"
+                      width={280}
+                      height={280}
                       className="group-hover:scale-105 transition-transform duration-300"
                       fallbackIcon={<Package className="h-12 w-12 text-muted-foreground/30 group-hover:scale-110 transition-transform" />}
                     />

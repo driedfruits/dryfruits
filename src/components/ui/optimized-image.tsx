@@ -9,6 +9,8 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   placeholderSrc?: string;
   priority?: boolean;
   fallbackIcon?: React.ReactNode;
+  width?: number;
+  height?: number;
 }
 
 export function OptimizedImage({
@@ -19,6 +21,8 @@ export function OptimizedImage({
   placeholderSrc,
   priority = false,
   fallbackIcon,
+  width,
+  height,
   ...props
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true);
@@ -87,7 +91,11 @@ export function OptimizedImage({
         <img
           src={src}
           alt={alt}
+          width={width}
+          height={height}
           loading={priority ? "eager" : "lazy"}
+          decoding={priority ? "sync" : "async"}
+          fetchPriority={priority ? "high" : undefined}
           onLoad={handleLoad}
           onError={handleError}
           className={cn(
