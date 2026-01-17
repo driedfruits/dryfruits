@@ -94,8 +94,10 @@ export default function ProductCategoryPage() {
                 <div className="relative">
                   <OptimizedImage
                     src={product.images?.main || ""}
-                    alt={product.name}
+                    alt={`${product.name} - Premium Indonesian dried fruit for wholesale export`}
                     aspectRatio="square"
+                    width={400}
+                    height={400}
                     placeholderSrc={product.images?.thumbnail}
                     fallbackIcon={<Package className="h-20 w-20 text-muted-foreground/30 group-hover:scale-110 transition-transform" />}
                   />
