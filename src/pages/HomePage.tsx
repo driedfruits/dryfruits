@@ -6,6 +6,7 @@ import { PrimaryButton, SecondaryButton, SecondaryLightButton, AccentButton } fr
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CatalogForm } from "@/components/forms";
 import { generateWebSiteSchema, generateOrganizationSchema } from "@/lib/schema";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { 
   companyInfo, 
   certifications, 
@@ -25,6 +26,18 @@ import {
   CheckCircle,
   MapPin
 } from "lucide-react";
+
+// Placeholder images - replace with actual factory photos later
+const placeholderImages = {
+  hero: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&h=1080&fit=crop",
+  factoryExterior: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&h=400&fit=crop",
+  fruitSorting: "https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=600&h=400&fit=crop",
+  dryingProcess: "https://images.unsplash.com/photo-1606914707708-5180546f153d?w=600&h=400&fit=crop",
+  packaging: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=600&h=400&fit=crop",
+  exportShipping: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&h=600&fit=crop",
+  catalogProducts: "https://images.unsplash.com/photo-1597714026720-8f74c62310ba?w=600&h=400&fit=crop",
+  teamCta: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&h=600&fit=crop",
+};
 
 export default function HomePage() {
   return (
@@ -51,19 +64,30 @@ export default function HomePage() {
         }}
       />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-tropical-green-dark via-primary to-tropical-green-light py-20 lg:py-32">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
-        <div className="container relative">
+      {/* Hero Section with Background Image */}
+      <section className="relative overflow-hidden min-h-[600px] lg:min-h-[700px]">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src={placeholderImages.hero}
+            alt="Food manufacturing facility"
+            className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-tropical-green-dark/90 via-primary/80 to-tropical-green-light/70" />
+        </div>
+        
+        <div className="container relative py-20 lg:py-32">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-on-primary">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-on-primary backdrop-blur-sm">
               <Leaf className="h-4 w-4" />
               USDA & EU Organic Certified
             </div>
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-on-primary sm:text-5xl lg:text-6xl">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-on-primary sm:text-5xl lg:text-6xl drop-shadow-lg">
               {companyInfo.tagline}
             </h1>
-            <p className="mb-8 text-lg text-on-primary-muted sm:text-xl">
+            <p className="mb-8 text-lg text-on-primary-muted sm:text-xl drop-shadow-md">
               Premium dried fruits, vacuum fried snacks, and spices from Indonesia. 
               Direct from source to B2B buyers worldwide.
             </p>
@@ -81,7 +105,7 @@ export default function HomePage() {
         </div>
 
         {/* Stats Bar */}
-        <div className="container mt-16">
+        <div className="container relative pb-16">
           <div className="mx-auto max-w-4xl grid grid-cols-2 gap-6 lg:grid-cols-4">
             {[
               { value: `${companyInfo.stats.yearsExperience}+`, label: "Years Experience" },
@@ -89,8 +113,8 @@ export default function HomePage() {
               { value: companyInfo.stats.productionCapacity, label: "Production Capacity" },
               { value: `${companyInfo.stats.productVarieties}`, label: "Product Varieties" },
             ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-3xl font-bold text-on-primary lg:text-4xl">{stat.value}</p>
+              <div key={stat.label} className="text-center bg-primary-foreground/5 backdrop-blur-sm rounded-xl p-4">
+                <p className="text-3xl font-bold text-on-primary lg:text-4xl drop-shadow-sm">{stat.value}</p>
                 <p className="text-sm text-on-primary-muted">{stat.label}</p>
               </div>
             ))}
@@ -143,8 +167,66 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Product Categories */}
+      {/* Our Factory Section - NEW */}
       <section className="py-20 bg-muted/30">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
+              Our Manufacturing Facility
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              State-of-the-art processing facility in Central Java, Indonesia
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                image: placeholderImages.factoryExterior,
+                title: "Modern Facility",
+                description: "5,000 m² certified production facility",
+              },
+              {
+                image: placeholderImages.fruitSorting,
+                title: "Fruit Selection",
+                description: "Hand-picked tropical fruits from local farms",
+              },
+              {
+                image: placeholderImages.dryingProcess,
+                title: "Drying Process",
+                description: "Advanced vacuum & air drying technology",
+              },
+              {
+                image: placeholderImages.packaging,
+                title: "Quality Packaging",
+                description: "Food-grade packaging for export",
+              },
+            ].map((item) => (
+              <div 
+                key={item.title}
+                className="group rounded-2xl overflow-hidden bg-card shadow-soft hover:shadow-glow transition-all duration-300"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Product Categories */}
+      <section className="py-20">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
@@ -186,7 +268,7 @@ export default function HomePage() {
       </section>
 
       {/* Certifications */}
-      <section className="py-20">
+      <section className="py-20 bg-muted/30">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
@@ -221,7 +303,7 @@ export default function HomePage() {
       </section>
 
       {/* Target Segments */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
@@ -247,8 +329,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Export Map */}
-      <section className="py-20">
+      {/* Export Map with Image */}
+      <section className="py-20 bg-muted/30">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
@@ -280,58 +362,101 @@ export default function HomePage() {
               </div>
             </div>
 
+            {/* Export Image with Overlay Stats */}
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-                <Globe className="h-48 w-48 text-primary/20" />
+              <div className="rounded-2xl overflow-hidden shadow-lg">
+                <img 
+                  src={placeholderImages.exportShipping}
+                  alt="Shipping containers ready for export"
+                  className="w-full h-[400px] object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
               </div>
-              <div className="absolute top-4 right-4 bg-card rounded-xl p-4 shadow-lg">
-                <p className="text-2xl font-bold text-primary">{companyInfo.stats.exportCountries}</p>
-                <p className="text-sm text-muted-foreground">Countries</p>
+              <div className="absolute bottom-6 left-6 right-6 flex justify-between">
+                <div className="bg-card/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                  <p className="text-2xl font-bold text-primary">{companyInfo.stats.exportCountries}</p>
+                  <p className="text-sm text-muted-foreground">Countries</p>
+                </div>
+                <div className="bg-card/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                  <p className="text-2xl font-bold text-primary">40ft</p>
+                  <p className="text-sm text-muted-foreground">Container Ready</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Catalog Download */}
+      {/* Catalog Download with Image */}
       <section className="py-20 bg-gradient-to-br from-primary to-tropical-green-light">
         <div className="container">
-          <div className="mx-auto max-w-4xl">
-            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-              <div className="text-on-primary">
-                <h2 className="text-3xl font-bold sm:text-4xl mb-4 text-on-primary">
-                  Download Our Product Catalog
-                </h2>
-                <p className="text-lg text-on-primary-muted mb-6">
-                  Get our complete product catalog with specifications, pricing guidance, 
-                  and packaging options. Perfect for your procurement team.
-                </p>
-                <ul className="space-y-3 text-on-primary">
-                  {[
-                    "Complete product specifications",
-                    "FOB pricing guidelines",
-                    "Packaging options & MOQs",
-                    "Certification details",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+          <div className="mx-auto max-w-5xl">
+            <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+              {/* Product Image */}
+              <div className="relative order-2 lg:order-1">
+                <div className="rounded-2xl overflow-hidden shadow-2xl">
+                  <img 
+                    src={placeholderImages.catalogProducts}
+                    alt="Dried fruit product samples"
+                    className="w-full h-[350px] object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="absolute -bottom-4 -right-4 bg-accent text-accent-foreground rounded-xl p-4 shadow-lg">
+                  <p className="text-lg font-bold">50+ Products</p>
+                  <p className="text-sm opacity-90">In Our Catalog</p>
+                </div>
               </div>
 
-              <div className="bg-card rounded-2xl p-8 shadow-lg">
-                <CatalogForm />
+              {/* Form Side */}
+              <div className="order-1 lg:order-2">
+                <div className="text-on-primary mb-6">
+                  <h2 className="text-3xl font-bold sm:text-4xl mb-4 text-on-primary">
+                    Download Our Product Catalog
+                  </h2>
+                  <p className="text-lg text-on-primary-muted mb-6">
+                    Get our complete product catalog with specifications, pricing guidance, 
+                    and packaging options. Perfect for your procurement team.
+                  </p>
+                  <ul className="space-y-3 text-on-primary mb-6">
+                    {[
+                      "Complete product specifications",
+                      "FOB pricing guidelines",
+                      "Packaging options & MOQs",
+                      "Certification details",
+                    ].map((item) => (
+                      <li key={item} className="flex items-center gap-3">
+                        <CheckCircle className="h-5 w-5" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-card rounded-2xl p-8 shadow-lg">
+                  <CatalogForm />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-20">
-        <div className="container text-center">
+      {/* Final CTA with Background Image */}
+      <section className="relative py-24 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src={placeholderImages.teamCta}
+            alt="Dried fruit product display"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/95" />
+        </div>
+        
+        <div className="container relative text-center">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl mb-4">
             Ready to Partner With Us?
           </h2>
