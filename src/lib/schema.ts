@@ -245,3 +245,7 @@ export function generateItemListSchema(
     })),
   };
 }
+
+// Pre-generated schemas for Layout (avoid regeneration on every render)
+export const ORGANIZATION_SCHEMA_STRING = JSON.stringify(generateOrganizationSchema());
+export const LOCAL_BUSINESS_SCHEMA_STRING = JSON.stringify(generateLocalBusinessSchema());
