@@ -147,14 +147,8 @@ export default function ShippingPage() {
       {/* Container Calculator */}
       <section className="py-20 bg-muted/30">
         <div className="container">
-          <div className="mx-auto max-w-3xl text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground">Container Load Calculator</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Estimate how many bags fit in your container based on product type
-            </p>
-          </div>
           <div className="max-w-2xl mx-auto">
-            <ContainerCalculator />
+            <ContainerCalculator headingLevel="h2" />
           </div>
         </div>
       </section>

@@ -184,7 +184,8 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
         {/* Container Calculator */}
         <section className="py-12">
           <div className="container max-w-3xl">
-            <ContainerCalculator defaultProductId={product.id} compact={true} />
+            <h2 className="text-2xl font-bold text-foreground mb-6">Container Load Estimator</h2>
+            <ContainerCalculator defaultProductId={product.id} compact={true} headingLevel="h3" />
           </div>
         </section>
 
