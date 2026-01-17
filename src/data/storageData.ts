@@ -21,12 +21,19 @@ export const storageGuidelines = {
     },
     {
       name: "Vacuum Fried",
-      tempRange: "15-25°C (59-77°F)",
+      tempRange: "<20°C (cool dry)",
       humidityMax: "<55% RH",
-      waterActivity: "≤0.40 aw",
-      shelfLife: "12-18 months",
+      waterActivity: "≤0.35-0.40 aw (crisp grade)",
+      shelfLife: "12-18 months (low-oil) / 9-12 months (standard)",
       icon: "snowflake",
-      tips: ["Protect from light exposure", "Keep away from heat sources", "Crispy texture sensitive to humidity"],
+      tips: [
+        "Protect from light - UV accelerates oil oxidation",
+        "Keep away from heat sources (>25°C doubles rancidity rate)",
+        "Crispy texture highly sensitive to humidity - maintain <55% RH",
+        "Store in nitrogen-flushed packaging to prevent oil oxidation",
+        "Monitor peroxide value quarterly (<10 meq O₂/kg target)",
+        "Use oxygen-barrier packaging (metallized/foil liners)",
+      ],
     },
     {
       name: "Ginger & Turmeric",
