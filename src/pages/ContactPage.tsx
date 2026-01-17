@@ -15,17 +15,12 @@ import {
   Youtube 
 } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
-
-const socialIcons = {
-  linkedin: Linkedin,
-  instagram: Instagram,
-  facebook: Facebook,
-  youtube: Youtube,
-};
+import { socialIcons } from "@/lib/socialIcons";
+import { SITE_URL } from "@/lib/constants";
 
 const breadcrumbItems = [
-  { name: "Home", url: "https://dryfruits.lovable.app" },
-  { name: "Contact", url: "https://dryfruits.lovable.app/contact" },
+  { name: "Home", url: SITE_URL },
+  { name: "Contact", url: `${SITE_URL}/contact` },
 ];
 
 export default function ContactPage() {

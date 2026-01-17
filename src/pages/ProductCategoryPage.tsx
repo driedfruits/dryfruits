@@ -6,14 +6,8 @@ import { CategoryPageSkeleton } from "@/components/products";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { getProductsByCategory, productCategories } from "@/data/companyData";
 import { generateItemListSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { SITE_URL, categoryLabels } from "@/lib/constants";
 import { Package, Leaf, ChevronRight } from "lucide-react";
-
-const categoryLabels: Record<string, string> = {
-  "dried-fruits": "Dried Fruits",
-  "powdered-fruits": "Powdered Dried Fruits",
-  "vacuum-fried": "Vacuum Fried Fruits", 
-  "ginger-turmeric": "Ginger & Turmeric",
-};
 
 export default function ProductCategoryPage() {
   const { category } = useParams();
@@ -37,9 +31,9 @@ export default function ProductCategoryPage() {
   }
 
   const breadcrumbItems = [
-    { name: "Home", url: "https://dryfruits.biz" },
-    { name: "Products", url: "https://dryfruits.biz/products" },
-    { name: categoryInfo.name, url: `https://dryfruits.biz/products/${category}` },
+    { name: "Home", url: SITE_URL },
+    { name: "Products", url: `${SITE_URL}/products` },
+    { name: categoryInfo.name, url: `${SITE_URL}/products/${category}` },
   ];
 
   return (

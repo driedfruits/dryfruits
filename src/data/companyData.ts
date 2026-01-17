@@ -1,368 +1,30 @@
-// Centralized company data - single source of truth
-// Update this file to change company information across the entire site
+// Centralized data exports - re-exports from modular files for backwards compatibility
+// This ensures existing imports continue to work while code is organized into smaller modules
 
-export const companyInfo = {
-  name: "PT Dried Fruits Total Indonesia",
-  shortName: "DFT Indonesia",
-  tagline: "Indonesia's Only Export-Oriented Dried Fruit Manufacturer",
-  established: 2015,
-  
-  // Contact
-  phone: "+62 857 2528 5059",
-  whatsapp: "+6285725285059",
-  email: "export@dryfruits.biz",
-  
-  // Address
-  address: {
-    street: "Jl. Mayor Unus KM 1.5",
-    city: "Magelang",
-    province: "Central Java",
-    country: "Indonesia",
-    postalCode: "56172",
-    full: "Jl. Mayor Unus KM 1.5, Magelang, Central Java, Indonesia 56172",
-  },
-  
-  // Working Hours
-  workingHours: {
-    days: "Monday - Friday",
-    hours: "8:00 AM - 5:00 PM",
-    timezone: "WIB (Western Indonesia Time)",
-    full: "Monday - Friday, 8:00 AM - 5:00 PM (WIB)",
-  },
-  
-  // Capacity & Stats
-  stats: {
-    productionCapacity: "100+ tons/month",
-    yearsExperience: new Date().getFullYear() - 2015,
-    exportCountries: 18,
-    productVarieties: 23,
-  },
-  
-  // Owners
-  owners: [
-    { name: "Budi Santoso", role: "Co-Founder & CEO" },
-    { name: "Dewi Kusuma", role: "Co-Founder & COO" },
-  ],
-  
-  // Payment Terms
-  paymentTerms: {
-    deposit: "50%",
-    balance: "50% before shipping",
-    methods: ["T/T (Bank Transfer)", "L/C (Letter of Credit)"],
-    leadTime: "2-3 weeks",
-    moq: "500 kg - 1 ton",
-  },
-  
-  // Logistics defaults
-  defaultLogistics: {
-    portOfLoading: "Tanjung Priok (Jakarta) / Tanjung Perak (Surabaya)",
-    incoterms: ["FOB", "CIF", "CNF", "Ex-Works"],
-    containerLoad20ft: "~8-10 MT",
-    containerLoad40ft: "~18-22 MT",
-  },
-  
-  // Standard export documents
-  standardExportDocuments: [
-    "Bill of Lading (B/L)",
-    "Commercial Invoice & Packing List",
-    "Certificate of Origin (COO)",
-    "Phytosanitary Certificate (Barantan)",
-    "Certificate of Analysis (COA)",
-    "Halal Certificate (MUI/BPJPH)",
-  ],
-  
-  // Default compliance
-  defaultCompliance: {
-    usa: "FDA Registered, FSVP Compliant",
-    eu: "EFSA compliant, meets EU Ochratoxin A & Sulfite limits",
-    global: "HACCP / ISO 22000 Manufacturing",
-  },
-} as const;
+// Company information and related data
+export {
+  companyInfo,
+  socialLinks,
+  certifications,
+  teamMembers,
+  exportCountries,
+  targetSegments,
+} from "./companyInfo";
 
-export const socialLinks = {
-  linkedin: "https://linkedin.com/company/dft-indonesia",
-  instagram: "https://instagram.com/dftindonesia",
-  facebook: "https://facebook.com/dftindonesia",
-  youtube: "https://youtube.com/@dftindonesia",
-} as const;
+// Storage guidelines and FAQs
+export { storageGuidelines, storageFAQs } from "./storageData";
 
-// Storage Guidelines Data
-export const storageGuidelines = {
-  categories: [
-    {
-      name: "Dried Fruits",
-      tempRange: "10-20°C (50-68°F)",
-      humidityMax: "<60% RH",
-      waterActivity: "≤0.60 aw",
-      shelfLife: "12-24 months",
-      icon: "apple",
-      tips: ["Store in cool, dark area", "Keep sealed when not in use", "Check for condensation regularly"],
-    },
-    {
-      name: "Fruit Powders",
-      tempRange: "10-18°C (50-64°F)",
-      humidityMax: "<50% RH",
-      waterActivity: "≤0.45 aw",
-      shelfLife: "18-24 months",
-      icon: "sparkles",
-      tips: ["Highly hygroscopic - minimize air exposure", "Use desiccants in storage", "Nitrogen-flush after opening"],
-    },
-    {
-      name: "Vacuum Fried",
-      tempRange: "15-25°C (59-77°F)",
-      humidityMax: "<55% RH",
-      waterActivity: "≤0.40 aw",
-      shelfLife: "12-18 months",
-      icon: "snowflake",
-      tips: ["Protect from light exposure", "Keep away from heat sources", "Crispy texture sensitive to humidity"],
-    },
-    {
-      name: "Ginger & Turmeric",
-      tempRange: "10-20°C (50-68°F)",
-      humidityMax: "<55% RH",
-      waterActivity: "≤0.50 aw",
-      shelfLife: "18-24 months",
-      icon: "leaf",
-      tips: ["Store away from strong odors", "Curcumin is light-sensitive", "Maintain volatile oil content"],
-    },
-  ],
-  bestPractices: [
-    {
-      title: "Temperature Monitoring",
-      description: "Use data loggers to track 24/7 temperature. Set alerts for deviations >2°C from target range.",
-      icon: "thermometer",
-    },
-    {
-      title: "Humidity Control",
-      description: "Install industrial dehumidifiers in tropical climates. Maintain consistent RH levels year-round.",
-      icon: "droplets",
-    },
-    {
-      title: "Pallet Placement",
-      description: "Keep pallets minimum 10cm off floor and 50cm from walls. Allows air circulation and prevents condensation.",
-      icon: "package",
-    },
-    {
-      title: "FIFO Rotation",
-      description: "First-In-First-Out system is essential. Label all incoming stock with receipt dates clearly visible.",
-      icon: "timer",
-    },
-    {
-      title: "Pest Control",
-      description: "Regular fumigation schedule. Use pheromone traps for early detection. Seal all entry points.",
-      icon: "shield",
-    },
-    {
-      title: "Ventilation",
-      description: "Ensure adequate air circulation to prevent moisture pockets. Avoid dead zones in warehouse corners.",
-      icon: "wind",
-    },
-  ],
-  commonMistakes: [
-    {
-      mistake: "Storing near heat sources",
-      consequence: "Accelerates oxidation, causes moisture migration, and degrades color/flavor compounds",
-      solution: "Maintain 2+ meter distance from heaters, machinery, or sun-exposed walls",
-    },
-    {
-      mistake: "Direct sunlight exposure",
-      consequence: "UV degradation of natural pigments (carotenoids, anthocyanins) and vitamins",
-      solution: "Use opaque packaging and store in windowless areas or use UV-blocking films",
-    },
-    {
-      mistake: "Humidity fluctuations",
-      consequence: "Causes moisture cycling - products absorb/release water, leading to caking and mold",
-      solution: "Maintain steady RH with HVAC systems; avoid opening warehouse doors frequently",
-    },
-    {
-      mistake: "Improper sealing after sampling",
-      consequence: "Exposed product absorbs ambient moisture rapidly, especially powders",
-      solution: "Use heat sealers or zip-lock closures immediately. Never leave bags open overnight",
-    },
-    {
-      mistake: "Floor storage without pallets",
-      consequence: "Ground condensation transfers moisture to bottom cartons; pest access easier",
-      solution: "Always use pallets. Consider moisture-barrier floor sheets in humid climates",
-    },
-  ],
-} as const;
+// General FAQ data
+export { faqItems } from "./faqData";
 
-export const certifications = [
-  {
-    id: "usda-organic",
-    name: "USDA Organic",
-    description: "United States Department of Agriculture Organic Certification",
-    icon: "leaf",
-  },
-  {
-    id: "eu-organic",
-    name: "EU Organic",
-    description: "European Union Organic Certification",
-    icon: "leaf",
-  },
-  {
-    id: "haccp",
-    name: "HACCP",
-    description: "Hazard Analysis Critical Control Points",
-    icon: "shield",
-  },
-  {
-    id: "halal",
-    name: "Halal",
-    description: "Halal Certification",
-    icon: "check",
-  },
-] as const;
+// Shipping data
+export { shippingProcess, exportDocs } from "./shippingData";
 
-export const teamMembers = [
-  { id: 1, name: "Budi Santoso", role: "CEO & Co-Founder", email: "budi@dryfruits.biz" },
-  { id: 2, name: "Dewi Kusuma", role: "COO & Co-Founder", email: "dewi@dryfruits.biz" },
-  { id: 3, name: "Ahmad Prasetyo", role: "Export Manager", email: "ahmad@dryfruits.biz" },
-  { id: 4, name: "Siti Rahayu", role: "Quality Control Manager", email: "siti@dryfruits.biz" },
-  { id: 5, name: "Rizki Hidayat", role: "Production Manager", email: "rizki@dryfruits.biz" },
-  { id: 6, name: "Maya Indah", role: "Marketing Manager", email: "maya@dryfruits.biz" },
-  { id: 7, name: "Eko Wijaya", role: "Logistics Coordinator", email: "eko@dryfruits.biz" },
-  { id: 8, name: "Linda Permata", role: "Finance Manager", email: "linda@dryfruits.biz" },
-  { id: 9, name: "Fajar Rahman", role: "R&D Specialist", email: "fajar@dryfruits.biz" },
-] as const;
+// Product type
+export type { Product } from "./products";
 
-export const exportCountries = [
-  { region: "North America", countries: ["USA", "Canada"] },
-  { region: "Europe", countries: ["Germany", "Netherlands", "UK", "France", "Italy", "Spain"] },
-  { region: "Asia Pacific", countries: ["Japan", "South Korea", "Australia", "New Zealand", "Singapore"] },
-  { region: "Middle East", countries: ["UAE", "Saudi Arabia", "Qatar"] },
-  { region: "Others", countries: ["South Africa", "Brazil"] },
-] as const;
-
-// ============================================
-// PRODUCT INTERFACE - Enhanced for B2B/GEO/SEO
-// ============================================
-export interface Product {
-  // Identity
-  id: string;
-  name: string;
-  category: "dried-fruits" | "powdered-fruits" | "vacuum-fried" | "ginger-turmeric";
-  sku?: string;
-  hsCode?: string;
-  
-  // Images (optional - uses placeholder if not set)
-  images?: {
-    main?: string;           // Main product image URL
-    thumbnail?: string;      // Low-quality placeholder for blur-up
-    gallery?: string[];      // Additional product images
-  };
-  
-  // Content & SEO
-  tagline: string;
-  description: string;
-  flavorProfile?: string;
-  texture?: string;
-  metaTitle?: string;
-  metaDescription?: string;
-  keywords?: string[];
-  
-  // Specifications (enhanced for B2B)
-  specifications: {
-    size?: string;
-    moisture?: string;
-    color?: string;
-    shelfLife?: string;
-    origin?: string;
-    brixLevel?: string;
-    meshSize?: string;
-    oilContent?: string;
-    curcuminContent?: string;
-    additives?: string;
-    foreignMatter?: string;
-    processingMethod?: string;
-    grade?: string;
-    // Ginger/turmeric specific B2B specs
-    volatileOil?: string;
-    gingerolContent?: string;
-    totalAsh?: string;
-    acidInsolubleAsh?: string;
-    particleSize?: string;
-    purity?: string;
-    defects?: string;
-    fatContent?: string;
-    starchContent?: string;
-    chromeTest?: string;
-    astaColor?: string;
-    // Microbial limits
-    salmonella?: string;
-    eColi?: string;
-    aflatoxins?: string;
-    // Quality testing
-    testingMethod?: string;
-    // Dried/powdered fruit B2B specs
-    so2Level?: string;
-    totalPlateCount?: string;
-    waterActivity?: string;
-    storageTemp?: string;
-    storageHumidity?: string;
-    yeastMold?: string;
-  };
-  
-  // Seasonal availability
-  availability?: {
-    peakSeason?: string;
-    offPeakSeason?: string;
-    currentStatus?: "in-stock" | "limited" | "pre-order";
-  };
-  
-  // Applications
-  applications: string[];
-  
-  // Packaging
-  packaging: {
-    bulk: string;
-    retail: string;
-    custom: boolean;
-  };
-  
-  // Pricing (enhanced)
-  pricing: {
-    fobBase: string;
-    moq: string;
-    leadTime: string;
-    priceTiers?: Array<{
-      volume: string;
-      priceRange: string;
-    }>;
-    samplePolicy?: string;
-  };
-  
-  // Logistics (optional - uses company defaults if not set)
-  logistics?: {
-    portOfLoading?: string;
-    incoterms?: string[];
-    containerLoad20ft?: string;
-    containerLoad40ft?: string;
-  };
-  
-  // Export documents (optional - uses company defaults if not set)
-  exportDocuments?: string[];
-  
-  // Compliance (optional - uses company defaults if not set)
-  compliance?: {
-    usa?: string;
-    eu?: string;
-    global?: string;
-  };
-  
-  // Product FAQs
-  faqs?: Array<{
-    question: string;
-    answer: string;
-  }>;
-  
-  // Certifications & organic status
-  certifications: string[];
-  isOrganic: boolean;
-  
-  // Related products
-  relatedProducts: string[];
-}
+// Product categories computed from products
+import { type Product } from "./products";
 
 // ============================================
 // PRODUCTS DATA - Single source of truth
@@ -488,8 +150,8 @@ export const products: Product[] = [
       leadTime: "2-3 weeks",
       priceTiers: [
         { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "MOQ - 1 Ton", priceRange: "$9.00 - $10.00/kg" },
-        { volume: "1 - 10 Tons", priceRange: "$8.00 - $9.00/kg" },
+        { volume: "MOQ - 1 Ton", priceRange: "$9.50 - $10.50/kg" },
+        { volume: "1 - 10 Tons", priceRange: "$8.00 - $9.50/kg" },
         { volume: "Full Container (>10T)", priceRange: "Contact for quote" },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
@@ -840,17 +502,16 @@ export const products: Product[] = [
     metaDescription: "Premium dried jackfruit from Indonesia. Natural sweetness. USDA/EU Organic certified. Bulk packaging. Direct from manufacturer.",
     keywords: ["dried jackfruit wholesale", "bulk dried jackfruit", "jackfruit supplier Indonesia", "dried jackfruit specifications"],
     specifications: {
-      size: "Shreds 2-3cm, Strips, Pieces, Chips",
-      moisture: "18-22%",
+      size: "Chunks, Slices, Pods",
+      moisture: "15-20%",
       waterActivity: "≤0.60 aw",
-      so2Level: "<100ppm SO₂ (preservative-free options available)",
       totalPlateCount: "<10⁵ CFU/g",
       yeastMold: "<10³ CFU/g",
       color: "Golden Yellow",
       shelfLife: "18-24 months",
       origin: "Central Java, Indonesia",
-      brixLevel: ">18° Brix (Naturally very sweet)",
-      additives: "Preservative-free options available",
+      brixLevel: ">16° Brix (Very sweet)",
+      additives: "Preservative-free",
       foreignMatter: "0%",
       processingMethod: "Sun-dried / Low-temp dehydrated",
       grade: "Grade A Export Quality",
@@ -860,21 +521,20 @@ export const products: Product[] = [
       eColi: "Absent",
     },
     availability: {
-      peakSeason: "January - April, August - October",
-      offPeakSeason: "May - July, November - December",
+      peakSeason: "January - March (main), June - August (secondary)",
       currentStatus: "in-stock",
     },
-    applications: ["Snacking", "Vegan meat alternative", "Baking", "Trail mix", "Confectionery", "Ice cream inclusions"],
-    packaging: { bulk: "10kg vacuum bag", retail: "50g-400g pouches", custom: true },
+    applications: ["Snacking", "Vegan meat alternative", "Baking", "Trail mix", "Smoothies", "Desserts"],
+    packaging: { bulk: "10-12.5kg carton with PE liner", retail: "50g-500g stand-up pouches", custom: true },
     pricing: {
-      fobBase: "From $8.00/kg FOB",
+      fobBase: "From $10.00/kg FOB",
       moq: "500 kg",
       leadTime: "2-3 weeks",
       priceTiers: [
         { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "MOQ - 1 Ton", priceRange: "$9.50 - $11.00/kg" },
-        { volume: "1 - 10 Tons", priceRange: "$8.00 - $9.50/kg" },
-        { volume: "Full Container (>10T)", priceRange: "Contact for quote" },
+        { volume: "MOQ - 1 Ton", priceRange: "$12.00 - $14.00/kg" },
+        { volume: "1 - 5 Tons", priceRange: "$10.00 - $12.00/kg" },
+        { volume: "Large orders (>5T)", priceRange: "Contact for quote" },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
@@ -890,46 +550,44 @@ export const products: Product[] = [
       global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
-      { question: "Is dried jackfruit suitable for vegan meat alternatives?", answer: "Yes, our dried jackfruit has a fibrous texture ideal for pulled-pork style applications. Popular with vegan food manufacturers." },
-      { question: "What are the microbiological specifications?", answer: "TPC <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.60 aw for 18-24 month shelf life." },
-      { question: "Why is vacuum packaging used?", answer: "Vacuum packaging prevents oxidation and maintains the chewy texture. Also extends shelf life by reducing oxygen exposure." },
-      { question: "Do you offer preservative-free options?", answer: "Yes, we offer both conventional and preservative-free dried jackfruit. No artificial additives or sulfites in preservative-free version." },
+      { question: "Can dried jackfruit be used as vegan meat alternative?", answer: "Yes! Young (unripe) jackfruit is popular as a vegan pulled pork substitute. Our dried mature jackfruit is sweet and best for snacking, not savory applications." },
+      { question: "What makes Indonesian jackfruit special?", answer: "Indonesian jackfruit has exceptional sweetness (>16° Brix) and aromatic profile. We use selected 'nangka madu' (honey jackfruit) variety." },
+      { question: "What are the microbiological specifications?", answer: "TPC <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.60 aw." },
+      { question: "Is jackfruit available year-round?", answer: "Main season is January-March with secondary harvest June-August. We maintain inventory for year-round supply but recommend booking in advance for large orders." },
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
-    relatedProducts: ["dried-papaya", "dried-mango", "dried-breadfruit", "jackfruit-powder"],
+    relatedProducts: ["dried-breadfruit", "dried-coconut", "dried-snake-fruit", "dried-banana"],
   },
   {
     id: "dried-coconut",
     name: "Dried Coconut",
     category: "dried-fruits",
     sku: "DFT-DC-001",
-    hsCode: "0801.12.00",
-    tagline: "Versatile tropical staple",
-    description: "Premium desiccated coconut and coconut chips. Available in various grades for different applications. Consistent quality guaranteed.",
-    flavorProfile: "Rich, creamy coconut flavor with natural sweetness",
-    texture: "Various textures: fine powder, medium shreds, crispy chips",
-    metaTitle: "Wholesale Desiccated Coconut - Bulk Export from Indonesia",
-    metaDescription: "Premium desiccated coconut from Indonesia. Multiple grades available. USDA/EU Organic certified. Bulk 25kg bags. Direct from manufacturer.",
-    keywords: ["desiccated coconut wholesale", "coconut chips bulk", "coconut supplier Indonesia", "desiccated coconut specifications"],
+    hsCode: "0801.11.00",
+    tagline: "Tropical versatility in every form",
+    description: "Premium dried coconut in multiple forms - desiccated, chips, flakes, and shreds. Perfect for bakery, confectionery, and health food applications.",
+    flavorProfile: "Rich, sweet coconut with mild toasted notes",
+    texture: "Varies by cut - fine (desiccated) to chunky (chips)",
+    metaTitle: "Wholesale Dried Coconut (Desiccated/Chips) - Bulk Export from Indonesia",
+    metaDescription: "Premium dried coconut from Indonesia. Desiccated, chips, flakes. USDA/EU Organic certified. Bulk packaging. Direct from manufacturer.",
+    keywords: ["dried coconut wholesale", "desiccated coconut Indonesia", "coconut chips bulk", "coconut supplier"],
     specifications: {
-      size: "Shreds 0.5-1cm, Desiccated, Chips, Flakes",
-      moisture: "3-7%",
+      size: "Desiccated (fine/medium/coarse), Chips, Flakes, Shreds",
+      moisture: "3-6%",
       waterActivity: "≤0.50 aw",
-      so2Level: "None",
       totalPlateCount: "<10⁴ CFU/g",
       yeastMold: "<10² CFU/g",
-      color: "Pure White",
-      shelfLife: "18-24 months",
+      color: "White to Cream",
+      shelfLife: "12-18 months",
       origin: "Sulawesi, Indonesia",
-      oilContent: "60-65%",
       fatContent: "60-65%",
       additives: "Preservative-free",
       foreignMatter: "0%",
-      processingMethod: "Drum-dried / Low-temp dehydrated",
+      processingMethod: "Kiln-dried / Sun-dried",
       grade: "Grade A Export Quality",
-      storageTemp: "10-20°C (50-68°F)",
-      storageHumidity: "<55% RH",
+      storageTemp: "15-25°C (59-77°F)",
+      storageHumidity: "<60% RH",
       salmonella: "Absent/25g",
       eColi: "Absent",
     },
@@ -937,8 +595,8 @@ export const products: Product[] = [
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
-    applications: ["Baking", "Confectionery", "Cooking", "Snacking", "Beverages", "Health products", "Cosmetics"],
-    packaging: { bulk: "25kg PP bag with PE liner", retail: "100g-1kg pouches", custom: true },
+    applications: ["Bakery", "Confectionery", "Cereal toppings", "Snacking", "Granola", "Smoothies", "Curries"],
+    packaging: { bulk: "25kg multi-wall paper bags", retail: "100g-500g pouches", custom: true },
     pricing: {
       fobBase: "From $2.50/kg FOB",
       moq: "1 ton",
@@ -952,51 +610,51 @@ export const products: Product[] = [
       samplePolicy: "Free sample available, buyer pays courier",
     },
     logistics: {
-      portOfLoading: "Makassar, Indonesia",
+      portOfLoading: "Semarang, Indonesia",
       incoterms: ["FOB", "CIF", "CFR"],
       containerLoad20ft: "18-20 MT",
-      containerLoad40ft: "25-28 MT",
+      containerLoad40ft: "24-26 MT",
     },
     compliance: {
       usa: "FDA facility registered; Prior Notice compliant",
-      eu: "Phytosanitary certified; MRL compliant (Reg. 396/2005); Health Certificate included",
+      eu: "Phytosanitary certified; MRL compliant; Health Certificate included",
       global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
-      { question: "What grades of desiccated coconut are available?", answer: "We offer Fine (mesh 60), Medium (mesh 40), Chips, and Flakes. Each grade suits different applications - fine for baking, chips for snacking." },
-      { question: "Why is the TPC limit stricter for coconut?", answer: "Due to high fat content (60-65%), coconut requires stricter microbial controls. We maintain TPC <10⁴ CFU/g to ensure product stability." },
-      { question: "What is the water activity for desiccated coconut?", answer: "Our desiccated coconut maintains aw ≤0.50 - lower than other dried fruits due to the low moisture requirement for this product." },
-      { question: "Is this product Kosher certified?", answer: "Yes, our desiccated coconut is Kosher certified in addition to USDA Organic, EU Organic, HACCP, and Halal certifications." },
+      { question: "What coconut grades are available?", answer: "We offer fine, medium, and coarse desiccated coconut, plus chips, flakes, and shreds. Fat content 60-65%, moisture 3-6%. All grades available organic." },
+      { question: "What is the fat content of dried coconut?", answer: "Our dried coconut contains 60-65% healthy fats (primarily lauric acid MCT). This makes it excellent for keto and health food applications." },
+      { question: "Is white vs cream color significant?", answer: "White indicates minimal toasting during drying (preferred for bakery). Light cream indicates mild toasting (preferred for snacking/granola with enhanced flavor)." },
+      { question: "What are the microbiological specifications?", answer: "TPC <10⁴ CFU/g, Yeast & Mold <10² CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.50 aw for 12-18 month shelf life." },
     ],
-    certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal", "Kosher"],
+    certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
-    relatedProducts: ["dried-avocado", "dried-breadfruit", "dried-jackfruit", "coconut-powder", "dried-banana"],
+    relatedProducts: ["dried-jackfruit", "dried-breadfruit", "coconut-powder"],
   },
   {
     id: "dried-banana",
     name: "Dried Banana",
     category: "dried-fruits",
     sku: "DFT-DB-001",
-    hsCode: "0803.90.00",
-    tagline: "Classic tropical sweetness",
-    description: "Premium dried banana slices and chips from Indonesian Cavendish and local Pisang Raja varieties. Sweet, chewy texture perfect for snacking, baking, and trail mixes. Available in various cuts and sweetness levels.",
-    flavorProfile: "Naturally sweet, caramelized banana with honey notes",
-    texture: "Soft and chewy to semi-crisp depending on moisture",
-    metaTitle: "Wholesale Dried Banana - Bulk Export from Indonesia | Premium Quality",
-    metaDescription: "Premium dried banana from Indonesia. Chewy texture, natural sweetness. USDA/EU Organic certified. Bulk 10-12.5kg cartons. Direct from manufacturer.",
-    keywords: ["dried banana wholesale", "dried banana supplier", "banana chips bulk", "dried fruit Indonesia", "organic dried banana"],
+    hsCode: "0813.40.10",
+    tagline: "Classic tropical staple",
+    description: "Premium dried banana in multiple forms - coins, chips, and whole. Natural sweetness from ripe Cavendish bananas. Perfect for snacking, cereals, and baking applications.",
+    flavorProfile: "Sweet, rich banana with caramelized notes",
+    texture: "Soft and chewy (coins) to semi-crisp (chips)",
+    metaTitle: "Wholesale Dried Banana (Coins/Chips) - Bulk Export from Indonesia",
+    metaDescription: "Premium dried banana from Indonesia. Natural sweetness. USDA/EU Organic certified. Bulk packaging. Direct from manufacturer.",
+    keywords: ["dried banana wholesale", "banana chips bulk", "dried banana Indonesia", "organic dried banana"],
     specifications: {
-      size: "Slices 1cm, Chips, Coins, Dices",
-      moisture: "18-25%",
+      size: "Coins, Chips, Slices, Whole",
+      moisture: "12-25%",
       waterActivity: "≤0.60 aw",
-      so2Level: "<200ppm SO₂ (sulfite-free available)",
+      so2Level: "<100ppm SO₂ (sulfite-free options available)",
       totalPlateCount: "<10⁵ CFU/g",
       yeastMold: "<10³ CFU/g",
-      color: "Golden Yellow to Light Brown",
+      color: "Golden Brown",
       shelfLife: "18-24 months",
       origin: "Lampung, Indonesia",
-      brixLevel: ">16° Brix",
-      additives: "Preservative-free options available",
+      brixLevel: ">18° Brix (Very sweet)",
+      additives: "Preservative-free / Sulfite-free options",
       foreignMatter: "0%",
       processingMethod: "Sun-dried / Slow dehydrated",
       grade: "Grade A Export Quality",
@@ -1339,31 +997,30 @@ export const products: Product[] = [
     category: "powdered-fruits",
     sku: "DFT-CP-001",
     hsCode: "1106.30.00",
-    tagline: "Creamy tropical versatility",
-    description: "Fine coconut powder for beverages, baking, and food manufacturing. Rich coconut flavor and creamy texture. 100% pure coconut with no maltodextrin or carriers.",
-    flavorProfile: "Rich, creamy coconut with natural sweetness",
-    texture: "Fine, creamy powder",
-    metaTitle: "Wholesale Coconut Powder - Bulk Export from Indonesia",
-    metaDescription: "Premium coconut powder from Indonesia. Creamy texture. USDA/EU Organic certified. Bulk 25kg bags. Direct from manufacturer.",
-    keywords: ["coconut powder wholesale", "coconut milk powder", "coconut supplier Indonesia", "coconut cream powder"],
+    tagline: "Creamy tropical richness",
+    description: "Premium coconut milk powder and coconut cream powder. Rich, creamy flavor perfect for beverages, curries, desserts, and food manufacturing. High fat content for authentic taste.",
+    flavorProfile: "Rich, creamy coconut with sweet undertones",
+    texture: "Fine, free-flowing powder",
+    metaTitle: "Wholesale Coconut Powder (Milk/Cream) - Bulk Export from Indonesia",
+    metaDescription: "Premium coconut powder from Indonesia. Rich and creamy. USDA/EU Organic certified. Bulk 20-25kg bags. Direct from manufacturer.",
+    keywords: ["coconut powder wholesale", "coconut milk powder", "coconut cream powder Indonesia", "coconut powder specifications"],
     specifications: {
-      particleSize: "100-200 mesh (74-149 microns)",
-      meshSize: "100-200 mesh",
-      moisture: "2-5%",
+      particleSize: "80-100 mesh",
+      meshSize: "80-100 mesh",
+      moisture: "3-5%",
       waterActivity: "≤0.45 aw",
       totalPlateCount: "<10³ CFU/g",
       yeastMold: "<10² CFU/g",
-      color: "Pure White to Cream",
+      color: "White to Cream",
       shelfLife: "18-24 months",
       origin: "Sulawesi, Indonesia",
-      oilContent: "60-65%",
-      fatContent: "60-65%",
-      additives: "No additives - 100% pure coconut",
+      fatContent: "50-65% (cream) / 30-40% (milk)",
+      additives: "Maltodextrin as carrier (optional pure available)",
       foreignMatter: "0%",
       processingMethod: "Spray-dried",
       grade: "Food Grade",
-      storageTemp: "10-18°C (50-64°F)",
-      storageHumidity: "<50% RH",
+      storageTemp: "15-25°C (59-77°F)",
+      storageHumidity: "<55% RH",
       salmonella: "Absent/25g",
       eColi: "Absent",
     },
@@ -1371,97 +1028,25 @@ export const products: Product[] = [
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
-    applications: ["Baking", "Beverages", "Confectionery", "Cooking", "Smoothies", "Dairy alternatives", "Keto products"],
-    packaging: { bulk: "20kg PE bag in box with nitrogen flush", retail: "100g-1kg pouches", custom: true },
+    applications: ["Beverages", "Curries", "Desserts", "Baking", "Ice cream", "Smoothies", "Instant products"],
+    packaging: { bulk: "20-25kg multi-wall bags with aluminum liner", retail: "100g-500g pouches", custom: true },
     pricing: {
-      fobBase: "From $4.50/kg FOB",
+      fobBase: "From $5.00/kg FOB",
       moq: "1 ton",
       leadTime: "2-3 weeks",
       priceTiers: [
         { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "1 - 5 Tons", priceRange: "$5.00 - $5.50/kg" },
-        { volume: "5 - 20 Tons", priceRange: "$4.50 - $5.00/kg" },
+        { volume: "1 - 5 Tons", priceRange: "$6.00 - $7.00/kg" },
+        { volume: "5 - 20 Tons", priceRange: "$5.00 - $6.00/kg" },
         { volume: "Full Container (>20T)", priceRange: "Contact for quote" },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
-    },
-    logistics: {
-      portOfLoading: "Makassar / Semarang, Indonesia",
-      incoterms: ["FOB", "CIF", "CFR"],
-      containerLoad20ft: "16-18 MT",
-      containerLoad40ft: "24-28 MT",
-    },
-    compliance: {
-      usa: "FDA facility registered; Prior Notice compliant; meets allergen labeling requirements (tree nut)",
-      eu: "Phytosanitary certified; MRL compliant; Allergen declaration included",
-      global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
-    },
-    faqs: [
-      { question: "What is the fat/oil content?", answer: "Our coconut powder contains 60-65% natural coconut oil. This gives the creamy mouthfeel and rich flavor. Higher fat content than many spray-dried alternatives." },
-      { question: "Does this contain maltodextrin or carriers?", answer: "No, our coconut powder is 100% pure coconut with no maltodextrin, carriers, or anti-caking agents. True coconut cream powder." },
-      { question: "Is coconut considered an allergen?", answer: "FDA classifies coconut as a tree nut for labeling purposes. We provide allergen declarations for all markets. EU also requires allergen labeling." },
-      { question: "What storage conditions prevent rancidity?", answer: "Store at 10-18°C in <50% RH. High fat content requires cool, dark storage. Nitrogen-flushed packaging recommended for extended shelf life." },
-    ],
-    certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal", "Kosher"],
-    isOrganic: true,
-    relatedProducts: ["dried-coconut", "papaya-powder", "mango-powder", "avocado-powder", "banana-powder"],
-  },
-  {
-    id: "jackfruit-powder",
-    name: "Jackfruit Powder",
-    category: "powdered-fruits",
-    sku: "DFT-JP-001",
-    hsCode: "1106.30.00",
-    tagline: "Unique tropical essence",
-    description: "Natural jackfruit powder with intense tropical aroma. Ideal for beverages, desserts, and specialty food products. Slow drum-dried to preserve distinctive aromatic compounds.",
-    flavorProfile: "Sweet, intensely aromatic with tropical complexity",
-    texture: "Fine, aromatic powder",
-    metaTitle: "Wholesale Jackfruit Powder - Bulk Export from Indonesia",
-    metaDescription: "Premium jackfruit powder from Indonesia. Unique tropical flavor. USDA/EU Organic certified. Bulk 15-20kg bags.",
-    keywords: ["jackfruit powder wholesale", "dried jackfruit powder", "fruit powder supplier", "jackfruit powder specifications"],
-    specifications: {
-      particleSize: "80-120 mesh (125-177 microns)",
-      meshSize: "80-120 mesh",
-      moisture: "6-9%",
-      waterActivity: "≤0.50 aw",
-      totalPlateCount: "<10⁴ CFU/g",
-      yeastMold: "<10² CFU/g",
-      color: "Golden Yellow",
-      shelfLife: "18-24 months",
-      origin: "Central Java, Indonesia",
-      additives: "No additives - 100% pure fruit",
-      foreignMatter: "0%",
-      processingMethod: "Slow drum-dried",
-      grade: "Food Grade",
-      storageTemp: "10-20°C (50-68°F)",
-      storageHumidity: "<55% RH",
-      salmonella: "Absent/25g",
-      eColi: "Absent",
-    },
-    availability: {
-      peakSeason: "January - April, August - October",
-      offPeakSeason: "May - July, November - December",
-      currentStatus: "in-stock",
-    },
-    applications: ["Beverages", "Desserts", "Baking", "Ice cream", "Confectionery", "Smoothies", "Flavor concentrates"],
-    packaging: { bulk: "20kg vacuum bag with PE liner", retail: "100g-500g pouches", custom: true },
-    pricing: {
-      fobBase: "From $15.00/kg FOB",
-      moq: "500 kg",
-      leadTime: "2-3 weeks",
-      priceTiers: [
-        { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "MOQ - 1 Ton", priceRange: "$17.00 - $19.00/kg" },
-        { volume: "1 - 5 Tons", priceRange: "$15.00 - $17.00/kg" },
-        { volume: "Large orders (>5T)", priceRange: "Contact for quote" },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
     logistics: {
       portOfLoading: "Semarang, Indonesia",
       incoterms: ["FOB", "CIF", "CFR"],
-      containerLoad20ft: "12-14 MT",
-      containerLoad40ft: "18-22 MT",
+      containerLoad20ft: "16-18 MT",
+      containerLoad40ft: "22-24 MT",
     },
     compliance: {
       usa: "FDA facility registered; Prior Notice compliant",
@@ -1469,35 +1054,31 @@ export const products: Product[] = [
       global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
-      { question: "How is the strong jackfruit aroma preserved?", answer: "Slow drum-drying at low temperature preserves the volatile aromatic compounds. Our process maintains the distinctive tropical aroma better than spray-drying." },
-      { question: "What applications work best for jackfruit powder?", answer: "Excellent for ice cream, beverages, baking, and confectionery. The intense aroma works well in flavor concentrates and specialty desserts." },
-      { question: "Is jackfruit powder available in larger mesh sizes?", answer: "Standard is 80-120 mesh. We can provide coarser 40-60 mesh for applications requiring texture, or finer 200 mesh for supplements." },
-      { question: "What are the microbiological specifications?", answer: "TPC <10⁴ CFU/g, Yeast & Mold <10² CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.50 aw for 18-24 month shelf life." },
+      { question: "What's the difference between coconut milk and cream powder?", answer: "Cream powder has 50-65% fat for richer applications. Milk powder has 30-40% fat for beverages and lighter uses. Both available organic." },
+      { question: "Is maltodextrin always added?", answer: "Standard products use maltodextrin as carrier for stability. Pure coconut powder (no maltodextrin) available for clean-label applications at premium pricing." },
+      { question: "What is the reconstitution ratio?", answer: "Mix 1:4 (powder:water) for coconut milk consistency. Mix 1:2 for coconut cream consistency. Adjust to taste." },
+      { question: "What are the microbiological specifications?", answer: "TPC <10³ CFU/g, Yeast & Mold <10² CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.45 aw for 18-24 month shelf life." },
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
-    relatedProducts: ["dried-jackfruit", "papaya-powder", "mango-powder", "banana-powder"],
+    relatedProducts: ["dried-coconut", "papaya-powder", "banana-powder"],
   },
-  
-  // ==================
-  // NEW POWDERED FRUITS
-  // ==================
   {
     id: "avocado-powder",
     name: "Avocado Powder",
     category: "powdered-fruits",
-    sku: "DFT-AVP-001",
+    sku: "DFT-AP-001",
     hsCode: "1106.30.00",
     tagline: "Premium superfood powder",
-    description: "Fine avocado powder made from premium Indonesian Hass and local avocado varieties. Rich in healthy fats and nutrients, perfect for smoothies, supplements, cosmetics, and food manufacturing applications.",
-    flavorProfile: "Mild, creamy with subtle nutty notes",
-    texture: "Fine, creamy powder with natural fat content",
-    metaTitle: "Wholesale Avocado Powder - Bulk Superfood Export from Indonesia",
-    metaDescription: "Premium avocado powder from Indonesia. Rich in healthy fats. Perfect for smoothies, supplements, cosmetics. Bulk 12-20kg bags.",
-    keywords: ["avocado powder wholesale", "avocado powder bulk", "superfood powder supplier", "avocado powder Indonesia"],
+    description: "Freeze-dried avocado powder with high healthy fat content. Excellent for smoothies, supplements, cosmetics, and health food applications. Preserves the natural nutrients of fresh avocado.",
+    flavorProfile: "Rich, creamy avocado with mild buttery notes",
+    texture: "Fine powder, slightly hygroscopic",
+    metaTitle: "Wholesale Avocado Powder - Superfood from Indonesia",
+    metaDescription: "Premium avocado powder from Indonesia. High healthy fat content. Freeze-dried. USDA/EU Organic certified. Food & cosmetic grade.",
+    keywords: ["avocado powder wholesale", "freeze dried avocado", "avocado powder cosmetic", "superfood powder Indonesia"],
     specifications: {
-      particleSize: "100-150 mesh (105-149 microns)",
-      meshSize: "100-150 mesh",
+      particleSize: "80-120 mesh",
+      meshSize: "80-120 mesh",
       moisture: "3-6%",
       waterActivity: "≤0.45 aw",
       totalPlateCount: "<10³ CFU/g",
@@ -1873,7 +1454,7 @@ export const products: Product[] = [
       leadTime: "2-3 weeks",
       priceTiers: [
         { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "1 - 5 Tons", priceRange: "$4.50 - $5.00/kg" },
+        { volume: "1 - 5 Tons", priceRange: "$4.50 - $5.50/kg" },
         { volume: "5 - 20 Tons", priceRange: "$4.00 - $4.50/kg" },
         { volume: "Full Container (>20T)", priceRange: "Contact for quote" },
       ],
@@ -1882,30 +1463,30 @@ export const products: Product[] = [
     logistics: {
       portOfLoading: "Semarang / Tanjung Perak (Surabaya), Indonesia",
       incoterms: ["FOB", "CIF", "CFR"],
-      containerLoad20ft: "12-18 MT",
-      containerLoad40ft: "24-26 MT",
+      containerLoad20ft: "12-15 MT",
+      containerLoad40ft: "18-22 MT",
     },
     compliance: {
-      usa: "FDA facility registered; Prior Notice compliant; meets Import Alert 99-41 standards",
-      eu: "Phytosanitary certified; MRL compliant (Reg. 396/2005); aflatoxins <5 ppb",
-      global: "CODEX CXS 343-2021 compliant; ISO 17025 lab tested",
+      usa: "FDA facility registered; Prior Notice compliant; meets Import Alert 99-41 requirements (ochratoxin, aflatoxin)",
+      eu: "Phytosanitary certified; MRL compliant; Regulation 1881/2006 (aflatoxins <5 ppb); TRACES ready",
+      global: "ISO 11027 (ginger) compliant; CODEX CXS 218-1999; ASTA standards met",
     },
     faqs: [
       {
-        question: "What testing do you provide for dried ginger?",
-        answer: "We provide Certificate of Analysis (CoA) with each shipment including volatile oil content (1.5-3%), gingerol levels, moisture, heavy metals, pesticide residues, and microbial tests. Testing is done by ISO 17025 accredited labs."
+        question: "What volatile oil content do you guarantee?",
+        answer: "Our Indonesian ginger maintains 1.5-3% volatile oil content, tested per ISO 6571 method. Higher oil content (2.5%+) available from premium harvest lots at additional cost."
       },
       {
-        question: "How many tons fit in a 40ft container?",
-        answer: "A 40ft container can hold 24-26 MT of dried ginger in 25-50kg bags. For 20ft containers, capacity is 12-18 MT depending on packaging density."
+        question: "What forms of dried ginger are available?",
+        answer: "We offer: Whole unbleached rhizomes, splits (half-cut), slices (2-4mm thickness), and flakes. All forms available in organic and conventional grades."
       },
       {
-        question: "What certifications are included for EU/US import?",
-        answer: "We provide Phytosanitary Certificate, Certificate of Origin, HACCP documentation, and organic certificates (USDA/EU). Fumigation certificate (methyl bromide free) available upon request."
+        question: "What documents are needed for USA import?",
+        answer: "USA requires: FDA Prior Notice (72 hours), Bill of Lading, Commercial Invoice, Packing List, Phytosanitary Certificate, Certificate of Analysis (aflatoxins, pesticides). We provide all documents and support FSVP compliance."
       },
       {
-        question: "What is the difference between Grade A and Grade B ginger?",
-        answer: "Grade A features uniform golden color, premium aroma, lower defects (<2%), and higher volatile oil (>2%). Grade B is cost-effective with slightly higher defects, suitable for extraction or processing applications."
+        question: "How is ginger quality tested?",
+        answer: "Every batch tested for: volatile oil (ISO 6571), gingerol content (HPLC), moisture (ISO 939), aflatoxins (<5 ppb), and microbial counts. Third-party lab certificates provided."
       },
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
@@ -1917,41 +1498,42 @@ export const products: Product[] = [
     name: "Ginger Powder",
     category: "ginger-turmeric",
     sku: "DFT-GP-001",
-    hsCode: "0910.12.00",
-    tagline: "Concentrated ginger flavor for food manufacturing",
-    description: "Fine ginger powder made from premium Grade A dried ginger. 80-100 mesh particle size ideal for uniform blending in spice mixes, beverages, and supplements. Steam-treated for microbial reduction without irradiation. ISO 1003:2025 compliant.",
-    flavorProfile: "Concentrated spicy-warm with intense aromatic pungency",
-    texture: "Fine, free-flowing powder",
-    metaTitle: "Wholesale Ginger Powder (80-100 Mesh) - Bulk Export from Indonesia",
-    metaDescription: "Premium ginger powder from Indonesia. 80-100 mesh, 5-7% gingerol, steam-treated. USDA/EU Organic certified. Bulk 12.5-25kg bags. ISO 1003 compliant.",
-    keywords: ["ginger powder wholesale", "Indonesian ginger powder", "organic ginger powder", "bulk ginger powder", "ginger powder B2B"],
+    hsCode: "0910.11.00",
+    tagline: "Aromatic ginger powder for food & beverage",
+    description: "Fine ginger powder (80-200 mesh) with strong volatile oil content (1.5-2.5%). Perfect for spice blends, beverages, baking, and pharmaceutical applications. Ground from premium Indonesian ginger with full traceability.",
+    flavorProfile: "Warm, pungent, and aromatic with zesty citrus undertones",
+    texture: "Fine, free-flowing powder with excellent solubility",
+    metaTitle: "Wholesale Ginger Powder (80-200 Mesh) - Bulk Export from Indonesia",
+    metaDescription: "Premium ginger powder from Indonesia. 1.5-2.5% volatile oil. USDA/EU Organic certified. Bulk 25kg bags. Food & pharma grade available.",
+    keywords: ["ginger powder wholesale", "ground ginger bulk", "ginger powder Indonesia", "organic ginger powder", "ginger powder B2B"],
     specifications: {
-      particleSize: "80-100 mesh",
-      meshSize: "80-100 mesh",
-      moisture: "≤8-10%",
-      color: "Light Yellow to Cream",
-      shelfLife: "24 months",
+      particleSize: "80-200 mesh",
+      meshSize: "80-200 mesh",
+      moisture: "≤10%",
+      color: "Light Yellow to Pale Brown",
+      shelfLife: "18-24 months",
       origin: "Central Java, Indonesia",
-      volatileOil: "1-3%",
-      gingerolContent: "5-7%",
-      totalAsh: "≤6-8%",
-      acidInsolubleAsh: "≤1-2%",
-      fatContent: "5-8%",
+      volatileOil: "1.5-2.5%",
+      gingerolContent: "1-2%",
+      totalAsh: "≤8%",
+      acidInsolubleAsh: "≤1.5%",
+      purity: "99.5% pure ginger",
       foreignMatter: "0%",
-      processingMethod: "Hammer-milled from Grade A dried ginger; steam-treated",
-      grade: "Food Grade (ISO 1003:2025 compliant)",
+      processingMethod: "Hammer-milled from Grade A dried ginger",
+      grade: "Food Grade / Pharma Grade available",
       salmonella: "Absent in 25g",
       eColi: "Absent",
-      aflatoxins: "<10 ppb",
+      aflatoxins: "<5 ppb",
+      testingMethod: "GC-MS for volatile oil; HPLC for gingerol",
       additives: "None - 100% pure ginger",
     },
     availability: {
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
-    applications: ["Baking", "Beverages", "Supplements", "Spice blends", "Health products", "Pharmaceuticals", "Confectionery"],
+    applications: ["Spice blends", "Beverages", "Baking", "Curry powder", "Health supplements", "Pharmaceuticals", "Confectionery"],
     packaging: { 
-      bulk: "12.5-25kg multi-wall laminated bags with PE/foil liner; heat-sealed", 
+      bulk: "25kg kraft paper bags with foil liner; airtight seal", 
       retail: "50g-500g jars/pouches", 
       custom: true 
     },
@@ -1961,7 +1543,7 @@ export const products: Product[] = [
       leadTime: "2-3 weeks",
       priceTiers: [
         { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "1 - 5 Tons", priceRange: "$5.50 - $6.00/kg" },
+        { volume: "1 - 5 Tons", priceRange: "$5.50 - $6.50/kg" },
         { volume: "5 - 20 Tons", priceRange: "$5.00 - $5.50/kg" },
         { volume: "Full Container (>20T)", priceRange: "Contact for quote" },
       ],
@@ -1971,29 +1553,29 @@ export const products: Product[] = [
       portOfLoading: "Semarang / Tanjung Perak (Surabaya), Indonesia",
       incoterms: ["FOB", "CIF", "CFR"],
       containerLoad20ft: "14-16 MT",
-      containerLoad40ft: "20-22 MT",
+      containerLoad40ft: "20-24 MT",
     },
     compliance: {
-      usa: "FDA facility registered; Prior Notice compliant; steam-treated (no irradiation)",
-      eu: "Phytosanitary certified; MRL compliant; steam treatment preferred",
-      global: "ISO 1003:2025 compliant; CODEX standards met",
+      usa: "FDA facility registered; Prior Notice compliant; meets Import Alert 99-41",
+      eu: "Phytosanitary certified; aflatoxins <5 ppb; PAH compliant; no irradiation",
+      global: "ISO 11027 (ginger) compliant; CODEX CXS 218-1999 standards",
     },
     faqs: [
       {
-        question: "What particle size is best for food manufacturing?",
-        answer: "80-100 mesh is ideal for uniform blending in spice mixes, beverages, and supplements. Finer grinding (120+ mesh) available for specialized applications upon request."
+        question: "What mesh sizes are available?",
+        answer: "Standard is 80 mesh for general food use. We offer 100-200 mesh for instant beverages and supplements where finer particle size improves dissolution. Specify your requirements."
       },
       {
-        question: "How do you prevent moisture and clumping?",
-        answer: "We use multi-layer laminated bags with HDPE/foil liners maintaining moisture below 10%. Silica gel sachets included for humid climate destinations."
+        question: "How does pharma grade differ from food grade?",
+        answer: "Pharma grade has stricter testing: gingerol content verified by HPLC, heavy metals testing (Pb, Cd, As, Hg), and full microbial panel. Documentation meets pharmacopeia requirements."
       },
       {
-        question: "Is your ginger powder steam-treated or irradiated?",
-        answer: "We use steam treatment for microbial reduction - preferred by EU and organic buyers. Irradiation is NOT used. This preserves volatile oils and complies with organic standards."
+        question: "Is the volatile oil content consistent?",
+        answer: "Yes, we maintain 1.5-2.5% volatile oil across batches. Each lot is tested by GC-MS and Certificate of Analysis provided. Premium grades (2%+) available."
       },
       {
-        question: "What is the difference between 80 mesh and 100 mesh?",
-        answer: "100 mesh is finer and dissolves more easily in beverages. 80 mesh provides better texture for baking and spice blends. Both meet food-grade standards."
+        question: "What are the microbiological specifications?",
+        answer: "TPC <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent, aflatoxins <5 ppb. All batches ISO 17025 lab tested."
       },
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
@@ -2225,87 +1807,5 @@ export const productCategories = [
     name: "Ginger & Turmeric",
     description: "Premium dried spices and powders from Java",
     productCount: products.filter(p => p.category === "ginger-turmeric").length,
-  },
-] as const;
-
-export const faqItems = [
-  {
-    question: "What is your minimum order quantity (MOQ)?",
-    answer: "Our standard MOQ is 500 kg to 1 ton depending on the product. For new customers, we can discuss smaller trial orders to establish the business relationship.",
-  },
-  {
-    question: "What are your payment terms?",
-    answer: "We typically work with 50% deposit upon order confirmation and 50% balance before shipment. We also accept Letter of Credit (L/C) for larger orders.",
-  },
-  {
-    question: "How long is the lead time?",
-    answer: "Standard lead time is 2-3 weeks from order confirmation and deposit receipt. For larger orders or custom specifications, it may take 3-4 weeks.",
-  },
-  {
-    question: "Do you offer organic certification?",
-    answer: "Yes, most of our products are USDA Organic and EU Organic certified. We can provide all necessary certification documents for import purposes.",
-  },
-  {
-    question: "Can you do private label/OEM packaging?",
-    answer: "Absolutely! We offer full private label and OEM services. You can provide your own packaging design or work with our team to create custom packaging.",
-  },
-  {
-    question: "What countries do you export to?",
-    answer: "We export to over 18 countries including USA, Canada, Germany, Netherlands, UK, Japan, South Korea, Australia, UAE, and more.",
-  },
-  {
-    question: "Can I request samples before ordering?",
-    answer: "Yes, we encourage all potential buyers to request samples. Product samples are free, but courier costs (DHL/FedEx) are borne by the buyer.",
-  },
-  {
-    question: "What quality documents do you provide?",
-    answer: "We provide Certificate of Analysis (COA), phytosanitary certificates, organic certificates, bill of lading, packing list, commercial invoice, and any other documents required for import.",
-  },
-  {
-    question: "What is the transit time to USA/Europe?",
-    answer: "Ocean freight: USA West Coast ~25-30 days, Europe (Rotterdam/Hamburg) ~28-35 days. Air freight is available at 3-5 days for urgent orders.",
-  },
-  {
-    question: "Do you offer CIF/CNF pricing?",
-    answer: "Yes, we support multiple Incoterms including FOB, CIF, CNF, and Ex-Works. Contact us for CIF/CNF quotes to your destination port.",
-  },
-] as const;
-
-// Storage-related FAQs (used on Storage Guide page)
-export const storageFAQs = [
-  { 
-    question: "What is water activity (aw) and why does it matter?", 
-    answer: "Water activity measures moisture available for microbial growth. Dried fruits with aw ≤0.60 prevent bacteria and mold growth, extending shelf life to 18-24 months." 
-  },
-  { 
-    question: "What temperature should I store dried fruits at?", 
-    answer: "Most dried fruits should be stored at 10-20°C (50-68°F). Powders require stricter 10-18°C (50-64°F). Avoid temperature fluctuations." 
-  },
-  { 
-    question: "How does humidity affect dried fruit storage?", 
-    answer: "High humidity causes moisture reabsorption, leading to mold growth and quality degradation. Keep relative humidity below 60% for dried fruits and below 50% for powders." 
-  },
-] as const;
-
-export const targetSegments = [
-  {
-    name: "Food Manufacturers",
-    description: "Ingredients for cereals, granola, snack bars, and baked goods",
-    icon: "factory",
-  },
-  {
-    name: "Beverage Companies",
-    description: "Natural ingredients for smoothies, juices, and health drinks",
-    icon: "glass-water",
-  },
-  {
-    name: "Retail & Supermarkets",
-    description: "Private label and branded dried fruit products",
-    icon: "store",
-  },
-  {
-    name: "Trading Companies",
-    description: "Bulk supply for redistribution and wholesale",
-    icon: "globe",
   },
 ] as const;
