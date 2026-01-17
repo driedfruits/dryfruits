@@ -40,9 +40,10 @@ function parseContainerLoad(loadStr: string): { min: number; max: number } {
 interface ContainerCalculatorProps {
   defaultProductId?: string;
   compact?: boolean;
+  headingLevel?: "h2" | "h3";
 }
 
-export function ContainerCalculator({ defaultProductId, compact = false }: ContainerCalculatorProps) {
+export function ContainerCalculator({ defaultProductId, compact = false, headingLevel = "h2" }: ContainerCalculatorProps) {
   const [selectedProductId, setSelectedProductId] = useState(defaultProductId || "");
   const [bagSize, setBagSize] = useState("25");
 
@@ -97,14 +98,20 @@ export function ContainerCalculator({ defaultProductId, compact = false }: Conta
           <Calculator className="h-5 w-5 text-primary" />
         </div>
         <div>
+        {headingLevel === "h2" ? (
+          <h2 className={`font-bold text-foreground ${compact ? "text-lg" : "text-xl"}`}>
+            Container Load Calculator
+          </h2>
+        ) : (
           <h3 className={`font-bold text-foreground ${compact ? "text-lg" : "text-xl"}`}>
             Container Load Calculator
           </h3>
-          {!compact && (
-            <p className="text-sm text-muted-foreground">
-              Estimate how many bags fit in your container
-            </p>
-          )}
+        )}
+        {!compact && (
+          <p className="text-sm text-muted-foreground">
+            Estimate how many bags fit in your container
+          </p>
+        )}
         </div>
       </div>
 
