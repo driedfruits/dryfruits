@@ -2,11 +2,11 @@ import { Link, useParams } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { getCategorySocialImage } from "@/lib/socialImages";
-import { OptimizedImage } from "@/components/ui/optimized-image";
+import { ProductCard } from "@/components/products";
 import { getProductsByCategory, productCategories } from "@/data/companyData";
 import { generateItemListSchema, generateBreadcrumbSchema } from "@/lib/schema";
-import { SITE_URL, categoryLabels } from "@/lib/constants";
-import { Package, Leaf, ChevronRight } from "lucide-react";
+import { SITE_URL } from "@/lib/constants";
+import { ChevronRight } from "lucide-react";
 
 export default function ProductCategoryPage() {
   const { category } = useParams();
@@ -74,34 +74,12 @@ export default function ProductCategoryPage() {
         <div className="container">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((product, index) => (
-              <Link 
-                key={product.id} 
-                to={`/products/${category}/${product.id}`} 
-                className="group rounded-xl bg-card overflow-hidden shadow-soft hover:shadow-glow transition-all animate-content-reveal opacity-0"
-                style={{ animationDelay: `${150 + index * 50}ms`, animationFillMode: 'forwards' }}
-              >
-                <div className="relative">
-                  <OptimizedImage
-                    src={product.images?.main || ""}
-                    alt={`${product.name} - Premium Indonesian dried fruit for wholesale export`}
-                    aspectRatio="square"
-                    width={400}
-                    height={400}
-                    placeholderSrc={product.images?.thumbnail}
-                    fallbackIcon={<Package className="h-20 w-20 text-muted-foreground/30 group-hover:scale-110 transition-transform" />}
-                  />
-                  {product.isOrganic && (
-                    <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full flex items-center gap-1 z-10">
-                      <Leaf className="h-3 w-3" />Organic
-                    </span>
-                  )}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-2">{product.name}</h3>
-                  <p className="text-muted-foreground mb-4">{product.tagline}</p>
-                  <p className="text-sm text-primary font-medium">View Details →</p>
-                </div>
-              </Link>
+              <ProductCard
+                key={product.id}
+                product={product}
+                animationDelay={150 + index * 50}
+                showImage
+              />
             ))}
           </div>
         </div>

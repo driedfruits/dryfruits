@@ -1,0 +1,9 @@
+export { HeroSection } from "./HeroSection";
+export { WhyChooseUs } from "./WhyChooseUs";
+export { ManufacturingSection } from "./ManufacturingSection";
+export { ProductCategoriesSection } from "./ProductCategoriesSection";
+export { CertificationsSection } from "./CertificationsSection";
+export { TargetSegmentsSection } from "./TargetSegmentsSection";
+export { ExportMapSection } from "./ExportMapSection";
+export { CatalogDownloadSection } from "./CatalogDownloadSection";
+export { FinalCTASection } from "./FinalCTASection";
