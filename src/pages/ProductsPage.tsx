@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
 import { productCategories, products } from "@/data/companyData";
@@ -21,6 +22,7 @@ export default function ProductsPage() {
         description="Browse our complete range of wholesale dried fruits, vacuum-fried snacks, fruit powders, and spices. USDA & EU Organic certified. MOQ 500kg. Direct from Indonesian manufacturer."
         keywords={["wholesale dried fruit products", "bulk dried fruit Indonesia", "dried fruit catalog", "organic dried fruit range"]}
         canonical="/products"
+        ogImage={socialImages.products}
       />
       <script
         type="application/ld+json"

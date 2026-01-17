@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
 import { certifications, companyInfo } from "@/data/companyData";
@@ -30,6 +31,7 @@ export default function CertificationsPage() {
         description="View our food safety and organic certifications: USDA Organic, EU Organic, HACCP, and Halal. Complete export documentation for seamless customs clearance."
         keywords={["USDA organic dried fruit", "EU organic certification", "HACCP certified manufacturer", "Halal dried fruit", "food safety certifications"]}
         canonical="/certifications"
+        ogImage={socialImages.certifications}
       />
       <script
         type="application/ld+json"

@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { PrimaryButton } from "@/components/CTAButton";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Link } from "react-router-dom";
@@ -59,6 +60,7 @@ export default function StorageGuidePage() {
         description="Expert guide on storing dried fruits and powders. Learn optimal temperature, humidity, water activity levels. Maximize shelf life for bulk wholesale orders."
         keywords={["dried fruit storage", "water activity", "humidity control warehouse", "dried fruit shelf life", "aw food safety"]}
         canonical="/storage-guide"
+        ogImage={socialImages.storageGuide}
       />
       
       {/* Breadcrumb Schema */}

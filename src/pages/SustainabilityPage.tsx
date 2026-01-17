@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
 import { companyInfo } from "@/data/companyData";

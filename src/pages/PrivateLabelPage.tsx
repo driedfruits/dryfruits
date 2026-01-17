@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
 import { ContactForm } from "@/components/forms";
@@ -59,6 +60,7 @@ export default function PrivateLabelPage() {
         description="Launch your own brand with our private label dried fruit solutions. Custom packaging, flexible MOQ, complete OEM services. From 500kg. Artwork support included."
         keywords={["private label dried fruit", "OEM fruit manufacturer", "white label dried fruit", "custom packaging fruit", "branded dried fruit"]}
         canonical="/private-label"
+        ogImage={socialImages.privateLabel}
       />
       <script
         type="application/ld+json"
