@@ -316,4 +316,18 @@
   .bottom-safe {
     bottom: env(safe-area-inset-bottom, 0px);
   }
+
+  /* Touch target utilities for mobile accessibility */
+  .touch-target {
+    @apply min-h-[48px] min-w-[48px];
+  }
+
+  .touch-target-sm {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Prevent zoom on input focus on iOS */
+  .touch-action-manipulation {
+    touch-action: manipulation;
+  }
 }

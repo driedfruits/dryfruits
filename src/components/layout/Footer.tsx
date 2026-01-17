@@ -43,27 +43,27 @@ export function Footer() {
             </p>
             
             {/* Contact Info */}
-            <address className="not-italic space-y-3">
+            <address className="not-italic space-y-1">
               <a 
                 href={`mailto:${companyInfo.email}`}
-                className="flex items-center gap-3 text-on-dark-muted hover:text-primary transition-colors"
+                className="flex items-center gap-3 py-2 min-h-[48px] text-base text-on-dark-muted hover:text-primary transition-colors"
               >
-                <Mail className="h-5 w-5" />
+                <Mail className="h-5 w-5 shrink-0" />
                 {companyInfo.email}
               </a>
               <a 
                 href={`tel:${companyInfo.phone}`}
-                className="flex items-center gap-3 text-on-dark-muted hover:text-primary transition-colors"
+                className="flex items-center gap-3 py-2 min-h-[48px] text-base text-on-dark-muted hover:text-primary transition-colors"
               >
-                <Phone className="h-5 w-5" />
+                <Phone className="h-5 w-5 shrink-0" />
                 {companyInfo.phone}
               </a>
-              <p className="flex items-start gap-3 text-on-dark-muted">
-                <MapPin className="h-5 w-5 mt-0.5" />
+              <p className="flex items-start gap-3 py-2 text-base text-on-dark-muted">
+                <MapPin className="h-5 w-5 mt-0.5 shrink-0" />
                 <span>{companyInfo.address.full}</span>
               </p>
-              <p className="flex items-center gap-3 text-on-dark-muted">
-                <Clock className="h-5 w-5" />
+              <p className="flex items-center gap-3 py-2 text-base text-on-dark-muted">
+                <Clock className="h-5 w-5 shrink-0" />
                 {companyInfo.workingHours.full}
               </p>
             </address>
@@ -72,12 +72,12 @@ export function Footer() {
           {/* Products */}
           <nav aria-label="Product categories">
             <h3 className="font-semibold text-on-dark mb-4">Products</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {footerLinks.products.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.href}
-                    className="text-on-dark-muted hover:text-primary transition-colors"
+                    className="block py-2 text-base text-on-dark-muted hover:text-primary transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -89,12 +89,12 @@ export function Footer() {
           {/* Company */}
           <nav aria-label="Company pages">
             <h3 className="font-semibold text-on-dark mb-4">Company</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.href}
-                    className="text-on-dark-muted hover:text-primary transition-colors"
+                    className="block py-2 text-base text-on-dark-muted hover:text-primary transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -106,12 +106,12 @@ export function Footer() {
           {/* Resources */}
           <nav aria-label="Resources">
             <h3 className="font-semibold text-on-dark mb-4">Resources</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.href}
-                    className="text-on-dark-muted hover:text-primary transition-colors"
+                    className="block py-2 text-base text-on-dark-muted hover:text-primary transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -165,11 +165,11 @@ export function Footer() {
           <p className="text-sm text-on-dark-subtle">
             © {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <Link to="/privacy" className="text-sm text-on-dark-subtle hover:text-primary transition-colors">
+          <div className="flex items-center gap-2">
+            <Link to="/privacy" className="py-2 px-3 min-h-[44px] flex items-center text-base text-on-dark-subtle hover:text-primary transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms" className="text-sm text-on-dark-subtle hover:text-primary transition-colors">
+            <Link to="/terms" className="py-2 px-3 min-h-[44px] flex items-center text-base text-on-dark-subtle hover:text-primary transition-colors">
               Terms of Service
             </Link>
           </div>

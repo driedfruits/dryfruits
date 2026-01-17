@@ -146,7 +146,7 @@ const FormCheckbox = React.forwardRef<HTMLButtonElement, FormCheckboxProps>(
     const checkboxId = id || label.toLowerCase().replace(/\s+/g, "-");
     
     return (
-      <div className="flex items-start space-x-3">
+      <div className="flex items-start space-x-3 min-h-[48px] py-2">
         <Checkbox
           id={checkboxId}
           ref={ref}
@@ -160,7 +160,7 @@ const FormCheckbox = React.forwardRef<HTMLButtonElement, FormCheckboxProps>(
           )}
         />
         <div className="space-y-1">
-          <Label htmlFor={checkboxId} className={cn("cursor-pointer", error && "text-destructive")}>
+          <Label htmlFor={checkboxId} className={cn("cursor-pointer text-base", error && "text-destructive")}>
             {label}
             {required && <span className="text-destructive ml-1">*</span>}
           </Label>

@@ -24,17 +24,17 @@ export function MobileBottomNav() {
             key={tab.name}
             to={tab.href}
             className={({ isActive }) =>
-              `flex flex-1 flex-col items-center justify-center gap-1 py-2 transition-colors duration-200 active:scale-95 ${
+              `flex flex-1 flex-col items-center justify-center gap-1 min-h-[48px] min-w-[48px] py-2 transition-colors duration-200 active:scale-95 ${
                 isActive ? "text-primary" : "text-muted-foreground"
               }`
             }
           >
             {({ isActive }) => (
               <>
-                <div className={`rounded-full p-1.5 transition-colors ${isActive ? "bg-primary/10" : ""}`}>
-                  <tab.icon className="h-5 w-5" />
+                <div className={`rounded-full p-2.5 transition-colors ${isActive ? "bg-primary/10" : ""}`}>
+                  <tab.icon className="h-6 w-6" />
                 </div>
-                <span className="text-[10px] font-medium">{tab.name}</span>
+                <span className="text-xs font-medium">{tab.name}</span>
               </>
             )}
           </NavLink>
@@ -45,13 +45,13 @@ export function MobileBottomNav() {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-1 flex-col items-center justify-center gap-1 py-2 text-whatsapp transition-colors duration-200 active:scale-95"
+          className="flex flex-1 flex-col items-center justify-center gap-1 min-h-[48px] min-w-[48px] py-2 text-whatsapp transition-colors duration-200 active:scale-95"
           aria-label="Contact us on WhatsApp"
         >
-          <div className="rounded-full bg-whatsapp/10 p-1.5">
-            <MessageCircle className="h-5 w-5" />
+          <div className="rounded-full bg-whatsapp/10 p-2.5">
+            <MessageCircle className="h-6 w-6" />
           </div>
-          <span className="text-[10px] font-medium">WhatsApp</span>
+          <span className="text-xs font-medium">WhatsApp</span>
         </a>
       </div>
     </nav>
