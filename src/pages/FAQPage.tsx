@@ -2,13 +2,14 @@ import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { faqItems, companyInfo } from "@/data/companyData";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/constants";
 import { PrimaryButton } from "@/components/CTAButton";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { FAQAccordion } from "@/components/ui/faq-accordion";
 
 const breadcrumbItems = [
-  { name: "Home", url: "https://dryfruits.lovable.app" },
-  { name: "FAQ", url: "https://dryfruits.lovable.app/faq" },
+  { name: "Home", url: SITE_URL },
+  { name: "FAQ", url: `${SITE_URL}/faq` },
 ];
 
 export default function FAQPage() {

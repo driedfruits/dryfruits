@@ -1,12 +1,13 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/constants";
 import { CatalogForm } from "@/components/forms";
 import { CheckCircle, FileText, Download } from "lucide-react";
 
 const breadcrumbItems = [
-  { name: "Home", url: "https://dryfruits.lovable.app" },
-  { name: "Product Catalog", url: "https://dryfruits.lovable.app/catalog" },
+  { name: "Home", url: SITE_URL },
+  { name: "Product Catalog", url: `${SITE_URL}/catalog` },
 ];
 
 export default function CatalogPage() {

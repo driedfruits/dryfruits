@@ -49,7 +49,7 @@ export default function ProductCategoryPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
-            generateItemListSchema(products, categoryInfo.name, `https://dryfruits.biz/products/${category}`)
+            generateItemListSchema(products, categoryInfo.name, `${SITE_URL}/products/${category}`)
           ),
         }}
       />

@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/constants";
 import { ContactForm } from "@/components/forms";
 import { companyInfo } from "@/data/companyData";
 import { PrimaryButton } from "@/components/CTAButton";
@@ -46,8 +47,8 @@ const packagingOptions = [
 ];
 
 const breadcrumbItems = [
-  { name: "Home", url: "https://dryfruits.lovable.app" },
-  { name: "Private Label", url: "https://dryfruits.lovable.app/private-label" },
+  { name: "Home", url: SITE_URL },
+  { name: "Private Label", url: `${SITE_URL}/private-label` },
 ];
 
 export default function PrivateLabelPage() {

@@ -1,14 +1,15 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/constants";
 import { ContactForm } from "@/components/forms";
 import { companyInfo } from "@/data/companyData";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Package, CheckCircle, Clock, Truck } from "lucide-react";
 
 const breadcrumbItems = [
-  { name: "Home", url: "https://dryfruits.lovable.app" },
-  { name: "Request Samples", url: "https://dryfruits.lovable.app/samples" },
+  { name: "Home", url: SITE_URL },
+  { name: "Request Samples", url: `${SITE_URL}/samples` },
 ];
 
 export default function SamplesPage() {

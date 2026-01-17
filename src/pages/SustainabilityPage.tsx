@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/constants";
 import { companyInfo } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { 
@@ -61,8 +62,8 @@ const sustainabilityPillars = [
 ];
 
 const breadcrumbItems = [
-  { name: "Home", url: "https://dryfruits.lovable.app" },
-  { name: "Sustainability", url: "https://dryfruits.lovable.app/sustainability" },
+  { name: "Home", url: SITE_URL },
+  { name: "Sustainability", url: `${SITE_URL}/sustainability` },
 ];
 
 export default function SustainabilityPage() {
