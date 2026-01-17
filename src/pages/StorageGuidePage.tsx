@@ -372,7 +372,7 @@ export default function StorageGuidePage() {
             conditions and product requirements.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <PrimaryButton to="/contact?type=technical" size="lg">
+            <PrimaryButton to="/contact" size="lg">
               Contact Technical Team
             </PrimaryButton>
             <WhatsAppButton 

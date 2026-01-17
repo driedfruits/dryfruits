@@ -221,7 +221,7 @@ export default function ShippingPage() {
             Contact our export team for pricing, shipping quotes, and custom requirements.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <PrimaryButton to="/contact?type=quote" variant="gold" size="xl">
+            <PrimaryButton to="/contact" variant="gold" size="xl">
               Request Quote
             </PrimaryButton>
             <SecondaryLightButton to="/faq">
