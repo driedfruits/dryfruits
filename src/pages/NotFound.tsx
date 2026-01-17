@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Layout } from "@/components/layout";
 import { PrimaryButton } from "@/components/CTAButton";
+import { SEO } from "@/components/SEO";
 import { Home, Search } from "lucide-react";
 
 const NotFound = () => {
@@ -13,6 +14,11 @@ const NotFound = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist or has been moved."
+        noIndex={true}
+      />
       <div className="flex min-h-[60vh] items-center justify-center">
         <div className="text-center px-4">
           <div className="mb-6 flex justify-center">
