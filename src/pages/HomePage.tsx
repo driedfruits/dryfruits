@@ -5,7 +5,7 @@ import { socialImages } from "@/lib/socialImages";
 import { PrimaryButton, SecondaryButton, SecondaryLightButton, AccentButton } from "@/components/CTAButton";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CatalogForm } from "@/components/forms";
-import { generateWebSiteSchema } from "@/lib/schema";
+import { generateWebSiteSchema, generateOrganizationSchema } from "@/lib/schema";
 import { 
   companyInfo, 
   certifications, 
@@ -41,6 +41,13 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(generateWebSiteSchema()),
+        }}
+      />
+      {/* Organization Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateOrganizationSchema()),
         }}
       />
 
