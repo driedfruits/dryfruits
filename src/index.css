@@ -146,6 +146,13 @@
     @apply bg-background text-foreground antialiased;
   }
 
+  /* Focus-visible styles for all interactive elements */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background rounded;
+  }
+
   /* Typography */
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold tracking-tight;

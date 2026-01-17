@@ -23,11 +23,22 @@ const navigation = [
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (href: string) => {
     if (href === "/") return location.pathname === "/";
     return location.pathname.startsWith(href);
+  };
+
+  const handleDropdownKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setDesktopDropdownOpen(!desktopDropdownOpen);
+    }
+    if (e.key === 'Escape') {
+      setDesktopDropdownOpen(false);
+    }
   };
 
   return (
@@ -48,21 +59,38 @@ export function Header() {
         <div className="hidden lg:flex lg:items-center lg:gap-1">
           {navigation.map((item) => (
             item.children ? (
-              <div key={item.name} className="relative group">
+              <div 
+                key={item.name} 
+                className="relative group"
+                onMouseLeave={() => setDesktopDropdownOpen(false)}
+              >
                 <button
+                  aria-expanded={desktopDropdownOpen}
+                  aria-haspopup="true"
+                  onKeyDown={handleDropdownKeyDown}
+                  onMouseEnter={() => setDesktopDropdownOpen(true)}
+                  onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}
                   className={`flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-muted ${
                     isActive(item.href) ? "text-primary" : "text-foreground"
                   }`}
                 >
                   {item.name}
-                  <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
+                  <ChevronDown 
+                    className={`h-4 w-4 transition-transform ${desktopDropdownOpen ? 'rotate-180' : ''}`} 
+                    aria-hidden="true" 
+                  />
                 </button>
-                <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div 
+                  className={`absolute left-0 top-full pt-2 transition-all duration-200 ${
+                    desktopDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible'
+                  }`}
+                >
                   <div className="bg-card rounded-xl shadow-lg border border-border p-2 min-w-[200px]">
                     {item.children.map((child) => (
                       <Link
                         key={child.name}
                         to={child.href}
+                        onClick={() => setDesktopDropdownOpen(false)}
                         className={`block px-4 py-2 text-sm rounded-lg transition-colors hover:bg-muted ${
                           location.pathname === child.href ? "text-primary font-medium" : "text-foreground"
                         }`}
@@ -123,7 +151,7 @@ export function Header() {
                     className="flex w-full items-center justify-between px-3 py-3 min-h-[48px] text-base font-medium text-foreground rounded-lg hover:bg-muted"
                   >
                     {item.name}
-                    <ChevronDown className={`h-5 w-5 transition-transform ${productsOpen ? "rotate-180" : ""}`} />
+                    <ChevronDown className={`h-5 w-5 transition-transform ${productsOpen ? "rotate-180" : ""}`} aria-hidden="true" />
                   </button>
                   {productsOpen && (
                     <div className="ml-4 mt-1 space-y-1">

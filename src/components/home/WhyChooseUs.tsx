@@ -39,7 +39,7 @@ export const WhyChooseUs = memo(function WhyChooseUs() {
               className="group rounded-2xl bg-card p-8 shadow-soft hover:shadow-glow transition-all duration-300"
             >
               <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                <feature.icon className="h-7 w-7" />
+                <feature.icon className="h-7 w-7" aria-hidden="true" />
               </div>
               <h3 className="mb-3 text-xl font-semibold text-foreground">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>

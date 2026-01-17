@@ -31,7 +31,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link to="/" className="inline-flex items-center gap-2 mb-6">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Leaf className="h-6 w-6" />
+                <Leaf className="h-6 w-6" aria-hidden="true" />
               </div>
               <div>
                 <p className="font-bold text-on-dark leading-tight">{companyInfo.shortName}</p>
@@ -48,22 +48,22 @@ export function Footer() {
                 href={`mailto:${companyInfo.email}`}
                 className="flex items-center gap-3 py-2 min-h-[48px] text-base text-on-dark-muted hover:text-primary transition-colors"
               >
-                <Mail className="h-5 w-5 shrink-0" />
+                <Mail className="h-5 w-5 shrink-0" aria-hidden="true" />
                 {companyInfo.email}
               </a>
               <a 
                 href={`tel:${companyInfo.phone}`}
                 className="flex items-center gap-3 py-2 min-h-[48px] text-base text-on-dark-muted hover:text-primary transition-colors"
               >
-                <Phone className="h-5 w-5 shrink-0" />
+                <Phone className="h-5 w-5 shrink-0" aria-hidden="true" />
                 {companyInfo.phone}
               </a>
               <p className="flex items-start gap-3 py-2 text-base text-on-dark-muted">
-                <MapPin className="h-5 w-5 mt-0.5 shrink-0" />
+                <MapPin className="h-5 w-5 mt-0.5 shrink-0" aria-hidden="true" />
                 <span>{companyInfo.address.full}</span>
               </p>
               <p className="flex items-center gap-3 py-2 text-base text-on-dark-muted">
-                <Clock className="h-5 w-5 shrink-0" />
+                <Clock className="h-5 w-5 shrink-0" aria-hidden="true" />
                 {companyInfo.workingHours.full}
               </p>
             </address>
@@ -131,7 +131,7 @@ export function Footer() {
                 key={cert.id}
                 className="flex items-center gap-1 text-sm text-on-dark-muted bg-on-dark/10 px-3 py-1 rounded-full"
               >
-                <Leaf className="h-4 w-4" />
+                <Leaf className="h-4 w-4" aria-hidden="true" />
                 {cert.name}
               </div>
             ))}
