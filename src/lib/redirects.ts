@@ -106,12 +106,10 @@ export const productAliases: Record<string, string> = {
   "kunyit": "dried-turmeric",
   "jahe": "dried-ginger",
   
-  // Powder aliases
-  "mango-powder": "mango-fruit-powder",
-  "pineapple-powder": "pineapple-fruit-powder",
-  "papaya-powder": "papaya-fruit-powder",
+  // Powder aliases - only for alternative names, not actual product IDs
   "dragon-powder": "dragon-fruit-powder",
   "dragonfruit-powder": "dragon-fruit-powder",
+  "pitaya-powder": "dragon-fruit-powder",
   "ginger-root-powder": "ginger-powder",
   "turmeric-root-powder": "turmeric-powder",
   
