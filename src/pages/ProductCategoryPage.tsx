@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { getCategorySocialImage } from "@/lib/socialImages";
-import { CategoryPageSkeleton } from "@/components/products";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { getProductsByCategory, productCategories } from "@/data/companyData";
 import { generateItemListSchema, generateBreadcrumbSchema } from "@/lib/schema";
@@ -12,23 +10,12 @@ import { Package, Leaf, ChevronRight } from "lucide-react";
 
 export default function ProductCategoryPage() {
   const { category } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 300);
-    return () => clearTimeout(timer);
-  }, [category]);
 
   const products = getProductsByCategory(category as any);
   const categoryInfo = productCategories.find(c => c.id === category);
 
   if (!categoryInfo) {
     return <Layout><div className="container py-20 text-center"><h1 className="text-2xl font-bold">Category not found</h1></div></Layout>;
-  }
-
-  if (isLoading) {
-    return <Layout><CategoryPageSkeleton /></Layout>;
   }
 
   const breadcrumbItems = [
