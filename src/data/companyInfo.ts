@@ -2,7 +2,7 @@
 export const companyInfo = {
   name: "PT Dried Fruits Total Indonesia",
   shortName: "DFT Indonesia",
-  tagline: "Indonesia's Only Export-Oriented Dried Fruit Manufacturer",
+  tagline: "Indonesia Dried & Vacuum Fruits Manufacturer",
   established: 2015,
   
   // Contact
