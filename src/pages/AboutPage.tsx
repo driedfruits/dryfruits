@@ -146,7 +146,7 @@ export default function AboutPage() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {teamMembers.map((member) => (
-              <div key={member.id} className="group rounded-xl bg-card p-6 shadow-soft hover:shadow-glow transition-all duration-300">
+              <article key={member.id} className="group rounded-xl bg-card p-6 shadow-soft hover:shadow-glow transition-all duration-300">
                 <div className="mb-4 h-24 w-24 mx-auto rounded-full bg-gradient-to-br from-primary to-tropical-green-light flex items-center justify-center">
                   <span className="text-2xl font-bold text-primary-foreground">
                     {member.name.split(" ").map(n => n[0]).join("")}
@@ -163,7 +163,7 @@ export default function AboutPage() {
                     {member.email}
                   </a>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
