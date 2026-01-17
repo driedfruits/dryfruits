@@ -59,6 +59,16 @@ export interface Product {
     storageTemp?: string;
     storageHumidity?: string;
     yeastMold?: string;
+    // Vacuum-fried specific specs
+    sliceThickness?: string;
+    fryingTemperature?: string;
+    vacuumPressure?: string;
+    peroxideValue?: string;
+    freeFattyAcids?: string;
+    colorRetention?: string;
+    vitaminRetention?: string;
+    antioxidant?: string;
+    packagingMethod?: string;
   };
   
   // Seasonal availability

@@ -42,6 +42,16 @@ const specLabels: Record<string, string> = {
   storageTemp: "Storage Temperature",
   storageHumidity: "Storage Humidity",
   yeastMold: "Yeast & Mold",
+  // B2B vacuum-fried specs
+  sliceThickness: "Slice Thickness",
+  fryingTemperature: "Frying Temperature",
+  vacuumPressure: "Vacuum Pressure",
+  peroxideValue: "Peroxide Value (max)",
+  freeFattyAcids: "Free Fatty Acids (max)",
+  colorRetention: "Color Retention",
+  vitaminRetention: "Vitamin Retention",
+  antioxidant: "Antioxidant (optional)",
+  packagingMethod: "Bulk Packaging Method",
 };
 
 export function ProductSpecsTable({ product }: ProductSpecsTableProps) {
