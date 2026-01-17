@@ -16,7 +16,7 @@ export const HeroSection = memo(function HeroSection() {
       <div className="container relative py-20 lg:py-32">
         <div className="mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-on-primary backdrop-blur-sm">
-            <Leaf className="h-4 w-4" />
+            <Leaf className="h-4 w-4" aria-hidden="true" />
             USDA & EU Organic Certified
           </div>
           <h1 className="mb-6 text-4xl font-bold tracking-tight text-on-primary sm:text-5xl lg:text-6xl drop-shadow-lg">
@@ -29,7 +29,7 @@ export const HeroSection = memo(function HeroSection() {
           <div className="flex flex-wrap justify-center gap-4">
             <PrimaryButton to="/contact" size="xl" variant="gold">
               Request Quote
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-5 w-5" aria-hidden="true" />
             </PrimaryButton>
             <SecondaryLightButton to="/samples" size="lg">
               Request Samples
