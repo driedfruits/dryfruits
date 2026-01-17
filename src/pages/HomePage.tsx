@@ -27,17 +27,12 @@ import {
   MapPin
 } from "lucide-react";
 
-// Placeholder images - replace with actual factory photos later
-const placeholderImages = {
-  hero: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&h=1080&fit=crop",
-  factoryExterior: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&h=400&fit=crop",
-  fruitSorting: "https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=600&h=400&fit=crop",
-  dryingProcess: "https://images.unsplash.com/photo-1606914707708-5180546f153d?w=600&h=400&fit=crop",
-  packaging: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=600&h=400&fit=crop",
-  exportShipping: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&h=600&fit=crop",
-  catalogProducts: "https://images.unsplash.com/photo-1597714026720-8f74c62310ba?w=600&h=400&fit=crop",
-  teamCta: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&h=600&fit=crop",
-};
+// Placeholder component for images - replace with actual factory photos later
+const ImagePlaceholder = ({ label, className = "h-48" }: { label: string; className?: string }) => (
+  <div className={`bg-muted flex items-center justify-center ${className}`}>
+    <span className="text-muted-foreground text-sm font-medium">{label}</span>
+  </div>
+);
 
 export default function HomePage() {
   return (
@@ -66,15 +61,9 @@ export default function HomePage() {
 
       {/* Hero Section with Background Image */}
       <section className="relative overflow-hidden min-h-[600px] lg:min-h-[700px]">
-        {/* Background Image */}
+        {/* Background Placeholder */}
         <div className="absolute inset-0">
-          <img 
-            src={placeholderImages.hero}
-            alt="Food manufacturing facility"
-            className="w-full h-full object-cover"
-            loading="eager"
-            fetchPriority="high"
-          />
+          <div className="w-full h-full bg-muted" />
           <div className="absolute inset-0 bg-gradient-to-br from-tropical-green-dark/90 via-primary/80 to-tropical-green-light/70" />
         </div>
         
@@ -182,22 +171,22 @@ export default function HomePage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                image: placeholderImages.factoryExterior,
+                label: "Factory Photo",
                 title: "Modern Facility",
                 description: "5,000 m² certified production facility",
               },
               {
-                image: placeholderImages.fruitSorting,
+                label: "Sorting Photo",
                 title: "Fruit Selection",
                 description: "Hand-picked tropical fruits from local farms",
               },
               {
-                image: placeholderImages.dryingProcess,
+                label: "Process Photo",
                 title: "Drying Process",
                 description: "Advanced vacuum & air drying technology",
               },
               {
-                image: placeholderImages.packaging,
+                label: "Packaging Photo",
                 title: "Quality Packaging",
                 description: "Food-grade packaging for export",
               },
@@ -206,15 +195,7 @@ export default function HomePage() {
                 key={item.title}
                 className="group rounded-2xl overflow-hidden bg-card shadow-soft hover:shadow-glow transition-all duration-300"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
+                <ImagePlaceholder label={item.label} className="h-48" />
                 <div className="p-5">
                   <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.description}</p>
@@ -365,12 +346,7 @@ export default function HomePage() {
             {/* Export Image with Overlay Stats */}
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-lg">
-                <img 
-                  src={placeholderImages.exportShipping}
-                  alt="Shipping containers ready for export"
-                  className="w-full h-[400px] object-cover"
-                  loading="lazy"
-                />
+                <ImagePlaceholder label="Shipping Photo" className="h-[400px]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
               </div>
               <div className="absolute bottom-6 left-6 right-6 flex justify-between">
@@ -396,12 +372,7 @@ export default function HomePage() {
               {/* Product Image */}
               <div className="relative order-2 lg:order-1">
                 <div className="rounded-2xl overflow-hidden shadow-2xl">
-                  <img 
-                    src={placeholderImages.catalogProducts}
-                    alt="Dried fruit product samples"
-                    className="w-full h-[350px] object-cover"
-                    loading="lazy"
-                  />
+                  <ImagePlaceholder label="Products Photo" className="h-[350px]" />
                 </div>
                 <div className="absolute -bottom-4 -right-4 bg-accent text-accent-foreground rounded-xl p-4 shadow-lg">
                   <p className="text-lg font-bold">50+ Products</p>
@@ -443,16 +414,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Final CTA with Background Image */}
+      {/* Final CTA with Background Placeholder */}
       <section className="relative py-24 overflow-hidden">
-        {/* Background Image */}
+        {/* Background Placeholder */}
         <div className="absolute inset-0">
-          <img 
-            src={placeholderImages.teamCta}
-            alt="Dried fruit product display"
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
+          <div className="w-full h-full bg-muted" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/95" />
         </div>
         
