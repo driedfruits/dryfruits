@@ -154,7 +154,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-wrap gap-3">
-                  <PrimaryButton to="/contact?type=quote" size="lg">
+                  <PrimaryButton to="/contact" size="lg">
                     <FileText className="h-5 w-5 mr-2" />
                     Request Bulk Quote
                   </PrimaryButton>
@@ -315,7 +315,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
               Get in touch with our export team for pricing, samples, and custom requirements.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <PrimaryButton to="/contact?type=quote" size="lg">
+              <PrimaryButton to="/contact" size="lg">
                 Request Quote
               </PrimaryButton>
               <WhatsAppButton 

@@ -19,7 +19,7 @@ export function StickyInquiryBar({ product }: StickyInquiryBarProps) {
             <p className="text-xs text-muted-foreground">{product.pricing.fobBase}</p>
           </div>
           <div className="flex gap-2">
-            <PrimaryButton to="/contact?type=quote" size="sm">
+            <PrimaryButton to="/contact" size="sm">
               <FileText className="h-4 w-4 mr-1" />
               Quote
             </PrimaryButton>

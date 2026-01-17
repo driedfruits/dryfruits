@@ -4,17 +4,7 @@ import { generateBreadcrumbSchema } from "@/lib/schema";
 import { ContactForm } from "@/components/forms";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { companyInfo, socialLinks } from "@/data/companyData";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  Linkedin, 
-  Instagram, 
-  Facebook, 
-  Youtube 
-} from "lucide-react";
-import { useSearchParams } from "react-router-dom";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { socialIcons } from "@/lib/socialIcons";
 import { SITE_URL } from "@/lib/constants";
 
@@ -24,21 +14,12 @@ const breadcrumbItems = [
 ];
 
 export default function ContactPage() {
-  const [searchParams] = useSearchParams();
-  const formType = searchParams.get("type") as "contact" | "quote" | "sample" || "quote";
-
-  const seoTitle = formType === "sample" 
-    ? "Request Product Samples - Contact DFT Indonesia" 
-    : formType === "quote" 
-    ? "Request a Bulk Quote - Contact DFT Indonesia"
-    : "Contact Us - DFT Indonesia Export Team";
-
   return (
     <Layout>
       <SEO
-        title={seoTitle}
-        description={`Contact ${companyInfo.shortName} export team for bulk quotes, samples, and inquiries. Phone: ${companyInfo.phone}. Email: ${companyInfo.email}. Response within 24 hours.`}
-        keywords={["contact dried fruit supplier", "bulk quote request", "dried fruit samples", "Indonesian exporter contact"]}
+        title="Request a Bulk Quote - Contact DFT Indonesia"
+        description={`Contact ${companyInfo.shortName} export team for bulk quotes and inquiries. Phone: ${companyInfo.phone}. Email: ${companyInfo.email}. Response within 24 hours.`}
+        keywords={["contact dried fruit supplier", "bulk quote request", "Indonesian exporter contact", "wholesale dried fruit inquiry"]}
         canonical="/contact"
       />
       <script
@@ -52,7 +33,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center text-primary-foreground">
             <h1 className="text-4xl font-bold sm:text-5xl mb-4">
-              {formType === "sample" ? "Request Samples" : formType === "quote" ? "Request a Quote" : "Contact Us"}
+              Request a Quote
             </h1>
             <p className="text-xl text-primary-foreground/80">
               Get in touch with our export team. We typically respond within 24 hours.
@@ -153,7 +134,7 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <div className="rounded-2xl bg-card p-8 shadow-soft">
-                <ContactForm variant={formType} />
+                <ContactForm variant="quote" />
               </div>
             </div>
           </div>
