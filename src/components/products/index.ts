@@ -11,3 +11,5 @@ export { StickyInquiryBar } from "./StickyInquiryBar";
 export { ProductQualitySpecs } from "./ProductQualitySpecs";
 export { ContainerCalculator } from "./ContainerCalculator";
 export { ProductComparisonTable } from "./ProductComparisonTable";
+export { ProductCard } from "./ProductCard";
+export { CategoryCard } from "./CategoryCard";
