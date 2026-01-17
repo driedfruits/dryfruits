@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { ContactForm } from "@/components/forms";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -21,6 +22,7 @@ export default function ContactPage() {
         description={`Contact ${companyInfo.shortName} export team for bulk quotes and inquiries. Phone: ${companyInfo.phone}. Email: ${companyInfo.email}. Response within 24 hours.`}
         keywords={["contact dried fruit supplier", "bulk quote request", "Indonesian exporter contact", "wholesale dried fruit inquiry"]}
         canonical="/contact"
+        ogImage={socialImages.contact}
       />
       <script
         type="application/ld+json"

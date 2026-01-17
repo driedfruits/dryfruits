@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { getCategorySocialImage } from "@/lib/socialImages";
 import { CategoryPageSkeleton } from "@/components/products";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { getProductsByCategory, productCategories } from "@/data/companyData";
@@ -43,6 +44,7 @@ export default function ProductCategoryPage() {
         description={`Premium ${categoryInfo.name.toLowerCase()} from Indonesia. Direct manufacturer with USDA/EU Organic certification. MOQ 500kg. ${products.length} products available. Export to 18+ countries.`}
         keywords={[`wholesale ${categoryInfo.name.toLowerCase()}`, `bulk ${categoryInfo.name.toLowerCase()} Indonesia`, `${categoryInfo.name.toLowerCase()} supplier`]}
         canonical={`/products/${category}`}
+        ogImage={getCategorySocialImage(category || "")}
       />
       {/* ItemList Schema */}
       <script

@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { companyInfo, teamMembers, certifications } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
@@ -28,6 +29,7 @@ export default function AboutPage() {
         description={`Learn about ${companyInfo.name}, Indonesia's leading dried fruit manufacturer. Established ${companyInfo.established}, exporting to ${companyInfo.stats.exportCountries} countries with ${companyInfo.stats.productionCapacity} capacity.`}
         keywords={["about DFT Indonesia", "dried fruit manufacturer Indonesia", "Indonesian food exporter", "tropical fruit processor"]}
         canonical="/about"
+        ogImage={socialImages.about}
       />
       <script
         type="application/ld+json"

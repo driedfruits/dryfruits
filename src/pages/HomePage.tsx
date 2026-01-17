@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { PrimaryButton, SecondaryButton, SecondaryLightButton, AccentButton } from "@/components/CTAButton";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CatalogForm } from "@/components/forms";
@@ -33,6 +34,7 @@ export default function HomePage() {
         description="Indonesia's premier B2B dried fruit manufacturer. USDA & EU Organic certified. Vacuum-fried snacks, dried tropical fruits & private label solutions. MOQ 500kg. Export to 18+ countries."
         keywords={["wholesale dried fruit Indonesia", "dried fruit manufacturer", "organic dried fruit exporter", "B2B dried fruit supplier", "Indonesian fruit exporter"]}
         canonical="/"
+        ogImage={socialImages.home}
       />
       {/* WebSite Schema */}
       <script

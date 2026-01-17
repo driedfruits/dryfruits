@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { companyInfo, exportCountries, shippingProcess, exportDocs } from "@/data/companyData";
 import { SITE_URL } from "@/lib/constants";
@@ -29,6 +30,7 @@ export default function ShippingPage() {
         description={`Seamless export process to ${companyInfo.stats.exportCountries} countries. FOB & CIF terms available. Complete documentation for customs clearance. Lead time ${companyInfo.paymentTerms.leadTime}.`}
         keywords={["dried fruit shipping", "FOB Indonesia", "export dried fruit", "container shipping fruit", "international fruit delivery"]}
         canonical="/shipping"
+        ogImage={socialImages.shipping}
       />
       <script
         type="application/ld+json"

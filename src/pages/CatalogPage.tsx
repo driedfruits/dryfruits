@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
 import { CatalogForm } from "@/components/forms";
@@ -18,6 +19,7 @@ export default function CatalogPage() {
         description="Download our complete dried fruit catalog with product specifications, FOB pricing guidelines, packaging options, MOQs, and certification details. PDF format."
         keywords={["dried fruit catalog", "product catalog download", "price list dried fruit", "wholesale catalog"]}
         canonical="/catalog"
+        ogImage={socialImages.catalog}
       />
       <script
         type="application/ld+json"

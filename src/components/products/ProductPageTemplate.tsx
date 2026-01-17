@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { type Product, getRelatedProducts, companyInfo } from "@/data/companyData";
 import { SEO } from "@/components/SEO";
+import { getCategorySocialImage } from "@/lib/socialImages";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { Badge } from "@/components/ui/badge";
@@ -29,6 +30,11 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
   const seoDescription = product.metaDescription || `Direct manufacturer of premium ${product.name.toLowerCase()} from Indonesia. ${product.isOrganic ? "USDA/EU Organic certified. " : ""}Bulk packaging available. MOQ ${product.pricing.moq}. View specs & pricing.`;
   const seoKeywords = product.keywords || [`bulk ${product.name.toLowerCase()}`, `wholesale ${product.name.toLowerCase()} Indonesia`, `${product.name.toLowerCase()} supplier`];
 
+  // Get OG image - prefer product image, fall back to category image
+  const ogImage = product.images?.main 
+    ? `${SITE_URL}${product.images.main}` 
+    : getCategorySocialImage(product.category);
+
   const breadcrumbItems = [
     { name: "Home", url: SITE_URL },
     { name: "Wholesale Dried Fruits", url: `${SITE_URL}/products` },
@@ -44,6 +50,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
         keywords={seoKeywords}
         canonical={`/products/${product.category}/${product.id}`}
         ogType="product"
+        ogImage={ogImage}
       />
       {/* Product Schema */}
       <script

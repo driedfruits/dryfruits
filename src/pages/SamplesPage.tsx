@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
 import { ContactForm } from "@/components/forms";
@@ -20,6 +21,7 @@ export default function SamplesPage() {
         description="Request free dried fruit samples for quality evaluation. 50g-500g sample packs available. DHL/FedEx express shipping. Processing time 3-5 business days."
         keywords={["dried fruit samples", "free product samples", "fruit sample request", "quality evaluation samples"]}
         canonical="/samples"
+        ogImage={socialImages.samples}
       />
       <script
         type="application/ld+json"

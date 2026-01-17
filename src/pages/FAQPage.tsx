@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { socialImages } from "@/lib/socialImages";
 import { faqItems, companyInfo } from "@/data/companyData";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
@@ -20,6 +21,7 @@ export default function FAQPage() {
         description="Frequently asked questions about ordering wholesale dried fruits from Indonesia. Learn about MOQ, shipping, certifications, lead times, and payment terms."
         keywords={["dried fruit FAQ", "wholesale fruit questions", "MOQ dried fruit", "shipping dried fruit Indonesia"]}
         canonical="/faq"
+        ogImage={socialImages.faq}
       />
       {/* Breadcrumb Schema */}
       <script
