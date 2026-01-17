@@ -37,7 +37,7 @@ export default function ContactPage() {
             <h1 className="text-4xl font-bold sm:text-5xl mb-4">
               Request a Quote
             </h1>
-            <p className="text-xl text-primary-foreground/80">
+            <p className="text-xl text-on-primary-muted">
               Get in touch with our export team. We typically respond within 24 hours.
             </p>
           </div>

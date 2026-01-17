@@ -44,7 +44,7 @@ export default function AboutPage() {
             <h1 className="text-4xl font-bold sm:text-5xl mb-6">
               About {companyInfo.shortName}
             </h1>
-            <p className="text-xl text-primary-foreground/80">
+            <p className="text-xl text-on-primary-muted">
               {companyInfo.tagline}
             </p>
           </div>

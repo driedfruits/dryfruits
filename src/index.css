@@ -72,11 +72,11 @@
 
     /* Text on colored backgrounds - guaranteed WCAG AA contrast */
     --on-primary: 0 0% 100%;           /* White on green - 5.8:1 */
-    --on-primary-muted: 0 0% 88%;      /* Light gray on green - 4.6:1 */
+    --on-primary-muted: 0 0% 95%;      /* Brighter for 5.2:1 ratio on green */
     --on-accent: 0 0% 100%;            /* White on orange - 4.5:1 */
     --on-dark: 60 20% 95%;             /* Off-white on dark - 12.5:1 */
-    --on-dark-muted: 60 10% 72%;       /* Muted on dark - 7.2:1 */
-    --on-dark-subtle: 60 8% 58%;       /* Subtle on dark - 4.5:1 */
+    --on-dark-muted: 60 10% 75%;       /* Lighter for 8.1:1 ratio on dark */
+    --on-dark-subtle: 60 8% 65%;       /* Lighter for 5.5:1 ratio on dark */
 
     /* Sidebar */
     --sidebar-background: 142 30% 15%;
@@ -121,10 +121,10 @@
     /* Dark mode contrast tokens */
     --earth-brown-dark: 30 25% 75%;  /* Light in dark mode */
     --on-primary: 0 0% 100%;
-    --on-primary-muted: 0 0% 88%;
+    --on-primary-muted: 0 0% 95%;    /* Improved contrast */
     --on-dark: 60 20% 95%;
-    --on-dark-muted: 60 10% 70%;
-    --on-dark-subtle: 60 8% 55%;
+    --on-dark-muted: 60 10% 75%;     /* Improved contrast */
+    --on-dark-subtle: 60 8% 65%;     /* Improved contrast */
 
     --sidebar-background: 30 20% 6%;
     --sidebar-foreground: 60 15% 95%;
