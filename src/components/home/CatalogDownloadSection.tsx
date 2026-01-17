@@ -28,7 +28,7 @@ export const CatalogDownloadSection = memo(function CatalogDownloadSection() {
               </div>
               <div className="absolute -bottom-4 -right-4 bg-accent text-accent-foreground rounded-xl p-4 shadow-lg">
                 <p className="text-lg font-bold">50+ Products</p>
-                <p className="text-sm opacity-90">In Our Catalog</p>
+                <p className="text-sm">In Our Catalog</p>
               </div>
             </div>
 

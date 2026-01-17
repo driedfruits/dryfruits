@@ -19,7 +19,7 @@ export function PageHero({ title, subtitle, children, className }: PageHeroProps
             {title}
           </h1>
           {subtitle && (
-            <p className="text-xl text-primary-foreground/80">
+            <p className="text-xl text-on-primary-muted">
               {subtitle}
             </p>
           )}
