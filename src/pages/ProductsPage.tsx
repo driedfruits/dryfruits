@@ -59,14 +59,16 @@ export default function ProductsPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {products.map((product) => (
               <Link key={product.id} to={`/products/${product.category}/${product.id}`} className="group rounded-xl bg-card overflow-hidden shadow-soft hover:shadow-glow transition-all">
-                <div className="aspect-square bg-gradient-to-br from-secondary to-muted flex items-center justify-center relative">
-                  <Package className="h-16 w-16 text-muted-foreground/30 group-hover:scale-110 transition-transform" />
-                  {product.isOrganic && <span className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full flex items-center gap-1"><Leaf className="h-3 w-3" />Organic</span>}
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{product.name}</h3>
-                  <p className="text-sm text-muted-foreground">{product.tagline}</p>
-                </div>
+                <article>
+                  <div className="aspect-square bg-gradient-to-br from-secondary to-muted flex items-center justify-center relative">
+                    <Package className="h-16 w-16 text-muted-foreground/30 group-hover:scale-110 transition-transform" />
+                    {product.isOrganic && <span className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full flex items-center gap-1"><Leaf className="h-3 w-3" />Organic</span>}
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{product.name}</h3>
+                    <p className="text-sm text-muted-foreground">{product.tagline}</p>
+                  </div>
+                </article>
               </Link>
             ))}
           </div>

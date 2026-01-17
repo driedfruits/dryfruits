@@ -50,7 +50,7 @@ export default function ContactPage() {
             <div className="lg:col-span-1">
               <h2 className="text-2xl font-bold text-foreground mb-6">Get In Touch</h2>
               
-              <div className="space-y-6">
+              <address className="not-italic space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                     <Mail className="h-6 w-6 text-primary" />
@@ -100,7 +100,7 @@ export default function ContactPage() {
                     <p className="text-muted-foreground">{companyInfo.workingHours.full}</p>
                   </div>
                 </div>
-              </div>
+              </address>
 
               {/* Quick Contact */}
               <div className="mt-8 p-6 rounded-xl bg-muted">

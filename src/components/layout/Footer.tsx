@@ -43,7 +43,7 @@ export function Footer() {
             </p>
             
             {/* Contact Info */}
-            <div className="space-y-3">
+            <address className="not-italic space-y-3">
               <a 
                 href={`mailto:${companyInfo.email}`}
                 className="flex items-center gap-3 text-on-dark-muted hover:text-primary transition-colors"
@@ -58,19 +58,19 @@ export function Footer() {
                 <Phone className="h-5 w-5" />
                 {companyInfo.phone}
               </a>
-              <div className="flex items-start gap-3 text-on-dark-muted">
+              <p className="flex items-start gap-3 text-on-dark-muted">
                 <MapPin className="h-5 w-5 mt-0.5" />
                 <span>{companyInfo.address.full}</span>
-              </div>
-              <div className="flex items-center gap-3 text-on-dark-muted">
+              </p>
+              <p className="flex items-center gap-3 text-on-dark-muted">
                 <Clock className="h-5 w-5" />
                 {companyInfo.workingHours.full}
-              </div>
-            </div>
+              </p>
+            </address>
           </div>
 
           {/* Products */}
-          <div>
+          <nav aria-label="Product categories">
             <h3 className="font-semibold text-on-dark mb-4">Products</h3>
             <ul className="space-y-2">
               {footerLinks.products.map((link) => (
@@ -84,10 +84,10 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Company */}
-          <div>
+          <nav aria-label="Company pages">
             <h3 className="font-semibold text-on-dark mb-4">Company</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
@@ -101,10 +101,10 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Resources */}
-          <div>
+          <nav aria-label="Resources">
             <h3 className="font-semibold text-on-dark mb-4">Resources</h3>
             <ul className="space-y-2">
               {footerLinks.resources.map((link) => (
@@ -118,7 +118,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Certifications & Social */}
