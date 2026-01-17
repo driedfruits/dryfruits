@@ -1,4 +1,4 @@
-import { NavLink } from "@/components/NavLink";
+import { NavLink } from "react-router-dom";
 import { Home, Package, Gift, Mail, MessageCircle } from "lucide-react";
 import { companyInfo } from "@/data/companyData";
 
@@ -23,10 +23,13 @@ export function MobileBottomNav() {
           <NavLink
             key={tab.name}
             to={tab.href}
-            className="flex flex-1 flex-col items-center justify-center gap-1 py-2 text-muted-foreground transition-colors duration-200 active:scale-95"
-            activeClassName="text-primary"
+            className={({ isActive }) =>
+              `flex flex-1 flex-col items-center justify-center gap-1 py-2 transition-colors duration-200 active:scale-95 ${
+                isActive ? "text-primary" : "text-muted-foreground"
+              }`
+            }
           >
-            {({ isActive }: { isActive: boolean }) => (
+            {({ isActive }) => (
               <>
                 <div className={`rounded-full p-1.5 transition-colors ${isActive ? "bg-primary/10" : ""}`}>
                   <tab.icon className="h-5 w-5" />
