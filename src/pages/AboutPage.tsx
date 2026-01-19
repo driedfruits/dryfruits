@@ -16,7 +16,8 @@ import {
   Building2,
   FileText,
   Receipt,
-  Phone
+  Phone,
+  Landmark
 } from "lucide-react";
 import { SITE_URL } from "@/lib/constants";
 
@@ -249,6 +250,17 @@ export default function AboutPage() {
                     >
                       {companyInfo.phone}
                     </a>
+                  </div>
+                </div>
+                
+                {/* Bank Account */}
+                <div className="flex items-start gap-4">
+                  <Landmark className="h-6 w-6 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Bank Account</p>
+                    <p className="font-semibold text-foreground">{companyInfo.legalInfo.bankAccount.bankName}</p>
+                    <p className="font-semibold text-foreground font-mono">{companyInfo.legalInfo.bankAccount.accountNumber}</p>
+                    <p className="text-sm text-muted-foreground">a/n {companyInfo.legalInfo.bankAccount.accountName}</p>
                   </div>
                 </div>
               </div>

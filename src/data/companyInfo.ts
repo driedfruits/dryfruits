@@ -87,6 +87,11 @@ export const companyInfo = {
       label: "NPWP (Tax ID Number)",
       value: "61.318.225.6-723.000",
     },
+    bankAccount: {
+      bankName: "BCA",
+      accountNumber: "122 07071222",
+      accountName: "PT Dried Fruits Total Indonesia",
+    },
   },
 } as const;
 
