@@ -12,7 +12,11 @@ import {
   Globe, 
   Calendar,
   Mail,
-  MapPin
+  MapPin,
+  Building2,
+  FileText,
+  Receipt,
+  Phone
 } from "lucide-react";
 import { SITE_URL } from "@/lib/constants";
 
@@ -161,7 +165,7 @@ export default function AboutPage() {
                     href={`mailto:${member.email}`}
                     className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    <Mail className="h-4 w-4" />
+                    <Mail className="h-4 w-4" aria-hidden="true" />
                     {member.email}
                   </a>
                 </div>
@@ -171,8 +175,90 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Location */}
+      {/* Legal Information */}
       <section className="py-20 bg-muted/30">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <h2 className="text-3xl font-bold text-foreground">Legal Information</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Official company registration and legal details
+            </p>
+          </div>
+
+          <div className="mx-auto max-w-4xl">
+            <div className="rounded-2xl bg-card p-8 shadow-soft">
+              <div className="grid gap-6 md:grid-cols-2">
+                {/* Legal Name */}
+                <div className="flex items-start gap-4">
+                  <Building2 className="h-6 w-6 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Legal Company Name</p>
+                    <p className="font-semibold text-foreground">{companyInfo.legalInfo.legalName}</p>
+                  </div>
+                </div>
+                
+                {/* NIB */}
+                <div className="flex items-start gap-4">
+                  <FileText className="h-6 w-6 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">{companyInfo.legalInfo.nib.label}</p>
+                    <p className="font-semibold text-foreground font-mono">{companyInfo.legalInfo.nib.value}</p>
+                  </div>
+                </div>
+                
+                {/* NPWP */}
+                <div className="flex items-start gap-4">
+                  <Receipt className="h-6 w-6 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">{companyInfo.legalInfo.npwp.label}</p>
+                    <p className="font-semibold text-foreground font-mono">{companyInfo.legalInfo.npwp.value}</p>
+                  </div>
+                </div>
+                
+                {/* Legal Address */}
+                <div className="flex items-start gap-4">
+                  <MapPin className="h-6 w-6 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Legal Address</p>
+                    <p className="font-semibold text-foreground">{companyInfo.address.full}</p>
+                  </div>
+                </div>
+                
+                {/* Contact Email */}
+                <div className="flex items-start gap-4">
+                  <Mail className="h-6 w-6 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Contact Email</p>
+                    <a 
+                      href={`mailto:${companyInfo.email}`} 
+                      className="font-semibold text-primary hover:underline"
+                    >
+                      {companyInfo.email}
+                    </a>
+                  </div>
+                </div>
+                
+                {/* Contact Phone */}
+                <div className="flex items-start gap-4">
+                  <Phone className="h-6 w-6 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Contact Phone</p>
+                    <a 
+                      href={`tel:${companyInfo.phone}`} 
+                      className="font-semibold text-primary hover:underline"
+                    >
+                      {companyInfo.phone}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Location */}
+      <section className="py-20">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
