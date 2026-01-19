@@ -75,6 +75,19 @@ export const companyInfo = {
     eu: "EFSA compliant, meets EU Ochratoxin A & Sulfite limits",
     global: "HACCP / ISO 22000 Manufacturing",
   },
+  
+  // Legal / Government Registration
+  legalInfo: {
+    legalName: "PT Dried Fruits Total Indonesia",
+    nib: {
+      label: "NIB (Business ID Number)",
+      value: "8962548791220",
+    },
+    npwp: {
+      label: "NPWP (Tax ID Number)",
+      value: "61.318.225.6-723.000",
+    },
+  },
 } as const;
 
 export const socialLinks = {
