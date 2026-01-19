@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { companyInfo, socialLinks, certifications } from "@/data/companyData";
 import { socialIcons } from "@/lib/socialIcons";
-import { Leaf, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Leaf, Mail, Phone, MapPin, Clock, FileText } from "lucide-react";
 
 const footerLinks = {
   products: [
@@ -161,17 +161,32 @@ export function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-on-dark-subtle/30">
-        <div className="container py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <p className="text-sm text-on-dark-subtle">
-            © {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
-          </p>
-          <div className="flex items-center gap-2">
-            <Link to="/privacy" className="py-2 px-3 min-h-[44px] flex items-center text-base text-on-dark-subtle hover:text-primary transition-colors">
-              Privacy Policy
-            </Link>
-            <Link to="/terms" className="py-2 px-3 min-h-[44px] flex items-center text-base text-on-dark-subtle hover:text-primary transition-colors">
-              Terms of Service
-            </Link>
+        <div className="container py-6">
+          {/* Legal Identifiers Row */}
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-4 text-sm text-on-dark-subtle">
+            <span className="flex items-center gap-2">
+              <FileText className="h-4 w-4" aria-hidden="true" />
+              <span>NIB: {companyInfo.legalInfo.nib.value}</span>
+            </span>
+            <span className="flex items-center gap-2">
+              <FileText className="h-4 w-4" aria-hidden="true" />
+              <span>NPWP: {companyInfo.legalInfo.npwp.value}</span>
+            </span>
+          </div>
+          
+          {/* Copyright & Links Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <p className="text-sm text-on-dark-subtle">
+              © {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
+            </p>
+            <div className="flex items-center gap-2">
+              <Link to="/privacy" className="py-2 px-3 min-h-[44px] flex items-center text-base text-on-dark-subtle hover:text-primary transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="py-2 px-3 min-h-[44px] flex items-center text-base text-on-dark-subtle hover:text-primary transition-colors">
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
       </div>
