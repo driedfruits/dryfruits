@@ -1,9 +1,18 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useSearchParams } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { redirectRules } from "@/lib/redirects";
+
+// Handles /?s= WordPress search query redirects
+function SearchRedirect() {
+  const [searchParams] = useSearchParams();
+  if (searchParams.has("s")) {
+    return <Navigate to="/" replace />;
+  }
+  return null;
+}
 
 // Lazy load pages for performance
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -38,7 +47,7 @@ const App = () => (
     <BrowserRouter>
       <Suspense fallback={<PageLoader />}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<><SearchRedirect /><HomePage /></>} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/:category" element={<ProductCategoryPage />} />
           <Route path="/products/:category/:productId" element={<ProductDetailPage />} />

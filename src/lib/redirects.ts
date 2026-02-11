@@ -59,6 +59,11 @@ export const redirectRules: RedirectRule[] = [
   { from: "/green", to: "/sustainability" },
   { from: "/environment", to: "/sustainability" },
   
+  // Legacy WordPress URL redirects
+  { from: "/category/uncategorized", to: "/" },
+  { from: "/category/uncategorized/feed", to: "/" },
+  { from: "/hello-world", to: "/" },
+  
   // Category misspellings
   { from: "/products/dried-fruit", to: "/products/dried-fruits" },
   { from: "/products/dried", to: "/products/dried-fruits" },
