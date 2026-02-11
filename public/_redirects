@@ -69,5 +69,10 @@
 /powdered-fruits/*          /products/powdered-fruits/:splat 301
 /vacuum-fried/*             /products/vacuum-fried/:splat  301
 
+# Legacy WordPress URL redirects
+/category/uncategorized      /                              301
+/category/uncategorized/feed /                              301
+/hello-world                 /                              301
+
 # SPA fallback (must be last)
 /*                          /index.html                    200
