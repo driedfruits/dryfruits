@@ -1,68 +1,48 @@
 
 
-## Add SEO-Friendly Alt Descriptions for All Images
+## Add Redirects for Legacy WordPress URLs
 
 ### Overview
-Improve alt text descriptions across all components that render images to be more descriptive, keyword-rich, and SEO-optimized for B2B wholesale dried fruit search queries.
-
----
-
-### Current State
-
-The project has two types of image usage:
-
-1. **Actual images** (via `OptimizedImage` component) - Used in `ProductCard`, `ProductPageTemplate`, and related product links
-2. **Placeholder divs** (no `<img>` tags) - Used in `HeroSection`, `ExportMapSection`, `ManufacturingSection`, and `AboutPage` -- these have no alt text since they aren't images
-
-Changes will focus on the components that actually render `<img>` tags.
+Add redirects for old WordPress URLs (category pages, blog posts, search queries, feeds) to the home page, preventing 404 errors and preserving SEO equity from the previous site.
 
 ---
 
 ### Changes
 
-#### 1. ProductCard.tsx
-**Current:** `"${product.name} - Premium Indonesian dried fruit for wholesale export"`
-**Updated:** More specific alt text using product category and tagline for unique descriptions per product.
+#### 1. Client-Side Redirects - `src/lib/redirects.ts`
 
-```tsx
-alt={`${product.name} - ${product.tagline} | Bulk wholesale from Indonesia`}
+Add these rules to the `redirectRules` array:
+
+```typescript
+// Legacy WordPress URL redirects
+{ from: "/category/uncategorized", to: "/" },
+{ from: "/category/uncategorized/feed", to: "/" },
+{ from: "/hello-world", to: "/" },
 ```
 
-#### 2. ProductPageTemplate.tsx - Hero Image
-**Current:** `"${product.name} - Bulk Wholesale from Indonesia"`
-**Updated:** Include certifications and category context.
+#### 2. Search Query Redirect - `src/App.tsx`
 
-```tsx
-alt={`${product.name} wholesale supplier Indonesia - ${product.isOrganic ? "USDA & EU organic certified " : ""}${categoryLabels[product.category].toLowerCase()} for bulk export`}
+Add a dedicated route component to handle `/?s=` search query strings, since React Router path-based redirects don't match query parameters. A small `SearchRedirect` component will check for the `s` query param and redirect to `/`.
+
+#### 3. Server-Side Redirects - `public/_redirects`
+
+Add matching rules for Netlify/hosting:
+
+```
+/category/uncategorized      /                              301
+/category/uncategorized/feed /                              301
+/hello-world                 /                              301
 ```
 
-#### 3. ProductPageTemplate.tsx - Related Products
-**Current:** `"${related.name} - Indonesian wholesale dried fruit"`
-**Updated:** Include pricing context for richer alt text.
-
-```tsx
-alt={`${related.name} - Wholesale ${categoryLabels[related.category].toLowerCase()} from Indonesia, ${related.pricing.fobBase}`}
-```
-
-#### 4. OptimizedImage.tsx - Placeholder Image
-**Current:** `alt=""` (empty alt on blur placeholder)
-**No change needed** - this is correct. The blurred placeholder is decorative and should have empty alt with `aria-hidden="true"`, which is already implemented.
+Note: The `/?s=` query parameter redirect is handled client-side only, as `_redirects` files typically don't support query string matching.
 
 ---
 
-### Summary of Changes
+### Summary
 
-| File | What Changes |
-|------|-------------|
-| `src/components/products/ProductCard.tsx` | More descriptive alt with product tagline |
-| `src/components/products/ProductPageTemplate.tsx` | Richer alt for hero image with certifications; better alt for related products with pricing |
-
----
-
-### SEO Benefits
-
-- Each product image gets a unique, descriptive alt text (avoids duplicate alt text across pages)
-- Includes relevant B2B keywords: "wholesale", "bulk export", "supplier", "organic certified"
-- Category context helps Google Image Search categorize products correctly
-- Pricing in related product alts adds commercial intent signals
+| File | Change |
+|------|--------|
+| `src/lib/redirects.ts` | Add 3 WordPress legacy path redirects |
+| `src/App.tsx` | Add `SearchRedirect` component for `/?s=` query handling |
+| `public/_redirects` | Add 3 server-side redirect rules |
 
