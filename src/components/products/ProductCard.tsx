@@ -32,7 +32,7 @@ export const ProductCard = memo(function ProductCard({
           <div className="relative">
             <OptimizedImage
               src={product.images?.main || ""}
-              alt={`${product.name} - Premium Indonesian dried fruit for wholesale export`}
+              alt={`${product.name} - ${product.tagline} | Bulk wholesale from Indonesia`}
               aspectRatio="square"
               width={400}
               height={400}

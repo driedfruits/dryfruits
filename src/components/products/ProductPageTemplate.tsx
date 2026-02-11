@@ -104,7 +104,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
               <div className="relative">
                 <OptimizedImage
                   src={product.images?.main || ""}
-                  alt={`${product.name} - Bulk Wholesale from Indonesia`}
+                  alt={`${product.name} wholesale supplier Indonesia - ${product.isOrganic ? "USDA & EU organic certified " : ""}${categoryLabels[product.category].toLowerCase()} for bulk export`}
                   aspectRatio="square"
                   width={600}
                   height={600}
@@ -297,7 +297,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                   >
                     <OptimizedImage
                       src={related.images?.main || ""}
-                      alt={`${related.name} - Indonesian wholesale dried fruit`}
+                      alt={`${related.name} - Wholesale ${categoryLabels[related.category].toLowerCase()} from Indonesia, ${related.pricing.fobBase}`}
                       aspectRatio="square"
                       width={280}
                       height={280}
