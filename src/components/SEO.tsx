@@ -31,7 +31,7 @@ export function SEO({
 
   const fullDescription =
     description ||
-    "Indonesia's leading B2B dried fruit manufacturer. Premium dehydrated tropical fruits & private label solutions. HACCP & Halal certified. Export to 18+ countries.";
+    "Indonesia's leading B2B dried fruit OEM manufacturer. Premium dehydrated tropical fruits & private label solutions. HACCP & Fair Trade certified. Export to 18+ countries.";
 
   const fullCanonical = canonical
     ? canonical.startsWith("http")
