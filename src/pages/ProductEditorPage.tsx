@@ -218,6 +218,7 @@ const ProductEditorPage = () => {
           <p className="text-sm font-medium text-foreground">Product Description (Sensory)</p>
           <FormTextarea label="Flavor Profile" value={flavorProfile} onChange={(e) => setFlavorProfile(e.target.value)} placeholder="e.g. Sweet, tangy tropical flavor with caramelized notes" required error={validationErrors.flavorProfile} />
           <FormInput label="Texture" value={texture} onChange={(e) => setTexture(e.target.value)} placeholder="e.g. Chewy, soft, slightly crispy edges" />
+          <FormInput label="Processing Method" value={specs.processingMethod || ""} onChange={(e) => setSpecs(prev => ({ ...prev, processingMethod: e.target.value }))} placeholder="e.g. Sun-dried, Low-temp dehydrated, Freeze-dried" />
           <EditorApplicationsSection applications={applications} addApplication={addApplication} removeApplication={removeApplication} />
         </div>
         <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} priceTiers={priceTiers} addTier={addTier} removeTier={removeTier} updateTier={updateTier} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} errors={validationErrors} />
