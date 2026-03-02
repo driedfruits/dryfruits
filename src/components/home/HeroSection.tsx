@@ -1,8 +1,6 @@
 import { memo } from "react";
 import { Leaf, ArrowRight, Package } from "lucide-react";
 import { PrimaryButton, SecondaryLightButton } from "@/components/CTAButton";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { companyInfo } from "@/data/companyData";
 
 const fruits = [
   "Dragon Fruit", "Papaya", "Mango", "Avocado", "Pineapple",
@@ -44,32 +42,14 @@ export const HeroSection = memo(function HeroSection() {
             ))}
           </div>
           <div className="flex flex-wrap justify-center gap-4">
-            <PrimaryButton to="/contact" size="xl" variant="gold">
-              Request Quote
+            <PrimaryButton to="/samples" size="xl" variant="gold">
+              Request Free Samples
               <ArrowRight className="h-5 w-5" aria-hidden="true" />
             </PrimaryButton>
-            <SecondaryLightButton to="/samples" size="lg">
-              Request Samples
+            <SecondaryLightButton to="/catalog" size="lg">
+              Get Price List
             </SecondaryLightButton>
-            <WhatsAppButton size="lg" />
           </div>
-        </div>
-      </div>
-
-      {/* Stats Bar */}
-      <div className="container relative pb-16">
-        <div className="mx-auto max-w-4xl grid grid-cols-2 gap-6 lg:grid-cols-4">
-          {[
-            { value: `${companyInfo.stats.yearsExperience}+`, label: "Years Experience" },
-            { value: `${companyInfo.stats.exportCountries}`, label: "Export Countries" },
-            { value: companyInfo.stats.productionCapacity, label: "Production Capacity" },
-            { value: `${companyInfo.stats.productVarieties}`, label: "Product Varieties" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center bg-primary-foreground/5 backdrop-blur-sm rounded-xl p-4">
-              <p className="text-3xl font-bold text-on-primary lg:text-4xl drop-shadow-sm">{stat.value}</p>
-              <p className="text-sm text-on-primary-muted">{stat.label}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
