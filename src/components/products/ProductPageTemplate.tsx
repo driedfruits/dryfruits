@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { type Product, getRelatedProducts, companyInfo } from "@/data/companyData";
 import { SEO } from "@/components/SEO";
@@ -6,6 +7,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { Badge } from "@/components/ui/badge";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { cn } from "@/lib/utils";
 import { Leaf, Package, FileText, ChevronRight, Thermometer, ExternalLink } from "lucide-react";
 import { ProductSpecsTable } from "./ProductSpecsTable";
 import { ProductPriceTiers } from "./ProductPriceTiers";
@@ -26,6 +28,12 @@ interface ProductPageTemplateProps {
 
 export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
   const relatedProducts = getRelatedProducts(product.id);
+
+  // Image gallery state
+  const gallery = product.images?.gallery || ["", "", "", ""];
+  const mainImage = product.images?.main || "";
+  const allImages = [mainImage, ...gallery].slice(0, 5);
+  const [selectedImage, setSelectedImage] = useState(mainImage);
 
   const seoTitle = product.metaTitle || `Wholesale ${product.name} - Bulk Export from Indonesia`;
   const seoDescription = product.metaDescription || `Direct manufacturer of premium ${product.name.toLowerCase()} from Indonesia. ${product.isOrganic ? "USDA/EU Organic certified. " : ""}Bulk packaging available. MOQ ${product.pricing.moq}. View specs & pricing.`;
@@ -101,10 +109,10 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
         <section className="py-12 lg:py-16">
           <div className="container">
             <div className="grid gap-10 lg:grid-cols-2">
-              {/* Product Image */}
+              {/* Product Image Gallery */}
               <div className="relative">
                 <OptimizedImage
-                  src={product.images?.main || ""}
+                  src={selectedImage}
                   alt={`${product.name} wholesale supplier Indonesia - ${product.isOrganic ? "USDA & EU organic certified " : ""}${categoryLabels[product.category].toLowerCase()} for bulk export`}
                   aspectRatio="square"
                   width={600}
@@ -120,6 +128,32 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                     Organic Certified
                   </Badge>
                 )}
+                {/* Thumbnail Row */}
+                <div className="flex gap-2 mt-3">
+                  {allImages.map((img, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedImage(img)}
+                      className={cn(
+                        "rounded-lg overflow-hidden flex-shrink-0 transition-all",
+                        selectedImage === img
+                          ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
+                          : "ring-1 ring-border opacity-70 hover:opacity-100"
+                      )}
+                      aria-label={`${product.name} view ${index + 1}`}
+                    >
+                      <OptimizedImage
+                        src={img}
+                        alt={`${product.name} view ${index + 1}`}
+                        aspectRatio="square"
+                        width={80}
+                        height={80}
+                        className="w-16 h-16 sm:w-20 sm:h-20"
+                        fallbackIcon={<Package className="h-6 w-6 text-muted-foreground/30" />}
+                      />
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Wholesale Data Card */}
