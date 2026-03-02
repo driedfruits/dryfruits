@@ -1,6 +1,7 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { products, productCategories, type Product } from "@/data/companyData";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import {
   Table,
   TableBody,
@@ -86,7 +87,17 @@ const specCategoryLabels: Record<string, string> = {
 export function ProductComparisonTable() {
   const [selectedProductIds, setSelectedProductIds] = useState<string[]>([]);
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const maxProducts = 4;
+
+  useEffect(() => {
+    if (!carouselApi) return;
+    const onSelect = () => setActiveCardIndex(carouselApi.selectedScrollSnap());
+    carouselApi.on("select", onSelect);
+    onSelect();
+    return () => { carouselApi.off("select", onSelect); };
+  }, [carouselApi]);
 
   const filteredProducts = useMemo(() => {
     if (categoryFilter === "all") return products;
@@ -304,35 +315,57 @@ export function ProductComparisonTable() {
             </Table>
           </div>
 
-          {/* Mobile: Stacked Cards */}
-          <div className="md:hidden space-y-4">
-            {selectedProducts.map((product) => (
-              <div key={product.id} className="rounded-lg border border-border bg-background p-4">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-bold text-lg text-foreground">{product.name}</h3>
-                  <Button asChild variant="outline" size="sm" className="min-h-[44px]">
-                    <Link to={`/products/${product.category}/${product.id}`}>
-                      View <ExternalLink className="h-3 w-3 ml-1" />
-                    </Link>
-                  </Button>
-                </div>
-                {Object.entries(specsByCategory).map(([category, specs]) => (
-                  <div key={category} className="mb-3 last:mb-0">
-                    <p className="text-xs font-semibold text-primary uppercase tracking-wide mb-2">
-                      {specCategoryLabels[category]}
-                    </p>
-                    <div className="space-y-1.5">
-                      {specs.map((spec) => (
-                        <div key={spec.key} className="flex items-center justify-between gap-4 py-1.5 border-b border-border/30 last:border-0">
-                          <span className="text-sm text-muted-foreground">{spec.label}</span>
-                          <span className="text-sm font-medium text-foreground text-right">{spec.getValue(product)}</span>
+          {/* Mobile: Swipeable Cards */}
+          <div className="md:hidden">
+            {/* Dot indicators */}
+            <div className="flex items-center justify-center gap-2 mb-3">
+              {selectedProducts.map((_, idx) => (
+                <button
+                  key={idx}
+                  className="min-h-[48px] min-w-[48px] flex items-center justify-center"
+                  onClick={() => carouselApi?.scrollTo(idx)}
+                  aria-label={`Go to product ${idx + 1}`}
+                >
+                  <span className={`block w-2.5 h-2.5 rounded-full transition-colors ${idx === activeCardIndex ? "bg-primary" : "bg-muted-foreground/30"}`} />
+                </button>
+              ))}
+            </div>
+            {selectedProducts.length >= 2 && (
+              <p className="text-xs text-muted-foreground text-center mb-3">Swipe to compare</p>
+            )}
+            <Carousel opts={{ align: "start" }} setApi={setCarouselApi}>
+              <CarouselContent>
+                {selectedProducts.map((product) => (
+                  <CarouselItem key={product.id}>
+                    <div className="rounded-lg border border-border bg-background p-4">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="font-bold text-lg text-foreground">{product.name}</h3>
+                        <Button asChild variant="outline" size="sm" className="min-h-[44px]">
+                          <Link to={`/products/${product.category}/${product.id}`}>
+                            View <ExternalLink className="h-3 w-3 ml-1" />
+                          </Link>
+                        </Button>
+                      </div>
+                      {Object.entries(specsByCategory).map(([category, specs]) => (
+                        <div key={category} className="mb-3 last:mb-0">
+                          <p className="text-xs font-semibold text-primary uppercase tracking-wide mb-2">
+                            {specCategoryLabels[category]}
+                          </p>
+                          <div className="space-y-1.5">
+                            {specs.map((spec) => (
+                              <div key={spec.key} className="flex items-center justify-between gap-4 py-1.5 border-b border-border/30 last:border-0">
+                                <span className="text-sm text-muted-foreground">{spec.label}</span>
+                                <span className="text-sm font-medium text-foreground text-right">{spec.getValue(product)}</span>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       ))}
                     </div>
-                  </div>
+                  </CarouselItem>
                 ))}
-              </div>
-            ))}
+              </CarouselContent>
+            </Carousel>
           </div>
         </>
       ) : (
