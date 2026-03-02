@@ -79,7 +79,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
         />
       )}
 
-      <div className="min-h-screen bg-background pb-20 lg:pb-0">
+      <div className="min-h-screen bg-background pb-36 lg:pb-0">
         {/* Breadcrumb */}
         <div className="bg-muted/50 py-4">
           <div className="container">

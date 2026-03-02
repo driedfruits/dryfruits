@@ -9,7 +9,7 @@ interface StickyInquiryBarProps {
 
 export function StickyInquiryBar({ product }: StickyInquiryBarProps) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-t border-border shadow-lg lg:hidden pb-safe">
+    <div className="fixed bottom-16 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-t border-border shadow-lg lg:hidden">
       <div className="container py-4">
         <div className="flex items-center justify-between gap-3">
           <div className="flex-1 min-w-0">
