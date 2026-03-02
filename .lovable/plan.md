@@ -1,23 +1,17 @@
 
 
-## Add Validation for Critical Specification Fields
+## Add Product Description (Flavor Profile & Texture) Editing to Admin
 
-### Changes to `src/pages/ProductEditorPage.tsx`
+The "Product Description" section on the product page displays `flavorProfile` and `texture` fields. Applications are already editable. We need to add inputs for the two missing sensory fields.
 
-In the `validate()` function, add checks for three critical spec fields:
+### Changes
 
-```typescript
-if (!specs.moisture?.trim()) errors["specs.moisture"] = "Moisture content is required";
-if (!specs.shelfLife?.trim()) errors["specs.shelfLife"] = "Shelf life is required";
-if (!specs.origin?.trim()) errors["specs.origin"] = "Origin is required";
-```
+**`src/pages/ProductEditorPage.tsx`**
+- Add state: `const [flavorProfile, setFlavorProfile] = useState("")` and `const [texture, setTexture] = useState("")`
+- Update `loadProduct`: set from `product.flavorProfile` and `product.texture`
+- Update `jsonOutput`: include `flavorProfile` and `texture` (if non-empty)
+- Update `useMemo` deps
+- Add two `FormInput`/`FormTextarea` fields in the form, placed near the description/tagline area (before pricing)
 
-These will integrate with the existing validation error display (error count banner + list) and block the Copy action just like the other required fields.
-
-### Changes to `src/components/editor/EditorSpecificationsSection.tsx`
-
-- Accept an optional `errors` prop (`Record<string, string>`)
-- Pass `error={errors?.["specs.moisture"]}` etc. to the three critical `FormInput` fields and mark them `required`
-
-Single-file touch points, minimal change.
+**No new components needed** — just two simple text inputs added inline to the existing editor page.
 
