@@ -1,40 +1,19 @@
 
 
-## Merge Products Page and Category Page into One
+## Prerender.io Integration
 
-Since there is only one category (`dried-fruits`), `/products` and `/products/dried-fruits` render nearly identical content — a hero, breadcrumbs, and a product grid. The difference is that `ProductsPage` also has a `ProductComparisonTable` and `ProductCategoryPage` has an `ItemList` schema and breadcrumb nav.
+Your Cloudflare Worker (`cloudflare/prerender-worker.js`) is already fully built with bot detection and Prerender.io proxying. The `index.html` already has `<meta name="fragment" content="!">`. The deployment instructions in `cloudflare/README.md` are complete.
 
-### Plan
+The only missing piece is **client-side status code hints** so Prerender.io returns proper HTTP status codes to search engines:
 
-**1. Merge into `ProductsPage.tsx`**
+### Changes
 
-Combine the best of both pages into `ProductsPage.tsx`:
-- Keep the hero section, comparison table, and product grid from `ProductsPage`
-- Add the `ItemList` schema from `ProductCategoryPage`
-- Add the breadcrumb nav strip from `ProductCategoryPage`
-- Use `products` directly (all products = all dried fruits)
+**1. Add `prerender-status-code` support to `SEO.tsx`**
+- Add an optional `prerenderStatusCode` prop (number)
+- When set, render `<meta name="prerender-status-code" content="404" />` (or whatever code)
 
-**2. Redirect `/products/dried-fruits` → `/products`**
+**2. Set 404 status on `NotFound.tsx`**
+- Pass `prerenderStatusCode={404}` to the SEO component so Prerender.io returns a real 404 to bots instead of a 200 with "not found" content
 
-In `App.tsx`, replace the `ProductCategoryPage` route with a redirect:
-```
-<Route path="/products/dried-fruits" element={<Navigate to="/products" replace />} />
-```
-
-Keep the generic `/products/:category` route pointing to `ProductCategoryPage` as a fallback for future categories, or remove it entirely and show a redirect/404.
-
-**3. Update internal links**
-
-All links pointing to `/products/dried-fruits` (found in `Footer.tsx` and breadcrumbs in `ProductPageTemplate.tsx`) should point to `/products` instead.
-
-**4. Delete or simplify `ProductCategoryPage.tsx`**
-
-Since the only category now redirects, this file can be deleted or kept as a stub for future categories.
-
-**5. Files changed**
-- `src/pages/ProductsPage.tsx` — add breadcrumb nav, ItemList schema
-- `src/App.tsx` — redirect `/products/dried-fruits` to `/products`
-- `src/components/products/ProductPageTemplate.tsx` — update breadcrumb link
-- `src/components/layout/Footer.tsx` — update "All Dried Fruits" link if needed
-- `src/pages/ProductCategoryPage.tsx` — delete
+That's it — the Cloudflare Worker, bot list, and deployment setup are already complete. These two small changes ensure bots get correct HTTP semantics through Prerender.io.
 
