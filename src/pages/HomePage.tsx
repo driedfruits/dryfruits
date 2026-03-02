@@ -1,10 +1,9 @@
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { socialImages } from "@/lib/socialImages";
-import { generateWebSiteSchema, generateOrganizationSchema } from "@/lib/schema";
+import { generateWebSiteSchema } from "@/lib/schema";
 import { 
   HeroSection,
-  WhyChooseUs,
   ManufacturingSection,
   ProductCategoriesSection,
   CertificationsSection,
@@ -29,13 +28,6 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(generateWebSiteSchema()),
-        }}
-      />
-      {/* Organization Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(generateOrganizationSchema()),
         }}
       />
 

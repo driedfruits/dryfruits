@@ -13,3 +13,4 @@ export { ContainerCalculator } from "./ContainerCalculator";
 export { ProductComparisonTable } from "./ProductComparisonTable";
 export { ProductCard } from "./ProductCard";
 export { CategoryCard } from "./CategoryCard";
+export { ProductSensoryApplications } from "./ProductSensoryApplications";
