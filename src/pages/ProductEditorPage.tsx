@@ -16,6 +16,7 @@ import {
   EditorComplianceSection,
   EditorFaqsSection,
   EditorRelatedSection,
+  EditorSpecificationsSection,
 } from "@/components/editor";
 
 const ProductEditorPage = () => {
@@ -39,7 +40,7 @@ const ProductEditorPage = () => {
   const [peakSeason, setPeakSeason] = useState("");
   const [offPeakSeason, setOffPeakSeason] = useState("");
   const [currentStatus, setCurrentStatus] = useState("in-stock");
-  const [sizeForm, setSizeForm] = useState("");
+  const [specs, setSpecs] = useState<Record<string, string>>({});
   const [tagline, setTagline] = useState("");
   const [description, setDescription] = useState("");
   const [packagingBulk, setPackagingBulk] = useState("");
@@ -80,7 +81,13 @@ const ProductEditorPage = () => {
     setPeakSeason(product.availability?.peakSeason || "");
     setOffPeakSeason(product.availability?.offPeakSeason || "");
     setCurrentStatus(product.availability?.currentStatus || "in-stock");
-    setSizeForm(product.specifications.size || "");
+    const specEntries: Record<string, string> = {};
+    if (product.specifications) {
+      Object.entries(product.specifications).forEach(([key, value]) => {
+        specEntries[key] = value || "";
+      });
+    }
+    setSpecs(specEntries);
     setPackagingBulk(product.packaging.bulk);
     setPackagingRetail(product.packaging.retail);
     setPackagingCustom(product.packaging.custom);
@@ -160,7 +167,7 @@ const ProductEditorPage = () => {
         pricing: { fobBase, moq, leadTime, priceTiers: priceTiers.length > 0 ? priceTiers : undefined, samplePolicy: samplePolicy || undefined },
         certifications: certs,
         availability: { peakSeason: peakSeason || undefined, offPeakSeason: offPeakSeason || undefined, currentStatus },
-        specifications: { size: sizeForm },
+        specifications: Object.fromEntries(Object.entries(specs).filter(([_, v]) => v)),
         applications: applications.length > 0 ? applications : undefined,
         packaging: { bulk: packagingBulk, retail: packagingRetail, custom: packagingCustom },
         logistics: { portOfLoading: portOfLoading || undefined, incoterms: incoterms ? incoterms.split(",").map((s) => s.trim()) : undefined, containerLoad20ft: containerLoad20ft || undefined, containerLoad40ft: containerLoad40ft || undefined },
@@ -170,7 +177,7 @@ const ProductEditorPage = () => {
       },
       null, 2
     );
-  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, sizeForm, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
+  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
 
   const handleCopy = async () => {
     if (!validate()) {
@@ -195,7 +202,8 @@ const ProductEditorPage = () => {
         <EditorImagesSection imgMain={imgMain} imgMainAlt={imgMainAlt} setImgMainAlt={setImgMainAlt} imgThumb={imgThumb} imgThumbAlt={imgThumbAlt} setImgThumbAlt={setImgThumbAlt} imgGallery={imgGallery} updateGalleryImage={updateGalleryImage} />
         <FormInput label="Tagline" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="e.g. Tropical sweetness in every bite" required error={validationErrors.tagline} />
         <FormTextarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Product description..." required error={validationErrors.description} />
-        <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} priceTiers={priceTiers} addTier={addTier} removeTier={removeTier} updateTier={updateTier} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} sizeForm={sizeForm} setSizeForm={setSizeForm} errors={validationErrors} />
+        <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} priceTiers={priceTiers} addTier={addTier} removeTier={removeTier} updateTier={updateTier} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} errors={validationErrors} />
+        <EditorSpecificationsSection specs={specs} updateSpec={(key, value) => setSpecs(prev => ({ ...prev, [key]: value }))} />
         <EditorCertificationsSection certs={certs} toggleCert={toggleCert} errors={validationErrors} />
         <EditorAvailabilitySection peakSeason={peakSeason} setPeakSeason={setPeakSeason} offPeakSeason={offPeakSeason} setOffPeakSeason={setOffPeakSeason} currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} />
         <EditorPackagingSection bulk={packagingBulk} setBulk={setPackagingBulk} retail={packagingRetail} setRetail={setPackagingRetail} custom={packagingCustom} setCustom={setPackagingCustom} errors={validationErrors} />
