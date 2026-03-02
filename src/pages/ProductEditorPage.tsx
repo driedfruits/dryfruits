@@ -32,6 +32,10 @@ const ProductEditorPage = () => {
   const [certs, setCerts] = useState<string[]>([]);
   const [moq, setMoq] = useState("");
   const [leadTime, setLeadTime] = useState("");
+  const [category, setCategory] = useState<"dried-fruits">("dried-fruits");
+  const [isOrganic, setIsOrganic] = useState(false);
+  const [sku, setSku] = useState("");
+  const [hsCode, setHsCode] = useState("");
   const [peakSeason, setPeakSeason] = useState("");
   const [offPeakSeason, setOffPeakSeason] = useState("");
   const [currentStatus, setCurrentStatus] = useState("in-stock");
@@ -61,6 +65,10 @@ const ProductEditorPage = () => {
 
   const loadProduct = (product: Product) => {
     setName(product.name);
+    setCategory(product.category);
+    setIsOrganic(product.isOrganic);
+    setSku(product.sku || "");
+    setHsCode(product.hsCode || "");
     setMetaTitle(product.metaTitle || "");
     setMetaDescription(product.metaDescription || "");
     setTagline(product.tagline);
@@ -140,7 +148,8 @@ const ProductEditorPage = () => {
   const jsonOutput = useMemo(() => {
     return JSON.stringify(
       {
-        id: selectedId, name,
+        id: selectedId, name, category, isOrganic,
+        sku: sku || undefined, hsCode: hsCode || undefined,
         images: (imgMain || imgThumb || imgGallery.length > 0) ? {
           main: imgMain || undefined, mainAlt: imgMainAlt || undefined,
           thumbnail: imgThumb || undefined, thumbnailAlt: imgThumbAlt || undefined,
@@ -161,7 +170,7 @@ const ProductEditorPage = () => {
       },
       null, 2
     );
-  }, [selectedId, name, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, sizeForm, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
+  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, sizeForm, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
 
   const handleCopy = async () => {
     if (!validate()) {
