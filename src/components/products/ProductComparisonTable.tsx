@@ -37,7 +37,7 @@ const comparisonSpecs: ComparisonSpec[] = [
   { key: "waterActivity", label: "Water Activity", category: "quality", getValue: (p) => p.specifications.waterActivity || "-" },
   { key: "brixLevel", label: "Brix Level", category: "quality", getValue: (p) => p.specifications.brixLevel || "-" },
   { key: "grade", label: "Grade", category: "quality", getValue: (p) => p.specifications.grade || "-" },
-  { key: "meshSize", label: "Mesh Size", category: "quality", getValue: (p) => p.specifications.meshSize || "-" },
+  
   // Safety
   { key: "so2Level", label: "SO₂ Level", category: "safety", getValue: (p) => p.specifications.so2Level || "-" },
   { key: "totalPlateCount", label: "Total Plate Count", category: "safety", getValue: (p) => p.specifications.totalPlateCount || "-" },

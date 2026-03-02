@@ -61,7 +61,7 @@ export const storageGuidelines = {
     },
     {
       mistake: "Improper sealing after sampling",
-      consequence: "Exposed product absorbs ambient moisture rapidly, especially powders",
+      consequence: "Exposed product absorbs ambient moisture rapidly, especially finely cut products",
       solution: "Use heat sealers or zip-lock closures immediately. Never leave bags open overnight",
     },
     {

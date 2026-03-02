@@ -8,7 +8,7 @@ export { ProductFAQ } from "./ProductFAQ";
 export { ProductCompliance } from "./ProductCompliance";
 export { ProductSeasonality } from "./ProductSeasonality";
 export { StickyInquiryBar } from "./StickyInquiryBar";
-export { ProductQualitySpecs } from "./ProductQualitySpecs";
+
 export { ContainerCalculator } from "./ContainerCalculator";
 export { ProductComparisonTable } from "./ProductComparisonTable";
 export { ProductCard } from "./ProductCard";
