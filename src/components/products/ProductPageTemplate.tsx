@@ -187,6 +187,18 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                     <span className="font-medium">Lead Time:</span>
                     <span className="text-muted-foreground">{product.pricing.leadTime}</span>
                   </li>
+                  {product.specifications.size && (
+                    <li className="flex items-center gap-2">
+                      <span className="font-medium">Cut Size / Form:</span>
+                      <span className="text-muted-foreground">{product.specifications.size}</span>
+                    </li>
+                  )}
+                  {product.availability?.peakSeason && (
+                    <li className="flex items-center gap-2">
+                      <span className="font-medium">Season:</span>
+                      <span className="text-muted-foreground">{product.availability.peakSeason}</span>
+                    </li>
+                  )}
                   {product.pricing.samplePolicy && (
                     <li className="flex items-center gap-2">
                       <span className="font-medium">Sample:</span>
