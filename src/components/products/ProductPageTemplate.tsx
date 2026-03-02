@@ -30,9 +30,9 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
   const relatedProducts = getRelatedProducts(product.id);
 
   // Image gallery state
-  const gallery = product.images?.gallery || ["", "", "", ""];
+  const gallery = product.images?.gallery || ["", "", ""];
   const mainImage = product.images?.main || "";
-  const allImages = [mainImage, ...gallery].slice(0, 5);
+  const allImages = [mainImage, ...gallery].slice(0, 4);
   const [selectedImage, setSelectedImage] = useState(mainImage);
 
   const seoTitle = product.metaTitle || `Wholesale ${product.name} - Bulk Export from Indonesia`;
