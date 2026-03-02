@@ -1,45 +1,35 @@
 
 
-## Product Images: What's Needed
+## Add Full Specifications Editing to Product Editor
 
-All 9 products with `images` fields have empty paths (`main: ""`, `thumbnail: ""`, `gallery: []`), and the `dried-papaya` entry has no `images` field at all. There are **no product image files** anywhere in the project (`public/` has only favicon, placeholder, and SEO files).
+### Overview
+Replace the single "Size & Form" input with a dedicated specifications section covering all 21 spec fields from the Product interface.
 
-### The Problem
+### Changes
 
-I cannot generate or create product photographs — actual product photos need to be **uploaded by you**. Once you upload images, I can:
+**1. Create `src/components/editor/EditorSpecificationsSection.tsx`**
+- Data-driven component using the spec field keys and labels from `specLabels`
+- Groups fields into 4 categories: Physical, Chemical/Safety, Microbiology, Storage/Processing
+- Each field is a `FormInput` with the human-readable label
+- Props: `specs: Record<string, string>`, `updateSpec: (key: string, value: string) => void`
 
-1. **Organize them** into a `/public/images/products/` folder structure
-2. **Wire them up** in `products.ts` with proper paths and SEO alt text
-3. **Generate thumbnails** references (smaller versions you provide)
-4. **Add gallery images** for multi-angle views on product detail pages
+**2. Update `src/pages/ProductEditorPage.tsx`**
+- Replace `sizeForm` state with `const [specs, setSpecs] = useState<Record<string, string>>({})`
+- Update `loadProduct`: iterate `product.specifications` keys to populate `specs`
+- Update `jsonOutput`: output `specifications` from `specs` (filter empty values)
+- Replace the `sizeForm` FormInput + remove `sizeForm` from EditorPricingSection usage
+- Add `<EditorSpecificationsSection>` to the form
+- Update `useMemo` deps
 
-### Recommended Approach
+**3. Update `src/components/editor/EditorPricingSection.tsx`**
+- Remove `sizeForm` / `setSizeForm` props (moved to specs section)
 
-**You upload product photos** (via chat or file upload), and I will:
+**4. Update `src/components/editor/index.ts`**
+- Export the new `EditorSpecificationsSection`
 
-- Save them to `public/images/products/{product-id}/` (e.g., `public/images/products/dried-mango/main.webp`)
-- Update all 10 product entries in `products.ts` with correct paths and descriptive alt text
-- Use WebP format for optimal loading speed
-
-### What to Upload
-
-For each product, ideally provide:
-- **1 main image** — hero product shot (recommended 600×600px+)
-- **1 thumbnail** — smaller version or different angle
-- **2-3 gallery images** — close-ups, packaging, or different cuts
-
-### Products Needing Images
-
-1. `dried-papaya` — no images field at all
-2. `dried-pineapple` — empty paths
-3. `dried-avocado` — empty paths
-4. `dried-mango` — empty paths
-5. `dried-dragon-fruit` — empty paths
-6. `dried-jackfruit` — empty paths
-7. `dried-coconut` — empty paths
-8. `dried-banana` — empty paths
-9. `dried-guava` — empty paths
-10. `dried-salak` — empty paths
-
-Please upload your product photos and I will handle all the wiring and optimization.
+### Spec Fields (21 total)
+Physical: size, color, moisture, waterActivity, grade, defects, origin
+Chemical: brixLevel, so2Level, additives, foreignMatter, fatContent, aflatoxins
+Microbiology: totalPlateCount, yeastMold, salmonella, eColi, testingMethod
+Storage/Processing: shelfLife, storageTemp, storageHumidity, processingMethod
 
