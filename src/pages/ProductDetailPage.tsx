@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState, useEffect } from "react";
+import { Suspense, lazy } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { ProductPageSkeleton } from "@/components/products";
@@ -14,15 +14,6 @@ const ProductPageTemplate = lazy(() =>
 
 export default function ProductDetailPage() {
   const { category, productId } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Brief loading state for perceived performance on route changes
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 300);
-    return () => clearTimeout(timer);
-  }, [productId]);
-
   // Check if productId is an alias that needs redirecting
   const redirectProductId = productId ? getProductRedirect(productId) : null;
   if (redirectProductId) {
@@ -43,15 +34,11 @@ export default function ProductDetailPage() {
 
   return (
     <Layout>
-      {isLoading ? (
-        <ProductPageSkeleton />
-      ) : (
-        <Suspense fallback={<ProductPageSkeleton />}>
-          <div className="animate-content-reveal">
-            <ProductPageTemplate product={product} />
-          </div>
-        </Suspense>
-      )}
+      <Suspense fallback={<ProductPageSkeleton />}>
+        <div className="animate-content-reveal">
+          <ProductPageTemplate product={product} />
+        </div>
+      </Suspense>
     </Layout>
   );
 }
