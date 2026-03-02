@@ -166,7 +166,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                   Wholesale {product.name} – {product.specifications.size?.split(",")[0]}
                 </h1>
                 <p className="text-muted-foreground mb-4">
-                  Origin: Indonesia | {product.availability?.currentStatus === "in-stock" ? "✓ In Stock" : "Pre-order Available"}
+                  Origin: Indonesia
                 </p>
                 
                 {/* Price */}
