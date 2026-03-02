@@ -18,6 +18,7 @@ const NotFound = () => {
         title="Page Not Found"
         description="The page you're looking for doesn't exist or has been moved."
         noIndex={true}
+        prerenderStatusCode={404}
       />
       <div className="flex min-h-[60vh] items-center justify-center">
         <div className="text-center px-4">

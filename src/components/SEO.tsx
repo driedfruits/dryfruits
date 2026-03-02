@@ -11,6 +11,7 @@ interface SEOProps {
   ogType?: "website" | "product" | "article";
   ogImage?: string;
   noIndex?: boolean;
+  prerenderStatusCode?: number;
 }
 
 // Default to home social image
@@ -24,6 +25,7 @@ export function SEO({
   ogType = "website",
   ogImage = DEFAULT_OG_IMAGE,
   noIndex = false,
+  prerenderStatusCode,
 }: SEOProps) {
   const fullTitle = title
     ? `${title} | ${companyInfo.shortName}`
@@ -52,6 +54,7 @@ export function SEO({
       <link rel="canonical" href={fullCanonical} />
       
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
+      {prerenderStatusCode && <meta name="prerender-status-code" content={String(prerenderStatusCode)} />}
 
       {/* Geo Tags */}
       <meta name="geo.region" content="ID-JT" />
