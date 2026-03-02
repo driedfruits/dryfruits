@@ -2,7 +2,8 @@ import { useState, useMemo } from "react";
 import { products, type Product } from "@/data/products";
 import { FormInput, FormTextarea, FormSelect } from "@/components/forms/FormElements";
 import { Button } from "@/components/ui/button";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, AlertTriangle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import {
   EditorSeoSection,
   EditorImagesSection,
@@ -20,6 +21,8 @@ import {
 const ProductEditorPage = () => {
   const [selectedId, setSelectedId] = useState(products[0]?.id || "");
   const [copied, setCopied] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const { toast } = useToast();
 
   // State
   const [name, setName] = useState("");
@@ -100,8 +103,25 @@ const ProductEditorPage = () => {
   const handleProductChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const id = e.target.value;
     setSelectedId(id);
+    setValidationErrors({});
     const product = products.find((p) => p.id === id);
     if (product) loadProduct(product);
+  };
+
+  // Validation
+  const validate = (): boolean => {
+    const errors: Record<string, string> = {};
+    if (!name.trim()) errors.name = "Product name is required";
+    if (!tagline.trim()) errors.tagline = "Tagline is required";
+    if (!description.trim()) errors.description = "Description is required";
+    if (!fobBase.trim()) errors.fobBase = "FOB base price is required";
+    if (!moq.trim()) errors.moq = "MOQ is required";
+    if (!leadTime.trim()) errors.leadTime = "Lead time is required";
+    if (!packagingBulk.trim()) errors.packagingBulk = "Bulk packaging is required";
+    if (!packagingRetail.trim()) errors.packagingRetail = "Retail packaging is required";
+    if (certs.length === 0) errors.certs = "At least one certification is required";
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
   // Helpers
@@ -144,12 +164,17 @@ const ProductEditorPage = () => {
   }, [selectedId, name, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, sizeForm, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
 
   const handleCopy = async () => {
+    if (!validate()) {
+      toast({ title: "Validation failed", description: `${Object.keys(validationErrors).length || "Some"} required fields are missing.`, variant: "destructive" });
+      return;
+    }
     await navigator.clipboard.writeText(jsonOutput);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const productOptions = products.map((p) => ({ value: p.id, label: p.name }));
+  const errorCount = Object.keys(validationErrors).length;
 
   return (
     <div className="min-h-screen bg-background p-4 sm:p-8 max-w-3xl mx-auto">
@@ -157,14 +182,14 @@ const ProductEditorPage = () => {
       <FormSelect label="Select Product" options={productOptions} value={selectedId} onChange={handleProductChange} />
 
       <div className="mt-8 space-y-6">
-        <EditorSeoSection name={name} setName={setName} metaTitle={metaTitle} setMetaTitle={setMetaTitle} metaDescription={metaDescription} setMetaDescription={setMetaDescription} />
+        <EditorSeoSection name={name} setName={setName} metaTitle={metaTitle} setMetaTitle={setMetaTitle} metaDescription={metaDescription} setMetaDescription={setMetaDescription} errors={validationErrors} />
         <EditorImagesSection imgMain={imgMain} imgMainAlt={imgMainAlt} setImgMainAlt={setImgMainAlt} imgThumb={imgThumb} imgThumbAlt={imgThumbAlt} setImgThumbAlt={setImgThumbAlt} imgGallery={imgGallery} updateGalleryImage={updateGalleryImage} />
-        <FormInput label="Tagline" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="e.g. Tropical sweetness in every bite" />
-        <FormTextarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Product description..." />
-        <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} priceTiers={priceTiers} addTier={addTier} removeTier={removeTier} updateTier={updateTier} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} sizeForm={sizeForm} setSizeForm={setSizeForm} />
-        <EditorCertificationsSection certs={certs} toggleCert={toggleCert} />
+        <FormInput label="Tagline" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="e.g. Tropical sweetness in every bite" required error={validationErrors.tagline} />
+        <FormTextarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Product description..." required error={validationErrors.description} />
+        <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} priceTiers={priceTiers} addTier={addTier} removeTier={removeTier} updateTier={updateTier} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} sizeForm={sizeForm} setSizeForm={setSizeForm} errors={validationErrors} />
+        <EditorCertificationsSection certs={certs} toggleCert={toggleCert} errors={validationErrors} />
         <EditorAvailabilitySection peakSeason={peakSeason} setPeakSeason={setPeakSeason} offPeakSeason={offPeakSeason} setOffPeakSeason={setOffPeakSeason} currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} />
-        <EditorPackagingSection bulk={packagingBulk} setBulk={setPackagingBulk} retail={packagingRetail} setRetail={setPackagingRetail} custom={packagingCustom} setCustom={setPackagingCustom} />
+        <EditorPackagingSection bulk={packagingBulk} setBulk={setPackagingBulk} retail={packagingRetail} setRetail={setPackagingRetail} custom={packagingCustom} setCustom={setPackagingCustom} errors={validationErrors} />
         <EditorLogisticsSection portOfLoading={portOfLoading} setPortOfLoading={setPortOfLoading} incoterms={incoterms} setIncoterms={setIncoterms} containerLoad20ft={containerLoad20ft} setContainerLoad20ft={setContainerLoad20ft} containerLoad40ft={containerLoad40ft} setContainerLoad40ft={setContainerLoad40ft} />
         <EditorApplicationsSection applications={applications} addApplication={addApplication} removeApplication={removeApplication} />
         <EditorComplianceSection usa={complianceUsa} setUsa={setComplianceUsa} eu={complianceEu} setEu={setComplianceEu} global={complianceGlobal} setGlobal={setComplianceGlobal} />
@@ -174,6 +199,19 @@ const ProductEditorPage = () => {
 
       {/* JSON Output */}
       <div className="mt-8 space-y-3">
+        {errorCount > 0 && (
+          <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
+            <div className="flex items-center gap-2 font-medium mb-2">
+              <AlertTriangle className="h-4 w-4" />
+              {errorCount} required field{errorCount > 1 ? "s" : ""} missing:
+            </div>
+            <ul className="list-disc list-inside space-y-0.5 text-xs">
+              {Object.values(validationErrors).map((msg, i) => (
+                <li key={i}>{msg}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800 dark:border-blue-800 dark:bg-blue-950/30 dark:text-blue-300">
           <p className="font-medium mb-1">How to apply changes:</p>
           <ol className="list-decimal list-inside space-y-1 text-xs">
