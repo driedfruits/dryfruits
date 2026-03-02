@@ -41,7 +41,7 @@ export default function HomePage() {
 
       <HeroSection />
       <ManufacturingSection />
-      <WhyChooseUs />
+      
       <ProductCategoriesSection />
       <CertificationsSection />
       <TargetSegmentsSection />
