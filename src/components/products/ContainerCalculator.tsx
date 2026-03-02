@@ -13,9 +13,6 @@ const bagSizeOptions = [
 
 const categoryLabels: Record<Product["category"], string> = {
   "dried-fruits": "Dried Fruits",
-  "powdered-fruits": "Powdered Fruits",
-  "vacuum-fried": "Vacuum Fried",
-  "ginger-turmeric": "Ginger & Turmeric",
 };
 
 // Parse container load string like "15-18 MT" into { min, max } in kg

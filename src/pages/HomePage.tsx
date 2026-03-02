@@ -19,7 +19,7 @@ export default function HomePage() {
     <Layout>
       <SEO
         title="Wholesale Dried Fruit Manufacturer & Exporter from Indonesia"
-        description="Indonesia's premier B2B dried fruit manufacturer. USDA & EU Organic certified. Vacuum-fried snacks, dried tropical fruits & private label solutions. MOQ 500kg. Export to 18+ countries."
+        description="Indonesia's premier B2B dried fruit manufacturer. USDA & EU Organic certified. Premium dried tropical fruits & private label solutions. MOQ 500kg. Export to 18+ countries."
         keywords={["wholesale dried fruit Indonesia", "dried fruit manufacturer", "organic dried fruit exporter", "B2B dried fruit supplier", "Indonesian fruit exporter"]}
         canonical="/"
         ogImage={socialImages.home}

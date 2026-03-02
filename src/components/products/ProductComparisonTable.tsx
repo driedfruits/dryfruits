@@ -38,7 +38,6 @@ const comparisonSpecs: ComparisonSpec[] = [
   { key: "brixLevel", label: "Brix Level", category: "quality", getValue: (p) => p.specifications.brixLevel || "-" },
   { key: "grade", label: "Grade", category: "quality", getValue: (p) => p.specifications.grade || "-" },
   { key: "meshSize", label: "Mesh Size", category: "quality", getValue: (p) => p.specifications.meshSize || "-" },
-  { key: "curcuminContent", label: "Curcumin Content", category: "quality", getValue: (p) => p.specifications.curcuminContent || "-" },
   // Safety
   { key: "so2Level", label: "SO₂ Level", category: "safety", getValue: (p) => p.specifications.so2Level || "-" },
   { key: "totalPlateCount", label: "Total Plate Count", category: "safety", getValue: (p) => p.specifications.totalPlateCount || "-" },
@@ -71,11 +70,8 @@ const comparisonSpecs: ComparisonSpec[] = [
 ];
 
 const categoryLabels: Record<string, string> = {
-  "all": "All Categories",
+  "all": "All Products",
   "dried-fruits": "Dried Fruits",
-  "powdered-fruits": "Fruit Powders",
-  "vacuum-fried": "Vacuum Fried",
-  "ginger-turmeric": "Ginger & Turmeric",
 };
 
 const specCategoryLabels: Record<string, string> = {

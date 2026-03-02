@@ -23,9 +23,6 @@ export const socialImages = {
   
   // Category pages
   driedFruits: `${SOCIAL_IMAGE_BASE}/dried-fruits-og.jpg`,
-  powderedFruits: `${SOCIAL_IMAGE_BASE}/powdered-fruits-og.jpg`,
-  vacuumFried: `${SOCIAL_IMAGE_BASE}/vacuum-fried-og.jpg`,
-  gingerTurmeric: `${SOCIAL_IMAGE_BASE}/ginger-turmeric-og.jpg`,
   
   // Default fallback
   default: `${SOCIAL_IMAGE_BASE}/default-og.jpg`,
@@ -35,9 +32,6 @@ export const socialImages = {
 export function getCategorySocialImage(categoryId: string): string {
   const mapping: Record<string, string> = {
     "dried-fruits": socialImages.driedFruits,
-    "powdered-fruits": socialImages.powderedFruits,
-    "vacuum-fried": socialImages.vacuumFried,
-    "ginger-turmeric": socialImages.gingerTurmeric,
   };
   return mapping[categoryId] || socialImages.products;
 }

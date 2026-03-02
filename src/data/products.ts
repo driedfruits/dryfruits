@@ -3,7 +3,7 @@ export interface Product {
   // Identity
   id: string;
   name: string;
-  category: "dried-fruits" | "powdered-fruits" | "vacuum-fried" | "ginger-turmeric";
+  category: "dried-fruits";
   sku?: string;
   hsCode?: string;
   
@@ -59,16 +59,6 @@ export interface Product {
     storageTemp?: string;
     storageHumidity?: string;
     yeastMold?: string;
-    // Vacuum-fried specific specs
-    sliceThickness?: string;
-    fryingTemperature?: string;
-    vacuumPressure?: string;
-    peroxideValue?: string;
-    freeFattyAcids?: string;
-    colorRetention?: string;
-    vitaminRetention?: string;
-    antioxidant?: string;
-    packagingMethod?: string;
   };
   
   // Seasonal availability
