@@ -50,6 +50,15 @@ const ProductEditorPage = () => {
   const [containerLoad20ft, setContainerLoad20ft] = useState("");
   const [containerLoad40ft, setContainerLoad40ft] = useState("");
 
+  // Applications, Compliance, FAQs, Related Products
+  const [applications, setApplications] = useState<string[]>([]);
+  const [newApp, setNewApp] = useState("");
+  const [complianceUsa, setComplianceUsa] = useState("");
+  const [complianceEu, setComplianceEu] = useState("");
+  const [complianceGlobal, setComplianceGlobal] = useState("");
+  const [faqs, setFaqs] = useState<Array<{ question: string; answer: string }>>([]);
+  const [relatedProducts, setRelatedProducts] = useState<string[]>([]);
+
   const loadProduct = (product: Product) => {
     setName(product.name);
     setTagline(product.tagline);
@@ -71,6 +80,13 @@ const ProductEditorPage = () => {
     setIncoterms(product.logistics?.incoterms?.join(", ") || "");
     setContainerLoad20ft(product.logistics?.containerLoad20ft || "");
     setContainerLoad40ft(product.logistics?.containerLoad40ft || "");
+    setApplications([...(product.applications || [])]);
+    setNewApp("");
+    setComplianceUsa(product.compliance?.usa || "");
+    setComplianceEu(product.compliance?.eu || "");
+    setComplianceGlobal(product.compliance?.global || "");
+    setFaqs(product.faqs?.map((f) => ({ ...f })) || []);
+    setRelatedProducts([...(product.relatedProducts || [])]);
   };
 
   useState(() => {
@@ -97,6 +113,29 @@ const ProductEditorPage = () => {
     setPriceTiers((prev) => prev.map((t, idx) => (idx === i ? { ...t, [field]: val } : t)));
   };
 
+  // Application helpers
+  const addApplication = () => {
+    if (newApp.trim()) {
+      setApplications((prev) => [...prev, newApp.trim()]);
+      setNewApp("");
+    }
+  };
+  const removeApplication = (i: number) => setApplications((prev) => prev.filter((_, idx) => idx !== i));
+
+  // FAQ helpers
+  const addFaq = () => setFaqs((prev) => [...prev, { question: "", answer: "" }]);
+  const removeFaq = (i: number) => setFaqs((prev) => prev.filter((_, idx) => idx !== i));
+  const updateFaq = (i: number, field: "question" | "answer", val: string) => {
+    setFaqs((prev) => prev.map((f, idx) => (idx === i ? { ...f, [field]: val } : f)));
+  };
+
+  // Related products toggle
+  const toggleRelated = (id: string) => {
+    setRelatedProducts((prev) =>
+      prev.includes(id) ? prev.filter((r) => r !== id) : [...prev, id]
+    );
+  };
+
   const jsonOutput = useMemo(() => {
     return JSON.stringify(
       {
@@ -118,6 +157,7 @@ const ProductEditorPage = () => {
           currentStatus,
         },
         specifications: { size: sizeForm },
+        applications: applications.length > 0 ? applications : undefined,
         packaging: {
           bulk: packagingBulk,
           retail: packagingRetail,
@@ -129,11 +169,18 @@ const ProductEditorPage = () => {
           containerLoad20ft: containerLoad20ft || undefined,
           containerLoad40ft: containerLoad40ft || undefined,
         },
+        compliance: (complianceUsa || complianceEu || complianceGlobal) ? {
+          usa: complianceUsa || undefined,
+          eu: complianceEu || undefined,
+          global: complianceGlobal || undefined,
+        } : undefined,
+        faqs: faqs.length > 0 ? faqs : undefined,
+        relatedProducts: relatedProducts.length > 0 ? relatedProducts : undefined,
       },
       null,
       2
     );
-  }, [selectedId, name, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, sizeForm, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft]);
+  }, [selectedId, name, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, sizeForm, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(jsonOutput);
@@ -226,6 +273,64 @@ const ProductEditorPage = () => {
           <FormInput label="Incoterms (comma-separated)" value={incoterms} onChange={(e) => setIncoterms(e.target.value)} placeholder="e.g. FOB, CIF, CFR" />
           <FormInput label="Container Load 20ft" value={containerLoad20ft} onChange={(e) => setContainerLoad20ft(e.target.value)} placeholder="e.g. 15-18 MT" />
           <FormInput label="Container Load 40ft" value={containerLoad40ft} onChange={(e) => setContainerLoad40ft(e.target.value)} placeholder="e.g. 22-26 MT" />
+        </div>
+
+        {/* Applications */}
+        <div className="space-y-4 rounded-lg border border-border p-4">
+          <p className="text-sm font-medium text-foreground">Applications</p>
+          <div className="flex flex-wrap gap-2">
+            {applications.map((app, i) => (
+              <span key={i} className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-sm text-foreground">
+                {app}
+                <button onClick={() => removeApplication(i)} className="ml-1 text-muted-foreground hover:text-destructive">×</button>
+              </span>
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <FormInput label="" value={newApp} onChange={(e) => setNewApp(e.target.value)} placeholder="e.g. Snacking, Trail mix" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addApplication())} />
+            <Button variant="outline" size="sm" onClick={addApplication} className="shrink-0 mt-auto">
+              <Plus className="h-4 w-4 mr-1" /> Add
+            </Button>
+          </div>
+        </div>
+
+        {/* Compliance */}
+        <div className="space-y-4 rounded-lg border border-border p-4">
+          <p className="text-sm font-medium text-foreground">Compliance</p>
+          <FormInput label="USA" value={complianceUsa} onChange={(e) => setComplianceUsa(e.target.value)} placeholder="e.g. FDA facility registered; Prior Notice compliant" />
+          <FormInput label="EU" value={complianceEu} onChange={(e) => setComplianceEu(e.target.value)} placeholder="e.g. Phytosanitary certified; MRL compliant" />
+          <FormInput label="Global" value={complianceGlobal} onChange={(e) => setComplianceGlobal(e.target.value)} placeholder="e.g. Codex Alimentarius compliant" />
+        </div>
+
+        {/* FAQs */}
+        <div className="space-y-4 rounded-lg border border-border p-4">
+          <p className="text-sm font-medium text-foreground">FAQs</p>
+          {faqs.map((faq, i) => (
+            <div key={i} className="space-y-2 rounded-lg border border-border p-3">
+              <div className="flex items-start gap-2">
+                <div className="flex-1 space-y-2">
+                  <FormInput label="Question" value={faq.question} onChange={(e) => updateFaq(i, "question", e.target.value)} placeholder="e.g. What are the microbiological specifications?" />
+                  <FormTextarea label="Answer" value={faq.answer} onChange={(e) => updateFaq(i, "answer", e.target.value)} placeholder="Detailed answer..." />
+                </div>
+                <Button variant="ghost" size="icon" onClick={() => removeFaq(i)} className="shrink-0 mt-6">
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          ))}
+          <Button variant="outline" size="sm" onClick={addFaq}>
+            <Plus className="h-4 w-4 mr-1" /> Add FAQ
+          </Button>
+        </div>
+
+        {/* Related Products */}
+        <div className="space-y-2 rounded-lg border border-border p-4">
+          <p className="text-sm font-medium text-foreground">Related Products</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
+            {products.filter((p) => p.id !== selectedId).map((p) => (
+              <FormCheckbox key={p.id} label={p.name} checked={relatedProducts.includes(p.id)} onCheckedChange={() => toggleRelated(p.id)} />
+            ))}
+          </div>
         </div>
       </div>
 
