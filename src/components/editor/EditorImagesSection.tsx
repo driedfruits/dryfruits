@@ -16,24 +16,20 @@ const EditorImagesSection = ({ imgMain, imgMainAlt, setImgMainAlt, imgThumb, img
   <div className="space-y-4 rounded-lg border border-border p-4">
     <p className="text-sm font-medium text-foreground">Images</p>
     <p className="text-xs text-muted-foreground">Image paths are managed in code. Edit alt text here for SEO.</p>
-    {imgMain && (
-      <div className="flex items-center gap-3">
-        <ImagePreview src={imgMain} />
-        <div className="flex-1">
-          <p className="text-xs text-muted-foreground mb-1">{imgMain.split("/").pop()}</p>
-          <FormInput label="Main Image Alt Text" value={imgMainAlt} onChange={(e) => setImgMainAlt(e.target.value)} placeholder="Descriptive alt text for SEO" />
-        </div>
+    <div className="flex items-center gap-3">
+      {imgMain ? <ImagePreview src={imgMain} /> : <div className="w-10 h-10 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">Main</div>}
+      <div className="flex-1">
+        {imgMain && <p className="text-xs text-muted-foreground mb-1">{imgMain.split("/").pop()}</p>}
+        <FormInput label="Main Image Alt Text" value={imgMainAlt} onChange={(e) => setImgMainAlt(e.target.value)} placeholder="Descriptive alt text for SEO" />
       </div>
-    )}
-    {imgThumb && (
-      <div className="flex items-center gap-3">
-        <ImagePreview src={imgThumb} />
-        <div className="flex-1">
-          <p className="text-xs text-muted-foreground mb-1">{imgThumb.split("/").pop()}</p>
-          <FormInput label="Thumbnail Alt Text" value={imgThumbAlt} onChange={(e) => setImgThumbAlt(e.target.value)} placeholder="Thumbnail alt text" />
-        </div>
+    </div>
+    <div className="flex items-center gap-3">
+      {imgThumb ? <ImagePreview src={imgThumb} /> : <div className="w-10 h-10 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">Thumb</div>}
+      <div className="flex-1">
+        {imgThumb && <p className="text-xs text-muted-foreground mb-1">{imgThumb.split("/").pop()}</p>}
+        <FormInput label="Thumbnail Alt Text" value={imgThumbAlt} onChange={(e) => setImgThumbAlt(e.target.value)} placeholder="Thumbnail alt text" />
       </div>
-    )}
+    </div>
     <div className="space-y-3">
       <p className="text-sm font-medium text-foreground">Thumbnail Alt Text (4 slots)</p>
       {imgGallery.map((img, i) => (
