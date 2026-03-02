@@ -203,12 +203,8 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                   </PrimaryButton>
                   <SecondaryButton to="/samples" size="lg">
                     <Package className="h-5 w-5 mr-2" />
-                    Order Free Sample
+                    Get Free Samples
                   </SecondaryButton>
-                  <WhatsAppButton 
-                    message={`Hi! I'm interested in bulk ${product.name}. MOQ: ${product.pricing.moq}. Please share pricing and availability.`}
-                    size="lg"
-                  />
                 </div>
               </div>
             </div>
