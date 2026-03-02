@@ -63,8 +63,8 @@ const ProductEditorPage = () => {
 
   const loadProduct = (product: Product) => {
     setName(product.name);
-    setMetaTitle((product as any).metaTitle || "");
-    setMetaDescription((product as any).metaDescription || "");
+    setMetaTitle(product.metaTitle || "");
+    setMetaDescription(product.metaDescription || "");
     setTagline(product.tagline);
     setDescription(product.description);
     setFobBase(product.pricing.fobBase);
