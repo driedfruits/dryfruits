@@ -63,9 +63,6 @@ export function generateOrganizationSchema() {
       name: "Wholesale Dried Fruits Catalog",
       itemListElement: [
         { "@type": "OfferCatalog", name: "Dried Fruits" },
-        { "@type": "OfferCatalog", name: "Vacuum Fried Fruits" },
-        { "@type": "OfferCatalog", name: "Powdered Fruits" },
-        { "@type": "OfferCatalog", name: "Ginger & Turmeric Products" },
       ],
     },
   };
@@ -132,7 +129,7 @@ export function generateWebSiteSchema() {
     "@id": `${SITE_URL}/#website`,
     url: SITE_URL,
     name: companyInfo.name,
-    description: `${companyInfo.tagline}. Premium dried fruits, vacuum fried snacks, and spices from Indonesia for B2B buyers worldwide.`,
+    description: `${companyInfo.tagline}. Premium dried tropical fruits from Indonesia for B2B buyers worldwide.`,
     publisher: {
       "@id": `${SITE_URL}/#organization`,
     },

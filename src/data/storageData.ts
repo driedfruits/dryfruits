@@ -10,40 +10,6 @@ export const storageGuidelines = {
       icon: "apple",
       tips: ["Store in cool, dark area", "Keep sealed when not in use", "Check for condensation regularly"],
     },
-    {
-      name: "Fruit Powders",
-      tempRange: "10-18°C (50-64°F)",
-      humidityMax: "<50% RH",
-      waterActivity: "≤0.45 aw",
-      shelfLife: "18-24 months",
-      icon: "sparkles",
-      tips: ["Highly hygroscopic - minimize air exposure", "Use desiccants in storage", "Nitrogen-flush after opening"],
-    },
-    {
-      name: "Vacuum Fried",
-      tempRange: "<20°C (cool dry)",
-      humidityMax: "<55% RH",
-      waterActivity: "≤0.35-0.40 aw (crisp grade)",
-      shelfLife: "12-18 months (low-oil) / 9-12 months (standard)",
-      icon: "snowflake",
-      tips: [
-        "Protect from light - UV accelerates oil oxidation",
-        "Keep away from heat sources (>25°C doubles rancidity rate)",
-        "Crispy texture highly sensitive to humidity - maintain <55% RH",
-        "Store in nitrogen-flushed packaging to prevent oil oxidation",
-        "Monitor peroxide value quarterly (<10 meq O₂/kg target)",
-        "Use oxygen-barrier packaging (metallized/foil liners)",
-      ],
-    },
-    {
-      name: "Ginger & Turmeric",
-      tempRange: "10-20°C (50-68°F)",
-      humidityMax: "<55% RH",
-      waterActivity: "≤0.50 aw",
-      shelfLife: "18-24 months",
-      icon: "leaf",
-      tips: ["Store away from strong odors", "Curcumin is light-sensitive", "Maintain volatile oil content"],
-    },
   ],
   bestPractices: [
     {
@@ -114,10 +80,10 @@ export const storageFAQs = [
   },
   { 
     question: "What temperature should I store dried fruits at?", 
-    answer: "Most dried fruits should be stored at 10-20°C (50-68°F). Powders require stricter 10-18°C (50-64°F). Avoid temperature fluctuations." 
+    answer: "Most dried fruits should be stored at 10-20°C (50-68°F). Avoid temperature fluctuations." 
   },
   { 
     question: "How does humidity affect dried fruit storage?", 
-    answer: "High humidity causes moisture reabsorption, leading to mold growth and quality degradation. Keep relative humidity below 60% for dried fruits and below 50% for powders." 
+    answer: "High humidity causes moisture reabsorption, leading to mold growth and quality degradation. Keep relative humidity below 60% for dried fruits." 
   },
 ] as const;

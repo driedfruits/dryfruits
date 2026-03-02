@@ -31,7 +31,7 @@ export function SEO({
 
   const fullDescription =
     description ||
-    "Indonesia's leading B2B dried fruit manufacturer. Premium vacuum-fried banana chips, dried tropical fruits & private label solutions. HACCP & Halal certified. Export to 18+ countries.";
+    "Indonesia's leading B2B dried fruit manufacturer. Premium dehydrated tropical fruits & private label solutions. HACCP & Halal certified. Export to 18+ countries.";
 
   const fullCanonical = canonical
     ? canonical.startsWith("http")
@@ -41,7 +41,7 @@ export function SEO({
 
   const keywordsString = keywords.length > 0
     ? keywords.join(", ")
-    : "dried fruit wholesale, vacuum fried banana chips, Indonesian fruit exporter, private label dried fruit, bulk dried tropical fruits, B2B fruit supplier";
+    : "dried fruit wholesale, dehydrated tropical fruits, Indonesian fruit exporter, private label dried fruit, bulk dried tropical fruits, B2B fruit supplier";
 
   return (
     <Helmet>
