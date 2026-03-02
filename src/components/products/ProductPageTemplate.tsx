@@ -39,7 +39,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
   const breadcrumbItems = [
     { name: "Home", url: SITE_URL },
     { name: "Wholesale Dried Fruits", url: `${SITE_URL}/products` },
-    { name: categoryLabels[product.category], url: `${SITE_URL}/products/${product.category}` },
+    { name: categoryLabels[product.category], url: `${SITE_URL}/products` },
     { name: `${product.name} Bulk`, url: `${SITE_URL}/products/${product.category}/${product.id}` },
   ];
 
@@ -88,7 +88,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
               <ChevronRight className="h-4 w-4 shrink-0" />
               <Link to="/products" className="hover:text-primary transition-colors shrink-0">Products</Link>
               <ChevronRight className="h-4 w-4 shrink-0" />
-              <Link to={`/products/${product.category}`} className="hover:text-primary transition-colors shrink-0">
+              <Link to="/products" className="hover:text-primary transition-colors shrink-0">
                 {categoryLabels[product.category]}
               </Link>
               <ChevronRight className="h-4 w-4 shrink-0" />

@@ -17,7 +17,7 @@ function SearchRedirect() {
 // Lazy load pages for performance
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
-const ProductCategoryPage = lazy(() => import("./pages/ProductCategoryPage"));
+
 const ProductDetailPage = lazy(() => import("./pages/ProductDetailPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
@@ -49,7 +49,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<><SearchRedirect /><HomePage /></>} />
           <Route path="/products" element={<ProductsPage />} />
-          <Route path="/products/:category" element={<ProductCategoryPage />} />
+          <Route path="/products/dried-fruits" element={<Navigate to="/products" replace />} />
           <Route path="/products/:category/:productId" element={<ProductDetailPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
