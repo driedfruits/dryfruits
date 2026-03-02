@@ -269,7 +269,7 @@ export const products: Product[] = [
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
-    relatedProducts: ["dried-papaya", "dried-mango", "dried-banana"],
+    relatedProducts: ["dried-papaya", "dried-mango", "dried-banana", "dried-dragon-fruit"],
   },
   {
     id: "dried-avocado",
@@ -347,7 +347,7 @@ export const products: Product[] = [
     ],
     certifications: ["USDA Organic", "HACCP", "Halal"],
     isOrganic: true,
-    relatedProducts: ["dried-coconut", "dried-jackfruit", "dried-mango"],
+    relatedProducts: ["dried-coconut", "dried-jackfruit", "dried-mango", "dried-papaya"],
   },
   {
     id: "dried-mango",
@@ -425,7 +425,7 @@ export const products: Product[] = [
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
-    relatedProducts: ["dried-papaya", "dried-pineapple", "dried-banana"],
+    relatedProducts: ["dried-papaya", "dried-pineapple", "dried-banana", "dried-dragon-fruit"],
   },
   {
     id: "dried-dragon-fruit",
@@ -502,7 +502,7 @@ export const products: Product[] = [
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
-    relatedProducts: ["dried-papaya", "dried-mango", "dried-snake-fruit"],
+    relatedProducts: ["dried-papaya", "dried-mango", "dried-snake-fruit", "dried-pineapple"],
   },
   {
     id: "dried-snake-fruit",
@@ -554,7 +554,7 @@ export const products: Product[] = [
     },
     certifications: ["USDA Organic", "HACCP", "Halal"],
     isOrganic: true,
-    relatedProducts: ["dried-jackfruit", "dried-breadfruit", "dried-dragon-fruit"],
+    relatedProducts: ["dried-jackfruit", "dried-breadfruit", "dried-dragon-fruit", "dried-papaya"],
   },
   {
     id: "dried-breadfruit",
@@ -605,7 +605,7 @@ export const products: Product[] = [
     },
     certifications: ["USDA Organic", "HACCP", "Halal"],
     isOrganic: true,
-    relatedProducts: ["dried-jackfruit", "dried-coconut", "dried-snake-fruit"],
+    relatedProducts: ["dried-jackfruit", "dried-coconut", "dried-snake-fruit", "dried-mango"],
   },
   {
     id: "dried-jackfruit",
@@ -757,7 +757,7 @@ export const products: Product[] = [
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
-    relatedProducts: ["dried-jackfruit", "dried-breadfruit"],
+    relatedProducts: ["dried-jackfruit", "dried-breadfruit", "dried-papaya", "dried-mango"],
   },
   {
     id: "dried-banana",
@@ -834,7 +834,7 @@ export const products: Product[] = [
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
-    relatedProducts: ["dried-papaya", "dried-pineapple", "dried-mango"],
+    relatedProducts: ["dried-papaya", "dried-pineapple", "dried-mango", "dried-dragon-fruit"],
   },
 ];
 
