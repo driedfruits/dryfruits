@@ -1,31 +1,49 @@
 
 
-## Integrate Prerender.io via Cloudflare Workers
+## Update sitemap.xml
 
-Cloudflare Workers act as a middleware layer that intercepts requests, detects bot user-agents, and proxies those requests through Prerender.io for pre-rendered HTML. This approach works regardless of hosting provider.
+The current sitemap references categories and products that don't exist in the codebase. Only one category (`dried-fruits`) with 10 products exists. The sitemap needs to be trimmed to match reality.
 
-### Changes
+### What changes
 
-#### 1. Remove Netlify plugin — `netlify.toml`
-Remove the `netlify-plugin-prerender` config since we're switching to Cloudflare Workers.
+**`public/sitemap.xml`** — Full rewrite to match actual routes:
 
-#### 2. Create Cloudflare Worker script — `cloudflare/prerender-worker.js` (new, reference file)
-A standalone Worker script (deployed outside Lovable) that:
-- Checks the `User-Agent` header against a list of known bots (Googlebot, Bingbot, GPTBot, etc.)
-- If bot detected → rewrites the request to `https://service.prerender.io/https://dryfruits.biz/<path>` with the Prerender token in the `X-Prerender-Token` header
-- If regular user → passes request through to origin unchanged
+- **Remove** all entries for non-existent categories: `powdered-fruits`, `vacuum-fried`, `ginger-turmeric` and all their child product URLs (26 URLs removed)
+- **Remove** the single category entry for `dried-fruits` (products are accessed via `/products/dried-fruits`, which is valid and stays)
+- **Keep** all 10 dried fruit product URLs under `/products/dried-fruits/`
+- **Keep** all other page URLs (home, about, contact, samples, catalog, etc.)
+- **Update** `<lastmod>` dates to `2026-03-02` (today)
 
-#### 3. Create deployment instructions — `cloudflare/README.md` (new, reference file)
-Step-by-step guide:
-1. Install Wrangler CLI
-2. Create a Worker in Cloudflare dashboard
-3. Add `PRERENDER_TOKEN` as a Worker secret
-4. Deploy the worker script
-5. Add a Cloudflare route rule to run the Worker on `dryfruits.biz/*`
+### Final URL list
 
-### Technical detail
-The Worker uses the existing Prerender.io token (`ugh1U9Ofd176otqDSqSG`). The token will be stored as a Cloudflare Worker secret (not hardcoded in the worker script) and accessed via `env.PRERENDER_TOKEN`.
+```text
+/                                          1.0
+/products                                  0.95
+/products/dried-fruits                     0.9
+/products/dried-fruits/dried-papaya        0.8
+/products/dried-fruits/dried-pineapple     0.8
+/products/dried-fruits/dried-avocado       0.8
+/products/dried-fruits/dried-mango         0.8
+/products/dried-fruits/dried-dragon-fruit  0.8
+/products/dried-fruits/dried-snake-fruit   0.8
+/products/dried-fruits/dried-breadfruit    0.8
+/products/dried-fruits/dried-jackfruit     0.8
+/products/dried-fruits/dried-coconut       0.8
+/products/dried-fruits/dried-banana        0.8
+/samples                                   0.85
+/catalog                                   0.85
+/private-label                             0.8
+/contact                                   0.8
+/about                                     0.7
+/shipping                                  0.75
+/sustainability                            0.65
+/certifications                            0.7
+/storage-guide                             0.7
+/faq                                       0.65
+/privacy                                   0.3
+/terms                                     0.3
+/llm.html                                  0.4
+```
 
-### Scope note
-The Worker itself runs on Cloudflare's infrastructure, not inside the Lovable app. The files created are reference/deployment artifacts. Your domain's DNS must point through Cloudflare for this to work.
+Total: 26 URLs (down from 48).
 
