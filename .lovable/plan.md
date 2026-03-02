@@ -1,24 +1,21 @@
 
 
-## Update Homepage SEO Meta to Match Hero Content
+## Replace Google Fonts with System Font Stack
 
-The hero section emphasizes "OEM Manufacturer" and "Dehydrated Dried Tropical Fruits" while the SEO title/description use different phrasing. Aligning them improves consistency and click-through from search results.
+Google Fonts (Poppins, Inter) require external network requests that block rendering. Switching to a system font stack uses fonts already installed on the user's device — zero network requests, instant rendering.
 
-### Changes — `src/pages/HomePage.tsx`
+### Changes
 
-**Title**: Change from  
-`"Wholesale Dried Fruit Manufacturer & Exporter from Indonesia"`  
-to  
-`"Dehydrated Dried Tropical Fruits OEM Manufacturer from Indonesia"`
+**`index.html`** — Remove all Google Fonts loading (lines 9-14: preconnect, preload, and noscript fallback for `fonts.googleapis.com`).
 
-**Description**: Change from  
-`"Indonesia's premier B2B dried fruit manufacturer. USDA & EU Organic certified. Premium dried tropical fruits & private label solutions. MOQ 500kg. Export to 18+ countries."`  
-to  
-`"Fully export licensed OEM manufacturer of organic and non-organic dehydrated dried fruits from Indonesia. Chunks, slices, cuts packed with your brand. MOQ 800kg. HACCP & Fair Trade certified."`
+**`tailwind.config.ts`** — Update `fontFamily.heading` and `fontFamily.body`:
+- `heading`: `['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif']`
+- `body`: same system stack
 
-**Keywords**: Update to include `"OEM dried fruit manufacturer"`, `"dehydrated tropical fruits Indonesia"`, `"private label dried fruit manufacturer"`.
+**`src/index.css`** — Remove `--font-sans`, `--font-serif`, `--font-mono` custom properties referencing Roboto/Libre Caslon (lines ~91-93), or update them to the system stack.
 
-### Changes — `src/components/SEO.tsx`
-
-**Default description** (fallback): Update to match the new messaging style, replacing "HACCP & Halal certified" with "HACCP & Fair Trade certified" and mentioning OEM/private label.
+### Result
+- Eliminates 2 external DNS lookups + 1 CSS file + multiple font file downloads
+- Fonts render instantly (no FOIT/FOUT)
+- ~200-400ms faster First Contentful Paint
 
