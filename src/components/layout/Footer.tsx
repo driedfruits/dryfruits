@@ -15,6 +15,7 @@ const footerLinks = {
     { name: "Certifications", href: "/certifications" },
   ],
   resources: [
+    { name: "Shipping & Logistics", href: "/shipping" },
     { name: "Free Samples", href: "/samples" },
     { name: "Download Catalog", href: "/catalog" },
     { name: "Contact Us", href: "/contact" },
