@@ -1,35 +1,23 @@
 
 
-## Add Full Specifications Editing to Product Editor
+## Add Validation for Critical Specification Fields
 
-### Overview
-Replace the single "Size & Form" input with a dedicated specifications section covering all 21 spec fields from the Product interface.
+### Changes to `src/pages/ProductEditorPage.tsx`
 
-### Changes
+In the `validate()` function, add checks for three critical spec fields:
 
-**1. Create `src/components/editor/EditorSpecificationsSection.tsx`**
-- Data-driven component using the spec field keys and labels from `specLabels`
-- Groups fields into 4 categories: Physical, Chemical/Safety, Microbiology, Storage/Processing
-- Each field is a `FormInput` with the human-readable label
-- Props: `specs: Record<string, string>`, `updateSpec: (key: string, value: string) => void`
+```typescript
+if (!specs.moisture?.trim()) errors["specs.moisture"] = "Moisture content is required";
+if (!specs.shelfLife?.trim()) errors["specs.shelfLife"] = "Shelf life is required";
+if (!specs.origin?.trim()) errors["specs.origin"] = "Origin is required";
+```
 
-**2. Update `src/pages/ProductEditorPage.tsx`**
-- Replace `sizeForm` state with `const [specs, setSpecs] = useState<Record<string, string>>({})`
-- Update `loadProduct`: iterate `product.specifications` keys to populate `specs`
-- Update `jsonOutput`: output `specifications` from `specs` (filter empty values)
-- Replace the `sizeForm` FormInput + remove `sizeForm` from EditorPricingSection usage
-- Add `<EditorSpecificationsSection>` to the form
-- Update `useMemo` deps
+These will integrate with the existing validation error display (error count banner + list) and block the Copy action just like the other required fields.
 
-**3. Update `src/components/editor/EditorPricingSection.tsx`**
-- Remove `sizeForm` / `setSizeForm` props (moved to specs section)
+### Changes to `src/components/editor/EditorSpecificationsSection.tsx`
 
-**4. Update `src/components/editor/index.ts`**
-- Export the new `EditorSpecificationsSection`
+- Accept an optional `errors` prop (`Record<string, string>`)
+- Pass `error={errors?.["specs.moisture"]}` etc. to the three critical `FormInput` fields and mark them `required`
 
-### Spec Fields (21 total)
-Physical: size, color, moisture, waterActivity, grade, defects, origin
-Chemical: brixLevel, so2Level, additives, foreignMatter, fatContent, aflatoxins
-Microbiology: totalPlateCount, yeastMold, salmonella, eColi, testingMethod
-Storage/Processing: shelfLife, storageTemp, storageHumidity, processingMethod
+Single-file touch points, minimal change.
 
