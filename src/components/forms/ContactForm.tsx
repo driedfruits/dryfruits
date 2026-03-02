@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FormInput, FormTextarea, FormSelect } from "./FormElements";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { products, productCategories } from "@/data/companyData";
-import { Loader2, Send } from "lucide-react";
+import { Loader2, Send, CheckCircle2 } from "lucide-react";
 
 interface ContactFormProps {
   variant?: "contact" | "quote" | "sample";
@@ -14,6 +14,7 @@ interface ContactFormProps {
 export function ContactForm({ variant = "contact", preselectedProduct, className }: ContactFormProps) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -87,7 +88,15 @@ export function ContactForm({ variant = "contact", preselectedProduct, className
       message: "",
     });
     setIsSubmitting(false);
+    setShowSuccess(true);
   };
+
+  useEffect(() => {
+    if (showSuccess) {
+      const timer = setTimeout(() => setShowSuccess(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccess]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -102,6 +111,22 @@ export function ContactForm({ variant = "contact", preselectedProduct, className
     quote: "Request a Quote",
     sample: "Request Samples",
   };
+
+  if (showSuccess) {
+    return (
+      <div className={`flex flex-col items-center justify-center py-12 space-y-4 ${className}`}>
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+          <CheckCircle2 className="h-8 w-8 text-primary" />
+        </div>
+        <h3 className="text-xl font-bold text-foreground">
+          {variant === "sample" ? "Sample Request Sent!" : "Message Sent!"}
+        </h3>
+        <p className="text-muted-foreground text-center">
+          We'll get back to you within 24 hours.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className={`space-y-6 ${className}`}>

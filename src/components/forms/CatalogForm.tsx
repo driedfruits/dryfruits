@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FormInput } from "./FormElements";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Download, Loader2 } from "lucide-react";
+import { Download, Loader2, CheckCircle2 } from "lucide-react";
 
 interface CatalogFormProps {
   className?: string;
@@ -11,6 +11,7 @@ interface CatalogFormProps {
 export function CatalogForm({ className }: CatalogFormProps) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -54,7 +55,15 @@ export function CatalogForm({ className }: CatalogFormProps) {
       company: "",
     });
     setIsSubmitting(false);
+    setShowSuccess(true);
   };
+
+  useEffect(() => {
+    if (showSuccess) {
+      const timer = setTimeout(() => setShowSuccess(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccess]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -63,6 +72,18 @@ export function CatalogForm({ className }: CatalogFormProps) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
+
+  if (showSuccess) {
+    return (
+      <div className={`flex flex-col items-center justify-center py-10 space-y-3 ${className}`}>
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+          <CheckCircle2 className="h-7 w-7 text-primary" />
+        </div>
+        <h3 className="text-lg font-bold text-foreground">Catalog Request Received!</h3>
+        <p className="text-sm text-muted-foreground text-center">Check your email for the download link.</p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className={`space-y-4 ${className}`}>
