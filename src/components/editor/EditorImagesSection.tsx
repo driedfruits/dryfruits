@@ -34,20 +34,17 @@ const EditorImagesSection = ({ imgMain, imgMainAlt, setImgMainAlt, imgThumb, img
         </div>
       </div>
     )}
-    {imgGallery.length > 0 && (
-      <div className="space-y-3">
-        <p className="text-sm font-medium text-foreground">Gallery</p>
-        {imgGallery.map((img, i) => (
-          <div key={i} className="flex items-center gap-3">
-            <ImagePreview src={img.src} />
-            <div className="flex-1">
-              <p className="text-xs text-muted-foreground mb-1">{img.src.split("/").pop()}</p>
-              <FormInput label={`Image ${i + 1} Alt`} value={img.alt} onChange={(e) => updateGalleryImage(i, "alt", e.target.value)} placeholder="Alt text" />
-            </div>
+    <div className="space-y-3">
+      <p className="text-sm font-medium text-foreground">Thumbnail Alt Text (4 slots)</p>
+      {imgGallery.map((img, i) => (
+        <div key={i} className="flex items-center gap-3">
+          {img.src ? <ImagePreview src={img.src} /> : <div className="w-10 h-10 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">{i + 1}</div>}
+          <div className="flex-1">
+            <FormInput label={`Thumbnail ${i + 1} Alt`} value={img.alt} onChange={(e) => updateGalleryImage(i, "alt", e.target.value)} placeholder={`Alt text for thumbnail ${i + 1}`} />
           </div>
-        ))}
-      </div>
-    )}
+        </div>
+      ))}
+    </div>
   </div>
 );
 

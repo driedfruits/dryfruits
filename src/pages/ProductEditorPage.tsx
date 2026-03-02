@@ -64,7 +64,9 @@ const ProductEditorPage = () => {
   const [imgMainAlt, setImgMainAlt] = useState("");
   const [imgThumb, setImgThumb] = useState("");
   const [imgThumbAlt, setImgThumbAlt] = useState("");
-  const [imgGallery, setImgGallery] = useState<Array<{ src: string; alt: string }>>([]);
+  const [imgGallery, setImgGallery] = useState<Array<{ src: string; alt: string }>>([
+    { src: "", alt: "" }, { src: "", alt: "" }, { src: "", alt: "" }, { src: "", alt: "" },
+  ]);
 
   const loadProduct = (product: Product) => {
     setName(product.name);
@@ -111,7 +113,8 @@ const ProductEditorPage = () => {
     setImgMainAlt(product.images?.mainAlt || "");
     setImgThumb(product.images?.thumbnail || "");
     setImgThumbAlt(product.images?.thumbnailAlt || "");
-    setImgGallery(product.images?.gallery?.map((g) => ({ ...g })) || []);
+    const rawGallery = product.images?.gallery?.map((g) => ({ ...g })) || [];
+    setImgGallery([...rawGallery, ...Array(4).fill(null).map(() => ({ src: "", alt: "" }))].slice(0, 4));
   };
 
   useState(() => {

@@ -34,8 +34,15 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
   const gallery = product.images?.gallery || [];
   const mainImage = product.images?.main || "";
   const gallerySrcs = gallery.map(g => g.src);
-  const allImages = [mainImage, ...gallerySrcs].filter(Boolean).slice(0, 4);
-  const [selectedImage, setSelectedImage] = useState(mainImage);
+  const galleryAlts = gallery.map(g => g.alt);
+  const rawImages = [mainImage, ...gallerySrcs].filter(Boolean);
+  const allImages = [...rawImages, ...Array(4).fill("/placeholder.svg")].slice(0, 4);
+  const allAlts = [
+    product.images?.mainAlt || `${product.name} wholesale`,
+    ...galleryAlts,
+    ...Array(4).fill(`${product.name} view`),
+  ].slice(0, 4);
+  const [selectedImage, setSelectedImage] = useState(allImages[0]);
 
   const seoTitle = product.metaTitle || `Wholesale ${product.name} - Bulk Export from Indonesia`;
   const seoDescription = product.metaDescription || `Direct manufacturer of premium ${product.name.toLowerCase()} from Indonesia. ${product.isOrganic ? "USDA/EU Organic certified. " : ""}Bulk packaging available. MOQ ${product.pricing.moq}. View specs & pricing.`;
@@ -142,11 +149,11 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                           ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
                           : "ring-1 ring-border opacity-70 hover:opacity-100"
                       )}
-                      aria-label={`${product.name} view ${index + 1}`}
+                      aria-label={allAlts[index] || `${product.name} view ${index + 1}`}
                     >
                       <OptimizedImage
                         src={img}
-                        alt={`${product.name} view ${index + 1}`}
+                        alt={allAlts[index] || `${product.name} view ${index + 1}`}
                         aspectRatio="square"
                         width={80}
                         height={80}
