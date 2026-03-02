@@ -57,7 +57,7 @@ export default function StorageGuidePage() {
     <Layout>
       <SEO
         title="Dried Fruit Storage Guide - Temperature, Humidity & Shelf Life"
-        description="Expert guide on storing dried fruits and powders. Learn optimal temperature, humidity, water activity levels. Maximize shelf life for bulk wholesale orders."
+        description="Expert guide on storing dried fruits. Learn optimal temperature, humidity, water activity levels. Maximize shelf life for bulk wholesale orders."
         keywords={["dried fruit storage", "water activity", "humidity control warehouse", "dried fruit shelf life", "aw food safety"]}
         canonical="/storage-guide"
         ogImage={socialImages.storageGuide}
@@ -260,7 +260,7 @@ export default function StorageGuidePage() {
               {[
                 { title: "Moisture Barrier Films", desc: "Use high-barrier packaging (MVTR <1g/m²/day) to prevent moisture ingress during storage and transit." },
                 { title: "Nitrogen Flushing", desc: "Essential for high-fat products like coconut and avocado to prevent oxidation. Maintain O₂ <2%." },
-                { title: "Vacuum Sealing", desc: "Extends shelf life by 30-50% for powders. Reduces oxidation and moisture absorption." },
+                { title: "Vacuum Sealing", desc: "Extends shelf life by 30-50% for dried fruits. Reduces oxidation and moisture absorption." },
                 { title: "Re-sealing Protocol", desc: "After sampling, immediately reseal with heat sealer. Never use clips or folds for bulk storage." },
               ].map((item, idx) => (
                 <div key={idx} className="bg-card rounded-lg p-5 shadow-soft">
