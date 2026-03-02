@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
-import { companyInfo, socialLinks, certifications } from "@/data/companyData";
+import { companyInfo, socialLinks, certifications, getProductsByCategory } from "@/data/companyData";
 import { socialIcons } from "@/lib/socialIcons";
 import { Leaf, Mail, Phone, MapPin, Clock, FileText } from "lucide-react";
+
+const driedFruits = getProductsByCategory("dried-fruits");
 
 const footerLinks = {
   products: [
     { name: "All Dried Fruits", href: "/products" },
+    ...driedFruits.map(p => ({ name: p.name, href: `/products/dried-fruits/${p.id}` })),
   ],
   company: [
     { name: "About Us", href: "/about" },
