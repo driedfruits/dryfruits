@@ -1,13 +1,25 @@
 
 
-## Refactor Related Products into Reusable Component
+## Ensure 4 Related Products per Product
 
-### New File
-**`src/components/products/RelatedProducts.tsx`**
-- Accept `products: Product[]` prop
-- Render the entire Related Products section (lines 257–288 from `ProductPageTemplate.tsx`), including the conditional `length > 0` guard, section wrapper, heading, grid, and product cards with `OptimizedImage`
+The Related Products component is rendering correctly with `lg:grid-cols-4` grid layout. However, most product entries in `src/data/products.ts` only define 3 related products, leaving the 4th column empty.
 
-### Modified Files
-1. **`src/components/products/ProductPageTemplate.tsx`** — Replace lines 256–288 with `<RelatedProducts products={relatedProducts} />`. Remove `Package` from lucide imports if no longer used elsewhere (it is still used in hero section, so keep it).
-2. **`src/components/products/index.ts`** — Add `RelatedProducts` export
+### Change
+
+**`src/data/products.ts`** -- Update the `relatedProducts` array for every product to include exactly 4 entries:
+
+| Product | Current count | Add |
+|---------|--------------|-----|
+| Dried Papaya | 4 | -- (already done) |
+| Dried Pineapple | 3 | `dried-dragon-fruit` |
+| Dried Avocado | 3 | `dried-papaya` |
+| Dried Mango | 3 | `dried-dragon-fruit` |
+| Dried Dragon Fruit | 3 | `dried-pineapple` |
+| Dried Snake Fruit | 3 | `dried-papaya` |
+| Dried Breadfruit | 3 | `dried-mango` |
+| Dried Jackfruit | 4 | -- (already done) |
+| Dried Coconut | 2 | `dried-papaya`, `dried-mango` |
+| Dried Banana | 3 | `dried-dragon-fruit` |
+
+No component changes needed -- the grid is already `lg:grid-cols-4`.
 
