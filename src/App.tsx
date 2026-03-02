@@ -35,6 +35,7 @@ const StorageGuidePage = lazy(() => import("./pages/StorageGuidePage"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const TermsPage = lazy(() => import("./pages/TermsPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const ProductEditorPage = lazy(() => import("./pages/ProductEditorPage"));
 
 const App = () => (
   <TooltipProvider>
@@ -109,6 +110,11 @@ const App = () => (
             element={<Navigate to={rule.to} replace />}
           />
         ))}
+
+        {/* Admin */}
+        <Route path="/admin/products" element={
+          <Suspense fallback={<LayoutSkeleton />}><ProductEditorPage /></Suspense>
+        } />
 
         <Route path="*" element={
           <Suspense fallback={<LayoutSkeleton />}><NotFound /></Suspense>
