@@ -3,6 +3,7 @@ import { products, type Product } from "@/data/products";
 import { FormInput, FormTextarea, FormSelect, FormCheckbox } from "@/components/forms/FormElements";
 import { Button } from "@/components/ui/button";
 import { Copy, Check, Plus, Trash2 } from "lucide-react";
+import ImagePreview from "@/components/products/ImagePreview";
 
 const ALL_CERTIFICATIONS = [
   "USDA Organic",
@@ -242,14 +243,25 @@ const ProductEditorPage = () => {
         <div className="space-y-4 rounded-lg border border-border p-4">
           <p className="text-sm font-medium text-foreground">Images</p>
           <p className="text-xs text-muted-foreground">Enter file paths relative to /public (e.g. /images/dried-papaya-hero.webp). Upload images via Lovable chat first.</p>
-          <FormInput label="Main Image Path" value={imgMain} onChange={(e) => setImgMain(e.target.value)} placeholder="/images/product-hero.webp" />
-          <FormInput label="Main Image Alt Text" value={imgMainAlt} onChange={(e) => setImgMainAlt(e.target.value)} placeholder="Descriptive alt text for SEO" />
-          <FormInput label="Thumbnail Path" value={imgThumb} onChange={(e) => setImgThumb(e.target.value)} placeholder="/images/product-thumb.webp" />
-          <FormInput label="Thumbnail Alt Text" value={imgThumbAlt} onChange={(e) => setImgThumbAlt(e.target.value)} placeholder="Thumbnail alt text" />
+          <div className="flex items-start gap-3">
+            <div className="flex-1 space-y-4">
+              <FormInput label="Main Image Path" value={imgMain} onChange={(e) => setImgMain(e.target.value)} placeholder="/images/product-hero.webp" />
+              <FormInput label="Main Image Alt Text" value={imgMainAlt} onChange={(e) => setImgMainAlt(e.target.value)} placeholder="Descriptive alt text for SEO" />
+            </div>
+            <div className="pt-6"><ImagePreview src={imgMain} /></div>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="flex-1 space-y-4">
+              <FormInput label="Thumbnail Path" value={imgThumb} onChange={(e) => setImgThumb(e.target.value)} placeholder="/images/product-thumb.webp" />
+              <FormInput label="Thumbnail Alt Text" value={imgThumbAlt} onChange={(e) => setImgThumbAlt(e.target.value)} placeholder="Thumbnail alt text" />
+            </div>
+            <div className="pt-6"><ImagePreview src={imgThumb} /></div>
+          </div>
           <div className="space-y-3">
             <p className="text-sm font-medium text-foreground">Gallery Images</p>
             {imgGallery.map((img, i) => (
               <div key={i} className="flex items-end gap-2">
+                <div className="pt-5"><ImagePreview src={img.src} /></div>
                 <div className="flex-1">
                   <FormInput label={`Image ${i + 1} Path`} value={img.src} onChange={(e) => updateGalleryImage(i, "src", e.target.value)} placeholder="/images/gallery-1.webp" />
                 </div>
