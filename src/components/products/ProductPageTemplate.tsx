@@ -165,6 +165,12 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                 <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-2">
                   Wholesale {product.name} – {product.specifications.size?.split(",")[0]}
                 </h1>
+                {product.tagline && (
+                  <p className="text-lg text-muted-foreground mb-2">{product.tagline}</p>
+                )}
+                {product.description && (
+                  <p className="text-muted-foreground mb-3">{product.description}</p>
+                )}
                 <p className="text-muted-foreground mb-4">
                   Origin: Indonesia
                 </p>
