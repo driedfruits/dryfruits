@@ -1,12 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { Home, Package, Gift, Mail, MessageCircle } from "lucide-react";
+import { Package, Gift, MessageCircle } from "lucide-react";
 import { companyInfo } from "@/data/companyData";
 
 const tabs = [
-  { name: "Home", href: "/", icon: Home },
   { name: "Products", href: "/products", icon: Package },
   { name: "Samples", href: "/samples", icon: Gift },
-  { name: "Contact", href: "/contact", icon: Mail },
 ];
 
 export function MobileBottomNav() {
