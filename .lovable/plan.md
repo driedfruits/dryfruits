@@ -1,17 +1,24 @@
 
 
-## Add Product Description (Flavor Profile & Texture) Editing to Admin
+## Display Tagline & Description on the Product Detail Page
 
-The "Product Description" section on the product page displays `flavorProfile` and `texture` fields. Applications are already editable. We need to add inputs for the two missing sensory fields.
+Currently these fields are underutilized:
+- **Tagline** → only shown on `ProductCard` (listing grid)
+- **Description** → not displayed anywhere on the front end
 
-### Changes
+### Proposed Change
 
-**`src/pages/ProductEditorPage.tsx`**
-- Add state: `const [flavorProfile, setFlavorProfile] = useState("")` and `const [texture, setTexture] = useState("")`
-- Update `loadProduct`: set from `product.flavorProfile` and `product.texture`
-- Update `jsonOutput`: include `flavorProfile` and `texture` (if non-empty)
-- Update `useMemo` deps
-- Add two `FormInput`/`FormTextarea` fields in the form, placed near the description/tagline area (before pricing)
+**`src/components/products/ProductPageTemplate.tsx`** — In the hero section's right column (the "Wholesale Data Card"), add:
 
-**No new components needed** — just two simple text inputs added inline to the existing editor page.
+1. **Tagline** as a subtitle line directly below the `<h1>`, styled as `text-lg text-muted-foreground` — a one-line product summary
+2. **Description** as a paragraph below the tagline (before the price block), styled as body text
+
+```
+<h1>Wholesale Dried Pineapple – Rings</h1>
+<p className="text-lg text-muted-foreground">{product.tagline}</p>  ← NEW
+<p className="text-muted-foreground mb-4">{product.description}</p> ← NEW (replaces "Origin: Indonesia" line)
+<p>Origin: Indonesia</p>
+```
+
+The "Origin: Indonesia" line stays below the description. Single file change, no new components.
 
