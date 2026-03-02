@@ -49,9 +49,9 @@ export default function ProductsPage() {
       <div className="bg-muted/50 py-4 animate-content-reveal animation-delay-75">
         <div className="container">
           <nav className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+            <Link to="/" className="hover:text-primary transition-colors min-h-[44px] flex items-center">Home</Link>
             <ChevronRight className="h-4 w-4" />
-            <span className="text-foreground font-medium">Products</span>
+            <span className="text-foreground font-medium min-h-[44px] flex items-center">Products</span>
           </nav>
         </div>
       </div>

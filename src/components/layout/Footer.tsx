@@ -150,7 +150,7 @@ export function Footer() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-on-dark/10 text-on-dark-muted hover:bg-primary hover:text-primary-foreground transition-colors"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-on-dark/10 text-on-dark-muted hover:bg-primary hover:text-primary-foreground transition-colors"
                   aria-label={`Follow us on ${key}`}
                 >
                   <Icon className="h-5 w-5" />

@@ -84,11 +84,11 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
         <div className="bg-muted/50 py-4">
           <div className="container">
             <nav className="flex items-center gap-2 text-sm text-muted-foreground overflow-x-auto scrollbar-hide whitespace-nowrap pb-1">
-              <Link to="/" className="hover:text-primary transition-colors shrink-0">Home</Link>
+              <Link to="/" className="hover:text-primary transition-colors shrink-0 min-h-[44px] flex items-center">Home</Link>
               <ChevronRight className="h-4 w-4 shrink-0" />
-              <Link to="/products" className="hover:text-primary transition-colors shrink-0">Products</Link>
+              <Link to="/products" className="hover:text-primary transition-colors shrink-0 min-h-[44px] flex items-center">Products</Link>
               <ChevronRight className="h-4 w-4 shrink-0" />
-              <Link to="/products" className="hover:text-primary transition-colors shrink-0">
+              <Link to="/products" className="hover:text-primary transition-colors shrink-0 min-h-[44px] flex items-center">
                 {categoryLabels[product.category]}
               </Link>
               <ChevronRight className="h-4 w-4 shrink-0" />

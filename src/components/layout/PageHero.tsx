@@ -15,7 +15,7 @@ export function PageHero({ title, subtitle, children, className }: PageHeroProps
     )}>
       <div className="container">
         <div className="mx-auto max-w-3xl text-center text-primary-foreground">
-          <h1 className="text-4xl font-bold sm:text-5xl mb-4">
+          <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl mb-4">
             {title}
           </h1>
           {subtitle && (
