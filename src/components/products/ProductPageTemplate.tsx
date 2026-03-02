@@ -170,7 +170,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                   {categoryLabels[product.category]}
                 </Badge>
                 <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-2">
-                  Wholesale {product.name} – {product.specifications.size?.split(",")[0]}
+                  Wholesale {product.name}
                 </h1>
                 {product.tagline && (
                   <p className="text-lg text-muted-foreground mb-2">{product.tagline}</p>
