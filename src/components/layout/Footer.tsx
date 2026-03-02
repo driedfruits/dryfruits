@@ -16,6 +16,7 @@ const footerLinks = {
   ],
   resources: [
     { name: "Shipping & Logistics", href: "/shipping" },
+    { name: "Storage Guide", href: "/storage-guide" },
     { name: "Free Samples", href: "/samples" },
     { name: "Download Catalog", href: "/catalog" },
     { name: "Contact Us", href: "/contact" },
