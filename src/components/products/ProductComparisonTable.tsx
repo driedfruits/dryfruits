@@ -204,7 +204,7 @@ export function ProductComparisonTable() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-6 w-6 shrink-0"
+                    className="h-8 w-8 min-h-[48px] min-w-[48px] shrink-0"
                     onClick={() => handleRemoveProduct(product.id)}
                     aria-label={`Remove ${product.name}`}
                   >

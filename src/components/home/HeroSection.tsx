@@ -28,7 +28,7 @@ export const HeroSection = memo(function HeroSection() {
               Organic &amp; Fair Trade, HACCP Certified
             </div>
           </div>
-          <h1 className="mb-6 text-4xl font-bold tracking-tight text-on-primary sm:text-5xl lg:text-6xl drop-shadow-lg">
+          <h1 className="mb-6 text-3xl font-bold tracking-tight text-on-primary sm:text-5xl lg:text-6xl drop-shadow-lg">
             Dehydrated Dried Tropical Fruits OEM Manufacturer from Indonesia
           </h1>
           <h2 className="mb-6 text-lg font-normal text-on-primary-muted sm:text-xl drop-shadow-md">
