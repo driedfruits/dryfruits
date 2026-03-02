@@ -218,6 +218,7 @@ const ProductEditorPage = () => {
           <p className="text-sm font-medium text-foreground">Product Description (Sensory)</p>
           <FormTextarea label="Flavor Profile" value={flavorProfile} onChange={(e) => setFlavorProfile(e.target.value)} placeholder="e.g. Sweet, tangy tropical flavor with caramelized notes" required error={validationErrors.flavorProfile} />
           <FormInput label="Texture" value={texture} onChange={(e) => setTexture(e.target.value)} placeholder="e.g. Chewy, soft, slightly crispy edges" />
+          <EditorApplicationsSection applications={applications} addApplication={addApplication} removeApplication={removeApplication} />
         </div>
         <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} priceTiers={priceTiers} addTier={addTier} removeTier={removeTier} updateTier={updateTier} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} errors={validationErrors} />
         <EditorSpecificationsSection specs={specs} updateSpec={(key, value) => setSpecs(prev => ({ ...prev, [key]: value }))} errors={validationErrors} />
@@ -225,7 +226,6 @@ const ProductEditorPage = () => {
         <EditorAvailabilitySection peakSeason={peakSeason} setPeakSeason={setPeakSeason} offPeakSeason={offPeakSeason} setOffPeakSeason={setOffPeakSeason} currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} />
         <EditorPackagingSection bulk={packagingBulk} setBulk={setPackagingBulk} retail={packagingRetail} setRetail={setPackagingRetail} custom={packagingCustom} setCustom={setPackagingCustom} errors={validationErrors} />
         <EditorLogisticsSection portOfLoading={portOfLoading} setPortOfLoading={setPortOfLoading} incoterms={incoterms} setIncoterms={setIncoterms} containerLoad20ft={containerLoad20ft} setContainerLoad20ft={setContainerLoad20ft} containerLoad40ft={containerLoad40ft} setContainerLoad40ft={setContainerLoad40ft} />
-        <EditorApplicationsSection applications={applications} addApplication={addApplication} removeApplication={removeApplication} />
         <EditorComplianceSection usa={complianceUsa} setUsa={setComplianceUsa} eu={complianceEu} setEu={setComplianceEu} global={complianceGlobal} setGlobal={setComplianceGlobal} />
         <EditorFaqsSection faqs={faqs} addFaq={addFaq} removeFaq={removeFaq} updateFaq={updateFaq} />
         <EditorRelatedSection selectedId={selectedId} relatedProducts={relatedProducts} toggleRelated={toggleRelated} />
