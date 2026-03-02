@@ -1,20 +1,13 @@
 
 
-## Refactor Quick Highlights into Reusable Component
-
-Extract the Quick Highlights `<ul>` (lines 177–226) from `ProductPageTemplate.tsx` into a new dedicated component.
+## Refactor Related Products into Reusable Component
 
 ### New File
-**`src/components/products/ProductQuickHighlights.tsx`**
-- Accepts `product: Product` as prop
-- Renders the `<ul>` with all conditional highlight rows (Certifications, MOQ, Lead Time, Cut Size/Form, Season, Moisture, Shelf Life, Origin, Sample Policy)
-- Uses a data-driven approach: define an array of `{ label, value }` entries, filter out falsy values, and map to `<li>` elements — reducing repetition
+**`src/components/products/RelatedProducts.tsx`**
+- Accept `products: Product[]` prop
+- Render the entire Related Products section (lines 257–288 from `ProductPageTemplate.tsx`), including the conditional `length > 0` guard, section wrapper, heading, grid, and product cards with `OptimizedImage`
 
-### Modified File
-**`src/components/products/ProductPageTemplate.tsx`**
-- Replace lines 176–226 (the entire Quick Highlights block) with `<ProductQuickHighlights product={product} />`
-- Add import for the new component
-
-### Export
-**`src/components/products/index.ts`** — add `ProductQuickHighlights` export
+### Modified Files
+1. **`src/components/products/ProductPageTemplate.tsx`** — Replace lines 256–288 with `<RelatedProducts products={relatedProducts} />`. Remove `Package` from lucide imports if no longer used elsewhere (it is still used in hero section, so keep it).
+2. **`src/components/products/index.ts`** — Add `RelatedProducts` export
 
