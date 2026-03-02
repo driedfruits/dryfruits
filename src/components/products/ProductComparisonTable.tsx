@@ -239,71 +239,102 @@ export function ProductComparisonTable() {
 
       {/* Comparison Table */}
       {selectedProducts.length > 0 ? (
-        <div className="overflow-x-auto -mx-6 px-6">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="min-w-[160px] sticky left-0 bg-card z-10">
-                  Specification
-                </TableHead>
-                {selectedProducts.map((product) => (
-                  <TableHead key={product.id} className="min-w-[140px] text-center">
-                    {product.name}
+        <>
+          {/* Desktop: Horizontal Table */}
+          <div className="hidden md:block overflow-x-auto -mx-6 px-6">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="min-w-[160px] sticky left-0 bg-card z-10">
+                    Specification
                   </TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {Object.entries(specsByCategory).map(([category, specs]) => (
-                <>
-                  {/* Category Header Row */}
-                  <TableRow key={`cat-${category}`} className="bg-muted/50">
-                    <TableCell
-                      colSpan={selectedProducts.length + 1}
-                      className="font-semibold text-foreground py-2"
-                    >
-                      {specCategoryLabels[category]}
-                    </TableCell>
-                  </TableRow>
-                  {/* Spec Rows */}
-                  {specs.map((spec) => {
-                    const differs = valuesDiffer(spec);
-                    return (
-                      <TableRow
-                        key={spec.key}
-                        className={differs ? "bg-amber-50/50 dark:bg-amber-950/20" : ""}
+                  {selectedProducts.map((product) => (
+                    <TableHead key={product.id} className="min-w-[140px] text-center">
+                      {product.name}
+                    </TableHead>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {Object.entries(specsByCategory).map(([category, specs]) => (
+                  <>
+                    <TableRow key={`cat-${category}`} className="bg-muted/50">
+                      <TableCell
+                        colSpan={selectedProducts.length + 1}
+                        className="font-semibold text-foreground py-2"
                       >
-                        <TableCell className="font-medium text-muted-foreground sticky left-0 bg-inherit">
-                          {spec.label}
-                        </TableCell>
-                        {selectedProducts.map((product) => (
-                          <TableCell key={product.id} className="text-center text-sm">
-                            {spec.getValue(product)}
+                        {specCategoryLabels[category]}
+                      </TableCell>
+                    </TableRow>
+                    {specs.map((spec) => {
+                      const differs = valuesDiffer(spec);
+                      return (
+                        <TableRow
+                          key={spec.key}
+                          className={differs ? "bg-amber-50/50 dark:bg-amber-950/20" : ""}
+                        >
+                          <TableCell className="font-medium text-muted-foreground sticky left-0 bg-inherit">
+                            {spec.label}
                           </TableCell>
-                        ))}
-                      </TableRow>
-                    );
-                  })}
-                </>
-              ))}
-              {/* View Details Row */}
-              <TableRow>
-                <TableCell className="font-medium text-muted-foreground sticky left-0 bg-card">
-                  Details
-                </TableCell>
-                {selectedProducts.map((product) => (
-                  <TableCell key={product.id} className="text-center">
-                    <Button asChild variant="outline" size="sm">
-                      <Link to={`/products/${product.category}/${product.id}`}>
-                        View <ExternalLink className="h-3 w-3 ml-1" />
-                      </Link>
-                    </Button>
-                  </TableCell>
+                          {selectedProducts.map((product) => (
+                            <TableCell key={product.id} className="text-center text-sm">
+                              {spec.getValue(product)}
+                            </TableCell>
+                          ))}
+                        </TableRow>
+                      );
+                    })}
+                  </>
                 ))}
-              </TableRow>
-            </TableBody>
-          </Table>
-        </div>
+                <TableRow>
+                  <TableCell className="font-medium text-muted-foreground sticky left-0 bg-card">
+                    Details
+                  </TableCell>
+                  {selectedProducts.map((product) => (
+                    <TableCell key={product.id} className="text-center">
+                      <Button asChild variant="outline" size="sm">
+                        <Link to={`/products/${product.category}/${product.id}`}>
+                          View <ExternalLink className="h-3 w-3 ml-1" />
+                        </Link>
+                      </Button>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
+
+          {/* Mobile: Stacked Cards */}
+          <div className="md:hidden space-y-4">
+            {selectedProducts.map((product) => (
+              <div key={product.id} className="rounded-lg border border-border bg-background p-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-bold text-lg text-foreground">{product.name}</h3>
+                  <Button asChild variant="outline" size="sm" className="min-h-[44px]">
+                    <Link to={`/products/${product.category}/${product.id}`}>
+                      View <ExternalLink className="h-3 w-3 ml-1" />
+                    </Link>
+                  </Button>
+                </div>
+                {Object.entries(specsByCategory).map(([category, specs]) => (
+                  <div key={category} className="mb-3 last:mb-0">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wide mb-2">
+                      {specCategoryLabels[category]}
+                    </p>
+                    <div className="space-y-1.5">
+                      {specs.map((spec) => (
+                        <div key={spec.key} className="flex items-center justify-between gap-4 py-1.5 border-b border-border/30 last:border-0">
+                          <span className="text-sm text-muted-foreground">{spec.label}</span>
+                          <span className="text-sm font-medium text-foreground text-right">{spec.getValue(product)}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </>
       ) : (
         <div className="text-center py-12 text-muted-foreground">
           <Scale className="h-12 w-12 mx-auto mb-3 opacity-30" />
