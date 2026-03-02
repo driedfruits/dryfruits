@@ -1,14 +1,24 @@
 
 
-## Move Applications Editor Into Sensory Section
+## Add Processing Method Field to Product Description (Sensory) Section
 
 ### Current State
-The Product Editor already has:
-- A "Product Description (Sensory)" section with Flavor Profile and Texture fields (between Description and Pricing — correct position)
-- An `EditorApplicationsSection` — but it's placed much further down, after Logistics
+`processingMethod` already exists in the product data as part of `specifications` and is editable in the Specifications section of the editor. The user wants it also surfaced in the "Product Description (Sensory)" section for easier access.
 
-### Fix
-**`src/pages/ProductEditorPage.tsx`** — Move the `<EditorApplicationsSection>` from its current position (after Logistics) up into the "Product Description (Sensory)" block, right after the Texture field. This groups all product description content (flavor, texture, applications) together in one section between the main description and pricing, matching the product page layout.
+### Approach
+Rather than duplicating data, add a dedicated `FormInput` for `specs.processingMethod` directly in the sensory section of **`src/pages/ProductEditorPage.tsx`** — placed after Texture and before Applications. It will read/write the same `specs` state (`specs.processingMethod`), so the value stays in sync with the Specifications section.
 
-Single move of one component, no new code needed.
+### Change
+
+**`src/pages/ProductEditorPage.tsx`** — Add one `FormInput` line after Texture:
+```tsx
+<FormInput
+  label="Processing Method"
+  value={specs.processingMethod || ""}
+  onChange={(e) => setSpecs(prev => ({ ...prev, processingMethod: e.target.value }))}
+  placeholder="e.g. Sun-dried, Low-temp dehydrated, Freeze-dried"
+/>
+```
+
+Single line addition, no new state or components needed.
 
