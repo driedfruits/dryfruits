@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Package, Gift, MessageCircle } from "lucide-react";
-import { companyInfo } from "@/data/companyData";
+import { useWhatsApp } from "@/hooks/useWhatsApp";
 
 const tabs = [
   { name: "Products", href: "/products", icon: Package },
@@ -8,8 +8,7 @@ const tabs = [
 ];
 
 export function MobileBottomNav() {
-  const whatsappMessage = encodeURIComponent("Hello! I'm interested in your dried fruit products.");
-  const whatsappUrl = `https://wa.me/${companyInfo.whatsapp}?text=${whatsappMessage}`;
+  const { handleClick } = useWhatsApp({ source: "mobile_nav" });
 
   return (
     <nav 
@@ -38,11 +37,8 @@ export function MobileBottomNav() {
           </NavLink>
         ))}
         
-        {/* WhatsApp Tab - External Link */}
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={handleClick}
           className="flex flex-1 flex-col items-center justify-center gap-1 min-h-[48px] min-w-[48px] py-2 text-whatsapp transition-colors duration-200 active:scale-95"
           aria-label="Contact us on WhatsApp"
         >
@@ -50,7 +46,7 @@ export function MobileBottomNav() {
             <MessageCircle className="h-6 w-6" />
           </div>
           <span className="text-xs font-medium">WhatsApp</span>
-        </a>
+        </button>
       </div>
     </nav>
   );
