@@ -14,7 +14,6 @@ export function ProductQuickHighlights({ product }: ProductQuickHighlightsProps)
     { label: "Moisture", value: product.specifications.moisture },
     { label: "Shelf Life", value: product.specifications.shelfLife },
     { label: "Origin", value: product.specifications.origin },
-    { label: "Sample", value: product.pricing.samplePolicy },
   ].filter((item) => item.value);
 
   return (
