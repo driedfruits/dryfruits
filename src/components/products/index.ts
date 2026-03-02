@@ -15,3 +15,4 @@ export { ProductCard } from "./ProductCard";
 export { CategoryCard } from "./CategoryCard";
 export { ProductSensoryApplications } from "./ProductSensoryApplications";
 export { ProductQuickHighlights } from "./ProductQuickHighlights";
+export { RelatedProducts } from "./RelatedProducts";
