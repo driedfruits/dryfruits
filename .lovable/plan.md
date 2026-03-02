@@ -1,33 +1,20 @@
 
 
-## Replace ManufacturingSection with "About Our Factory" Section
+## Update "Our Product Range" Section
 
-### Overview
-Replace the current `ManufacturingSection` with a new two-column "About Our Factory" layout — text on the left, factory photo placeholder on the right. Reorder it to appear directly after HeroSection.
+### Changes to `src/components/home/ProductCategoriesSection.tsx`
 
-### Changes
+Instead of showing 4 category cards (Dried Fruits, Powdered, Vacuum Fried, Ginger & Turmeric), show individual dried fruit products directly.
 
-#### 1. `src/components/home/ManufacturingSection.tsx` — Full rewrite
-- Two-column layout (`md:grid-cols-2`)
-- Left column: "Family Owned Factory" heading, then the provided copy as structured paragraphs with the fruit list, certifications, and export info
-- Right column: Image placeholder div with `alt="PT Dried Fruits Total Indonesia factory facility in Magelang, Central Java"` and dimensions `width={600} height={450}`
-- Pull legal data (NPWP, NIB) from `companyInfo` in `companyData`
+**Approach:**
+- Import `products` from `companyData` instead of `productCategories`
+- Filter to only `dried-fruits` category products
+- Display each product as a card linking to `/products/dried-fruits/{product.id}`
+- Each card shows the product name (e.g., "Dried Papaya", "Dried Mango") with an arrow link
+- Use a grid layout (3-4 columns) with the same gradient card style
+- Keep the "View All Products" CTA button at the bottom
+- Update subtitle text to reflect dried fruits focus
 
-#### 2. `src/pages/HomePage.tsx` — Reorder sections
-Move `ManufacturingSection` to appear right after `HeroSection` (before `WhyChooseUs`):
-
-```
-<HeroSection />
-<ManufacturingSection />
-<WhyChooseUs />
-...
-```
-
-### Content Structure (left column)
-- `<h2>` "About Our Factory"
-- `<h3>` "Family Owned Factory"
-- Paragraph with company intro, legal name, tax/business IDs
-- Fruit list as styled pill badges (reuse the same pattern from HeroSection)
-- Paragraph about certifications (USDA Organic, EU Organic, Fair Trade, HACCP, Halal, Kosher)
-- Paragraph about export reach (18 countries, regions, customer segments)
+**Products that will appear** (10 items):
+Dried Papaya, Dried Pineapple, Dried Avocado, Dried Mango, Dried Dragon Fruit, Dried Snake Fruit, Dried Breadfruit, Dried Jackfruit, Dried Coconut, Dried Banana
 
