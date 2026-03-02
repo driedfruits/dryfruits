@@ -13,17 +13,25 @@ export default {
   		}
   	},
   	extend: {
-  		fontFamily: {
-  			heading: [
-  				'Poppins',
-  				'system-ui',
-  				'sans-serif'
-  			],
-  			body: [
-  				'Inter',
-  				'system-ui',
-  				'sans-serif'
-  			],
+		fontFamily: {
+			heading: [
+				'-apple-system',
+				'BlinkMacSystemFont',
+				'Segoe UI',
+				'Roboto',
+				'Helvetica Neue',
+				'Arial',
+				'sans-serif'
+			],
+			body: [
+				'-apple-system',
+				'BlinkMacSystemFont',
+				'Segoe UI',
+				'Roboto',
+				'Helvetica Neue',
+				'Arial',
+				'sans-serif'
+			],
   			sans: [
   				'ui-sans-serif',
   				'system-ui',
