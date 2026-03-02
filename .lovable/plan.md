@@ -1,32 +1,24 @@
 
 
-## Always Show 4 Thumbnails with Editable Alt Text
+## Remove Redundant Size Suffix from Product H1
 
 ### Problem
-The thumbnail row only renders when actual image paths exist. Products with no images show zero thumbnails.
+The `<h1>` appends `specifications.size.split(",")[0]` after the product name, producing titles like:
+> **Wholesale Dried Papaya Chunks & Slices – Chunks 1-2cm**
 
-### Plan
+This is redundant when the product name already describes the form.
 
-**1. `src/components/products/ProductPageTemplate.tsx`**
-- Change `allImages` logic: always produce exactly 4 slots. Fill from `mainImage` + gallery sources, pad remaining with `"/placeholder.svg"`.
-- Build a parallel `allAlts` array using gallery alt text and fallback product name text.
-- Update thumbnail rendering to use `allAlts[index]` instead of generic text.
-- Set `selectedImage` default to first item (always exists now).
+### Fix
 
-**2. `src/data/products.ts` — Product interface**
-- Add `galleryAlts?: string[]` to the `images` interface — 4 alt texts for the thumbnail row, independent of gallery sources.
+**`src/components/products/ProductPageTemplate.tsx`** — Simplify the h1 to just use the product name:
 
-Actually, simpler approach: the gallery already has `alt` per item. We just need to ensure 4 gallery entries always exist in the template. No schema change needed.
+```tsx
+// Before
+<h1>Wholesale {product.name} – {product.specifications.size?.split(",")[0]}</h1>
 
-**3. `src/components/editor/EditorImagesSection.tsx`**
-- Always show 4 gallery alt text inputs (even if `imgGallery` has fewer entries). Label them "Thumbnail 1-4 Alt Text".
+// After
+<h1>Wholesale {product.name}</h1>
+```
 
-**4. `src/pages/ProductEditorPage.tsx`**
-- In `loadProduct`: ensure `imgGallery` always has exactly 4 entries, padding with `{ src: "", alt: "" }`.
-- Initial state should also default to 4 empty entries.
-
-### Summary
-- 4 thumbnails always visible on product page (placeholder when no image)
-- 4 alt text fields always visible in admin editor
-- No data model changes needed — uses existing `gallery` array
+Single line change. The size/cut info is already shown in the Quick Highlights section below.
 
