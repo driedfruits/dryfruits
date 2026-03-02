@@ -16,6 +16,7 @@ import { ProductFAQ } from "./ProductFAQ";
 import { ProductCompliance } from "./ProductCompliance";
 import { ProductSensoryApplications } from "./ProductSensoryApplications";
 import { ProductSeasonality } from "./ProductSeasonality";
+import { ProductQuickHighlights } from "./ProductQuickHighlights";
 
 import { StickyInquiryBar } from "./StickyInquiryBar";
 import { ContainerCalculator } from "./ContainerCalculator";
@@ -174,56 +175,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                 </div>
 
                 {/* Quick Highlights */}
-                <ul className="space-y-2 mb-6 text-sm">
-                  <li className="flex items-center gap-2">
-                    <span className="font-medium">Certifications:</span>
-                    <span className="text-muted-foreground">{product.certifications.join(", ")}</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="font-medium">MOQ:</span>
-                    <span className="text-muted-foreground">{product.pricing.moq}</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="font-medium">Lead Time:</span>
-                    <span className="text-muted-foreground">{product.pricing.leadTime}</span>
-                  </li>
-                  {product.specifications.size && (
-                    <li className="flex items-center gap-2">
-                      <span className="font-medium">Cut Size / Form:</span>
-                      <span className="text-muted-foreground">{product.specifications.size}</span>
-                    </li>
-                  )}
-                  {product.availability?.peakSeason && (
-                    <li className="flex items-center gap-2">
-                      <span className="font-medium">Season:</span>
-                      <span className="text-muted-foreground">{product.availability.peakSeason}</span>
-                    </li>
-                  )}
-                  {product.specifications.moisture && (
-                    <li className="flex items-center gap-2">
-                      <span className="font-medium">Moisture:</span>
-                      <span className="text-muted-foreground">{product.specifications.moisture}</span>
-                    </li>
-                  )}
-                  {product.specifications.shelfLife && (
-                    <li className="flex items-center gap-2">
-                      <span className="font-medium">Shelf Life:</span>
-                      <span className="text-muted-foreground">{product.specifications.shelfLife}</span>
-                    </li>
-                  )}
-                  {product.specifications.origin && (
-                    <li className="flex items-center gap-2">
-                      <span className="font-medium">Origin:</span>
-                      <span className="text-muted-foreground">{product.specifications.origin}</span>
-                    </li>
-                  )}
-                  {product.pricing.samplePolicy && (
-                    <li className="flex items-center gap-2">
-                      <span className="font-medium">Sample:</span>
-                      <span className="text-muted-foreground">{product.pricing.samplePolicy}</span>
-                    </li>
-                  )}
-                </ul>
+                <ProductQuickHighlights product={product} />
 
                 {/* CTA Buttons */}
                 <div className="flex flex-wrap gap-3">
