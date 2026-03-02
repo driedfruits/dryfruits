@@ -1,43 +1,32 @@
 
 
-## Add More Fields to Product Editor
+## Add Applications, Compliance, FAQs & Related Products to Editor
 
-Extend `src/pages/ProductEditorPage.tsx` with the following new editable sections:
+Extend `src/pages/ProductEditorPage.tsx` with four new editable sections.
 
-### New Fields
+### New Sections
 
-1. **Tagline** — text input
-2. **Description** — textarea (multi-line)
-3. **Packaging** — grouped section with bulk (text), retail (text), custom (checkbox)
-4. **Price Tiers** — dynamic list: add/remove rows with volume + priceRange inputs, plus samplePolicy text input
-5. **Logistics** — grouped section with portOfLoading, incoterms (text, comma-separated), containerLoad20ft, containerLoad40ft
+1. **Applications** — dynamic string list with add/remove buttons (e.g. "Snacking", "Trail mix")
+2. **Compliance** — three text inputs: USA, EU, Global
+3. **FAQs** — dynamic list of question+answer pairs with add/remove
+4. **Related Products** — multi-select checkboxes showing all other products (excluding current)
+
+### New State
+- `applications: string[]`
+- `complianceUsa, complianceEu, complianceGlobal: string`
+- `faqs: Array<{question: string, answer: string}>`
+- `relatedProducts: string[]`
+
+### Form Layout (appended after Logistics section)
+1. Applications — tag-style list with text input + "Add" button, each item has remove button
+2. Compliance — grouped card with 3 text inputs (USA, EU, Global)
+3. FAQs — dynamic rows: each row has question input + answer textarea + remove button, plus "Add FAQ" button
+4. Related Products — checkbox grid of all product names (filtered to exclude current product)
 
 ### Changes
-
 | File | Change |
 |------|--------|
-| `src/pages/ProductEditorPage.tsx` | Add state for all new fields, load them in `loadProduct`, add form sections, include in JSON output |
-| `src/components/forms/FormElements.tsx` | Add `FormTextarea` component wrapping the existing `Textarea` UI component (if not already present) |
+| `src/pages/ProductEditorPage.tsx` | Add state, loadProduct mapping, form sections, and include all fields in JSON output |
 
-### New State Variables
-- `tagline`, `description` — strings
-- `packagingBulk`, `packagingRetail` — strings; `packagingCustom` — boolean
-- `priceTiers` — `Array<{volume: string, priceRange: string}>`; `samplePolicy` — string
-- `portOfLoading`, `incoterms`, `containerLoad20ft`, `containerLoad40ft` — strings
-
-### Form Layout Order
-1. H1 (existing)
-2. Tagline (new)
-3. Description (new, textarea)
-4. Price section (existing FOB + new price tiers + sample policy)
-5. MOQ, Lead Time, Size & Form (existing)
-6. Certifications (existing)
-7. Harvest Calendar (existing)
-8. Packaging (new grouped section)
-9. Logistics (new grouped section)
-10. JSON Output (existing, updated to include all new fields)
-
-### Price Tiers UI
-- Each tier row: two inline inputs (volume + price range) + remove button
-- "Add Tier" button below the list
+No other files need changes — reuses existing `FormInput`, `FormTextarea`, `FormCheckbox` components.
 
