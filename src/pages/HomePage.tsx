@@ -40,8 +40,8 @@ export default function HomePage() {
       />
 
       <HeroSection />
-      <WhyChooseUs />
       <ManufacturingSection />
+      <WhyChooseUs />
       <ProductCategoriesSection />
       <CertificationsSection />
       <TargetSegmentsSection />

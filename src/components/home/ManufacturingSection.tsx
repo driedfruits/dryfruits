@@ -1,60 +1,71 @@
 import { memo } from "react";
+import { companyInfo } from "@/data/companyInfo";
 
-const ImagePlaceholder = ({ label, className = "h-48" }: { label: string; className?: string }) => (
-  <div className={`bg-muted flex items-center justify-center ${className}`}>
-    <span className="text-muted-foreground text-sm font-medium">{label}</span>
-  </div>
-);
-
-const factoryItems = [
-  {
-    label: "Factory Photo",
-    title: "Modern Facility",
-    description: "5,000 m² certified production facility",
-  },
-  {
-    label: "Sorting Photo",
-    title: "Fruit Selection",
-    description: "Hand-picked tropical fruits from local farms",
-  },
-  {
-    label: "Process Photo",
-    title: "Drying Process",
-    description: "Advanced vacuum & air drying technology",
-  },
-  {
-    label: "Packaging Photo",
-    title: "Quality Packaging",
-    description: "Food-grade packaging for export",
-  },
+const fruits = [
+  "Dragon Fruit", "Papaya", "Mango", "Avocado", "Pineapple",
+  "Snakefruit", "Guava", "Jackfruit", "Longan", "Rambutan",
 ];
 
 export const ManufacturingSection = memo(function ManufacturingSection() {
   return (
     <section className="py-20 bg-muted/30">
       <div className="container">
-        <div className="mx-auto max-w-3xl text-center mb-16">
-          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-            Our Manufacturing Facility
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            State-of-the-art processing facility in Central Java, Indonesia
-          </p>
-        </div>
+        <div className="grid gap-12 md:grid-cols-2 items-center">
+          {/* Left Column — Text */}
+          <div>
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl mb-4">
+              About Our Factory
+            </h2>
+            <h3 className="text-xl font-semibold text-foreground mb-4">
+              Family Owned Factory
+            </h3>
+            <p className="text-muted-foreground mb-6 leading-relaxed">
+              We are a family-owned (second generation) factory with legal name{" "}
+              <strong className="text-foreground">{companyInfo.legalInfo.legalName}</strong>{" "}
+              ({companyInfo.legalInfo.npwp.label}: {companyInfo.legalInfo.npwp.value},{" "}
+              {companyInfo.legalInfo.nib.label}: {companyInfo.legalInfo.nib.value}), located in{" "}
+              {companyInfo.address.city}, {companyInfo.address.province}, {companyInfo.address.country}.
+              We manufacture dehydrated (professional oven dried) fruits such as:
+            </p>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {factoryItems.map((item) => (
-            <div 
-              key={item.title}
-              className="group rounded-2xl overflow-hidden bg-card shadow-soft hover:shadow-glow transition-all duration-300"
-            >
-              <ImagePlaceholder label={item.label} className="h-48" />
-              <div className="p-5">
-                <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
-              </div>
+            <div className="mb-6 flex flex-wrap gap-2">
+              {fruits.map((fruit) => (
+                <span
+                  key={fruit}
+                  className="rounded-full bg-primary/10 text-primary px-3 py-1 text-sm font-medium"
+                >
+                  {fruit}
+                </span>
+              ))}
             </div>
-          ))}
+
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              We are fully export certified with <strong className="text-foreground">USDA Organic</strong>,{" "}
+              <strong className="text-foreground">EU Organic</strong>,{" "}
+              <strong className="text-foreground">Fair Trade</strong>,{" "}
+              <strong className="text-foreground">HACCP</strong>,{" "}
+              <strong className="text-foreground">Halal</strong> &amp;{" "}
+              <strong className="text-foreground">Kosher</strong> certified.
+            </p>
+
+            <p className="text-muted-foreground leading-relaxed">
+              Today, we export to {companyInfo.stats.exportCountries} countries across North America,
+              Europe, Asia Pacific, and the Middle East, serving food manufacturers, retailers, and
+              trading companies worldwide.
+            </p>
+          </div>
+
+          {/* Right Column — Image Placeholder */}
+          <div className="rounded-2xl overflow-hidden bg-muted flex items-center justify-center aspect-[4/3]">
+            <img
+              src="/placeholder.svg"
+              alt="PT Dried Fruits Total Indonesia factory facility in Magelang, Central Java"
+              width={600}
+              height={450}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </section>
