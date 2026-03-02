@@ -1,50 +1,49 @@
 
 
-## Mobile Experience Audit & Fixes
+## Loading Skeletons & Optimistic UI Improvements
 
-After reviewing all components, the codebase is already well-structured for mobile. Most tap targets are 48px+, text uses `text-base` (16px), and forms use proper sizing. Here are the specific issues found and fixes needed:
+The codebase already has good foundations: `ProductPageSkeleton`, `CategoryPageSkeleton`, lazy-loaded pages with `Suspense`, shimmer effects on `OptimizedImage`, and a spinner `PageLoader`. Here's what's missing:
 
-### Issues Found
+### 1. Replace spinner PageLoader with a proper skeleton layout
 
-**1. Container padding too wide on small screens**
-- `tailwind.config.ts` sets container padding to `2rem` (32px) — that's 64px total on a 320px screen, leaving only 256px for content. Should be `1rem` on mobile, `2rem` on larger screens.
+**File: `src/components/layout/LayoutSkeleton.tsx`** (new)
+Create a skeleton that mirrors the `Layout` component structure — a header bar skeleton (logo placeholder, nav placeholders) and a content area with generic content blocks. This replaces the generic spinner in `App.tsx` and gives immediate visual structure on first load.
 
-**2. Footer social icons are 40x40px (h-10 w-10), below the 48px minimum**
-- Line 153 in `Footer.tsx`: social link icons need `h-12 w-12` or `min-h-[48px] min-w-[48px]`
+**File: `src/App.tsx`**
+Replace the `PageLoader` spinner with the new `LayoutSkeleton` component.
 
-**3. Footer certification badges have no min-height for tap (they're not interactive, but visually cramped)**
-- Not interactive — no fix needed.
+### 2. Add skeleton for HomePage sections
 
-**4. Comparison table remove button is 24x24px (h-6 w-6)**
-- `ProductComparisonTable.tsx` line 207: the remove button `h-6 w-6` is way too small. Needs `h-8 w-8` minimum with proper touch target wrapper.
+**File: `src/components/home/HomePageSkeleton.tsx`** (new)
+Create a skeleton matching HomePage's above-the-fold layout: hero section (headline + CTA placeholders), product categories grid (6 cards), and a manufacturing section block. Used as the Suspense fallback specifically for the HomePage route.
 
-**5. Hero fruit tags are small pills with no min-height**
-- `HeroSection.tsx` line 39: fruit tags `px-3 py-1` are ~28px tall. They're not interactive (just `<span>`s), so no tap target issue. Fine as-is.
+**File: `src/App.tsx`**
+Wrap the HomePage route's Suspense with `HomePageSkeleton` instead of the generic layout skeleton, since it's the most visited page.
 
-**6. Product category cards on mobile could overflow**
-- `ProductCategoriesSection.tsx` line 22: `grid-cols-2` with `p-6` padding on small cards is fine, but text could truncate. The `gap-4` is adequate.
+### 3. Add optimistic form submission feedback
 
-**7. Breadcrumb links lack min-height tap targets**
-- `ProductPageTemplate.tsx` line 87-94 and `ProductsPage.tsx` line 51-54: breadcrumb links are plain text with no padding for touch.
+**File: `src/components/forms/ContactForm.tsx`**
+After form submission succeeds, show a success state inline (green checkmark + "Message sent" text) instead of only relying on a toast. The success state replaces the form for 3 seconds, then resets. This gives immediate visual feedback even if the toast is missed on mobile.
 
-**8. PageHero h1 is `text-4xl` on all screens — could overflow on very small screens**
-- Should be `text-3xl sm:text-4xl lg:text-5xl` for better scaling.
+**File: `src/components/forms/CatalogForm.tsx`**
+Same pattern — show inline success state after submission.
 
-### Plan
+### 4. Add content skeleton for generic pages
 
-**File: `tailwind.config.ts`** — Change container padding to responsive: `'1rem'` default with `sm: '1.5rem'` and `lg: '2rem'`
+**File: `src/components/layout/ContentPageSkeleton.tsx`** (new)
+A simple reusable skeleton for text-heavy pages (About, FAQ, Shipping, etc.): PageHero skeleton + paragraph block skeletons. Used as Suspense fallback for these routes instead of the spinner.
 
-**File: `src/components/layout/Footer.tsx`** — Increase social icon links from `h-10 w-10` to `h-12 w-12` (48px)
+**File: `src/App.tsx`**
+Use `ContentPageSkeleton` as fallback for text-heavy page routes (About, FAQ, Shipping, Certifications, etc.) by grouping them under a separate Suspense boundary.
 
-**File: `src/components/products/ProductComparisonTable.tsx`** — Increase remove button from `h-6 w-6` to `h-8 w-8` with `min-h-[48px] min-w-[48px]` wrapper
+### Summary of changes
 
-**File: `src/components/products/ProductPageTemplate.tsx`** — Add `min-h-[44px] flex items-center` to breadcrumb links for touch targets
-
-**File: `src/pages/ProductsPage.tsx`** — Same breadcrumb fix
-
-**File: `src/components/layout/PageHero.tsx`** — Scale h1 down on mobile: `text-3xl sm:text-4xl lg:text-5xl`
-
-**File: `src/components/home/HeroSection.tsx`** — The h1 already has `text-4xl sm:text-5xl lg:text-6xl`, could reduce to `text-3xl` on smallest screens
-
-**File: `src/index.css`** — Add `overflow-x: hidden` to `body` as a safety net against horizontal scroll
+| File | Action |
+|------|--------|
+| `src/components/layout/LayoutSkeleton.tsx` | New — header + content skeleton |
+| `src/components/home/HomePageSkeleton.tsx` | New — hero + categories skeleton |
+| `src/components/layout/ContentPageSkeleton.tsx` | New — generic page skeleton |
+| `src/App.tsx` | Replace spinner with skeleton fallbacks, add per-route Suspense groups |
+| `src/components/forms/ContactForm.tsx` | Add inline success state after submission |
+| `src/components/forms/CatalogForm.tsx` | Add inline success state after submission |
 
