@@ -135,6 +135,9 @@ const ProductEditorPage = () => {
     if (!packagingBulk.trim()) errors.packagingBulk = "Bulk packaging is required";
     if (!packagingRetail.trim()) errors.packagingRetail = "Retail packaging is required";
     if (certs.length === 0) errors.certs = "At least one certification is required";
+    if (!specs.moisture?.trim()) errors["specs.moisture"] = "Moisture content is required";
+    if (!specs.shelfLife?.trim()) errors["specs.shelfLife"] = "Shelf life is required";
+    if (!specs.origin?.trim()) errors["specs.origin"] = "Origin is required";
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -203,7 +206,7 @@ const ProductEditorPage = () => {
         <FormInput label="Tagline" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="e.g. Tropical sweetness in every bite" required error={validationErrors.tagline} />
         <FormTextarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Product description..." required error={validationErrors.description} />
         <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} priceTiers={priceTiers} addTier={addTier} removeTier={removeTier} updateTier={updateTier} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} errors={validationErrors} />
-        <EditorSpecificationsSection specs={specs} updateSpec={(key, value) => setSpecs(prev => ({ ...prev, [key]: value }))} />
+        <EditorSpecificationsSection specs={specs} updateSpec={(key, value) => setSpecs(prev => ({ ...prev, [key]: value }))} errors={validationErrors} />
         <EditorCertificationsSection certs={certs} toggleCert={toggleCert} errors={validationErrors} />
         <EditorAvailabilitySection peakSeason={peakSeason} setPeakSeason={setPeakSeason} offPeakSeason={offPeakSeason} setOffPeakSeason={setOffPeakSeason} currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} />
         <EditorPackagingSection bulk={packagingBulk} setBulk={setPackagingBulk} retail={packagingRetail} setRetail={setPackagingRetail} custom={packagingCustom} setCustom={setPackagingCustom} errors={validationErrors} />

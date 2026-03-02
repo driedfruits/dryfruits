@@ -45,12 +45,15 @@ const specGroups = [
   },
 ];
 
+const requiredSpecKeys = ["moisture", "shelfLife", "origin"];
+
 interface EditorSpecificationsSectionProps {
   specs: Record<string, string>;
   updateSpec: (key: string, value: string) => void;
+  errors?: Record<string, string>;
 }
 
-const EditorSpecificationsSection = ({ specs, updateSpec }: EditorSpecificationsSectionProps) => (
+const EditorSpecificationsSection = ({ specs, updateSpec, errors }: EditorSpecificationsSectionProps) => (
   <div className="space-y-4 rounded-lg border border-border p-4">
     <p className="text-sm font-medium text-foreground">Technical Specifications</p>
     {specGroups.map((group) => (
@@ -64,6 +67,8 @@ const EditorSpecificationsSection = ({ specs, updateSpec }: EditorSpecifications
               value={specs[field.key] || ""}
               onChange={(e) => updateSpec(field.key, e.target.value)}
               placeholder={`Enter ${field.label.toLowerCase()}`}
+              required={requiredSpecKeys.includes(field.key)}
+              error={errors?.[`specs.${field.key}`]}
             />
           ))}
         </div>
