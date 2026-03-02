@@ -1,25 +1,27 @@
 
 
-## Remove Remaining References to Removed Categories
+## Integrate Prerender.io
 
-### Files to modify
+Prerender.io serves pre-rendered HTML to search engine bots for better SEO on SPAs. Since this project deploys on Netlify-style infrastructure (evidenced by `_redirects`), the integration has two parts:
 
-#### 1. `src/data/companyInfo.ts` (line 5)
-- Update tagline from `"Indonesia Dried & Vacuum Fruits Manufacturer"` to `"Indonesia Dried Fruits Manufacturer"`
+### 1. Add Prerender.io meta tag — `index.html`
+Add `<meta name="fragment" content="!">` to the `<head>` to signal to crawlers that JavaScript rendering is needed.
 
-#### 2. `src/data/products.ts` (lines 34-50)
-- Remove ginger/turmeric/vacuum-specific spec fields: `meshSize`, `oilContent`, `curcuminContent`, `volatileOil`, `gingerolContent`, `totalAsh`, `acidInsolubleAsh`, `particleSize`, `purity`, `fatContent`, `starchContent`, `chromeTest`, `astaColor`
+### 2. Add Netlify configuration — `netlify.toml` (new file)
+Create a `netlify.toml` at the project root with the official `netlify-plugin-prerender` plugin:
 
-#### 3. `src/components/products/ProductQualitySpecs.tsx`
-- Delete the dead ginger/turmeric code — simplify to just `return null` or delete the file entirely and remove its import from `ProductPageTemplate.tsx`
+```toml
+[[plugins]]
+  package = "netlify-plugin-prerender"
+  [plugins.inputs]
+    prerenderToken = "YOUR_PRERENDER_TOKEN"
+```
 
-#### 4. `src/data/storageData.ts` (line 64)
-- Change `"especially powders"` to `"especially finely cut products"`
+### 3. API Token
+Prerender.io requires a private API token from your Prerender.io account dashboard. This token will need to be stored securely. Since this is a build-time plugin config (not runtime code), the token goes directly in `netlify.toml` or as a Netlify environment variable `PRERENDER_TOKEN`.
 
-#### 5. `src/pages/StorageGuidePage.tsx`
-- Line 60: Remove "and powders" from SEO description
-- Line 263: Change `"Extends shelf life by 30-50% for powders"` to `"Extends shelf life by 30-50% for dried fruits"`
+**Before proceeding**: You will need a Prerender.io account and API token. Do you have one, or would you like guidance on where to get it?
 
-#### 6. `src/lib/redirects.ts`
-- Keep the redirects for old URLs (powder, vacuum, ginger, spices) — these are intentional 301s to catch old links. No change needed.
+### Note on Lovable deployment
+Lovable's publish infrastructure may not support custom Netlify plugins. If that's the case, an alternative approach is to use Prerender.io's middleware integration via a `_headers` file or configure it after connecting to your own hosting/Netlify account via GitHub export.
 
