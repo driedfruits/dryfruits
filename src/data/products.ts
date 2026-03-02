@@ -121,8 +121,6 @@ export const products: Product[] = [
   // ==================
   {
     id: "dried-papaya",
-    category: "dried-fruits",
-    isOrganic: false,
     name: "Wholesale Bulk Dried Dehydrated Papaya Chunks & Slices",
     metaTitle: "Wholesale Dried Papaya (Slices) - Bulk Export from Indonesia",
     metaDescription:
@@ -131,9 +129,9 @@ export const products: Product[] = [
     description:
       "Premium dried papaya slices made from sun-ripened Indonesian papayas. Natural sweetness with no added sugar options available.",
     pricing: {
-      fobBase: "From $7.50/kg FOB",
-      moq: "500 kg",
-      leadTime: "2-3 weeks",
+      fobBase: "from $3.12/kg ",
+      moq: "100 kg",
+      leadTime: "1 week",
       priceTiers: [
         {
           volume: "Sample (<5kg)",
