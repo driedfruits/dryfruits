@@ -12,7 +12,7 @@ export const HeroSection = memo(function HeroSection() {
     <section className="relative overflow-hidden min-h-[600px] lg:min-h-[700px]">
       {/* Background Placeholder */}
       <div className="absolute inset-0">
-        <div className="w-full h-full bg-muted" />
+        <div className="w-full h-full bg-muted" role="img" aria-label="Dehydrated tropical fruits factory facility in Indonesia" />
         <div className="absolute inset-0 bg-gradient-to-br from-tropical-green-dark/90 via-primary/80 to-tropical-green-light/70" />
       </div>
       

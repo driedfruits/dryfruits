@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { companyInfo } from "@/data/companyInfo";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const fruits = [
   "Dragon Fruit", "Papaya", "Mango", "Avocado", "Pineapple",
@@ -56,14 +57,14 @@ export const ManufacturingSection = memo(function ManufacturingSection() {
           </div>
 
           {/* Right Column — Image Placeholder */}
-          <div className="rounded-2xl overflow-hidden bg-muted flex items-center justify-center aspect-[4/3]">
-            <img
+          <div className="rounded-2xl overflow-hidden bg-muted aspect-[4/3]">
+            <OptimizedImage
               src="/placeholder.svg"
               alt="PT Dried Fruits Total Indonesia factory facility in Magelang, Central Java"
               width={600}
               height={450}
-              className="w-full h-full object-cover"
-              loading="lazy"
+              aspectRatio="auto"
+              className="w-full h-full"
             />
           </div>
         </div>

@@ -2,12 +2,7 @@ import { memo } from "react";
 import { Globe, Truck } from "lucide-react";
 import { SecondaryButton } from "@/components/CTAButton";
 import { companyInfo, exportCountries } from "@/data/companyData";
-
-const ImagePlaceholder = ({ label, className = "h-48" }: { label: string; className?: string }) => (
-  <div className={`bg-muted flex items-center justify-center ${className}`}>
-    <span className="text-muted-foreground text-sm font-medium">{label}</span>
-  </div>
-);
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export const ExportMapSection = memo(function ExportMapSection() {
   return (
@@ -46,7 +41,7 @@ export const ExportMapSection = memo(function ExportMapSection() {
           {/* Export Image with Overlay Stats */}
           <div className="relative">
             <div className="rounded-2xl overflow-hidden shadow-lg">
-              <ImagePlaceholder label="Shipping Photo" className="h-[400px]" />
+              <OptimizedImage src="/placeholder.svg" alt="Shipping containers with dried fruit exports from Indonesia" width={800} height={400} aspectRatio="auto" className="h-[400px]" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
             </div>
             <div className="absolute bottom-6 left-6 right-6 flex justify-between">

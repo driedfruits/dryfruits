@@ -1,12 +1,7 @@
 import { memo } from "react";
 import { CheckCircle } from "lucide-react";
 import { CatalogForm } from "@/components/forms";
-
-const ImagePlaceholder = ({ label, className = "h-48" }: { label: string; className?: string }) => (
-  <div className={`bg-muted flex items-center justify-center ${className}`}>
-    <span className="text-muted-foreground text-sm font-medium">{label}</span>
-  </div>
-);
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const catalogBenefits = [
   "Complete product specifications",
@@ -24,7 +19,7 @@ export const CatalogDownloadSection = memo(function CatalogDownloadSection() {
             {/* Product Image */}
             <div className="relative order-2 lg:order-1">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <ImagePlaceholder label="Products Photo" className="h-[350px]" />
+                <OptimizedImage src="/placeholder.svg" alt="Premium dehydrated tropical fruit products catalog display" width={700} height={350} aspectRatio="auto" className="h-[350px]" />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-accent text-accent-foreground rounded-xl p-4 shadow-lg">
                 <p className="text-lg font-bold">50+ Products</p>
