@@ -4,6 +4,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, Navigate, useSearchParams } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { redirectRules } from "@/lib/redirects";
+import { LayoutSkeleton } from "@/components/layout/LayoutSkeleton";
+import { HomePageSkeleton } from "@/components/home/HomePageSkeleton";
+import { ContentPageSkeleton } from "@/components/layout/ContentPageSkeleton";
 
 // Handles /?s= WordPress search query redirects
 function SearchRedirect() {
@@ -17,7 +20,6 @@ function SearchRedirect() {
 // Lazy load pages for performance
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
-
 const ProductDetailPage = lazy(() => import("./pages/ProductDetailPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
@@ -33,49 +35,83 @@ const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const TermsPage = lazy(() => import("./pages/TermsPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-// Loading fallback
-const PageLoader = () => (
-  <div className="flex min-h-screen items-center justify-center bg-background">
-    <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-  </div>
-);
-
 const App = () => (
   <TooltipProvider>
     <Toaster />
     <Sonner />
     <BrowserRouter>
-      <Suspense fallback={<PageLoader />}>
-        <Routes>
-          <Route path="/" element={<><SearchRedirect /><HomePage /></>} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/products/dried-fruits" element={<Navigate to="/products" replace />} />
-          <Route path="/products/:category/:productId" element={<ProductDetailPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/faq" element={<FAQPage />} />
-          <Route path="/certifications" element={<CertificationsPage />} />
-          <Route path="/sustainability" element={<SustainabilityPage />} />
-          <Route path="/shipping" element={<ShippingPage />} />
-          <Route path="/private-label" element={<PrivateLabelPage />} />
-          <Route path="/samples" element={<SamplesPage />} />
-          <Route path="/catalog" element={<CatalogPage />} />
-          <Route path="/storage-guide" element={<StorageGuidePage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/terms" element={<TermsPage />} />
-          
-          {/* 301 Redirects for SEO */}
-          {redirectRules.map((rule) => (
-            <Route
-              key={rule.from}
-              path={rule.from}
-              element={<Navigate to={rule.to} replace />}
-            />
-          ))}
-          
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
+      <Routes>
+        {/* HomePage with dedicated skeleton */}
+        <Route path="/" element={
+          <Suspense fallback={<HomePageSkeleton />}>
+            <SearchRedirect /><HomePage />
+          </Suspense>
+        } />
+
+        {/* Product pages with layout skeleton */}
+        <Route path="/products" element={
+          <Suspense fallback={<LayoutSkeleton />}>
+            <ProductsPage />
+          </Suspense>
+        } />
+        <Route path="/products/dried-fruits" element={<Navigate to="/products" replace />} />
+        <Route path="/products/:category/:productId" element={
+          <Suspense fallback={<LayoutSkeleton />}>
+            <ProductDetailPage />
+          </Suspense>
+        } />
+
+        {/* Content pages with content skeleton */}
+        <Route path="/about" element={
+          <Suspense fallback={<ContentPageSkeleton />}><AboutPage /></Suspense>
+        } />
+        <Route path="/contact" element={
+          <Suspense fallback={<ContentPageSkeleton />}><ContactPage /></Suspense>
+        } />
+        <Route path="/faq" element={
+          <Suspense fallback={<ContentPageSkeleton />}><FAQPage /></Suspense>
+        } />
+        <Route path="/certifications" element={
+          <Suspense fallback={<ContentPageSkeleton />}><CertificationsPage /></Suspense>
+        } />
+        <Route path="/sustainability" element={
+          <Suspense fallback={<ContentPageSkeleton />}><SustainabilityPage /></Suspense>
+        } />
+        <Route path="/shipping" element={
+          <Suspense fallback={<ContentPageSkeleton />}><ShippingPage /></Suspense>
+        } />
+        <Route path="/private-label" element={
+          <Suspense fallback={<ContentPageSkeleton />}><PrivateLabelPage /></Suspense>
+        } />
+        <Route path="/samples" element={
+          <Suspense fallback={<ContentPageSkeleton />}><SamplesPage /></Suspense>
+        } />
+        <Route path="/catalog" element={
+          <Suspense fallback={<ContentPageSkeleton />}><CatalogPage /></Suspense>
+        } />
+        <Route path="/storage-guide" element={
+          <Suspense fallback={<ContentPageSkeleton />}><StorageGuidePage /></Suspense>
+        } />
+        <Route path="/privacy" element={
+          <Suspense fallback={<ContentPageSkeleton />}><PrivacyPage /></Suspense>
+        } />
+        <Route path="/terms" element={
+          <Suspense fallback={<ContentPageSkeleton />}><TermsPage /></Suspense>
+        } />
+
+        {/* 301 Redirects for SEO */}
+        {redirectRules.map((rule) => (
+          <Route
+            key={rule.from}
+            path={rule.from}
+            element={<Navigate to={rule.to} replace />}
+          />
+        ))}
+
+        <Route path="*" element={
+          <Suspense fallback={<LayoutSkeleton />}><NotFound /></Suspense>
+        } />
+      </Routes>
     </BrowserRouter>
   </TooltipProvider>
 );
