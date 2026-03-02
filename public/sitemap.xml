@@ -1,319 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- ============================================ -->
-  <!-- HOMEPAGE - Highest Priority -->
-  <!-- ============================================ -->
   <url>
     <loc>https://dryfruits.biz/</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- ============================================ -->
-  <!-- PRODUCTS HUB & CATEGORIES -->
-  <!-- ============================================ -->
   <url>
     <loc>https://dryfruits.biz/products</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/products/dried-fruits</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/powdered-fruits</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/vacuum-fried</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/ginger-turmeric</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- ============================================ -->
-  <!-- DRIED FRUITS (10 products) -->
-  <!-- ============================================ -->
   <url>
     <loc>https://dryfruits.biz/products/dried-fruits/dried-mango</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/products/dried-fruits/dried-dragon-fruit</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/products/dried-fruits/dried-pineapple</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/products/dried-fruits/dried-papaya</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/products/dried-fruits/dried-coconut</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/products/dried-fruits/dried-banana</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/products/dried-fruits/dried-jackfruit</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/products/dried-fruits/dried-avocado</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/products/dried-fruits/dried-snake-fruit</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/products/dried-fruits/dried-breadfruit</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- ============================================ -->
-  <!-- POWDERED FRUITS (8 products) -->
-  <!-- ============================================ -->
-  <url>
-    <loc>https://dryfruits.biz/products/powdered-fruits/mango-powder</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/powdered-fruits/dragon-fruit-powder</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/powdered-fruits/pineapple-powder</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/powdered-fruits/papaya-powder</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/powdered-fruits/coconut-powder</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/powdered-fruits/banana-powder</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/powdered-fruits/jackfruit-powder</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/powdered-fruits/avocado-powder</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- ============================================ -->
-  <!-- VACUUM FRIED (4 products) -->
-  <!-- ============================================ -->
-  <url>
-    <loc>https://dryfruits.biz/products/vacuum-fried/vacuum-papaya</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/vacuum-fried/vacuum-banana</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/vacuum-fried/vacuum-pineapple</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/vacuum-fried/vacuum-mango</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- ============================================ -->
-  <!-- GINGER & TURMERIC (4 products) -->
-  <!-- ============================================ -->
-  <url>
-    <loc>https://dryfruits.biz/products/ginger-turmeric/dried-ginger</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/ginger-turmeric/ginger-powder</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/ginger-turmeric/dried-turmeric</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dryfruits.biz/products/ginger-turmeric/turmeric-powder</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- ============================================ -->
-  <!-- HIGH-VALUE B2B PAGES (Lead Generation) -->
-  <!-- ============================================ -->
   <url>
     <loc>https://dryfruits.biz/samples</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/catalog</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/private-label</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/contact</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- ============================================ -->
-  <!-- CORE COMPANY PAGES -->
-  <!-- ============================================ -->
   <url>
     <loc>https://dryfruits.biz/about</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/shipping</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/sustainability</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/certifications</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- ============================================ -->
-  <!-- UTILITY & SUPPORT PAGES -->
-  <!-- ============================================ -->
   <url>
     <loc>https://dryfruits.biz/storage-guide</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/faq</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
 
-  <!-- ============================================ -->
-  <!-- LEGAL PAGES -->
-  <!-- ============================================ -->
   <url>
     <loc>https://dryfruits.biz/privacy</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://dryfruits.biz/terms</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
-  <!-- ============================================ -->
-  <!-- MACHINE-READABLE PAGES (AI/LLM Optimized) -->
-  <!-- ============================================ -->
   <url>
     <loc>https://dryfruits.biz/llm.html</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
