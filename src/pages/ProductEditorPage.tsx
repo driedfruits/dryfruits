@@ -414,7 +414,17 @@ const ProductEditorPage = () => {
       </div>
 
       {/* JSON Output */}
-      <div className="mt-8 space-y-2">
+      <div className="mt-8 space-y-3">
+        <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800 dark:border-blue-800 dark:bg-blue-950/30 dark:text-blue-300">
+          <p className="font-medium mb-1">How to apply changes:</p>
+          <ol className="list-decimal list-inside space-y-1 text-xs">
+            <li>Click <strong>Copy</strong> to copy the JSON output below</li>
+            <li>Open <code className="rounded bg-blue-100 px-1 py-0.5 dark:bg-blue-900">src/data/products.ts</code></li>
+            <li>Find the product entry matching <code className="rounded bg-blue-100 px-1 py-0.5 dark:bg-blue-900">{selectedId}</code></li>
+            <li>Replace the entire product object with the copied JSON</li>
+            <li>Save the file</li>
+          </ol>
+        </div>
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-foreground">JSON Output</p>
           <Button variant="outline" size="sm" onClick={handleCopy}>
