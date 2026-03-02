@@ -17,7 +17,7 @@ import { ProductCompliance } from "./ProductCompliance";
 import { ProductSensoryApplications } from "./ProductSensoryApplications";
 import { ProductSeasonality } from "./ProductSeasonality";
 import { ProductQuickHighlights } from "./ProductQuickHighlights";
-
+import { RelatedProducts } from "./RelatedProducts";
 import { StickyInquiryBar } from "./StickyInquiryBar";
 import { ContainerCalculator } from "./ContainerCalculator";
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
@@ -254,38 +254,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
         <ProductFAQ faqs={product.faqs} productName={product.name} />
 
         {/* Related Products */}
-        {relatedProducts.length > 0 && (
-          <section className="py-12 bg-muted/30">
-            <div className="container">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Related Products</h2>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {relatedProducts.map((related) => (
-                  <Link 
-                    key={related.id} 
-                    to={`/products/${related.category}/${related.id}`}
-                    className="group bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-glow transition-all"
-                  >
-                    <OptimizedImage
-                      src={related.images?.main || ""}
-                      alt={`${related.name} - Wholesale ${categoryLabels[related.category].toLowerCase()} from Indonesia, ${related.pricing.fobBase}`}
-                      aspectRatio="square"
-                      width={280}
-                      height={280}
-                      className="group-hover:scale-105 transition-transform duration-300"
-                      fallbackIcon={<Package className="h-12 w-12 text-muted-foreground/30 group-hover:scale-110 transition-transform" />}
-                    />
-                    <div className="p-4">
-                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
-                        {related.name}
-                      </h3>
-                      <p className="text-xs text-muted-foreground">{related.pricing.fobBase}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+        <RelatedProducts products={relatedProducts} />
 
         {/* Final CTA */}
         <section className="py-16">
