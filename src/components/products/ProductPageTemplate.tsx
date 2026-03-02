@@ -129,13 +129,13 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                   </Badge>
                 )}
                 {/* Thumbnail Row */}
-                <div className="flex gap-2 mt-3">
+                <div className="grid grid-cols-4 gap-3 mt-4">
                   {allImages.map((img, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImage(img)}
                       className={cn(
-                        "rounded-lg overflow-hidden flex-shrink-0 transition-all",
+                        "rounded-lg overflow-hidden transition-all",
                         selectedImage === img
                           ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
                           : "ring-1 ring-border opacity-70 hover:opacity-100"
@@ -148,7 +148,6 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                         aspectRatio="square"
                         width={80}
                         height={80}
-                        className="w-16 h-16 sm:w-20 sm:h-20"
                         fallbackIcon={<Package className="h-6 w-6 text-muted-foreground/30" />}
                       />
                     </button>
