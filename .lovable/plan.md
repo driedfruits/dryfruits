@@ -1,19 +1,17 @@
 
 
-## Add Instructions to JSON Output Section
+## Simplify Images Section — Read-Only Paths, Editable Alt Text
 
-**File: `src/pages/ProductEditorPage.tsx`** (lines 416-427)
+The user wants the Images section to only allow editing alt text (not file paths), while showing thumbnails and file names as read-only info.
 
-Add a help/instruction block above or below the JSON output explaining where to paste the code. Replace the current JSON Output section heading area with:
+### Changes in `src/pages/ProductEditorPage.tsx` (lines 242-280)
 
-- A brief instruction paragraph explaining:
-  1. Copy the JSON output below
-  2. Open `src/data/products.ts`
-  3. Find the product entry matching the current product ID
-  4. Replace the entire product object with the copied JSON
-  5. Save the file
+**Replace the current Images section** with a simplified version:
 
-Style it as a muted info box (`bg-blue-50 border-blue-200 text-blue-800` or similar subtle callout) so it stands out without being intrusive. Include the file path in a `<code>` tag for clarity.
+- **Remove** path input fields (main, thumbnail, gallery `src`) — paths come from `products.ts` and shouldn't be edited here
+- **Show read-only**: small thumbnail preview + file name extracted from the path (e.g. `dried-pineapple-hero.webp`)
+- **Keep editable**: alt text inputs for main, thumbnail, and each gallery image
+- **Remove** "Add Gallery Image" button and gallery path inputs — gallery images are managed in code, only alt text is editable here
 
-Single section change, no other files affected.
+Layout per image row: `[thumbnail preview] [file name label] [alt text input]`
 
