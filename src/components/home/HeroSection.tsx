@@ -1,8 +1,13 @@
 import { memo } from "react";
-import { Leaf, ArrowRight } from "lucide-react";
+import { Leaf, ArrowRight, Package } from "lucide-react";
 import { PrimaryButton, SecondaryLightButton } from "@/components/CTAButton";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { companyInfo } from "@/data/companyData";
+
+const fruits = [
+  "Dragon Fruit", "Papaya", "Mango", "Avocado", "Pineapple",
+  "Snakefruit", "Guava", "Jackfruit", "Longan", "Rambutan",
+];
 
 export const HeroSection = memo(function HeroSection() {
   return (
@@ -15,17 +20,29 @@ export const HeroSection = memo(function HeroSection() {
       
       <div className="container relative py-20 lg:py-32">
         <div className="mx-auto max-w-4xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-on-primary backdrop-blur-sm">
-            <Leaf className="h-4 w-4" aria-hidden="true" />
-            USDA & EU Organic Certified
+          <div className="mb-4 flex flex-wrap justify-center gap-3">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-on-primary backdrop-blur-sm">
+              <Package className="h-4 w-4" aria-hidden="true" />
+              Minimum order from 1 pallet (800 kg)
+            </div>
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-on-primary backdrop-blur-sm">
+              <Leaf className="h-4 w-4" aria-hidden="true" />
+              Organic &amp; Fair Trade, HACCP Certified
+            </div>
           </div>
           <h1 className="mb-6 text-4xl font-bold tracking-tight text-on-primary sm:text-5xl lg:text-6xl drop-shadow-lg">
-            {companyInfo.tagline}
+            Dehydrated Dried Tropical Fruits OEM Manufacturer from Indonesia
           </h1>
-          <p className="mb-8 text-lg text-on-primary-muted sm:text-xl drop-shadow-md">
-            Premium dried fruits, vacuum fried snacks, and spices from Indonesia. 
-            Direct from source to B2B buyers worldwide.
-          </p>
+          <h2 className="mb-6 text-lg font-normal text-on-primary-muted sm:text-xl drop-shadow-md">
+            Fully export licensed Manufacturer of organic and non organic dried dehydrated fruits in chunks, slices, cuts, packed with your brand. Delivered directly from the factory in Indonesia.
+          </h2>
+          <div className="mb-8 flex flex-wrap justify-center gap-2">
+            {fruits.map((fruit) => (
+              <span key={fruit} className="rounded-full bg-primary-foreground/15 px-3 py-1 text-sm text-on-primary backdrop-blur-sm">
+                {fruit}
+              </span>
+            ))}
+          </div>
           <div className="flex flex-wrap justify-center gap-4">
             <PrimaryButton to="/contact" size="xl" variant="gold">
               Request Quote
