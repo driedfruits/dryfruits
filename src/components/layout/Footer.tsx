@@ -5,10 +5,7 @@ import { Leaf, Mail, Phone, MapPin, Clock, FileText } from "lucide-react";
 
 const footerLinks = {
   products: [
-    { name: "Dried Fruits", href: "/products/dried-fruits" },
-    { name: "Powdered Fruits", href: "/products/powdered-fruits" },
-    { name: "Vacuum Fried Fruits", href: "/products/vacuum-fried" },
-    { name: "Ginger & Turmeric", href: "/products/ginger-turmeric" },
+    { name: "All Dried Fruits", href: "/products" },
   ],
   company: [
     { name: "About Us", href: "/about" },
@@ -39,7 +36,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-on-dark-muted mb-6 max-w-sm">
-              {companyInfo.tagline}. Premium dried fruits, vacuum fried snacks, and spices for global B2B buyers.
+              {companyInfo.tagline}. Premium dried fruits for global B2B buyers.
             </p>
             
             {/* Contact Info */}

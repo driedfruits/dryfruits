@@ -15,8 +15,8 @@ interface QualitySpec {
 }
 
 export function ProductQualitySpecs({ product }: ProductQualitySpecsProps) {
-  // Only show for ginger-turmeric category
-  if (product.category !== "ginger-turmeric") return null;
+  // This component was for ginger-turmeric category only, no longer applicable
+  return null;
 
   const isGinger = product.id.includes("ginger");
   const isTurmeric = product.id.includes("turmeric");

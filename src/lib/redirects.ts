@@ -67,15 +67,18 @@ export const redirectRules: RedirectRule[] = [
   // Category misspellings
   { from: "/products/dried-fruit", to: "/products/dried-fruits" },
   { from: "/products/dried", to: "/products/dried-fruits" },
-  { from: "/products/powder", to: "/products/powdered-fruits" },
-  { from: "/products/powders", to: "/products/powdered-fruits" },
-  { from: "/products/fruit-powder", to: "/products/powdered-fruits" },
-  { from: "/products/vacuum", to: "/products/vacuum-fried" },
-  { from: "/products/vacuum-fry", to: "/products/vacuum-fried" },
-  { from: "/products/chips", to: "/products/vacuum-fried" },
-  { from: "/products/ginger", to: "/products/ginger-turmeric" },
-  { from: "/products/turmeric", to: "/products/ginger-turmeric" },
-  { from: "/products/spices", to: "/products/ginger-turmeric" },
+  { from: "/products/powder", to: "/products" },
+  { from: "/products/powders", to: "/products" },
+  { from: "/products/fruit-powder", to: "/products" },
+  { from: "/products/powdered-fruits", to: "/products" },
+  { from: "/products/vacuum", to: "/products" },
+  { from: "/products/vacuum-fry", to: "/products" },
+  { from: "/products/vacuum-fried", to: "/products" },
+  { from: "/products/chips", to: "/products" },
+  { from: "/products/ginger", to: "/products" },
+  { from: "/products/turmeric", to: "/products" },
+  { from: "/products/ginger-turmeric", to: "/products" },
+  { from: "/products/spices", to: "/products" },
 ];
 
 // Product ID aliases for misspellings and alternative names
