@@ -121,6 +121,8 @@ export const products: Product[] = [
   // ==================
   {
     id: "dried-papaya",
+    category: "dried-fruits",
+    isOrganic: false,
     name: "Wholesale Bulk Dried Dehydrated Papaya Chunks & Slices",
     metaTitle: "Wholesale Dried Papaya (Slices) - Bulk Export from Indonesia",
     metaDescription:
