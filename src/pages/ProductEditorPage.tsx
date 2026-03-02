@@ -28,6 +28,8 @@ const ProductEditorPage = () => {
 
   // Existing fields
   const [name, setName] = useState("");
+  const [metaTitle, setMetaTitle] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
   const [fobBase, setFobBase] = useState("");
   const [certs, setCerts] = useState<string[]>([]);
   const [moq, setMoq] = useState("");
@@ -61,6 +63,8 @@ const ProductEditorPage = () => {
 
   const loadProduct = (product: Product) => {
     setName(product.name);
+    setMetaTitle((product as any).metaTitle || "");
+    setMetaDescription((product as any).metaDescription || "");
     setTagline(product.tagline);
     setDescription(product.description);
     setFobBase(product.pricing.fobBase);
@@ -141,6 +145,8 @@ const ProductEditorPage = () => {
       {
         id: selectedId,
         name,
+        metaTitle: metaTitle || undefined,
+        metaDescription: metaDescription || undefined,
         tagline,
         description,
         pricing: {
@@ -180,7 +186,7 @@ const ProductEditorPage = () => {
       null,
       2
     );
-  }, [selectedId, name, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, sizeForm, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
+  }, [selectedId, name, metaTitle, metaDescription, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, sizeForm, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(jsonOutput);
@@ -197,8 +203,13 @@ const ProductEditorPage = () => {
       <FormSelect label="Select Product" options={productOptions} value={selectedId} onChange={handleProductChange} />
 
       <div className="mt-8 space-y-6">
-        {/* H1 */}
-        <FormInput label="H1 (Product Name)" value={name} onChange={(e) => setName(e.target.value)} />
+        {/* SEO & Page Settings */}
+        <div className="space-y-4 rounded-lg border border-border p-4">
+          <p className="text-sm font-medium text-foreground">SEO & Page Settings</p>
+          <FormInput label="Hero H1 Title" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Premium Dried Pineapple" />
+          <FormInput label="Meta Title" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} placeholder="e.g. Buy Dried Pineapple Wholesale | DFT Indonesia" />
+          <FormTextarea label="Meta Description" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} placeholder="SEO description for search results (150-160 chars recommended)" />
+        </div>
 
         {/* Tagline */}
         <FormInput label="Tagline" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="e.g. Tropical sweetness in every bite" />
