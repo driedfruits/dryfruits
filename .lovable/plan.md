@@ -1,24 +1,19 @@
 
 
-## Add Image Preview Thumbnails in Product Editor
+## Add Instructions to JSON Output Section
 
-**File: `src/pages/ProductEditorPage.tsx`**
+**File: `src/pages/ProductEditorPage.tsx`** (lines 416-427)
 
-Add a small `ImagePreview` helper component that renders a 64×64 thumbnail when the path is non-empty, with a broken-image fallback state. Place it next to each image path input.
+Add a help/instruction block above or below the JSON output explaining where to paste the code. Replace the current JSON Output section heading area with:
 
-### Changes
+- A brief instruction paragraph explaining:
+  1. Copy the JSON output below
+  2. Open `src/data/products.ts`
+  3. Find the product entry matching the current product ID
+  4. Replace the entire product object with the copied JSON
+  5. Save the file
 
-1. **Add `ImagePreview` component** (inline in the file or separate small component):
-   - Takes `src` string prop
-   - If empty, show a gray placeholder box with "No image" text
-   - If set, render `<img>` with `onError` handler that shows a red-bordered "Not found" state
-   - Size: `w-16 h-16` rounded, object-cover
+Style it as a muted info box (`bg-blue-50 border-blue-200 text-blue-800` or similar subtle callout) so it stands out without being intrusive. Include the file path in a `<code>` tag for clarity.
 
-2. **Main image** (line ~245): Wrap the main image path input + preview in a flex row — input on left, 64px preview on right
-
-3. **Thumbnail image** (line ~247): Same layout — input + preview side by side
-
-4. **Gallery images** (lines ~251-262): Add a small preview thumbnail at the start of each gallery row
-
-No new dependencies needed — just standard `<img>` tags with error handling.
+Single section change, no other files affected.
 
