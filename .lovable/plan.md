@@ -1,37 +1,24 @@
 
 
-## Add Image Management with Alt Text to Product Editor
+## Add Image Preview Thumbnails in Product Editor
 
-### Current State
-The `Product` interface already has an `images` field with `main`, `thumbnail`, and `gallery` arrays, but no alt text support. All values are currently empty strings.
+**File: `src/pages/ProductEditorPage.tsx`**
 
-### Limitation
-Since images are stored locally in `/public`, the editor page cannot actually upload files to disk at runtime. Instead, users will:
-1. Upload images to the project via Lovable's chat (drag-and-drop) or file manager
-2. Reference the file paths (e.g. `/images/dried-papaya-hero.webp`) in the editor
-3. Edit alt text for each image
+Add a small `ImagePreview` helper component that renders a 64×64 thumbnail when the path is non-empty, with a broken-image fallback state. Place it next to each image path input.
 
 ### Changes
 
-**1. `src/data/products.ts`** -- Extend the `images` type to include alt text:
-```ts
-images?: {
-  main?: string;
-  mainAlt?: string;
-  thumbnail?: string;
-  thumbnailAlt?: string;
-  gallery?: Array<{ src: string; alt: string }>;
-};
-```
-Update all product entries to use the new gallery format (convert `string[]` to `{src, alt}[]`).
+1. **Add `ImagePreview` component** (inline in the file or separate small component):
+   - Takes `src` string prop
+   - If empty, show a gray placeholder box with "No image" text
+   - If set, render `<img>` with `onError` handler that shows a red-bordered "Not found" state
+   - Size: `w-16 h-16` rounded, object-cover
 
-**2. `src/pages/ProductEditorPage.tsx`** -- Add an "Images" section with:
-- Input for main image path + alt text
-- Input for thumbnail path + alt text
-- Dynamic list for gallery entries (path + alt text per item, add/remove)
-- Include all fields in JSON output
+2. **Main image** (line ~245): Wrap the main image path input + preview in a flex row — input on left, 64px preview on right
 
-**3. `src/components/products/ProductPageTemplate.tsx`** and any component using `product.images.gallery` -- Update to read from the new `{src, alt}` structure instead of plain strings.
+3. **Thumbnail image** (line ~247): Same layout — input + preview side by side
 
-**4. `src/components/products/RelatedProducts.tsx`** -- Update the alt text for related product images to follow the SEO alt-text logic pattern (name + category + pricing).
+4. **Gallery images** (lines ~251-262): Add a small preview thumbnail at the start of each gallery row
+
+No new dependencies needed — just standard `<img>` tags with error handling.
 
