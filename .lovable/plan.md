@@ -1,45 +1,31 @@
 
 
-## Remove Non-Dried-Fruit Product Categories
+## Cleanup Remaining References to Removed Categories
 
-This is a significant cleanup across multiple files to remove all references to powdered fruits, vacuum fried fruits, and ginger & turmeric — keeping only the dried fruits category.
+After removing the non-dried-fruit categories, several files still contain stale references. No console errors yet, but product aliases point to deleted products (causing silent 404s), and SEO schemas still mention removed categories.
 
-### Files to modify
+### Changes
 
-#### 1. `src/data/companyData.ts`
-- **Remove all product entries** for categories `powdered-fruits`, `vacuum-fried`, and `ginger-turmeric` (roughly lines 706–1910)
-- **Simplify `productCategories`** to only include the `dried-fruits` entry
-- **Clean up `relatedProducts`** arrays in remaining dried fruit products — remove references to deleted product IDs (e.g., `vacuum-banana`, `banana-powder`, etc.)
+#### 1. `src/lib/schema.ts`
+- **Line 64-68**: Remove "Vacuum Fried Fruits", "Powdered Fruits", "Ginger & Turmeric Products" from `hasOfferCatalog.itemListElement`
+- **Line 135**: Update description to remove "vacuum fried snacks, and spices"
 
-#### 2. `src/data/products.ts`
-- Update the `category` type from union `"dried-fruits" | "powdered-fruits" | "vacuum-fried" | "ginger-turmeric"` to just `"dried-fruits"`
-- Remove vacuum-fried specific spec fields (`sliceThickness`, `fryingTemperature`, `vacuumPressure`, etc.)
+#### 2. `src/components/SEO.tsx`
+- **Line 33**: Update default description — remove "vacuum-fried banana chips"
+- **Line 44**: Update default keywords — remove "vacuum fried banana chips"
 
-#### 3. `src/lib/constants.ts`
-- Remove `powdered-fruits`, `vacuum-fried`, `ginger-turmeric` from `categoryLabels`
+#### 3. `src/lib/redirects.ts`
+- **Lines 87-88**: Fix `banana`/`banana-chips` aliases — point to `dried-banana` instead of `vacuum-banana`
+- **Lines 109-127**: Remove all ginger/turmeric aliases, powder aliases, and vacuum fried aliases (these products no longer exist)
 
-#### 4. `src/components/layout/Header.tsx`
-- Remove dropdown children for Powdered, Vacuum Fried, and Ginger & Turmeric
-- Simplify: either remove the dropdown entirely (just link to `/products`) or keep only "All Products" and "Dried Fruits"
+#### 4. `src/components/products/ProductSpecsTable.tsx`
+- **Lines 22-33**: Remove ginger/turmeric spec labels (`volatileOil`, `gingerolContent`, etc.)
+- **Lines 45-54**: Remove vacuum-fried spec labels (`sliceThickness`, `fryingTemperature`, etc.)
 
-#### 5. `src/components/layout/Footer.tsx`
-- Remove Powdered Fruits, Vacuum Fried Fruits, and Ginger & Turmeric from `footerLinks.products`
-- Update tagline text removing "vacuum fried snacks, and spices"
+#### 5. `src/data/storageData.ts`
+- **Lines 13-46**: Remove "Fruit Powders", "Vacuum Fried", and "Ginger & Turmeric" storage category entries
+- Update FAQ answers to remove powder references
 
-#### 6. `src/pages/ProductsPage.tsx`
-- Remove category cards section (or show only one)
-- Update SEO description to remove mentions of vacuum-fried, powders, spices
-- Filter `products` to only dried-fruits (or it will naturally be only dried fruits after data cleanup)
-
-#### 7. `src/lib/redirects.ts`
-- Redirect old powdered/vacuum/ginger URLs to `/products` instead of their removed category pages
-
-#### 8. `src/lib/socialImages.ts`
-- Remove `powderedFruits`, `vacuumFried`, `gingerTurmeric` entries and their mappings
-
-#### 9. `src/pages/HomePage.tsx`
-- Update SEO description to remove "Vacuum-fried snacks" mention
-
-#### 10. `src/components/products/ProductComparisonTable.tsx`
-- Remove references to non-dried-fruit categories in the comparison filter
+#### 6. `src/components/products/ProductQualitySpecs.tsx`
+- Component returns `null` with a comment about ginger-turmeric — can delete the file or leave as-is (no functional impact)
 
