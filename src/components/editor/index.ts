@@ -9,3 +9,4 @@ export { default as EditorApplicationsSection } from "./EditorApplicationsSectio
 export { default as EditorComplianceSection } from "./EditorComplianceSection";
 export { default as EditorFaqsSection } from "./EditorFaqsSection";
 export { default as EditorRelatedSection } from "./EditorRelatedSection";
+export { default as EditorSpecificationsSection } from "./EditorSpecificationsSection";
