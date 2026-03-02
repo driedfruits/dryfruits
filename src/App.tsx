@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate, useSearchParams } from "react-r
 import { lazy, Suspense } from "react";
 import { redirectRules } from "@/lib/redirects";
 import { LayoutSkeleton } from "@/components/layout/LayoutSkeleton";
+import ScrollToTop from "@/components/ScrollToTop";
 import { HomePageSkeleton } from "@/components/home/HomePageSkeleton";
 import { ContentPageSkeleton } from "@/components/layout/ContentPageSkeleton";
 
@@ -40,6 +41,7 @@ const App = () => (
     <Toaster />
     <Sonner />
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         {/* HomePage with dedicated skeleton */}
         <Route path="/" element={
