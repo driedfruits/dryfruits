@@ -142,6 +142,7 @@ const ProductEditorPage = () => {
     if (!specs.moisture?.trim()) errors["specs.moisture"] = "Moisture content is required";
     if (!specs.shelfLife?.trim()) errors["specs.shelfLife"] = "Shelf life is required";
     if (!specs.origin?.trim()) errors["specs.origin"] = "Origin is required";
+    if (!flavorProfile.trim()) errors.flavorProfile = "Flavor profile is required";
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -212,7 +213,7 @@ const ProductEditorPage = () => {
         <FormTextarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Product description..." required error={validationErrors.description} />
         <div className="space-y-4 rounded-lg border border-border p-4">
           <p className="text-sm font-medium text-foreground">Product Description (Sensory)</p>
-          <FormTextarea label="Flavor Profile" value={flavorProfile} onChange={(e) => setFlavorProfile(e.target.value)} placeholder="e.g. Sweet, tangy tropical flavor with caramelized notes" />
+          <FormTextarea label="Flavor Profile" value={flavorProfile} onChange={(e) => setFlavorProfile(e.target.value)} placeholder="e.g. Sweet, tangy tropical flavor with caramelized notes" required error={validationErrors.flavorProfile} />
           <FormInput label="Texture" value={texture} onChange={(e) => setTexture(e.target.value)} placeholder="e.g. Chewy, soft, slightly crispy edges" />
         </div>
         <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} priceTiers={priceTiers} addTier={addTier} removeTier={removeTier} updateTier={updateTier} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} errors={validationErrors} />
