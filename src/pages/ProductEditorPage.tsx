@@ -43,6 +43,8 @@ const ProductEditorPage = () => {
   const [specs, setSpecs] = useState<Record<string, string>>({});
   const [tagline, setTagline] = useState("");
   const [description, setDescription] = useState("");
+  const [flavorProfile, setFlavorProfile] = useState("");
+  const [texture, setTexture] = useState("");
   const [packagingBulk, setPackagingBulk] = useState("");
   const [packagingRetail, setPackagingRetail] = useState("");
   const [packagingCustom, setPackagingCustom] = useState(false);
@@ -74,6 +76,8 @@ const ProductEditorPage = () => {
     setMetaDescription(product.metaDescription || "");
     setTagline(product.tagline);
     setDescription(product.description);
+    setFlavorProfile(product.flavorProfile || "");
+    setTexture(product.texture || "");
     setFobBase(product.pricing.fobBase);
     setCerts([...product.certifications]);
     setMoq(product.pricing.moq);
@@ -167,6 +171,7 @@ const ProductEditorPage = () => {
         } : undefined,
         metaTitle: metaTitle || undefined, metaDescription: metaDescription || undefined,
         tagline, description,
+        flavorProfile: flavorProfile || undefined, texture: texture || undefined,
         pricing: { fobBase, moq, leadTime, priceTiers: priceTiers.length > 0 ? priceTiers : undefined, samplePolicy: samplePolicy || undefined },
         certifications: certs,
         availability: { peakSeason: peakSeason || undefined, offPeakSeason: offPeakSeason || undefined, currentStatus },
@@ -180,7 +185,7 @@ const ProductEditorPage = () => {
       },
       null, 2
     );
-  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
+  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
 
   const handleCopy = async () => {
     if (!validate()) {
@@ -205,6 +210,11 @@ const ProductEditorPage = () => {
         <EditorImagesSection imgMain={imgMain} imgMainAlt={imgMainAlt} setImgMainAlt={setImgMainAlt} imgThumb={imgThumb} imgThumbAlt={imgThumbAlt} setImgThumbAlt={setImgThumbAlt} imgGallery={imgGallery} updateGalleryImage={updateGalleryImage} />
         <FormInput label="Tagline" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="e.g. Tropical sweetness in every bite" required error={validationErrors.tagline} />
         <FormTextarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Product description..." required error={validationErrors.description} />
+        <div className="space-y-4 rounded-lg border border-border p-4">
+          <p className="text-sm font-medium text-foreground">Product Description (Sensory)</p>
+          <FormTextarea label="Flavor Profile" value={flavorProfile} onChange={(e) => setFlavorProfile(e.target.value)} placeholder="e.g. Sweet, tangy tropical flavor with caramelized notes" />
+          <FormInput label="Texture" value={texture} onChange={(e) => setTexture(e.target.value)} placeholder="e.g. Chewy, soft, slightly crispy edges" />
+        </div>
         <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} priceTiers={priceTiers} addTier={addTier} removeTier={removeTier} updateTier={updateTier} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} errors={validationErrors} />
         <EditorSpecificationsSection specs={specs} updateSpec={(key, value) => setSpecs(prev => ({ ...prev, [key]: value }))} errors={validationErrors} />
         <EditorCertificationsSection certs={certs} toggleCert={toggleCert} errors={validationErrors} />
