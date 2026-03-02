@@ -1,34 +1,43 @@
 
 
-## Product Data Editor Page
+## Add More Fields to Product Editor
 
-Create a dedicated `/admin/products` page with a form-based editor for each product. User selects a product, edits the key fields, and copies the generated JSON output to paste into `src/data/products.ts`.
+Extend `src/pages/ProductEditorPage.tsx` with the following new editable sections:
 
-### Fields to Edit
-- **H1** (product name) — text input
-- **Price** (FOB base price) — text input
-- **Certifications** — multi-select checkboxes (USDA Organic, EU Organic, HACCP, Halal, etc.)
-- **MOQ** — text input
-- **Lead Time** — text input
-- **Harvest & Production Calendar** — peak season + off-peak season text inputs, current status dropdown (in-stock / limited / pre-order)
-- **Size & Form** — text input (cuts/slices/chunks)
+### New Fields
 
-### Implementation
+1. **Tagline** — text input
+2. **Description** — textarea (multi-line)
+3. **Packaging** — grouped section with bulk (text), retail (text), custom (checkbox)
+4. **Price Tiers** — dynamic list: add/remove rows with volume + priceRange inputs, plus samplePolicy text input
+5. **Logistics** — grouped section with portOfLoading, incoterms (text, comma-separated), containerLoad20ft, containerLoad40ft
+
+### Changes
 
 | File | Change |
 |------|--------|
-| `src/pages/ProductEditorPage.tsx` | New page: product selector dropdown, form fields for the 7 data groups, JSON output panel with copy button |
-| `src/App.tsx` | Add lazy route `/admin/products` pointing to ProductEditorPage |
+| `src/pages/ProductEditorPage.tsx` | Add state for all new fields, load them in `loadProduct`, add form sections, include in JSON output |
+| `src/components/forms/FormElements.tsx` | Add `FormTextarea` component wrapping the existing `Textarea` UI component (if not already present) |
 
-### Page Layout
-1. **Product Selector** — dropdown at top listing all products by name
-2. **Edit Form** — uses existing `FormInput`, `FormSelect`, `FormCheckbox` components from `src/components/forms/FormElements.tsx`
-3. **JSON Output** — read-only code block at bottom showing the updated product data snippet, with a "Copy to Clipboard" button
+### New State Variables
+- `tagline`, `description` — strings
+- `packagingBulk`, `packagingRetail` — strings; `packagingCustom` — boolean
+- `priceTiers` — `Array<{volume: string, priceRange: string}>`; `samplePolicy` — string
+- `portOfLoading`, `incoterms`, `containerLoad20ft`, `containerLoad40ft` — strings
 
-### Technical Details
-- Loads current product data from the `products` array as default values
-- On field change, re-generates the JSON output in real-time
-- JSON output contains only the edited fields (h1/name, pricing.fobBase, certifications, pricing.moq, pricing.leadTime, availability, specifications.size)
-- No Layout wrapper needed — standalone admin page, minimal styling
-- Uses existing form components for consistent design
+### Form Layout Order
+1. H1 (existing)
+2. Tagline (new)
+3. Description (new, textarea)
+4. Price section (existing FOB + new price tiers + sample policy)
+5. MOQ, Lead Time, Size & Form (existing)
+6. Certifications (existing)
+7. Harvest Calendar (existing)
+8. Packaging (new grouped section)
+9. Logistics (new grouped section)
+10. JSON Output (existing, updated to include all new fields)
+
+### Price Tiers UI
+- Each tier row: two inline inputs (volume + price range) + remove button
+- "Add Tier" button below the list
 
