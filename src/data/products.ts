@@ -6,7 +6,7 @@ export interface Product {
   category: "dried-fruits";
   sku?: string;
   hsCode?: string;
-  
+
   // Images (optional - uses placeholder if not set)
   images?: {
     main?: string;
@@ -15,7 +15,7 @@ export interface Product {
     thumbnailAlt?: string;
     gallery?: Array<{ src: string; alt: string }>;
   };
-  
+
   // Content & SEO
   tagline: string;
   description: string;
@@ -24,7 +24,7 @@ export interface Product {
   metaTitle?: string;
   metaDescription?: string;
   keywords?: string[];
-  
+
   // Specifications (enhanced for B2B)
   specifications: {
     size?: string;
@@ -50,24 +50,24 @@ export interface Product {
     storageHumidity?: string;
     yeastMold?: string;
   };
-  
+
   // Seasonal availability
   availability?: {
     peakSeason?: string;
     offPeakSeason?: string;
     currentStatus?: "in-stock" | "limited" | "pre-order";
   };
-  
+
   // Applications
   applications: string[];
-  
+
   // Packaging
   packaging: {
     bulk: string;
     retail: string;
     custom: boolean;
   };
-  
+
   // Pricing (enhanced)
   pricing: {
     fobBase: string;
@@ -79,7 +79,7 @@ export interface Product {
     }>;
     samplePolicy?: string;
   };
-  
+
   // Logistics (optional - uses company defaults if not set)
   logistics?: {
     portOfLoading?: string;
@@ -87,27 +87,27 @@ export interface Product {
     containerLoad20ft?: string;
     containerLoad40ft?: string;
   };
-  
+
   // Export documents (optional - uses company defaults if not set)
   exportDocuments?: string[];
-  
+
   // Compliance (optional - uses company defaults if not set)
   compliance?: {
     usa?: string;
     eu?: string;
     global?: string;
   };
-  
+
   // Product FAQs
   faqs?: Array<{
     question: string;
     answer: string;
   }>;
-  
+
   // Certifications & organic status
   certifications: string[];
   isOrganic: boolean;
-  
+
   // Related products
   relatedProducts: string[];
 }
@@ -121,59 +121,50 @@ export const products: Product[] = [
   // ==================
   {
     id: "dried-papaya",
-    name: "Dried Papaya",
-    category: "dried-fruits",
-    sku: "DFT-DP-001",
-    hsCode: "0813.40.10",
-    tagline: "Tropical sweetness in every bite",
-    images: {
-      main: "",
-      thumbnail: "",
-      gallery: [],
-    },
-    description: "Premium dried papaya slices made from sun-ripened Indonesian papayas. Natural sweetness with no added sugar options available.",
-    flavorProfile: "Naturally sweet with mild tropical notes and a subtle honey-like aftertaste",
-    texture: "Soft and chewy, tender bite",
+    name: "Wholesale Bulk Dried Dehydrated Papaya Chunks & Slices",
     metaTitle: "Wholesale Dried Papaya (Slices) - Bulk Export from Indonesia",
-    metaDescription: "Direct manufacturer of premium dried papaya from Indonesia. USDA/EU Organic certified. Bulk 10-25kg cartons. MOQ 500kg. View specs & pricing.",
-    keywords: ["bulk dried papaya", "wholesale dried papaya Indonesia", "dried papaya supplier", "dried papaya water activity"],
-    specifications: {
-      size: "Chunks 1-2cm, Shreds, Slices, Dices",
-      moisture: "18-25%",
-      waterActivity: "≤0.60 aw",
-      so2Level: "<100ppm SO₂ (sulfite-free options available)",
-      totalPlateCount: "<10⁵ CFU/g",
-      yeastMold: "<10³ CFU/g",
-      color: "Golden Orange",
-      shelfLife: "18-24 months (premium) / 12-18 months (standard)",
-      origin: "Central Java, Indonesia",
-      brixLevel: ">12° Brix",
-      additives: "Preservative-free / Sulfite-free options",
-      foreignMatter: "0%",
-      processingMethod: "Sun-dried / Slow dehydrated",
-      grade: "Grade A Export Quality",
-      storageTemp: "10-20°C (50-68°F)",
-      storageHumidity: "<60% RH",
-      salmonella: "Absent/25g",
-      eColi: "Absent",
-    },
-    availability: {
-      peakSeason: "Year-round (Indonesia)",
-      currentStatus: "in-stock",
-    },
-    applications: ["Breakfast cereals", "Trail mix", "Baked goods", "Smoothie bowls", "Snacking", "Confectionery"],
-    packaging: { bulk: "10-12.5kg carton with PE liner", retail: "50g-500g stand-up pouches (OEM available)", custom: true },
+    metaDescription:
+      "Direct manufacturer of premium dried papaya from Indonesia. USDA/EU Organic certified. Bulk 10-25kg cartons. MOQ 500kg. View specs & pricing.",
+    tagline: "Tropical sweetness in every bite",
+    description:
+      "Premium dried papaya slices made from sun-ripened Indonesian papayas. Natural sweetness with no added sugar options available.",
     pricing: {
       fobBase: "From $7.50/kg FOB",
       moq: "500 kg",
       leadTime: "2-3 weeks",
       priceTiers: [
-        { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "MOQ - 1 Ton", priceRange: "$8.50 - $9.50/kg" },
-        { volume: "1 - 10 Tons", priceRange: "$7.50 - $8.50/kg" },
-        { volume: "Full Container (>10T)", priceRange: "Contact for quote" },
+        {
+          volume: "Sample (<5kg)",
+          priceRange: "Free (buyer pays shipping)",
+        },
+        {
+          volume: "MOQ - 1 Ton",
+          priceRange: "$8.50 - $9.50/kg",
+        },
+        {
+          volume: "1 - 10 Tons",
+          priceRange: "$7.50 - $8.50/kg",
+        },
+        {
+          volume: "Full Container (>10T)",
+          priceRange: "Contact for quote",
+        },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
+    },
+    certifications: ["HACCP", "Halal", "Kosher"],
+    availability: {
+      peakSeason: "Year-round (Indonesia)",
+      currentStatus: "pre-order",
+    },
+    specifications: {
+      size: "Chunks 1-2cm, Shreds, Slices, Dices",
+    },
+    applications: ["Breakfast cereals", "Trail mix", "Baked goods", "Smoothie bowls", "Snacking", "Confectionery"],
+    packaging: {
+      bulk: "10-12.5kg carton with PE liner",
+      retail: "50g-500g stand-up pouches (OEM available)",
+      custom: true,
     },
     logistics: {
       portOfLoading: "Semarang, Indonesia",
@@ -187,13 +178,27 @@ export const products: Product[] = [
       global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
-      { question: "What are the microbiological specifications?", answer: "Our dried papaya meets strict microbiology standards: Total Plate Count <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent, E. coli absent. ISO 17025 lab certified." },
-      { question: "What is the water activity level?", answer: "Premium export grade maintains aw ≤0.60 to prevent microbial growth and ensure 18-24 month shelf life. Standard bulk grade is aw ≤0.65." },
-      { question: "Is dried papaya available without added sugar?", answer: "Yes, we offer no-sugar-added options using naturally ripe papayas. We also provide sulfite-free options." },
-      { question: "What storage conditions are required?", answer: "Store at 10-20°C (50-68°F) in <60% relative humidity. Keep in cool, dry, dark warehouse with pallets off floor to prevent condensation." },
+      {
+        question: "What are the microbiological specifications?",
+        answer:
+          "Our dried papaya meets strict microbiology standards: Total Plate Count <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent, E. coli absent. ISO 17025 lab certified.",
+      },
+      {
+        question: "What is the water activity level?",
+        answer:
+          "Premium export grade maintains aw ≤0.60 to prevent microbial growth and ensure 18-24 month shelf life. Standard bulk grade is aw ≤0.65.",
+      },
+      {
+        question: "Is dried papaya available without added sugar?",
+        answer:
+          "Yes, we offer no-sugar-added options using naturally ripe papayas. We also provide sulfite-free options.",
+      },
+      {
+        question: "What storage conditions are required?",
+        answer:
+          "Store at 10-20°C (50-68°F) in <60% relative humidity. Keep in cool, dry, dark warehouse with pallets off floor to prevent condensation.",
+      },
     ],
-    certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
-    isOrganic: true,
     relatedProducts: ["dried-pineapple", "dried-mango", "dried-dragon-fruit", "dried-banana"],
   },
   {
@@ -208,12 +213,19 @@ export const products: Product[] = [
       thumbnail: "",
       gallery: [],
     },
-    description: "Naturally dried pineapple rings and chunks from premium Cayenne pineapples. Perfect balance of sweet and tangy.",
+    description:
+      "Naturally dried pineapple rings and chunks from premium Cayenne pineapples. Perfect balance of sweet and tangy.",
     flavorProfile: "Vibrant sweet-tangy balance with aromatic pineapple essence",
     texture: "Chewy with slight crispness on edges",
     metaTitle: "Wholesale Dried Pineapple (Rings/Chunks) - Bulk Export from Indonesia",
-    metaDescription: "Premium dried pineapple from Indonesia. USDA/EU Organic certified. Bulk packaging available. MOQ 500kg. Direct from manufacturer.",
-    keywords: ["bulk dried pineapple", "wholesale dried pineapple Indonesia", "dried pineapple supplier", "dried pineapple specifications"],
+    metaDescription:
+      "Premium dried pineapple from Indonesia. USDA/EU Organic certified. Bulk packaging available. MOQ 500kg. Direct from manufacturer.",
+    keywords: [
+      "bulk dried pineapple",
+      "wholesale dried pineapple Indonesia",
+      "dried pineapple supplier",
+      "dried pineapple specifications",
+    ],
     specifications: {
       size: "Rings, Core-rings, Tidbits, Chunks, Slices",
       moisture: "15-20%",
@@ -264,10 +276,26 @@ export const products: Product[] = [
       global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
-      { question: "Do you offer cored pineapple rings?", answer: "Yes, we offer both cored rings (with hole) and natural slices with core. Core-rings are most popular for retail packaging." },
-      { question: "What are the microbiological standards?", answer: "Total Plate Count <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. All batches tested by ISO 17025 accredited labs." },
-      { question: "What is the water activity for dried pineapple?", answer: "Our dried pineapple maintains aw ≤0.60 for optimal shelf stability of 18-24 months under proper storage conditions." },
-      { question: "Can you provide sulfite-free options?", answer: "Yes, we offer sulfite-free dried pineapple for clean-label products. Slightly darker color but excellent flavor retention." },
+      {
+        question: "Do you offer cored pineapple rings?",
+        answer:
+          "Yes, we offer both cored rings (with hole) and natural slices with core. Core-rings are most popular for retail packaging.",
+      },
+      {
+        question: "What are the microbiological standards?",
+        answer:
+          "Total Plate Count <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. All batches tested by ISO 17025 accredited labs.",
+      },
+      {
+        question: "What is the water activity for dried pineapple?",
+        answer:
+          "Our dried pineapple maintains aw ≤0.60 for optimal shelf stability of 18-24 months under proper storage conditions.",
+      },
+      {
+        question: "Can you provide sulfite-free options?",
+        answer:
+          "Yes, we offer sulfite-free dried pineapple for clean-label products. Slightly darker color but excellent flavor retention.",
+      },
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
@@ -285,11 +313,13 @@ export const products: Product[] = [
       thumbnail: "",
       gallery: [],
     },
-    description: "Unique dried avocado slices - a rare product offering. Rich, creamy flavor preserved through our special low-temperature drying process.",
+    description:
+      "Unique dried avocado slices - a rare product offering. Rich, creamy flavor preserved through our special low-temperature drying process.",
     flavorProfile: "Rich, buttery, and creamy with subtle nutty undertones",
     texture: "Firm yet tender, satisfying bite",
     metaTitle: "Wholesale Dried Avocado (Slices) - Rare Superfood from Indonesia",
-    metaDescription: "Unique dried avocado slices from Indonesia. Premium superfood innovation. Limited availability. Contact for bulk pricing.",
+    metaDescription:
+      "Unique dried avocado slices from Indonesia. Premium superfood innovation. Limited availability. Contact for bulk pricing.",
     keywords: ["dried avocado", "dried avocado wholesale", "avocado chips supplier", "dried avocado specifications"],
     specifications: {
       size: "Diced 1cm, Slices, Pieces",
@@ -316,7 +346,13 @@ export const products: Product[] = [
       offPeakSeason: "September - January",
       currentStatus: "limited",
     },
-    applications: ["Health snacks", "Smoothie ingredients", "Gourmet cooking", "Salad toppings", "Supplement ingredients"],
+    applications: [
+      "Health snacks",
+      "Smoothie ingredients",
+      "Gourmet cooking",
+      "Salad toppings",
+      "Supplement ingredients",
+    ],
     packaging: { bulk: "12kg foil liner box (nitrogen flush)", retail: "30g-200g pouches", custom: true },
     pricing: {
       fobBase: "From $18.00/kg FOB",
@@ -342,10 +378,26 @@ export const products: Product[] = [
       global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
-      { question: "Why are storage conditions stricter for dried avocado?", answer: "Due to high fat content (15-25%), dried avocado requires cooler storage (10-15°C) and lower humidity (<55% RH) to prevent fat oxidation and rancidity." },
-      { question: "What is the fat content of dried avocado?", answer: "Our dried avocado retains 15-25% fat content, preserving the healthy monounsaturated fats that make avocado a superfood." },
-      { question: "Why is the TPC limit stricter for dried avocado?", answer: "Higher fat content products require stricter microbial controls. We maintain TPC <10⁴ CFU/g (10x stricter than standard dried fruits)." },
-      { question: "Is dried avocado available year-round?", answer: "Peak availability is February-August. We can fulfill orders year-round but recommend advance booking for off-peak season." },
+      {
+        question: "Why are storage conditions stricter for dried avocado?",
+        answer:
+          "Due to high fat content (15-25%), dried avocado requires cooler storage (10-15°C) and lower humidity (<55% RH) to prevent fat oxidation and rancidity.",
+      },
+      {
+        question: "What is the fat content of dried avocado?",
+        answer:
+          "Our dried avocado retains 15-25% fat content, preserving the healthy monounsaturated fats that make avocado a superfood.",
+      },
+      {
+        question: "Why is the TPC limit stricter for dried avocado?",
+        answer:
+          "Higher fat content products require stricter microbial controls. We maintain TPC <10⁴ CFU/g (10x stricter than standard dried fruits).",
+      },
+      {
+        question: "Is dried avocado available year-round?",
+        answer:
+          "Peak availability is February-August. We can fulfill orders year-round but recommend advance booking for off-peak season.",
+      },
     ],
     certifications: ["USDA Organic", "HACCP", "Halal"],
     isOrganic: true,
@@ -363,12 +415,20 @@ export const products: Product[] = [
       thumbnail: "",
       gallery: [],
     },
-    description: "Premium dried mango slices from hand-selected Gedong and Harum Manis mangoes. Intense tropical flavor with naturally high sweetness.",
+    description:
+      "Premium dried mango slices from hand-selected Gedong and Harum Manis mangoes. Intense tropical flavor with naturally high sweetness.",
     flavorProfile: "Intense tropical sweetness with a rich, aromatic fragrance typical of Indonesian mangoes",
     texture: "Soft and chewy, not fibrous",
     metaTitle: "Wholesale Dried Mango (Slices) - Bulk Export from Indonesia",
-    metaDescription: "Direct manufacturer of premium dried mango from Indonesia. USDA/EU Organic certified. Bulk 10-25kg cartons. MOQ 500kg. View specs & pricing.",
-    keywords: ["bulk dried mango", "wholesale dried mango Indonesia", "dried mango supplier", "organic dried mango", "dried mango water activity"],
+    metaDescription:
+      "Direct manufacturer of premium dried mango from Indonesia. USDA/EU Organic certified. Bulk 10-25kg cartons. MOQ 500kg. View specs & pricing.",
+    keywords: [
+      "bulk dried mango",
+      "wholesale dried mango Indonesia",
+      "dried mango supplier",
+      "organic dried mango",
+      "dried mango water activity",
+    ],
     specifications: {
       size: "Slices 2cm, Chunks, Strips, Dices",
       moisture: "15-20%",
@@ -394,8 +454,20 @@ export const products: Product[] = [
       offPeakSeason: "March - September",
       currentStatus: "in-stock",
     },
-    applications: ["Snacking", "Trail mix", "Smoothies", "Baking", "Ice cream toppings", "Cereal & Muesli", "Confectionery"],
-    packaging: { bulk: "10-12.5kg carton with PE liner", retail: "50g-500g stand-up pouches (OEM available)", custom: true },
+    applications: [
+      "Snacking",
+      "Trail mix",
+      "Smoothies",
+      "Baking",
+      "Ice cream toppings",
+      "Cereal & Muesli",
+      "Confectionery",
+    ],
+    packaging: {
+      bulk: "10-12.5kg carton with PE liner",
+      retail: "50g-500g stand-up pouches (OEM available)",
+      custom: true,
+    },
     pricing: {
       fobBase: "From $9.50/kg FOB",
       moq: "500 kg",
@@ -420,10 +492,26 @@ export const products: Product[] = [
       global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
-      { question: "Can you provide Organic Certification?", answer: "Yes, we offer USDA Organic and EU Organic certified dried mango. Full traceability from farm to export." },
-      { question: "What is transit time to USA/Europe?", answer: "Ocean freight: USA West Coast ~25-30 days, Europe (Rotterdam/Hamburg) ~28-35 days. Air freight: 3-5 days." },
-      { question: "Do you offer sulfite-free options?", answer: "Yes, we have both conventional and sulfite-free/preservative-free options. Sulfite-free has slightly darker color but excellent flavor." },
-      { question: "What are the microbiological specifications?", answer: "TPC <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.60 aw for 18-24 month shelf life." },
+      {
+        question: "Can you provide Organic Certification?",
+        answer:
+          "Yes, we offer USDA Organic and EU Organic certified dried mango. Full traceability from farm to export.",
+      },
+      {
+        question: "What is transit time to USA/Europe?",
+        answer:
+          "Ocean freight: USA West Coast ~25-30 days, Europe (Rotterdam/Hamburg) ~28-35 days. Air freight: 3-5 days.",
+      },
+      {
+        question: "Do you offer sulfite-free options?",
+        answer:
+          "Yes, we have both conventional and sulfite-free/preservative-free options. Sulfite-free has slightly darker color but excellent flavor.",
+      },
+      {
+        question: "What are the microbiological specifications?",
+        answer:
+          "TPC <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.60 aw for 18-24 month shelf life.",
+      },
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
@@ -441,12 +529,19 @@ export const products: Product[] = [
       thumbnail: "",
       gallery: [],
     },
-    description: "Vibrant dried dragon fruit (pitaya) slices. Stunning visual appeal with subtle sweetness and high antioxidant content.",
+    description:
+      "Vibrant dried dragon fruit (pitaya) slices. Stunning visual appeal with subtle sweetness and high antioxidant content.",
     flavorProfile: "Subtly sweet with mild berry-like notes, refreshing finish",
     texture: "Crisp yet chewy, delicate crunch",
     metaTitle: "Wholesale Dried Dragon Fruit (Pitaya) - Bulk Export from Indonesia",
-    metaDescription: "Premium dried dragon fruit from Indonesia. Vibrant natural color. USDA/EU Organic certified. Bulk packaging. Direct from manufacturer.",
-    keywords: ["dried dragon fruit", "dried pitaya wholesale", "dragon fruit supplier Indonesia", "dried dragon fruit specifications"],
+    metaDescription:
+      "Premium dried dragon fruit from Indonesia. Vibrant natural color. USDA/EU Organic certified. Bulk packaging. Direct from manufacturer.",
+    keywords: [
+      "dried dragon fruit",
+      "dried pitaya wholesale",
+      "dragon fruit supplier Indonesia",
+      "dried dragon fruit specifications",
+    ],
     specifications: {
       size: "Chunks 1-2cm, Slices, Chips",
       moisture: "15-20%",
@@ -471,7 +566,14 @@ export const products: Product[] = [
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
-    applications: ["Smoothie bowls", "Decorative garnish", "Health snacks", "Breakfast cereals", "Natural coloring", "Confectionery"],
+    applications: [
+      "Smoothie bowls",
+      "Decorative garnish",
+      "Health snacks",
+      "Breakfast cereals",
+      "Natural coloring",
+      "Confectionery",
+    ],
     packaging: { bulk: "12.5kg carton with nitrogen flush", retail: "30g-250g stand-up pouches", custom: true },
     pricing: {
       fobBase: "From $12.00/kg FOB",
@@ -497,10 +599,26 @@ export const products: Product[] = [
       global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
-      { question: "Do you offer both red and white dragon fruit?", answer: "Yes, we offer both red-fleshed (magenta) and white-fleshed dried dragon fruit. Red variety has more vibrant color for visual applications." },
-      { question: "Is the color natural or added?", answer: "100% natural color from the fruit. No artificial colorings added. Red dragon fruit contains natural betacyanins (antioxidants)." },
-      { question: "What are the microbiological standards?", answer: "TPC <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.60 aw." },
-      { question: "Why is nitrogen flush packaging used?", answer: "Nitrogen flush prevents oxidation and preserves the vibrant natural color. Essential for maintaining visual appeal in retail applications." },
+      {
+        question: "Do you offer both red and white dragon fruit?",
+        answer:
+          "Yes, we offer both red-fleshed (magenta) and white-fleshed dried dragon fruit. Red variety has more vibrant color for visual applications.",
+      },
+      {
+        question: "Is the color natural or added?",
+        answer:
+          "100% natural color from the fruit. No artificial colorings added. Red dragon fruit contains natural betacyanins (antioxidants).",
+      },
+      {
+        question: "What are the microbiological standards?",
+        answer:
+          "TPC <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.60 aw.",
+      },
+      {
+        question: "Why is nitrogen flush packaging used?",
+        answer:
+          "Nitrogen flush prevents oxidation and preserves the vibrant natural color. Essential for maintaining visual appeal in retail applications.",
+      },
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
@@ -518,11 +636,13 @@ export const products: Product[] = [
       thumbnail: "",
       gallery: [],
     },
-    description: "Rare dried salak (snake fruit) - a uniquely Indonesian delicacy with sweet-tangy flavor profile and distinctive texture.",
+    description:
+      "Rare dried salak (snake fruit) - a uniquely Indonesian delicacy with sweet-tangy flavor profile and distinctive texture.",
     flavorProfile: "Complex sweet-tangy profile with apple-pineapple notes and slight astringency",
     texture: "Firm and crunchy, unique bite",
     metaTitle: "Wholesale Dried Snake Fruit (Salak) - Exotic Indonesian Delicacy",
-    metaDescription: "Rare dried salak from Indonesia. Unique exotic flavor. Premium quality. Limited availability. Contact for bulk pricing.",
+    metaDescription:
+      "Rare dried salak from Indonesia. Unique exotic flavor. Premium quality. Limited availability. Contact for bulk pricing.",
     keywords: ["dried snake fruit", "dried salak wholesale", "Indonesian exotic fruit"],
     specifications: {
       size: "Whole, Halves, Pieces",
@@ -570,11 +690,13 @@ export const products: Product[] = [
       thumbnail: "",
       gallery: [],
     },
-    description: "Dried breadfruit chips and slices - high in fiber, gluten-free, and sustainable. A versatile ingredient for health-conscious products.",
+    description:
+      "Dried breadfruit chips and slices - high in fiber, gluten-free, and sustainable. A versatile ingredient for health-conscious products.",
     flavorProfile: "Mild, slightly nutty with subtle sweetness, similar to potato",
     texture: "Crispy when chips, chewy when slices",
     metaTitle: "Wholesale Dried Breadfruit - Gluten-Free Superfood from Indonesia",
-    metaDescription: "Sustainable dried breadfruit from Indonesia. High fiber, gluten-free. Bulk packaging. Perfect for health food manufacturers.",
+    metaDescription:
+      "Sustainable dried breadfruit from Indonesia. High fiber, gluten-free. Bulk packaging. Perfect for health food manufacturers.",
     keywords: ["dried breadfruit", "gluten-free dried fruit", "sustainable superfood"],
     specifications: {
       size: "Chips, Slices",
@@ -621,12 +743,19 @@ export const products: Product[] = [
       thumbnail: "",
       gallery: [],
     },
-    description: "Sweet, chewy dried jackfruit pieces. Intense tropical aroma and naturally sweet taste. Popular for snacking and vegan applications.",
+    description:
+      "Sweet, chewy dried jackfruit pieces. Intense tropical aroma and naturally sweet taste. Popular for snacking and vegan applications.",
     flavorProfile: "Intensely sweet with distinctive tropical aroma, hints of banana and pineapple",
     texture: "Chewy and slightly sticky, satisfying",
     metaTitle: "Wholesale Dried Jackfruit - Bulk Export from Indonesia",
-    metaDescription: "Premium dried jackfruit from Indonesia. Natural sweetness. USDA/EU Organic certified. Bulk packaging. Direct from manufacturer.",
-    keywords: ["dried jackfruit wholesale", "bulk dried jackfruit", "jackfruit supplier Indonesia", "dried jackfruit specifications"],
+    metaDescription:
+      "Premium dried jackfruit from Indonesia. Natural sweetness. USDA/EU Organic certified. Bulk packaging. Direct from manufacturer.",
+    keywords: [
+      "dried jackfruit wholesale",
+      "bulk dried jackfruit",
+      "jackfruit supplier Indonesia",
+      "dried jackfruit specifications",
+    ],
     specifications: {
       size: "Chunks, Slices, Pods",
       moisture: "15-20%",
@@ -676,10 +805,26 @@ export const products: Product[] = [
       global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
-      { question: "Can dried jackfruit be used as vegan meat alternative?", answer: "Yes! Young (unripe) jackfruit is popular as a vegan pulled pork substitute. Our dried mature jackfruit is sweet and best for snacking, not savory applications." },
-      { question: "What makes Indonesian jackfruit special?", answer: "Indonesian jackfruit has exceptional sweetness (>16° Brix) and aromatic profile. We use selected 'nangka madu' (honey jackfruit) variety." },
-      { question: "What are the microbiological specifications?", answer: "TPC <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.60 aw." },
-      { question: "Is jackfruit available year-round?", answer: "Main season is January-March with secondary harvest June-August. We maintain inventory for year-round supply but recommend booking in advance for large orders." },
+      {
+        question: "Can dried jackfruit be used as vegan meat alternative?",
+        answer:
+          "Yes! Young (unripe) jackfruit is popular as a vegan pulled pork substitute. Our dried mature jackfruit is sweet and best for snacking, not savory applications.",
+      },
+      {
+        question: "What makes Indonesian jackfruit special?",
+        answer:
+          "Indonesian jackfruit has exceptional sweetness (>16° Brix) and aromatic profile. We use selected 'nangka madu' (honey jackfruit) variety.",
+      },
+      {
+        question: "What are the microbiological specifications?",
+        answer:
+          "TPC <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.60 aw.",
+      },
+      {
+        question: "Is jackfruit available year-round?",
+        answer:
+          "Main season is January-March with secondary harvest June-August. We maintain inventory for year-round supply but recommend booking in advance for large orders.",
+      },
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
@@ -697,11 +842,13 @@ export const products: Product[] = [
       thumbnail: "",
       gallery: [],
     },
-    description: "Premium dried coconut in multiple forms - desiccated, chips, flakes, and shreds. Perfect for bakery, confectionery, and health food applications.",
+    description:
+      "Premium dried coconut in multiple forms - desiccated, chips, flakes, and shreds. Perfect for bakery, confectionery, and health food applications.",
     flavorProfile: "Rich, sweet coconut with mild toasted notes",
     texture: "Varies by cut - fine (desiccated) to chunky (chips)",
     metaTitle: "Wholesale Dried Coconut (Desiccated/Chips) - Bulk Export from Indonesia",
-    metaDescription: "Premium dried coconut from Indonesia. Desiccated, chips, flakes. USDA/EU Organic certified. Bulk packaging. Direct from manufacturer.",
+    metaDescription:
+      "Premium dried coconut from Indonesia. Desiccated, chips, flakes. USDA/EU Organic certified. Bulk packaging. Direct from manufacturer.",
     keywords: ["dried coconut wholesale", "desiccated coconut Indonesia", "coconut chips bulk", "coconut supplier"],
     specifications: {
       size: "Desiccated (fine/medium/coarse), Chips, Flakes, Shreds",
@@ -752,10 +899,26 @@ export const products: Product[] = [
       global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
-      { question: "What coconut grades are available?", answer: "We offer fine, medium, and coarse desiccated coconut, plus chips, flakes, and shreds. Fat content 60-65%, moisture 3-6%. All grades available organic." },
-      { question: "What is the fat content of dried coconut?", answer: "Our dried coconut contains 60-65% healthy fats (primarily lauric acid MCT). This makes it excellent for keto and health food applications." },
-      { question: "Is white vs cream color significant?", answer: "White indicates minimal toasting during drying (preferred for bakery). Light cream indicates mild toasting (preferred for snacking/granola with enhanced flavor)." },
-      { question: "What are the microbiological specifications?", answer: "TPC <10⁴ CFU/g, Yeast & Mold <10² CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.50 aw for 12-18 month shelf life." },
+      {
+        question: "What coconut grades are available?",
+        answer:
+          "We offer fine, medium, and coarse desiccated coconut, plus chips, flakes, and shreds. Fat content 60-65%, moisture 3-6%. All grades available organic.",
+      },
+      {
+        question: "What is the fat content of dried coconut?",
+        answer:
+          "Our dried coconut contains 60-65% healthy fats (primarily lauric acid MCT). This makes it excellent for keto and health food applications.",
+      },
+      {
+        question: "Is white vs cream color significant?",
+        answer:
+          "White indicates minimal toasting during drying (preferred for bakery). Light cream indicates mild toasting (preferred for snacking/granola with enhanced flavor).",
+      },
+      {
+        question: "What are the microbiological specifications?",
+        answer:
+          "TPC <10⁴ CFU/g, Yeast & Mold <10² CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.50 aw for 12-18 month shelf life.",
+      },
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
@@ -773,11 +936,13 @@ export const products: Product[] = [
       thumbnail: "",
       gallery: [],
     },
-    description: "Premium dried banana in multiple forms - coins, chips, and whole. Natural sweetness from ripe Cavendish bananas. Perfect for snacking, cereals, and baking applications.",
+    description:
+      "Premium dried banana in multiple forms - coins, chips, and whole. Natural sweetness from ripe Cavendish bananas. Perfect for snacking, cereals, and baking applications.",
     flavorProfile: "Sweet, rich banana with caramelized notes",
     texture: "Soft and chewy (coins) to semi-crisp (chips)",
     metaTitle: "Wholesale Dried Banana (Coins/Chips) - Bulk Export from Indonesia",
-    metaDescription: "Premium dried banana from Indonesia. Natural sweetness. USDA/EU Organic certified. Bulk packaging. Direct from manufacturer.",
+    metaDescription:
+      "Premium dried banana from Indonesia. Natural sweetness. USDA/EU Organic certified. Bulk packaging. Direct from manufacturer.",
     keywords: ["dried banana wholesale", "banana chips bulk", "dried banana Indonesia", "organic dried banana"],
     specifications: {
       size: "Coins, Chips, Slices, Whole",
@@ -803,7 +968,15 @@ export const products: Product[] = [
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
-    applications: ["Snacking", "Trail mix", "Baking", "Breakfast cereals", "Chocolate coating", "Granola bars", "Baby food"],
+    applications: [
+      "Snacking",
+      "Trail mix",
+      "Baking",
+      "Breakfast cereals",
+      "Chocolate coating",
+      "Granola bars",
+      "Baby food",
+    ],
     packaging: { bulk: "10-12.5kg carton with PE liner", retail: "50g-500g stand-up pouches", custom: true },
     pricing: {
       fobBase: "From $4.50/kg FOB",
@@ -829,10 +1002,26 @@ export const products: Product[] = [
       global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
-      { question: "What banana varieties do you use?", answer: "We use Cavendish for consistent flavor and local Pisang Raja for premium sweetness. Variety can be specified for large orders." },
-      { question: "Are sulfite-free options available?", answer: "Yes, we offer sulfite-free dried banana for clean-label products. Slightly shorter shelf life (12-18 months) but meets organic and natural requirements." },
-      { question: "What is the difference between soft and crisp texture?", answer: "Moisture 20-25% gives soft, chewy texture for snacking. Moisture 12-18% gives semi-crisp texture for cereals and trail mix. Specify your preference." },
-      { question: "What are the microbiological specifications?", answer: "TPC <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.60 aw for 18-24 month shelf life." },
+      {
+        question: "What banana varieties do you use?",
+        answer:
+          "We use Cavendish for consistent flavor and local Pisang Raja for premium sweetness. Variety can be specified for large orders.",
+      },
+      {
+        question: "Are sulfite-free options available?",
+        answer:
+          "Yes, we offer sulfite-free dried banana for clean-label products. Slightly shorter shelf life (12-18 months) but meets organic and natural requirements.",
+      },
+      {
+        question: "What is the difference between soft and crisp texture?",
+        answer:
+          "Moisture 20-25% gives soft, chewy texture for snacking. Moisture 12-18% gives semi-crisp texture for cereals and trail mix. Specify your preference.",
+      },
+      {
+        question: "What are the microbiological specifications?",
+        answer:
+          "TPC <10⁵ CFU/g, Yeast & Mold <10³ CFU/g, Salmonella absent/25g, E. coli absent. Water activity ≤0.60 aw for 18-24 month shelf life.",
+      },
     ],
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     isOrganic: true,
@@ -844,19 +1033,17 @@ export const products: Product[] = [
 // HELPER FUNCTIONS
 // ============================================
 export const getProductById = (id: string): Product | undefined => {
-  return products.find(p => p.id === id);
+  return products.find((p) => p.id === id);
 };
 
 export const getProductsByCategory = (category: Product["category"]): Product[] => {
-  return products.filter(p => p.category === category);
+  return products.filter((p) => p.category === category);
 };
 
 export const getRelatedProducts = (productId: string): Product[] => {
   const product = getProductById(productId);
   if (!product) return [];
-  return product.relatedProducts
-    .map(id => getProductById(id))
-    .filter((p): p is Product => p !== undefined);
+  return product.relatedProducts.map((id) => getProductById(id)).filter((p): p is Product => p !== undefined);
 };
 
 export const productCategories = [
@@ -864,6 +1051,6 @@ export const productCategories = [
     id: "dried-fruits",
     name: "Dried Fruits",
     description: "Premium sun-dried tropical fruits - chunks, slices, and cuts",
-    productCount: products.filter(p => p.category === "dried-fruits").length,
+    productCount: products.filter((p) => p.category === "dried-fruits").length,
   },
 ] as const;
