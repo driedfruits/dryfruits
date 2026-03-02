@@ -1,10 +1,12 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Package, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { PrimaryButton } from "@/components/CTAButton";
-import { productCategories } from "@/data/companyData";
+import { getProductsByCategory } from "@/data/companyData";
 
 export const ProductCategoriesSection = memo(function ProductCategoriesSection() {
+  const driedFruits = useMemo(() => getProductsByCategory("dried-fruits"), []);
+
   return (
     <section className="py-20">
       <div className="container">
@@ -13,27 +15,25 @@ export const ProductCategoriesSection = memo(function ProductCategoriesSection()
             Our Product Range
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            From tropical dried fruits to premium spices - all organically grown in Indonesia
+            Premium tropical dried fruits — organically grown and exported from Indonesia
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {productCategories.map((category) => (
+        <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          {driedFruits.map((product) => (
             <Link
-              key={category.id}
-              to={`/products/${category.id}`}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-tropical-green-light p-8 text-on-primary transition-transform hover:scale-[1.02]"
+              key={product.id}
+              to={`/products/dried-fruits/${product.id}`}
+              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-tropical-green-light p-6 text-on-primary transition-transform hover:scale-[1.03]"
             >
               <div className="relative z-10">
-                <Package className="h-12 w-12 mb-4 text-on-primary-muted" />
-                <h3 className="text-2xl font-bold mb-2 text-on-primary">{category.name}</h3>
-                <p className="text-on-primary-muted mb-4">{category.description}</p>
-                <div className="flex items-center gap-2 text-sm font-medium text-on-primary">
-                  {category.productCount} Products
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
+                <h3 className="text-lg font-bold mb-2 text-on-primary">{product.name}</h3>
+                <div className="flex items-center gap-1 text-sm font-medium text-on-primary-muted">
+                  View
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
-              <div className="absolute -right-8 -bottom-8 h-32 w-32 rounded-full bg-primary-foreground/10" />
+              <div className="absolute -right-6 -bottom-6 h-20 w-20 rounded-full bg-primary-foreground/10" />
             </Link>
           ))}
         </div>
