@@ -1,18 +1,31 @@
 
 
-## Add Cut Size & Season to Product Hero
+## Add SEO & Hero Title Fields to Product Editor
 
-Add two new info rows to the "Quick Highlights" list in `ProductPageTemplate.tsx` hero section.
+Add three new editable fields to the admin product editor for SEO meta tags and the hero section title.
+
+### New State
+- `metaTitle: string` — SEO `<title>` tag
+- `metaDescription: string` — SEO meta description
+- `heroTitle: string` — maps to `product.name` (the H1 displayed in hero); rename existing `name` state to clarify
 
 ### Changes
 
 | File | Change |
 |------|--------|
-| `src/components/products/ProductPageTemplate.tsx` | Add "Cut Size / Form" and "Season" rows to the Quick Highlights `<ul>` after the existing items (before the sample policy row) |
+| `src/pages/ProductEditorPage.tsx` | Add `metaTitle` and `metaDescription` state. Add loadProduct mapping from `product.metaTitle` and `product.metaDescription`. Add a new "SEO & Page Settings" card section at the top of the form (after product selector, before tagline) with 3 inputs: Hero H1 Title (existing `name`), Meta Title, Meta Description (textarea). Include `metaTitle` and `metaDescription` in JSON output. |
 
-### Details
-- **Cut Size / Form**: Display `product.specifications.size` (already exists in data). Show full value, not truncated.
-- **Season**: Display `product.availability?.peakSeason`. Only render if value exists.
+### Form Layout
+New "SEO & Page Settings" bordered card placed right after the product selector containing:
+1. **Hero H1 Title** — existing `name` field, moved here with clearer label
+2. **Meta Title** — text input, placeholder: "e.g. Buy Dried Pineapple Wholesale | DFT Indonesia"
+3. **Meta Description** — textarea, placeholder: "SEO description for search results (150-160 chars recommended)"
 
-Both use the same `<li>` pattern as existing rows (font-medium label + muted-foreground value).
+### JSON Output Addition
+```json
+{
+  "metaTitle": "...",
+  "metaDescription": "..."
+}
+```
 
