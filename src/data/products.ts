@@ -10,8 +10,10 @@ export interface Product {
   // Images (optional - uses placeholder if not set)
   images?: {
     main?: string;
+    mainAlt?: string;
     thumbnail?: string;
-    gallery?: string[];
+    thumbnailAlt?: string;
+    gallery?: Array<{ src: string; alt: string }>;
   };
   
   // Content & SEO
@@ -127,7 +129,7 @@ export const products: Product[] = [
     images: {
       main: "",
       thumbnail: "",
-      gallery: ["", "", "", ""],
+      gallery: [],
     },
     description: "Premium dried papaya slices made from sun-ripened Indonesian papayas. Natural sweetness with no added sugar options available.",
     flavorProfile: "Naturally sweet with mild tropical notes and a subtle honey-like aftertaste",
@@ -204,7 +206,7 @@ export const products: Product[] = [
     images: {
       main: "",
       thumbnail: "",
-      gallery: ["", "", "", ""],
+      gallery: [],
     },
     description: "Naturally dried pineapple rings and chunks from premium Cayenne pineapples. Perfect balance of sweet and tangy.",
     flavorProfile: "Vibrant sweet-tangy balance with aromatic pineapple essence",
@@ -281,7 +283,7 @@ export const products: Product[] = [
     images: {
       main: "",
       thumbnail: "",
-      gallery: ["", "", "", ""],
+      gallery: [],
     },
     description: "Unique dried avocado slices - a rare product offering. Rich, creamy flavor preserved through our special low-temperature drying process.",
     flavorProfile: "Rich, buttery, and creamy with subtle nutty undertones",
@@ -359,7 +361,7 @@ export const products: Product[] = [
     images: {
       main: "",
       thumbnail: "",
-      gallery: ["", "", "", ""],
+      gallery: [],
     },
     description: "Premium dried mango slices from hand-selected Gedong and Harum Manis mangoes. Intense tropical flavor with naturally high sweetness.",
     flavorProfile: "Intense tropical sweetness with a rich, aromatic fragrance typical of Indonesian mangoes",
@@ -437,7 +439,7 @@ export const products: Product[] = [
     images: {
       main: "",
       thumbnail: "",
-      gallery: ["", "", "", ""],
+      gallery: [],
     },
     description: "Vibrant dried dragon fruit (pitaya) slices. Stunning visual appeal with subtle sweetness and high antioxidant content.",
     flavorProfile: "Subtly sweet with mild berry-like notes, refreshing finish",
@@ -514,7 +516,7 @@ export const products: Product[] = [
     images: {
       main: "",
       thumbnail: "",
-      gallery: ["", "", "", ""],
+      gallery: [],
     },
     description: "Rare dried salak (snake fruit) - a uniquely Indonesian delicacy with sweet-tangy flavor profile and distinctive texture.",
     flavorProfile: "Complex sweet-tangy profile with apple-pineapple notes and slight astringency",
@@ -566,7 +568,7 @@ export const products: Product[] = [
     images: {
       main: "",
       thumbnail: "",
-      gallery: ["", "", "", ""],
+      gallery: [],
     },
     description: "Dried breadfruit chips and slices - high in fiber, gluten-free, and sustainable. A versatile ingredient for health-conscious products.",
     flavorProfile: "Mild, slightly nutty with subtle sweetness, similar to potato",
@@ -617,7 +619,7 @@ export const products: Product[] = [
     images: {
       main: "",
       thumbnail: "",
-      gallery: ["", "", "", ""],
+      gallery: [],
     },
     description: "Sweet, chewy dried jackfruit pieces. Intense tropical aroma and naturally sweet taste. Popular for snacking and vegan applications.",
     flavorProfile: "Intensely sweet with distinctive tropical aroma, hints of banana and pineapple",
@@ -693,7 +695,7 @@ export const products: Product[] = [
     images: {
       main: "",
       thumbnail: "",
-      gallery: ["", "", "", ""],
+      gallery: [],
     },
     description: "Premium dried coconut in multiple forms - desiccated, chips, flakes, and shreds. Perfect for bakery, confectionery, and health food applications.",
     flavorProfile: "Rich, sweet coconut with mild toasted notes",
@@ -769,7 +771,7 @@ export const products: Product[] = [
     images: {
       main: "",
       thumbnail: "",
-      gallery: ["", "", "", ""],
+      gallery: [],
     },
     description: "Premium dried banana in multiple forms - coins, chips, and whole. Natural sweetness from ripe Cavendish bananas. Perfect for snacking, cereals, and baking applications.",
     flavorProfile: "Sweet, rich banana with caramelized notes",

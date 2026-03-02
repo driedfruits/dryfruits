@@ -61,6 +61,13 @@ const ProductEditorPage = () => {
   const [faqs, setFaqs] = useState<Array<{ question: string; answer: string }>>([]);
   const [relatedProducts, setRelatedProducts] = useState<string[]>([]);
 
+  // Images
+  const [imgMain, setImgMain] = useState("");
+  const [imgMainAlt, setImgMainAlt] = useState("");
+  const [imgThumb, setImgThumb] = useState("");
+  const [imgThumbAlt, setImgThumbAlt] = useState("");
+  const [imgGallery, setImgGallery] = useState<Array<{ src: string; alt: string }>>([]);
+
   const loadProduct = (product: Product) => {
     setName(product.name);
     setMetaTitle(product.metaTitle || "");
@@ -91,6 +98,12 @@ const ProductEditorPage = () => {
     setComplianceGlobal(product.compliance?.global || "");
     setFaqs(product.faqs?.map((f) => ({ ...f })) || []);
     setRelatedProducts([...(product.relatedProducts || [])]);
+    // Images
+    setImgMain(product.images?.main || "");
+    setImgMainAlt(product.images?.mainAlt || "");
+    setImgThumb(product.images?.thumbnail || "");
+    setImgThumbAlt(product.images?.thumbnailAlt || "");
+    setImgGallery(product.images?.gallery?.map((g) => ({ ...g })) || []);
   };
 
   useState(() => {
@@ -133,6 +146,13 @@ const ProductEditorPage = () => {
     setFaqs((prev) => prev.map((f, idx) => (idx === i ? { ...f, [field]: val } : f)));
   };
 
+  // Gallery helpers
+  const addGalleryImage = () => setImgGallery((prev) => [...prev, { src: "", alt: "" }]);
+  const removeGalleryImage = (i: number) => setImgGallery((prev) => prev.filter((_, idx) => idx !== i));
+  const updateGalleryImage = (i: number, field: "src" | "alt", val: string) => {
+    setImgGallery((prev) => prev.map((g, idx) => (idx === i ? { ...g, [field]: val } : g)));
+  };
+
   // Related products toggle
   const toggleRelated = (id: string) => {
     setRelatedProducts((prev) =>
@@ -145,6 +165,13 @@ const ProductEditorPage = () => {
       {
         id: selectedId,
         name,
+        images: (imgMain || imgThumb || imgGallery.length > 0) ? {
+          main: imgMain || undefined,
+          mainAlt: imgMainAlt || undefined,
+          thumbnail: imgThumb || undefined,
+          thumbnailAlt: imgThumbAlt || undefined,
+          gallery: imgGallery.length > 0 ? imgGallery : undefined,
+        } : undefined,
         metaTitle: metaTitle || undefined,
         metaDescription: metaDescription || undefined,
         tagline,
@@ -186,7 +213,7 @@ const ProductEditorPage = () => {
       null,
       2
     );
-  }, [selectedId, name, metaTitle, metaDescription, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, sizeForm, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
+  }, [selectedId, name, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, tagline, description, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, sizeForm, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(jsonOutput);
@@ -209,6 +236,35 @@ const ProductEditorPage = () => {
           <FormInput label="Hero H1 Title" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Premium Dried Pineapple" />
           <FormInput label="Meta Title" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} placeholder="e.g. Buy Dried Pineapple Wholesale | DFT Indonesia" />
           <FormTextarea label="Meta Description" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} placeholder="SEO description for search results (150-160 chars recommended)" />
+        </div>
+
+        {/* Images */}
+        <div className="space-y-4 rounded-lg border border-border p-4">
+          <p className="text-sm font-medium text-foreground">Images</p>
+          <p className="text-xs text-muted-foreground">Enter file paths relative to /public (e.g. /images/dried-papaya-hero.webp). Upload images via Lovable chat first.</p>
+          <FormInput label="Main Image Path" value={imgMain} onChange={(e) => setImgMain(e.target.value)} placeholder="/images/product-hero.webp" />
+          <FormInput label="Main Image Alt Text" value={imgMainAlt} onChange={(e) => setImgMainAlt(e.target.value)} placeholder="Descriptive alt text for SEO" />
+          <FormInput label="Thumbnail Path" value={imgThumb} onChange={(e) => setImgThumb(e.target.value)} placeholder="/images/product-thumb.webp" />
+          <FormInput label="Thumbnail Alt Text" value={imgThumbAlt} onChange={(e) => setImgThumbAlt(e.target.value)} placeholder="Thumbnail alt text" />
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-foreground">Gallery Images</p>
+            {imgGallery.map((img, i) => (
+              <div key={i} className="flex items-end gap-2">
+                <div className="flex-1">
+                  <FormInput label={`Image ${i + 1} Path`} value={img.src} onChange={(e) => updateGalleryImage(i, "src", e.target.value)} placeholder="/images/gallery-1.webp" />
+                </div>
+                <div className="flex-1">
+                  <FormInput label={`Image ${i + 1} Alt`} value={img.alt} onChange={(e) => updateGalleryImage(i, "alt", e.target.value)} placeholder="Alt text" />
+                </div>
+                <Button variant="ghost" size="icon" onClick={() => removeGalleryImage(i)} className="shrink-0 mb-0.5">
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </div>
+            ))}
+            <Button variant="outline" size="sm" onClick={addGalleryImage}>
+              <Plus className="h-4 w-4 mr-1" /> Add Gallery Image
+            </Button>
+          </div>
         </div>
 
         {/* Tagline */}

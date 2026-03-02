@@ -31,9 +31,10 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
   const relatedProducts = getRelatedProducts(product.id);
 
   // Image gallery state
-  const gallery = product.images?.gallery || ["", "", ""];
+  const gallery = product.images?.gallery || [];
   const mainImage = product.images?.main || "";
-  const allImages = [mainImage, ...gallery].slice(0, 4);
+  const gallerySrcs = gallery.map(g => g.src);
+  const allImages = [mainImage, ...gallerySrcs].filter(Boolean).slice(0, 4);
   const [selectedImage, setSelectedImage] = useState(mainImage);
 
   const seoTitle = product.metaTitle || `Wholesale ${product.name} - Bulk Export from Indonesia`;
@@ -114,7 +115,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
               <div className="relative">
                 <OptimizedImage
                   src={selectedImage}
-                  alt={`${product.name} wholesale supplier Indonesia - ${product.isOrganic ? "USDA & EU organic certified " : ""}${categoryLabels[product.category].toLowerCase()} for bulk export`}
+                  alt={product.images?.mainAlt || `${product.name} wholesale supplier Indonesia - ${product.isOrganic ? "USDA & EU organic certified " : ""}${categoryLabels[product.category].toLowerCase()} for bulk export`}
                   aspectRatio="square"
                   width={600}
                   height={600}
