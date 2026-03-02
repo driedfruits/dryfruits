@@ -84,8 +84,8 @@ export const redirectRules: RedirectRule[] = [
 // Product ID aliases for misspellings and alternative names
 export const productAliases: Record<string, string> = {
   // Dried fruits aliases
-  "banana": "vacuum-banana",
-  "banana-chips": "vacuum-banana",
+  "banana": "dried-banana",
+  "banana-chips": "dried-banana",
   "papaya-dried": "dried-papaya",
   "pineapple-dried": "dried-pineapple",
   "pineapple": "dried-pineapple",
@@ -106,25 +106,6 @@ export const productAliases: Record<string, string> = {
   "avocado-dried": "dried-avocado",
   "avocado": "dried-avocado",
   
-  // Ginger & turmeric aliases
-  "ginger-dried": "dried-ginger",
-  "ginger": "dried-ginger",
-  "turmeric-dried": "dried-turmeric",
-  "turmeric": "dried-turmeric",
-  "kunyit": "dried-turmeric",
-  "jahe": "dried-ginger",
-  
-  // Powder aliases - only for alternative names, not actual product IDs
-  "dragon-powder": "dragon-fruit-powder",
-  "dragonfruit-powder": "dragon-fruit-powder",
-  "pitaya-powder": "dragon-fruit-powder",
-  "ginger-root-powder": "ginger-powder",
-  "turmeric-root-powder": "turmeric-powder",
-  
-  // Vacuum fried aliases
-  "banana-vacuum": "vacuum-banana",
-  "jackfruit-vacuum": "vacuum-jackfruit",
-  "pineapple-vacuum": "vacuum-pineapple",
 };
 
 /**
