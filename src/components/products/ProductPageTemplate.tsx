@@ -199,6 +199,24 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                       <span className="text-muted-foreground">{product.availability.peakSeason}</span>
                     </li>
                   )}
+                  {product.specifications.moisture && (
+                    <li className="flex items-center gap-2">
+                      <span className="font-medium">Moisture:</span>
+                      <span className="text-muted-foreground">{product.specifications.moisture}</span>
+                    </li>
+                  )}
+                  {product.specifications.shelfLife && (
+                    <li className="flex items-center gap-2">
+                      <span className="font-medium">Shelf Life:</span>
+                      <span className="text-muted-foreground">{product.specifications.shelfLife}</span>
+                    </li>
+                  )}
+                  {product.specifications.origin && (
+                    <li className="flex items-center gap-2">
+                      <span className="font-medium">Origin:</span>
+                      <span className="text-muted-foreground">{product.specifications.origin}</span>
+                    </li>
+                  )}
                   {product.pricing.samplePolicy && (
                     <li className="flex items-center gap-2">
                       <span className="font-medium">Sample:</span>
