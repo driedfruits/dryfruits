@@ -1,17 +1,30 @@
 
 
-## Replace Product Links with Photo Cards on Homepage
+## Shorten Product Names & Remove "View Details"
 
-### What
-Replace the current gradient-colored text-only product links in `ProductCategoriesSection` with card-style links featuring placeholder thumbnail images, similar to the `ProductCard` component used on the Products page.
+### Changes to `src/components/home/ProductCategoriesSection.tsx`
 
-### Changes
+1. **Add a short-name map** to override long product names for this section only (e.g. `"dried-papaya"` → `"Dried Papaya"`). This keeps the original data untouched.
 
-**Modified file: `src/components/home/ProductCategoriesSection.tsx`**
-- Replace the gradient `<Link>` blocks with card-style layout:
-  - Top: `OptimizedImage` using `/placeholder.svg`, `width={400}`, `height={400}`, `aspectRatio="square"`, with product-specific alt tags (e.g. "Dried mango wholesale from Indonesia")
-  - Bottom: product name + "View Details →" text
-  - Card styling: `bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-glow` (matching `ProductCard` pattern)
-- Keep the same grid: `grid-cols-2 md:grid-cols-3 lg:grid-cols-5`
-- Keep the "View All Products" CTA button at the bottom
+2. **Remove line 40** — the "View Details →" paragraph.
+
+3. **Use short name** in the `<h3>` instead of `product.name`.
+
+Short name map:
+```ts
+const shortNames: Record<string, string> = {
+  "dried-papaya": "Dried Papaya",
+  "dried-pineapple": "Dried Pineapple",
+  "dried-avocado": "Dried Avocado",
+  "dried-mango": "Dried Mango",
+  "dried-dragon-fruit": "Dried Dragon Fruit",
+  "dried-snake-fruit": "Dried Snake Fruit",
+  "dried-breadfruit": "Dried Breadfruit",
+  "dried-jackfruit": "Dried Jackfruit",
+  "dried-coconut": "Dried Coconut",
+  "dried-banana": "Dried Banana",
+};
+```
+
+Fallback: derive from `product.id` by replacing hyphens and capitalizing, so any new product automatically gets a short name.
 
