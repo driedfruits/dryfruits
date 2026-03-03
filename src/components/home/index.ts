@@ -9,3 +9,4 @@ export { TargetSegmentsSection } from "./TargetSegmentsSection";
 export { ExportMapSection } from "./ExportMapSection";
 export { CatalogDownloadSection } from "./CatalogDownloadSection";
 export { FinalCTASection } from "./FinalCTASection";
+export { ProductionProcessSection } from "./ProductionProcessSection";
