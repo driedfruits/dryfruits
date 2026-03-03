@@ -178,9 +178,6 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                 {product.description && (
                   <p className="text-muted-foreground mb-3">{product.description}</p>
                 )}
-                <p className="text-muted-foreground mb-4">
-                  Origin: Indonesia
-                </p>
                 
                 {/* Price */}
                 <div className="mb-6">
