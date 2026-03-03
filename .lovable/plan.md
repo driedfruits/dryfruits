@@ -1,14 +1,25 @@
 
 
-## Add A4 Certificate Placeholders to Certified Quality Assurance Section
+## Balance Photo Layouts in Factory Photos & Farmers Sections
 
-### Changes to `src/components/home/CertificationsSection.tsx`
+### Problem
+- **Factory Photos**: Most categories have 2 photos in a 4-column grid, leaving half the row empty. "Office" has only 1 photo.
+- **Farmers Section**: "Farmers Families" has 2 photos, "Fruits Plantations" has 3 — neither fills a 4-column row.
 
-Below the existing certification icon cards grid, add a new row of A4-format placeholder images — one per certification (4 total: USDA Organic, EU Organic, HACCP, Halal).
+### Solution
+Remove per-category sub-grids and use a single flat grid for each section. This lets all photos flow naturally into rows without awkward gaps. Keep category labels as overlays or remove them (the alt text already carries the SEO value). Add photos where needed to fill rows evenly.
 
-- Use `OptimizedImage` with A4 aspect ratio (`aspectRatio="auto"` + explicit `aspect-[210/297]` class for portrait A4 proportion)
-- Placeholder src: `/placeholder.svg`, with alt tags like "USDA Organic certificate – PT Dried Fruits Total Indonesia"
-- Responsive grid: `grid-cols-2 lg:grid-cols-4`
-- Each placeholder wrapped in a `rounded-xl bg-card shadow-soft overflow-hidden` card with the cert name as caption below
-- Placed between the icon cards grid and the "View Certifications" CTA button
+### Changes
+
+**`src/components/home/FactoryGallerySection.tsx`**
+- Replace the grouped layout with a single flat `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` grid (15 photos = 3 full rows of 5)
+- Remove per-category headings — the section title "Factory Photos" is sufficient
+- Keep all 15 photos as-is
+
+**`src/components/home/FarmersSection.tsx`**
+- Replace grouped layout with a single flat `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` grid
+- Add 5 more placeholder photos (total 10 = 2 full rows of 5) with relevant alt tags for additional farmer families and plantation varieties (e.g., coconut, banana, jackfruit plantations)
+- Remove per-category headings
+
+Both sections will now have clean, fully filled grids with no orphan items.
 
