@@ -1,38 +1,44 @@
 
 
-## Redesign Shipping Data Section: LCL (Pallet) + FCL (Container)
+## Enhance Harvest & Production Calendar with 12-Month Timeline
 
-### Current State
-The "Shipping Data" card in `ProductLogistics.tsx` shows a simple list: port, incoterms, 20ft/40ft container loads. The user wants it replaced with two visual cards — LCL and FCL — each with a placeholder photo and detailed specs.
+### What changes
 
-### Plan
+1. **Add a `harvestMonths` field to the `Product` type** — an optional array of 12 numbers (0 = no production, 1 = off-peak/available, 2 = peak/best time to order). This keeps data declarative per product.
 
-**Modify `src/components/products/ProductLogistics.tsx`** — Replace the middle "Shipping Data" card with two cards spanning a 2-column sub-grid:
+2. **Update each product's data** with appropriate `harvestMonths` values based on their existing `peakSeason`/`offPeakSeason` text. Products marked "Year-round" get all 2s or all 1s. Products with specific months get 2 for peak, 1 for off-peak, 0 for unavailable.
 
-**Card 1 — LCL (Pallet Shipment):**
-- Placeholder image (`/placeholder.svg`) with `OptimizedImage` aspect-ratio video
-- Title: "LCL — Pallet Shipment"
-- Specs list:
-  - Pallet size: 120 × 100 × 150 cm (Euro pallet)
-  - ISPM-15 certified heat-treated wood
-  - Max load per pallet: 1,000 kg
-  - Volume per pallet: ~1.8 m³
-  - Port of Loading from logistics data
+3. **Redesign `ProductSeasonality.tsx`** to include a visual 12-month timeline bar below the existing info cards:
+   - A row of 12 month columns (Jan–Dec) 
+   - Each column colored: **green** (peak — best to order), **amber/yellow** (available — off-peak), **gray** (low/no production)
+   - A legend below: green = "Peak Season · Best Pricing", yellow = "Available · Higher Cost", gray = "Low Production"
+   - Current month highlighted with a ring/border indicator
+   - Falls back to text-only display if `harvestMonths` is not provided
 
-**Card 2 — FCL (Full Container Load):**
-- Placeholder image (`/placeholder.svg`) with `OptimizedImage` aspect-ratio video
-- Title: "FCL — Full Container Load"
-- Specs list:
-  - 20ft container: capacity ~33 m³ / {containerLoad20ft} from product data
-  - 40ft container: capacity ~67 m³ / {containerLoad40ft} from product data
-  - Number of boxes loaded (derived or static reference)
-  - Incoterms from logistics data
+### Files to change
 
-The overall grid changes from `lg:grid-cols-3` to a layout where Packaging stays as card 1, the two shipping cards sit in the middle, and Export Docs is card 3. The section grid becomes `lg:grid-cols-2` with 4 cards, or we keep the 3-col and make the shipping section span 2 columns internally with a nested 2-col grid.
+1. **`src/data/products.ts`** — Add `harvestMonths?: number[]` (length 12) to `Product` type. Populate for each product.
 
-**Simplest approach**: Keep outer 3-col grid → replace the single "Shipping Data" card with a div containing two stacked or side-by-side cards. Or switch to a 2×2 grid of 4 cards. I'll go with **2×2 grid** (Packaging, Export Docs on top row; LCL and FCL on bottom row) for clean layout.
+2. **`src/components/products/ProductSeasonality.tsx`** — Add the 12-month timeline visualization below the existing 3-column info grid. Use Tailwind colors (`bg-green-500`, `bg-amber-400`, `bg-gray-200`) for the month cells. Highlight current month with `ring-2 ring-primary`.
 
-### Files Changed
+### Technical details
 
-1. **`src/components/products/ProductLogistics.tsx`** — Rewrite to 2×2 grid with 4 cards: Packaging Options, Export Documentation, LCL Pallet card (with photo), FCL Container card (with photo). Import `OptimizedImage`.
+Month bar rendering:
+```tsx
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const colorMap = { 0: "bg-gray-200", 1: "bg-amber-400", 2: "bg-green-500" };
+const currentMonth = new Date().getMonth(); // 0-indexed
+
+// Render as a grid-cols-12 row with rounded cells, labels below
+```
+
+Example `harvestMonths` for dried pineapple (year-round peak):
+```ts
+harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+```
+
+Example for dried avocado (peak Feb-Aug, off-peak Sep-Jan):
+```ts
+harvestMonths: [1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1]
+```
 
