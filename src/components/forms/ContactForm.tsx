@@ -30,10 +30,7 @@ export function ContactForm({ variant = "contact", preselectedProduct, className
 
   const productOptions = [
     { value: "", label: "Select a product" },
-    ...products.map((p) => ({
-      value: p.id,
-      label: p.id.replace("dried-", "Dried ").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase()),
-    })),
+    ...products.map((p) => ({ value: p.id, label: p.shortName })),
   ];
 
   const quantityOptions = [

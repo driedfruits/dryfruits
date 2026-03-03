@@ -3,6 +3,7 @@ export interface Product {
   // Identity
   id: string;
   name: string;
+  shortName: string;
   category: "dried-fruits";
   sku?: string;
   hsCode?: string;
@@ -126,6 +127,7 @@ export const products: Product[] = [
   {
     id: "dried-papaya",
     name: "Wholesale Bulk Dried Dehydrated Papaya Chunks & Slices",
+    shortName: "Dried Papaya",
     category: "dried-fruits",
     isOrganic: false,
     images: {
@@ -249,6 +251,7 @@ export const products: Product[] = [
   {
     id: "dried-pineapple",
     name: "Dried Pineapple",
+    shortName: "Dried Pineapple",
     category: "dried-fruits",
     sku: "DFT-DPI-001",
     hsCode: "0813.40.10",
@@ -350,6 +353,7 @@ export const products: Product[] = [
   {
     id: "dried-avocado",
     name: "Dried Avocado",
+    shortName: "Dried Avocado",
     category: "dried-fruits",
     sku: "DFT-DA-001",
     hsCode: "0813.40.90",
@@ -453,6 +457,7 @@ export const products: Product[] = [
   {
     id: "dried-mango",
     name: "Dried Mango",
+    shortName: "Dried Mango",
     category: "dried-fruits",
     sku: "DFT-DM-001",
     hsCode: "0813.40.10",
@@ -568,6 +573,7 @@ export const products: Product[] = [
   {
     id: "dried-dragon-fruit",
     name: "Dried Dragon Fruit",
+    shortName: "Dried Dragon Fruit",
     category: "dried-fruits",
     sku: "DFT-DDF-001",
     hsCode: "0813.40.90",
@@ -676,6 +682,7 @@ export const products: Product[] = [
   {
     id: "dried-snake-fruit",
     name: "Dried Snake Fruit (Salak)",
+    shortName: "Dried Snake Fruit",
     category: "dried-fruits",
     sku: "DFT-DSF-001",
     hsCode: "0813.40.90",
@@ -731,6 +738,7 @@ export const products: Product[] = [
   {
     id: "dried-breadfruit",
     name: "Dried Breadfruit",
+    shortName: "Dried Breadfruit",
     category: "dried-fruits",
     sku: "DFT-DBF-001",
     hsCode: "0813.40.90",
@@ -785,6 +793,7 @@ export const products: Product[] = [
   {
     id: "dried-jackfruit",
     name: "Dried Jackfruit",
+    shortName: "Dried Jackfruit",
     category: "dried-fruits",
     sku: "DFT-DJF-001",
     hsCode: "0813.40.90",
@@ -885,6 +894,7 @@ export const products: Product[] = [
   {
     id: "dried-coconut",
     name: "Dried Coconut",
+    shortName: "Dried Coconut",
     category: "dried-fruits",
     sku: "DFT-DC-001",
     hsCode: "0801.11.00",
@@ -980,6 +990,7 @@ export const products: Product[] = [
   {
     id: "dried-banana",
     name: "Dried Banana",
+    shortName: "Dried Banana",
     category: "dried-fruits",
     sku: "DFT-DB-001",
     hsCode: "0813.40.10",
