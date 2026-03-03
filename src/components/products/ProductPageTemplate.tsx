@@ -8,13 +8,13 @@ import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
 import { Badge } from "@/components/ui/badge";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { cn } from "@/lib/utils";
-import { Leaf, Package, FileText, ChevronRight, Thermometer, ExternalLink } from "lucide-react";
+import { Leaf, Package, FileText, ChevronRight } from "lucide-react";
 import { ProductSpecsTable } from "./ProductSpecsTable";
 import { ProductPriceTiers } from "./ProductPriceTiers";
 import { ProductLogistics } from "./ProductLogistics";
 import { ProductFAQ } from "./ProductFAQ";
 
-import { ProductSensoryApplications } from "./ProductSensoryApplications";
+import { ProductDescriptionPackaging } from "./ProductDescriptionPackaging";
 import { ProductSeasonality } from "./ProductSeasonality";
 import { ProductQuickHighlights } from "./ProductQuickHighlights";
 import { RelatedProducts } from "./RelatedProducts";
@@ -207,18 +207,14 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
           </div>
         </section>
 
+        {/* Product Description & Packaging */}
+        <ProductDescriptionPackaging product={product} />
+
         {/* Specifications Table */}
         <ProductSpecsTable product={product} />
 
-
         {/* Logistics & Packaging */}
         <ProductLogistics product={product} />
-
-
-
-
-        {/* Sensory Profile & Applications */}
-        <ProductSensoryApplications product={product} />
 
         {/* Seasonality */}
         <ProductSeasonality availability={product.availability} productName={product.name} />
