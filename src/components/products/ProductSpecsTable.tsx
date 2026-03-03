@@ -16,7 +16,6 @@ const specLabels: Record<string, string> = {
   foreignMatter: "Foreign Matter",
   processingMethod: "Processing Method",
   grade: "Grade",
-  // B2B dried fruit specs
   so2Level: "SO₂ / Preservatives",
   totalPlateCount: "Total Plate Count (TPC)",
   waterActivity: "Water Activity (aw)",
@@ -35,33 +34,46 @@ const specLabels: Record<string, string> = {
 export function ProductSpecsTable({ product }: ProductSpecsTableProps) {
   const specs = Object.entries(product.specifications).filter(([_, value]) => value);
 
+  const allRows = [
+    { label: "Product Name", value: product.name },
+    ...(product.hsCode
+      ? [{ label: "HS Code", value: <>{product.hsCode} <span className="text-muted-foreground text-xs">(for import duty calculation)</span></> }]
+      : []),
+    ...specs.map(([key, value]) => ({
+      label: specLabels[key] || key,
+      value: value as string,
+    })),
+  ];
+
   return (
-    <section className="py-12 bg-muted/30">
+    <section className="py-8 bg-muted/30">
       <div className="container">
-      <h2 className="text-2xl font-bold text-foreground mb-6">Technical Specifications & Quality Parameters</h2>
-        <div className="bg-card rounded-xl overflow-hidden shadow-soft overflow-x-auto">
-          <Table className="min-w-[400px]">
+        <h2 className="text-xl font-bold text-foreground mb-4">Technical Specifications & Quality Parameters</h2>
+
+        {/* Mobile: Stacked list */}
+        <div className="md:hidden bg-card rounded-xl shadow-soft divide-y divide-border">
+          {allRows.map((row, i) => (
+            <div key={i} className="px-4 py-2.5">
+              <p className="text-xs font-semibold text-muted-foreground">{row.label}</p>
+              <p className="text-sm text-foreground mt-0.5">{row.value}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop: Compact table */}
+        <div className="hidden md:block bg-card rounded-xl overflow-hidden shadow-soft">
+          <Table>
             <TableHeader>
               <TableRow className="bg-muted/50">
-                <TableHead className="font-semibold text-foreground w-1/3">Parameter</TableHead>
-                <TableHead className="font-semibold text-foreground">Specification Details</TableHead>
+                <TableHead className="font-semibold text-foreground w-1/3 px-3 py-2 h-auto text-sm">Parameter</TableHead>
+                <TableHead className="font-semibold text-foreground px-3 py-2 h-auto text-sm">Specification Details</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow>
-                <TableCell className="font-medium">Product Name</TableCell>
-                <TableCell>{product.name}</TableCell>
-              </TableRow>
-              {product.hsCode && (
-                <TableRow>
-                  <TableCell className="font-medium">HS Code</TableCell>
-                  <TableCell>{product.hsCode} <span className="text-muted-foreground text-sm">(for import duty calculation)</span></TableCell>
-                </TableRow>
-              )}
-              {specs.map(([key, value]) => (
-                <TableRow key={key}>
-                  <TableCell className="font-medium">{specLabels[key] || key}</TableCell>
-                  <TableCell>{value}</TableCell>
+              {allRows.map((row, i) => (
+                <TableRow key={i}>
+                  <TableCell className="font-medium px-3 py-2 text-sm">{row.label}</TableCell>
+                  <TableCell className="px-3 py-2 text-sm">{row.value}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
