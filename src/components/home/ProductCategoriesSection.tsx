@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { PrimaryButton } from "@/components/CTAButton";
 import { getProductsByCategory } from "@/data/companyData";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export const ProductCategoriesSection = memo(function ProductCategoriesSection() {
   const driedFruits = useMemo(() => getProductsByCategory("dried-fruits"), []);
@@ -24,16 +25,20 @@ export const ProductCategoriesSection = memo(function ProductCategoriesSection()
             <Link
               key={product.id}
               to={`/products/dried-fruits/${product.id}`}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-tropical-green-light p-6 text-on-primary transition-transform hover:scale-[1.03]"
+              className="group rounded-xl bg-card overflow-hidden shadow-soft hover:shadow-glow transition-all"
             >
-              <div className="relative z-10">
-                <h3 className="text-lg font-bold mb-2 text-on-primary">{product.name}</h3>
-                <div className="flex items-center gap-1 text-sm font-medium text-on-primary-muted">
-                  View
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </div>
+              <OptimizedImage
+                src={product.images?.main || "/placeholder.svg"}
+                alt={`${product.name} - bulk wholesale dried fruit from Indonesia`}
+                width={400}
+                height={400}
+                aspectRatio="square"
+                placeholderSrc={product.images?.thumbnail}
+              />
+              <div className="p-4">
+                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{product.name}</h3>
+                <p className="text-sm text-primary font-medium mt-1">View Details →</p>
               </div>
-              <div className="absolute -right-6 -bottom-6 h-20 w-20 rounded-full bg-primary-foreground/10" />
             </Link>
           ))}
         </div>
