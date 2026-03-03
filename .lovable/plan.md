@@ -1,34 +1,27 @@
 
 
-## Add Factory Photo Gallery to Homepage
+## Add Farmers & Suppliers Section to Homepage
 
 ### What
-Create a new `FactoryGallerySection` component placed after `ManufacturingSection` on the homepage, showing 15 placeholder photos organized by production stage.
+New `FarmersSection` component on the homepage with 5 placeholder photos, placed after `FactoryGallerySection`.
 
-### Photo Layout (15 photos total)
+### Photos (5 total)
 
-| Category | Count | Alt text pattern |
+| Category | Count | Alt text |
 |---|---|---|
-| Cold Storage of Fresh Fruits | 2 | "Cold storage facility for fresh tropical fruits at Indonesian dried fruit factory" |
-| Cleaning & Peeling Area | 2 | "Fruit cleaning and peeling production line at dehydrated fruit manufacturing plant" |
-| Blanching | 2 | "Industrial fruit blanching process at Indonesian dried fruit factory" |
-| Dehydration Ovens | 2 | "Professional dehydration ovens for drying tropical fruits at export facility" |
-| Packaging | 2 | "Bulk packaging area for wholesale dried fruit orders at Indonesian factory" |
-| Office | 1 | "Export sales office at PT Dried Fruits Total Indonesia factory" |
-| Pallets Ready for Delivery | 2 | "Palletized dried fruit shipments ready for export delivery" |
-| Container Stuffing | 2 | "Container stuffing and loading of dried fruit export orders" |
+| Farmers Families | 2 | "Local farmer family supplying fresh tropical fruits to Indonesian dried fruit factory – family 1/2" |
+| Fruits Plantations | 3 | "Dragon fruit plantation supplying fresh fruits for dehydration in Indonesia" / "Papaya plantation…" / "Mango plantation…" |
 
 ### Implementation
 
-**New file: `src/components/home/FactoryGallerySection.tsx`**
-- Data array of 15 items with `category`, `src` (`/placeholder.svg`), `alt`, `width` (400), `height` (300)
-- Group by category, render category label as subtitle
-- Use `OptimizedImage` with `width`/`height`/`alt` props
+**New file: `src/components/home/FarmersSection.tsx`**
+- Same pattern as `FactoryGallerySection`: data array with `category`, `src` (`/placeholder.svg`), `alt`, `width` (400), `height` (300)
+- Two groups: "Farmers Families" (2 photos), "Fruits Plantations" (3 photos)
+- Section title: "Our Farmers and Fresh Fruits Suppliers"
 - Responsive grid: 2 cols mobile, 3 cols md, 4 cols lg
-- Section title: "Factory Photos"
-- `memo` wrapped for performance
+- Uses `OptimizedImage`, `memo` wrapped
 
 **Modified files:**
-- `src/components/home/index.ts` — add `FactoryGallerySection` export
-- `src/pages/HomePage.tsx` — import and place `<FactoryGallerySection />` after `<ManufacturingSection />`
+- `src/components/home/index.ts` — add `FarmersSection` export
+- `src/pages/HomePage.tsx` — import and place `<FarmersSection />` after `<FactoryGallerySection />`
 
