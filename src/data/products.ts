@@ -3,6 +3,7 @@ export interface Product {
   // Identity
   id: string;
   name: string;
+  shortName: string;
   category: "dried-fruits";
   sku?: string;
   hsCode?: string;
