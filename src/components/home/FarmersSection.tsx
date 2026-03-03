@@ -22,16 +22,18 @@ export const FarmersSection = memo(function FarmersSection() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {farmerPhotos.map((photo, idx) => (
-            <div key={idx} className="rounded-xl overflow-hidden bg-muted">
-              <OptimizedImage
-                src={photo.src}
-                alt={photo.alt}
-                width={photo.width}
-                height={photo.height}
-                aspectRatio="video"
-                className="w-full h-full"
-              />
-              <p className="p-2 text-center text-xs font-medium text-foreground">{photo.label}</p>
+            <div key={idx} className="rounded-xl overflow-hidden border border-border flex flex-col">
+              <div className="bg-secondary">
+                <OptimizedImage
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={photo.width}
+                  height={photo.height}
+                  aspectRatio="video"
+                  className="w-full h-full"
+                />
+              </div>
+              <p className="p-2 text-center text-xs font-medium text-foreground bg-muted">{photo.label}</p>
             </div>
           ))}
         </div>
