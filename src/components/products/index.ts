@@ -13,6 +13,6 @@ export { ContainerCalculator } from "./ContainerCalculator";
 export { ProductComparisonTable } from "./ProductComparisonTable";
 export { ProductCard } from "./ProductCard";
 export { CategoryCard } from "./CategoryCard";
-export { ProductSensoryApplications } from "./ProductSensoryApplications";
+export { ProductDescriptionPackaging } from "./ProductDescriptionPackaging";
 export { ProductQuickHighlights } from "./ProductQuickHighlights";
 export { RelatedProducts } from "./RelatedProducts";
