@@ -19,7 +19,7 @@ import { ProductSeasonality } from "./ProductSeasonality";
 import { ProductQuickHighlights } from "./ProductQuickHighlights";
 import { RelatedProducts } from "./RelatedProducts";
 import { StickyInquiryBar } from "./StickyInquiryBar";
-import { ContainerCalculator } from "./ContainerCalculator";
+
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { SITE_URL, categoryLabels } from "@/lib/constants";
 
@@ -214,13 +214,6 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
         {/* Logistics & Packaging */}
         <ProductLogistics product={product} />
 
-        {/* Container Calculator */}
-        <section className="py-12">
-          <div className="container max-w-3xl">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Container Load Estimator</h2>
-            <ContainerCalculator defaultProductId={product.id} compact={true} headingLevel="h3" />
-          </div>
-        </section>
 
         {/* Storage Quick Reference */}
         {(product.specifications.storageTemp || product.specifications.storageHumidity) && (
