@@ -1,10 +1,9 @@
 
 
-## Remove Duplicate Export Documentation
+## Remove Duplicate "Origin" from Hero Section
 
-Lines 31-39 contain a duplicate "Export Documentation" card inside the 2-col grid. The full-width version (lines 19-27) should remain. Remove the duplicate and the LCL + FCL cards stay in the 2-col grid alone.
+The hero section shows "Origin: Indonesia" as standalone text **and** again inside the Quick Highlights list. Remove the standalone `<p>Origin: Indonesia</p>` line from `ProductPageTemplate.tsx` (around line 143), keeping the one in Quick Highlights.
 
-### Change in `src/components/products/ProductLogistics.tsx`
-- Delete lines 31-39 (the duplicate Export Documentation card inside the grid)
-- The grid keeps only the LCL and FCL cards side by side
+### File: `src/components/products/ProductPageTemplate.tsx`
+- Delete the `<p className="text-muted-foreground mb-4">Origin: Indonesia</p>` line
 
