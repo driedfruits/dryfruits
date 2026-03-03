@@ -1,12 +1,17 @@
 
 
-## Use Short Names in Footer Product Links
+## Two-Column Specs Table
 
-The footer currently displays `product.name` for each product link. Most products have short names (e.g., "Dried Pineapple"), but some like Dried Papaya have long SEO titles ("Wholesale Bulk Dried Dehydrated Papaya Chunks & Slices") that clutter the footer.
+Split the specs into two side-by-side columns on desktop for a more compact layout.
 
-### Approach
-In `src/components/layout/Footer.tsx`, derive a short display name from the product ID instead of using `product.name`. Convert the ID (e.g., `dried-papaya`) to title case (`Dried Papaya`).
+### File: `src/components/products/ProductSpecsTable.tsx`
 
-### File: `src/components/layout/Footer.tsx`
-- In the `footerLinks.products` array where `driedFruits.map(p => ...)` is used, replace `p.name` with a formatted version of `p.id` — split by `-`, capitalize each word, join with space.
+**Mobile**: Keep the existing stacked list (single column) — already mobile-friendly.
+
+**Desktop**: Split `allRows` into two halves. Render two tables side by side in a `grid grid-cols-2 gap-4` layout. Each table gets roughly half the rows. Remove the single-table header row — instead use alternating row shading for readability.
+
+- Calculate midpoint: `Math.ceil(allRows.length / 2)`
+- Left column: `allRows.slice(0, mid)`
+- Right column: `allRows.slice(mid)`
+- Each column is a self-contained table with Parameter/Value headers
 
