@@ -1,30 +1,14 @@
 
 
-## Shorten Product Names & Remove "View Details"
+## Add A4 Certificate Placeholders to Certified Quality Assurance Section
 
-### Changes to `src/components/home/ProductCategoriesSection.tsx`
+### Changes to `src/components/home/CertificationsSection.tsx`
 
-1. **Add a short-name map** to override long product names for this section only (e.g. `"dried-papaya"` → `"Dried Papaya"`). This keeps the original data untouched.
+Below the existing certification icon cards grid, add a new row of A4-format placeholder images — one per certification (4 total: USDA Organic, EU Organic, HACCP, Halal).
 
-2. **Remove line 40** — the "View Details →" paragraph.
-
-3. **Use short name** in the `<h3>` instead of `product.name`.
-
-Short name map:
-```ts
-const shortNames: Record<string, string> = {
-  "dried-papaya": "Dried Papaya",
-  "dried-pineapple": "Dried Pineapple",
-  "dried-avocado": "Dried Avocado",
-  "dried-mango": "Dried Mango",
-  "dried-dragon-fruit": "Dried Dragon Fruit",
-  "dried-snake-fruit": "Dried Snake Fruit",
-  "dried-breadfruit": "Dried Breadfruit",
-  "dried-jackfruit": "Dried Jackfruit",
-  "dried-coconut": "Dried Coconut",
-  "dried-banana": "Dried Banana",
-};
-```
-
-Fallback: derive from `product.id` by replacing hyphens and capitalizing, so any new product automatically gets a short name.
+- Use `OptimizedImage` with A4 aspect ratio (`aspectRatio="auto"` + explicit `aspect-[210/297]` class for portrait A4 proportion)
+- Placeholder src: `/placeholder.svg`, with alt tags like "USDA Organic certificate – PT Dried Fruits Total Indonesia"
+- Responsive grid: `grid-cols-2 lg:grid-cols-4`
+- Each placeholder wrapped in a `rounded-xl bg-card shadow-soft overflow-hidden` card with the cert name as caption below
+- Placed between the icon cards grid and the "View Certifications" CTA button
 
