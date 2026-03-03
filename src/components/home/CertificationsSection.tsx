@@ -2,6 +2,7 @@ import { memo } from "react";
 import { Leaf } from "lucide-react";
 import { SecondaryButton } from "@/components/CTAButton";
 import { certifications } from "@/data/companyData";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export const CertificationsSection = memo(function CertificationsSection() {
   return (
@@ -27,6 +28,22 @@ export const CertificationsSection = memo(function CertificationsSection() {
               </div>
               <h3 className="font-semibold text-foreground">{cert.name}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{cert.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 grid gap-6 grid-cols-2 lg:grid-cols-4">
+          {certifications.map((cert) => (
+            <div key={`cert-img-${cert.id}`} className="rounded-xl bg-card shadow-soft overflow-hidden">
+              <OptimizedImage
+                src="/placeholder.svg"
+                alt={`${cert.name} certificate – PT Dried Fruits Total Indonesia`}
+                aspectRatio="auto"
+                className="aspect-[210/297]"
+                width={210}
+                height={297}
+              />
+              <p className="p-3 text-center text-sm font-medium text-foreground">{cert.name} Certificate</p>
             </div>
           ))}
         </div>
