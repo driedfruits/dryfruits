@@ -6,6 +6,7 @@ import {
   HeroSection,
   ManufacturingSection,
   FactoryGallerySection,
+  FarmersSection,
   ProductCategoriesSection,
   CertificationsSection,
   TargetSegmentsSection,
@@ -35,6 +36,7 @@ export default function HomePage() {
       <HeroSection />
       <ManufacturingSection />
       <FactoryGallerySection />
+      <FarmersSection />
       
       <ProductCategoriesSection />
       <CertificationsSection />
