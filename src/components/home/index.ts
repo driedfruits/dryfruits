@@ -1,6 +1,7 @@
 export { HeroSection } from "./HeroSection";
 export { WhyChooseUs } from "./WhyChooseUs";
 export { ManufacturingSection } from "./ManufacturingSection";
+export { FactoryGallerySection } from "./FactoryGallerySection";
 export { ProductCategoriesSection } from "./ProductCategoriesSection";
 export { CertificationsSection } from "./CertificationsSection";
 export { TargetSegmentsSection } from "./TargetSegmentsSection";

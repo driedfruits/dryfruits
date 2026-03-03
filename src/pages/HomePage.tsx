@@ -5,6 +5,7 @@ import { generateWebSiteSchema } from "@/lib/schema";
 import { 
   HeroSection,
   ManufacturingSection,
+  FactoryGallerySection,
   ProductCategoriesSection,
   CertificationsSection,
   TargetSegmentsSection,
@@ -33,6 +34,7 @@ export default function HomePage() {
 
       <HeroSection />
       <ManufacturingSection />
+      <FactoryGallerySection />
       
       <ProductCategoriesSection />
       <CertificationsSection />
