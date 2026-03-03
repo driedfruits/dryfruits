@@ -13,7 +13,7 @@ import { ProductSpecsTable } from "./ProductSpecsTable";
 import { ProductPriceTiers } from "./ProductPriceTiers";
 import { ProductLogistics } from "./ProductLogistics";
 import { ProductFAQ } from "./ProductFAQ";
-import { ProductCompliance } from "./ProductCompliance";
+
 import { ProductSensoryApplications } from "./ProductSensoryApplications";
 import { ProductSeasonality } from "./ProductSeasonality";
 import { ProductQuickHighlights } from "./ProductQuickHighlights";
@@ -245,8 +245,6 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
           </section>
         )}
 
-        {/* Compliance */}
-        <ProductCompliance product={product} />
 
         {/* Sensory Profile & Applications */}
         <ProductSensoryApplications product={product} />
