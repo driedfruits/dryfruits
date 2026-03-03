@@ -58,6 +58,9 @@ export interface Product {
     currentStatus?: "in-stock" | "limited" | "pre-order";
   };
 
+  // Harvest calendar: 12-element array (Jan–Dec), 0=low, 1=off-peak, 2=peak
+  harvestMonths?: number[];
+
   // Applications
   applications: string[];
 
@@ -159,6 +162,7 @@ export const products: Product[] = [
       peakSeason: "Year-round (Indonesia)",
       currentStatus: "pre-order",
     },
+    harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     specifications: {
       size: "Chunks 1-2cm, Shreds, Slices, Dices",
       moisture: "14-18%",
@@ -269,6 +273,7 @@ export const products: Product[] = [
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
+    harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     applications: ["Fruit salads", "Dessert toppings", "Baking", "Cocktails", "Snacking", "Trail mix", "Confectionery"],
     packaging: { bulk: "10kg plastic bag in box", retail: "50g-500g stand-up pouches (OEM available)", custom: true },
     pricing: {
@@ -365,6 +370,7 @@ export const products: Product[] = [
       offPeakSeason: "September - January",
       currentStatus: "limited",
     },
+    harvestMonths: [1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1],
     applications: [
       "Health snacks",
       "Smoothie ingredients",
@@ -473,6 +479,7 @@ export const products: Product[] = [
       offPeakSeason: "March - September",
       currentStatus: "in-stock",
     },
+    harvestMonths: [2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2],
     applications: [
       "Snacking",
       "Trail mix",
@@ -585,6 +592,7 @@ export const products: Product[] = [
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
+    harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     applications: [
       "Smoothie bowls",
       "Decorative garnish",
@@ -679,6 +687,7 @@ export const products: Product[] = [
       offPeakSeason: "March - October",
       currentStatus: "in-stock",
     },
+    harvestMonths: [2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2],
     applications: ["Exotic snacking", "Gourmet products", "Gift packs", "Specialty mixes"],
     packaging: { bulk: "5-15 kg cartons", retail: "30g-200g pouches", custom: true },
     pricing: {
@@ -732,6 +741,7 @@ export const products: Product[] = [
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
+    harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     applications: ["Gluten-free snacks", "Flour alternative", "Chips", "Baking", "Health products"],
     packaging: { bulk: "10-25 kg cartons", retail: "50g-300g pouches", custom: true },
     pricing: {
@@ -798,6 +808,7 @@ export const products: Product[] = [
       peakSeason: "January - March (main), June - August (secondary)",
       currentStatus: "in-stock",
     },
+    harvestMonths: [2, 2, 2, 1, 1, 2, 2, 2, 1, 1, 1, 1],
     applications: ["Snacking", "Vegan meat alternative", "Baking", "Trail mix", "Smoothies", "Desserts"],
     packaging: { bulk: "10-12.5kg carton with PE liner", retail: "50g-500g stand-up pouches", custom: true },
     pricing: {
@@ -892,6 +903,7 @@ export const products: Product[] = [
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
+    harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     applications: ["Bakery", "Confectionery", "Cereal toppings", "Snacking", "Granola", "Smoothies", "Curries"],
     packaging: { bulk: "25kg multi-wall paper bags", retail: "100g-500g pouches", custom: true },
     pricing: {
@@ -987,6 +999,7 @@ export const products: Product[] = [
       peakSeason: "Year-round",
       currentStatus: "in-stock",
     },
+    harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     applications: [
       "Snacking",
       "Trail mix",

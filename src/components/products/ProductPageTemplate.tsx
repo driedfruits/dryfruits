@@ -217,7 +217,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
         <ProductLogistics product={product} />
 
         {/* Seasonality */}
-        <ProductSeasonality availability={product.availability} productName={product.name} />
+        <ProductSeasonality availability={product.availability} harvestMonths={product.harvestMonths} productName={product.name} />
 
         {/* Price Tiers */}
         <ProductPriceTiers pricing={product.pricing} productName={product.name} />
