@@ -5,6 +5,22 @@ import { PrimaryButton } from "@/components/CTAButton";
 import { getProductsByCategory } from "@/data/companyData";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 
+const shortNames: Record<string, string> = {
+  "dried-papaya": "Dried Papaya",
+  "dried-pineapple": "Dried Pineapple",
+  "dried-avocado": "Dried Avocado",
+  "dried-mango": "Dried Mango",
+  "dried-dragon-fruit": "Dried Dragon Fruit",
+  "dried-snake-fruit": "Dried Snake Fruit",
+  "dried-breadfruit": "Dried Breadfruit",
+  "dried-jackfruit": "Dried Jackfruit",
+  "dried-coconut": "Dried Coconut",
+  "dried-banana": "Dried Banana",
+};
+
+const getShortName = (id: string) =>
+  shortNames[id] || id.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+
 export const ProductCategoriesSection = memo(function ProductCategoriesSection() {
   const driedFruits = useMemo(() => getProductsByCategory("dried-fruits"), []);
 
@@ -36,8 +52,7 @@ export const ProductCategoriesSection = memo(function ProductCategoriesSection()
                 placeholderSrc={product.images?.thumbnail}
               />
               <div className="p-4">
-                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{product.name}</h3>
-                <p className="text-sm text-primary font-medium mt-1">View Details →</p>
+                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{getShortName(product.id)}</h3>
               </div>
             </Link>
           ))}
