@@ -28,16 +28,6 @@ export function ProductLogistics({ product }: ProductLogisticsProps) {
 
         {/* Shipping cards — 2-col grid */}
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="bg-card rounded-xl p-6 shadow-soft">
-            <FileCheck className="h-8 w-8 text-primary mb-4" />
-            <h3 className="font-semibold text-foreground mb-3">Export Documentation</h3>
-            <ul className="space-y-1 text-sm text-muted-foreground">
-              {exportDocs.map((doc, i) => (
-                <li key={i}>• {doc}</li>
-              ))}
-            </ul>
-          </div>
-
           {/* LCL — Pallet Shipment */}
           <div className="bg-card rounded-xl overflow-hidden shadow-soft">
             <OptimizedImage
