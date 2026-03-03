@@ -41,6 +41,7 @@ const specGroups = [
       { key: "storageTemp", label: "Storage Temperature" },
       { key: "storageHumidity", label: "Storage Humidity" },
       { key: "processingMethod", label: "Processing Method" },
+      { key: "packagingMethod", label: "Bulk Packaging Method" },
     ],
   },
 ];
