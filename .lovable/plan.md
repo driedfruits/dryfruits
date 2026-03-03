@@ -1,56 +1,38 @@
 
 
-## Move Product Description + Add Packaging Options Section
+## Redesign Shipping Data Section: LCL (Pallet) + FCL (Container)
 
-### What changes
+### Current State
+The "Shipping Data" card in `ProductLogistics.tsx` shows a simple list: port, incoterms, 20ft/40ft container loads. The user wants it replaced with two visual cards — LCL and FCL — each with a placeholder photo and detailed specs.
 
-1. **Move "Product Description" (sensory + applications) from its current position (line 220-221) to directly after the Hero section (after line 208)**, removing it from the later position.
+### Plan
 
-2. **Add a new "Packaging Options" subsection** alongside the product description, shown as a 2-column grid with placeholder photos:
-   - **Left card**: Retail standing pouch — placeholder image with label "Retail / Private Label Pouches" and subtitle about custom branding
-   - **Right card**: Bulk HORECA 10kg pack — placeholder image with label "Bulk / HORECA 10kg Carton" and details about PE liner
+**Modify `src/components/products/ProductLogistics.tsx`** — Replace the middle "Shipping Data" card with two cards spanning a 2-column sub-grid:
 
-3. **Create a new combined section component** `ProductDescriptionPackaging` that renders:
-   - Product Description (flavor, texture, applications) — reusing existing logic from `ProductSensoryApplications`
-   - Packaging Options — 2-col grid with two image cards using `OptimizedImage` and placeholder images
+**Card 1 — LCL (Pallet Shipment):**
+- Placeholder image (`/placeholder.svg`) with `OptimizedImage` aspect-ratio video
+- Title: "LCL — Pallet Shipment"
+- Specs list:
+  - Pallet size: 120 × 100 × 150 cm (Euro pallet)
+  - ISPM-15 certified heat-treated wood
+  - Max load per pallet: 1,000 kg
+  - Volume per pallet: ~1.8 m³
+  - Port of Loading from logistics data
 
-### Layout structure
+**Card 2 — FCL (Full Container Load):**
+- Placeholder image (`/placeholder.svg`) with `OptimizedImage` aspect-ratio video
+- Title: "FCL — Full Container Load"
+- Specs list:
+  - 20ft container: capacity ~33 m³ / {containerLoad20ft} from product data
+  - 40ft container: capacity ~67 m³ / {containerLoad40ft} from product data
+  - Number of boxes loaded (derived or static reference)
+  - Incoterms from logistics data
 
-```text
-┌─────────────────────────────────────────┐
-│  Hero Section (image + wholesale card)  │
-├─────────────────────────────────────────┤
-│  NEW: Product Description & Packaging   │
-│  ┌──────────────┐  ┌─────────────────┐  │
-│  │ Sensory info  │  │ Applications    │  │
-│  └──────────────┘  └─────────────────┘  │
-│  Packaging Options (2-col grid)         │
-│  ┌──────────────┐  ┌─────────────────┐  │
-│  │ Retail Pouch  │  │ Bulk 10kg Pack  │  │
-│  │ (placeholder) │  │ (placeholder)   │  │
-│  │ Private Label │  │ HORECA Carton   │  │
-│  └──────────────┘  └─────────────────┘  │
-├─────────────────────────────────────────┤
-│  Specifications Table                   │
-│  ...rest of page...                     │
-```
+The overall grid changes from `lg:grid-cols-3` to a layout where Packaging stays as card 1, the two shipping cards sit in the middle, and Export Docs is card 3. The section grid becomes `lg:grid-cols-2` with 4 cards, or we keep the 3-col and make the shipping section span 2 columns internally with a nested 2-col grid.
 
-### Files to change
+**Simplest approach**: Keep outer 3-col grid → replace the single "Shipping Data" card with a div containing two stacked or side-by-side cards. Or switch to a 2×2 grid of 4 cards. I'll go with **2×2 grid** (Packaging, Export Docs on top row; LCL and FCL on bottom row) for clean layout.
 
-1. **New file: `src/components/products/ProductDescriptionPackaging.tsx`**
-   - Accepts `product: Product` prop
-   - Renders sensory profile (flavor, texture) + applications in a grid (same as current `ProductSensoryApplications`)
-   - Below that, renders "Packaging Options" heading with a 2-col grid:
-     - Card 1: `/placeholder.svg` image, title "Retail / Private Label Pouches", description from `product.packaging.retail`, note "Custom branding available"
-     - Card 2: `/placeholder.svg` image, title "Bulk / HORECA Pack", description from `product.packaging.bulk`
-   - Each card uses `OptimizedImage` with `aspectRatio="video"` for a landscape photo feel
+### Files Changed
 
-2. **`src/components/products/ProductPageTemplate.tsx`**
-   - Import `ProductDescriptionPackaging`
-   - Add `<ProductDescriptionPackaging product={product} />` right after the Hero section (after line 208)
-   - Remove the `<ProductSensoryApplications>` call from line 221
-   - Remove the `ProductSensoryApplications` import
-   - Remove `Thermometer` and `ExternalLink` from lucide imports (unused after previous removals)
-
-3. **`src/components/products/index.ts`** — export the new component
+1. **`src/components/products/ProductLogistics.tsx`** — Rewrite to 2×2 grid with 4 cards: Packaging Options, Export Documentation, LCL Pallet card (with photo), FCL Container card (with photo). Import `OptimizedImage`.
 
