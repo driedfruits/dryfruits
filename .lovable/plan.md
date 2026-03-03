@@ -1,14 +1,34 @@
 
 
-## Delete Unused Compliance Component Files
+## Add Factory Photo Gallery to Homepage
 
-Two files to delete since their usage was already removed from `ProductPageTemplate.tsx` and `ProductEditorPage.tsx`:
+### What
+Create a new `FactoryGallerySection` component placed after `ManufacturingSection` on the homepage, showing 15 placeholder photos organized by production stage.
 
-1. **`src/components/editor/EditorComplianceSection.tsx`** — delete file
-2. **`src/components/products/ProductCompliance.tsx`** — delete file
+### Photo Layout (15 photos total)
 
-Also clean up the barrel exports:
+| Category | Count | Alt text pattern |
+|---|---|---|
+| Cold Storage of Fresh Fruits | 2 | "Cold storage facility for fresh tropical fruits at Indonesian dried fruit factory" |
+| Cleaning & Peeling Area | 2 | "Fruit cleaning and peeling production line at dehydrated fruit manufacturing plant" |
+| Blanching | 2 | "Industrial fruit blanching process at Indonesian dried fruit factory" |
+| Dehydration Ovens | 2 | "Professional dehydration ovens for drying tropical fruits at export facility" |
+| Packaging | 2 | "Bulk packaging area for wholesale dried fruit orders at Indonesian factory" |
+| Office | 1 | "Export sales office at PT Dried Fruits Total Indonesia factory" |
+| Pallets Ready for Delivery | 2 | "Palletized dried fruit shipments ready for export delivery" |
+| Container Stuffing | 2 | "Container stuffing and loading of dried fruit export orders" |
 
-3. **`src/components/editor/index.ts`** — remove the `EditorComplianceSection` export line
-4. **`src/components/products/index.ts`** — remove the `ProductCompliance` export line
+### Implementation
+
+**New file: `src/components/home/FactoryGallerySection.tsx`**
+- Data array of 15 items with `category`, `src` (`/placeholder.svg`), `alt`, `width` (400), `height` (300)
+- Group by category, render category label as subtitle
+- Use `OptimizedImage` with `width`/`height`/`alt` props
+- Responsive grid: 2 cols mobile, 3 cols md, 4 cols lg
+- Section title: "Factory Photos"
+- `memo` wrapped for performance
+
+**Modified files:**
+- `src/components/home/index.ts` — add `FactoryGallerySection` export
+- `src/pages/HomePage.tsx` — import and place `<FactoryGallerySection />` after `<ManufacturingSection />`
 
