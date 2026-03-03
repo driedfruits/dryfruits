@@ -214,30 +214,6 @@ export const ProductionProcessSection = memo(function ProductionProcessSection()
           </svg>
         </div>
 
-        {/* ── CTAs Row ── */}
-        <div className="flex flex-wrap justify-center gap-4">
-          <PrimaryButton
-            to="/catalog"
-            size="lg"
-            onClick={() => handleCtaClick("production_cta_quote")}
-          >
-            Request Price List
-          </PrimaryButton>
-          <SecondaryButton
-            to="/samples"
-            size="lg"
-            onClick={() => handleCtaClick("production_cta_sample")}
-          >
-            Request Free Sample
-          </SecondaryButton>
-          <SecondaryButton
-            href="#"
-            size="lg"
-            onClick={() => handleCtaClick("production_cta_pdf")}
-          >
-            Download Spec Sheet
-          </SecondaryButton>
-        </div>
       </div>
     </section>
   );
