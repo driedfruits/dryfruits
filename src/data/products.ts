@@ -127,12 +127,34 @@ export const products: Product[] = [
     name: "Wholesale Bulk Dried Dehydrated Papaya Chunks & Slices",
     category: "dried-fruits",
     isOrganic: false,
+    images: {
+      gallery: [
+        {
+          src: "",
+          alt: "",
+        },
+        {
+          src: "",
+          alt: "",
+        },
+        {
+          src: "",
+          alt: "",
+        },
+        {
+          src: "",
+          alt: "",
+        },
+      ],
+    },
     metaTitle: "Wholesale Dried Papaya (Slices) - Bulk Export from Indonesia",
     metaDescription:
       "Direct manufacturer of premium dried papaya from Indonesia. USDA/EU Organic certified. Bulk 10-25kg cartons. MOQ 500kg. View specs & pricing.",
     tagline: "Tropical sweetness in every bite",
     description:
       "Premium dried papaya slices made from sun-ripened Indonesian papayas. Natural sweetness with no added sugar options available.",
+    flavorProfile: "Sweet & testy",
+    texture: "chewy",
     pricing: {
       fobBase: "from $3.12/kg ",
       moq: "100 kg",
@@ -162,7 +184,6 @@ export const products: Product[] = [
       peakSeason: "Year-round (Indonesia)",
       currentStatus: "pre-order",
     },
-    harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     specifications: {
       size: "Chunks 1-2cm, Shreds, Slices, Dices",
       moisture: "14-18%",
