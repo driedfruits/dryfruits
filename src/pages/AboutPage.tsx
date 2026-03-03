@@ -4,6 +4,7 @@ import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { companyInfo, teamMembers, certifications } from "@/data/companyData";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { 
   Factory, 
   Users, 
@@ -215,7 +216,35 @@ export default function AboutPage() {
                     <p className="font-semibold text-foreground font-mono">{companyInfo.legalInfo.npwp.value}</p>
                   </div>
                 </div>
-                
+              </div>
+
+              {/* NIB & Tax ID Document Photos */}
+              <div className="mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2">
+                <div className="rounded-xl bg-muted overflow-hidden">
+                  <OptimizedImage
+                    src="/placeholder.svg"
+                    alt="NIB (Nomor Induk Berusaha) business registration document – PT Dried Fruits Total Indonesia"
+                    aspectRatio="auto"
+                    className="aspect-[210/297]"
+                    width={210}
+                    height={297}
+                  />
+                  <p className="p-3 text-center text-sm font-medium text-foreground">NIB Document</p>
+                </div>
+                <div className="rounded-xl bg-muted overflow-hidden">
+                  <OptimizedImage
+                    src="/placeholder.svg"
+                    alt="NPWP (Tax ID) registration document – PT Dried Fruits Total Indonesia"
+                    aspectRatio="auto"
+                    className="aspect-[210/297]"
+                    width={210}
+                    height={297}
+                  />
+                  <p className="p-3 text-center text-sm font-medium text-foreground">Tax ID (NPWP) Document</p>
+                </div>
+              </div>
+
+              <div className="mt-8 grid gap-6 md:grid-cols-2">
                 {/* Legal Address */}
                 <div className="flex items-start gap-4">
                   <MapPin className="h-6 w-6 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
