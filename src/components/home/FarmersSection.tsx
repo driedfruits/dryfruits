@@ -10,8 +10,6 @@ const farmerPhotos = [
   { src: "/placeholder.svg", alt: "Local farmer family harvesting fresh pineapples for dried fruit production – family 3", label: "Farmer Family 3", width: 400, height: 300 },
   { src: "/placeholder.svg", alt: "Coconut plantation supplying fresh coconuts for dehydrated coconut chips in Indonesia", label: "Coconut Plantation", width: 400, height: 300 },
   { src: "/placeholder.svg", alt: "Banana plantation supplying fresh bananas for dried banana production in Indonesia", label: "Banana Plantation", width: 400, height: 300 },
-  { src: "/placeholder.svg", alt: "Jackfruit plantation supplying fresh jackfruit for dehydration in Indonesia", label: "Jackfruit Plantation", width: 400, height: 300 },
-  { src: "/placeholder.svg", alt: "Local farmer family delivering fresh guava harvest to dried fruit factory – family 4", label: "Farmer Family 4", width: 400, height: 300 },
 ];
 
 export const FarmersSection = memo(function FarmersSection() {
@@ -22,7 +20,7 @@ export const FarmersSection = memo(function FarmersSection() {
           Our Farmers and Fresh Fruits Suppliers
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {farmerPhotos.map((photo, idx) => (
             <div key={idx} className="rounded-xl overflow-hidden bg-muted">
               <OptimizedImage
