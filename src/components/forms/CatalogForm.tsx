@@ -3,6 +3,7 @@ import { FormInput } from "./FormElements";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Download, Loader2, CheckCircle2 } from "lucide-react";
+import { WEB3FORMS_ACCESS_KEY } from "@/lib/constants";
 
 interface CatalogFormProps {
   className?: string;
@@ -40,22 +41,42 @@ export function CatalogForm({ className }: CatalogFormProps) {
     if (!validate()) return;
     
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Catalog Request Received!",
-      description: "Check your email for the download link.",
-    });
-    
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-    });
-    setIsSubmitting(false);
-    setShowSuccess(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Catalog Download Request from ${formData.name}`,
+          from_name: formData.name,
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Catalog Request Received!",
+          description: "Check your email for the download link.",
+        });
+        setFormData({ name: "", email: "", company: "" });
+        setShowSuccess(true);
+      } else {
+        throw new Error(result.message || "Submission failed");
+      }
+    } catch {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   useEffect(() => {
