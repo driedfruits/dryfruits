@@ -1,33 +1,18 @@
 
 
-## Admin Editor Enhancements
+## Add Missing `packagingMethod` Spec Field to Editor
 
-Three changes requested. Here is the assessment:
+### Gap Found
+The `ProductSpecsTable` displays 22 spec keys. The `EditorSpecificationsSection` has 21 fields. The missing one is:
 
-### 1. SKU and HS Code Editor
-The state for `sku` and `hsCode` already exists in `ProductEditorPage.tsx` (lines 38-39), is loaded from product data (lines 78-79), and is included in JSON output (line 176). However, there are **no UI input fields** for editing them. Will add two `FormInput` fields in a new bordered section near the top of the editor (after SEO, before Tagline), labeled "Trade Identification".
+- **`packagingMethod`** ("Bulk Packaging Method") — displayed on the product page but not editable
 
-**File: `src/pages/ProductEditorPage.tsx`**
-- Add a "Trade Identification" section with SKU and HS Code inputs between EditorImagesSection and the Tagline field
+Product Name and HS Code also appear in the specs table but are already editable via dedicated fields elsewhere in the editor.
 
-### 2. Export Documents Editor
-This is **already implemented**. The `EditorLogisticsSection` already includes a `FormTextarea` for export documents (one per line), and the state/JSON serialization is wired up. No changes needed.
+### Change
 
-### 3. Shipping Timeline / Estimated Delivery
-The `Product` type currently has no `shippingTimeline` or `estimatedDelivery` field. Will add an optional `estimatedDelivery` string field to the Product interface and wire it through the editor.
+**File: `src/components/editor/EditorSpecificationsSection.tsx`**
+- Add `{ key: "packagingMethod", label: "Bulk Packaging Method" }` to the "Storage / Processing" group
 
-**File: `src/data/products.ts`**
-- Add `estimatedDelivery?: string` to the `logistics` interface
-
-**File: `src/components/editor/EditorLogisticsSection.tsx`**
-- Add a `FormInput` for estimated delivery time (e.g. "14-21 days from port")
-- Add props: `estimatedDelivery`, `setEstimatedDelivery`
-
-**File: `src/pages/ProductEditorPage.tsx`**
-- Add `estimatedDelivery` state
-- Load/save in `loadProduct` and `jsonOutput`
-- Pass to `EditorLogisticsSection`
-
-**File: `src/components/products/ProductLogistics.tsx`**
-- Render the estimated delivery info if available
+That's the only change needed — the editor already uses a dynamic `specs` record, so adding the field key automatically wires up loading, editing, and JSON output.
 
