@@ -40,6 +40,8 @@ const ProductEditorPage = () => {
   const [peakSeason, setPeakSeason] = useState("");
   const [offPeakSeason, setOffPeakSeason] = useState("");
   const [currentStatus, setCurrentStatus] = useState("in-stock");
+  const [harvestMonths, setHarvestMonths] = useState<number[]>(Array(12).fill(0));
+  const [keywords, setKeywords] = useState("");
   const [specs, setSpecs] = useState<Record<string, string>>({});
   const [tagline, setTagline] = useState("");
   const [description, setDescription] = useState("");
@@ -87,6 +89,8 @@ const ProductEditorPage = () => {
     setPeakSeason(product.availability?.peakSeason || "");
     setOffPeakSeason(product.availability?.offPeakSeason || "");
     setCurrentStatus(product.availability?.currentStatus || "in-stock");
+    setHarvestMonths(product.harvestMonths || Array(12).fill(0));
+    setKeywords((product.keywords || []).join(", "));
     const specEntries: Record<string, string> = {};
     if (product.specifications) {
       Object.entries(product.specifications).forEach(([key, value]) => {
@@ -174,11 +178,13 @@ const ProductEditorPage = () => {
           gallery: imgGallery.length > 0 ? imgGallery : undefined,
         } : undefined,
         metaTitle: metaTitle || undefined, metaDescription: metaDescription || undefined,
+        keywords: keywords.trim() ? keywords.split(",").map(k => k.trim()).filter(Boolean) : undefined,
         tagline, description,
         flavorProfile: flavorProfile || undefined, texture: texture || undefined,
         pricing: { fobBase, moq, leadTime, priceTiers: priceTiers.length > 0 ? priceTiers : undefined, samplePolicy: samplePolicy || undefined },
         certifications: certs,
         availability: { peakSeason: peakSeason || undefined, offPeakSeason: offPeakSeason || undefined, currentStatus },
+        harvestMonths: harvestMonths.some(v => v > 0) ? harvestMonths : undefined,
         specifications: Object.fromEntries(Object.entries(specs).filter(([_, v]) => v)),
         applications: applications.length > 0 ? applications : undefined,
         packaging: { bulk: packagingBulk, retail: packagingRetail, custom: packagingCustom },
@@ -189,7 +195,7 @@ const ProductEditorPage = () => {
       },
       null, 2
     );
-  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
+  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
 
   const handleCopy = async () => {
     if (!validate()) {
@@ -210,7 +216,7 @@ const ProductEditorPage = () => {
       <FormSelect label="Select Product" options={productOptions} value={selectedId} onChange={handleProductChange} />
 
       <div className="mt-8 space-y-6">
-        <EditorSeoSection name={name} setName={setName} metaTitle={metaTitle} setMetaTitle={setMetaTitle} metaDescription={metaDescription} setMetaDescription={setMetaDescription} errors={validationErrors} />
+        <EditorSeoSection name={name} setName={setName} metaTitle={metaTitle} setMetaTitle={setMetaTitle} metaDescription={metaDescription} setMetaDescription={setMetaDescription} keywords={keywords} setKeywords={setKeywords} errors={validationErrors} />
         <EditorImagesSection imgMain={imgMain} imgMainAlt={imgMainAlt} setImgMainAlt={setImgMainAlt} imgThumb={imgThumb} imgThumbAlt={imgThumbAlt} setImgThumbAlt={setImgThumbAlt} imgGallery={imgGallery} updateGalleryImage={updateGalleryImage} />
         <FormInput label="Tagline" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="e.g. Tropical sweetness in every bite" required error={validationErrors.tagline} />
         <FormTextarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Product description..." required error={validationErrors.description} />
@@ -224,7 +230,7 @@ const ProductEditorPage = () => {
         <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} priceTiers={priceTiers} addTier={addTier} removeTier={removeTier} updateTier={updateTier} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} errors={validationErrors} />
         <EditorSpecificationsSection specs={specs} updateSpec={(key, value) => setSpecs(prev => ({ ...prev, [key]: value }))} errors={validationErrors} />
         <EditorCertificationsSection certs={certs} toggleCert={toggleCert} errors={validationErrors} />
-        <EditorAvailabilitySection peakSeason={peakSeason} setPeakSeason={setPeakSeason} offPeakSeason={offPeakSeason} setOffPeakSeason={setOffPeakSeason} currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} />
+        <EditorAvailabilitySection peakSeason={peakSeason} setPeakSeason={setPeakSeason} offPeakSeason={offPeakSeason} setOffPeakSeason={setOffPeakSeason} currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} harvestMonths={harvestMonths} setHarvestMonths={setHarvestMonths} />
         <EditorPackagingSection bulk={packagingBulk} setBulk={setPackagingBulk} retail={packagingRetail} setRetail={setPackagingRetail} custom={packagingCustom} setCustom={setPackagingCustom} errors={validationErrors} />
         <EditorLogisticsSection portOfLoading={portOfLoading} setPortOfLoading={setPortOfLoading} incoterms={incoterms} setIncoterms={setIncoterms} containerLoad20ft={containerLoad20ft} setContainerLoad20ft={setContainerLoad20ft} containerLoad40ft={containerLoad40ft} setContainerLoad40ft={setContainerLoad40ft} />
         <EditorComplianceSection usa={complianceUsa} setUsa={setComplianceUsa} eu={complianceEu} setEu={setComplianceEu} global={complianceGlobal} setGlobal={setComplianceGlobal} />

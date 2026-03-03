@@ -17,6 +17,7 @@ import { ProductFAQ } from "./ProductFAQ";
 import { ProductDescriptionPackaging } from "./ProductDescriptionPackaging";
 import { ProductSeasonality } from "./ProductSeasonality";
 import { ProductQuickHighlights } from "./ProductQuickHighlights";
+import { ProductCompliance } from "./ProductCompliance";
 import { RelatedProducts } from "./RelatedProducts";
 import { StickyInquiryBar } from "./StickyInquiryBar";
 
@@ -221,6 +222,9 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
 
         {/* Product FAQ */}
         <ProductFAQ faqs={product.faqs} productName={product.name} />
+
+        {/* Compliance */}
+        <ProductCompliance product={product} />
 
         {/* Related Products */}
         <RelatedProducts products={relatedProducts} />
