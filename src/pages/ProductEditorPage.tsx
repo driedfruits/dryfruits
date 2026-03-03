@@ -56,6 +56,7 @@ const ProductEditorPage = () => {
   const [incoterms, setIncoterms] = useState("");
   const [containerLoad20ft, setContainerLoad20ft] = useState("");
   const [containerLoad40ft, setContainerLoad40ft] = useState("");
+  const [estimatedDelivery, setEstimatedDelivery] = useState("");
   const [exportDocuments, setExportDocuments] = useState("");
   const [applications, setApplications] = useState<string[]>([]);
   const [complianceUsa, setComplianceUsa] = useState("");
@@ -108,6 +109,7 @@ const ProductEditorPage = () => {
     setIncoterms(product.logistics?.incoterms?.join(", ") || "");
     setContainerLoad20ft(product.logistics?.containerLoad20ft || "");
     setContainerLoad40ft(product.logistics?.containerLoad40ft || "");
+    setEstimatedDelivery(product.logistics?.estimatedDelivery || "");
     setExportDocuments((product.exportDocuments || []).join("\n"));
     setApplications([...(product.applications || [])]);
     setComplianceUsa(product.compliance?.usa || "");
@@ -190,7 +192,7 @@ const ProductEditorPage = () => {
         specifications: Object.fromEntries(Object.entries(specs).filter(([_, v]) => v)),
         applications: applications.length > 0 ? applications : undefined,
         packaging: { bulk: packagingBulk, retail: packagingRetail, custom: packagingCustom },
-        logistics: { portOfLoading: portOfLoading || undefined, incoterms: incoterms ? incoterms.split(",").map((s) => s.trim()) : undefined, containerLoad20ft: containerLoad20ft || undefined, containerLoad40ft: containerLoad40ft || undefined },
+        logistics: { portOfLoading: portOfLoading || undefined, incoterms: incoterms ? incoterms.split(",").map((s) => s.trim()) : undefined, containerLoad20ft: containerLoad20ft || undefined, containerLoad40ft: containerLoad40ft || undefined, estimatedDelivery: estimatedDelivery || undefined },
         exportDocuments: exportDocuments.trim() ? exportDocuments.split("\n").map(s => s.trim()).filter(Boolean) : undefined,
         compliance: (complianceUsa || complianceEu || complianceGlobal) ? { usa: complianceUsa || undefined, eu: complianceEu || undefined, global: complianceGlobal || undefined } : undefined,
         faqs: faqs.length > 0 ? faqs : undefined,
@@ -198,7 +200,7 @@ const ProductEditorPage = () => {
       },
       null, 2
     );
-  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, exportDocuments, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
+  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, estimatedDelivery, exportDocuments, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
 
   const handleCopy = async () => {
     if (!validate()) {
@@ -221,6 +223,11 @@ const ProductEditorPage = () => {
       <div className="mt-8 space-y-6">
         <EditorSeoSection name={name} setName={setName} metaTitle={metaTitle} setMetaTitle={setMetaTitle} metaDescription={metaDescription} setMetaDescription={setMetaDescription} keywords={keywords} setKeywords={setKeywords} errors={validationErrors} />
         <EditorImagesSection imgMain={imgMain} imgMainAlt={imgMainAlt} setImgMainAlt={setImgMainAlt} imgThumb={imgThumb} imgThumbAlt={imgThumbAlt} setImgThumbAlt={setImgThumbAlt} imgGallery={imgGallery} updateGalleryImage={updateGalleryImage} />
+        <div className="space-y-4 rounded-lg border border-border p-4">
+          <p className="text-sm font-medium text-foreground">Trade Identification</p>
+          <FormInput label="SKU" value={sku} onChange={(e) => setSku(e.target.value)} placeholder="e.g. DF-PAP-001" />
+          <FormInput label="HS Code" value={hsCode} onChange={(e) => setHsCode(e.target.value)} placeholder="e.g. 0813.40.00" />
+        </div>
         <FormInput label="Tagline" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="e.g. Tropical sweetness in every bite" required error={validationErrors.tagline} />
         <FormTextarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Product description..." required error={validationErrors.description} />
         <div className="space-y-4 rounded-lg border border-border p-4">
@@ -235,7 +242,7 @@ const ProductEditorPage = () => {
         <EditorCertificationsSection certs={certs} toggleCert={toggleCert} errors={validationErrors} />
         <EditorAvailabilitySection peakSeason={peakSeason} setPeakSeason={setPeakSeason} offPeakSeason={offPeakSeason} setOffPeakSeason={setOffPeakSeason} currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} harvestMonths={harvestMonths} setHarvestMonths={setHarvestMonths} />
         <EditorPackagingSection bulk={packagingBulk} setBulk={setPackagingBulk} retail={packagingRetail} setRetail={setPackagingRetail} custom={packagingCustom} setCustom={setPackagingCustom} errors={validationErrors} />
-        <EditorLogisticsSection portOfLoading={portOfLoading} setPortOfLoading={setPortOfLoading} incoterms={incoterms} setIncoterms={setIncoterms} containerLoad20ft={containerLoad20ft} setContainerLoad20ft={setContainerLoad20ft} containerLoad40ft={containerLoad40ft} setContainerLoad40ft={setContainerLoad40ft} exportDocuments={exportDocuments} setExportDocuments={setExportDocuments} />
+        <EditorLogisticsSection portOfLoading={portOfLoading} setPortOfLoading={setPortOfLoading} incoterms={incoterms} setIncoterms={setIncoterms} containerLoad20ft={containerLoad20ft} setContainerLoad20ft={setContainerLoad20ft} containerLoad40ft={containerLoad40ft} setContainerLoad40ft={setContainerLoad40ft} estimatedDelivery={estimatedDelivery} setEstimatedDelivery={setEstimatedDelivery} exportDocuments={exportDocuments} setExportDocuments={setExportDocuments} />
         <EditorComplianceSection usa={complianceUsa} setUsa={setComplianceUsa} eu={complianceEu} setEu={setComplianceEu} global={complianceGlobal} setGlobal={setComplianceGlobal} />
         <EditorFaqsSection faqs={faqs} addFaq={addFaq} removeFaq={removeFaq} updateFaq={updateFaq} />
         <EditorRelatedSection selectedId={selectedId} relatedProducts={relatedProducts} toggleRelated={toggleRelated} />

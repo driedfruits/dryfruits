@@ -89,6 +89,7 @@ export interface Product {
     incoterms?: string[];
     containerLoad20ft?: string;
     containerLoad40ft?: string;
+    estimatedDelivery?: string;
   };
 
   // Export documents (optional - uses company defaults if not set)

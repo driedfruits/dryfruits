@@ -1,5 +1,5 @@
 import { type Product, companyInfo } from "@/data/companyData";
-import { Ship, FileCheck, Container } from "lucide-react";
+import { Ship, FileCheck, Container, Clock } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 
 interface ProductLogisticsProps {
@@ -25,6 +25,17 @@ export function ProductLogistics({ product }: ProductLogisticsProps) {
             ))}
           </ul>
         </div>
+
+        {/* Estimated Delivery */}
+        {'estimatedDelivery' in logistics && logistics.estimatedDelivery && (
+          <div className="bg-card rounded-xl p-6 shadow-soft mb-6 flex items-start gap-4">
+            <Clock className="h-8 w-8 text-primary shrink-0" />
+            <div>
+              <h3 className="font-semibold text-foreground mb-1">Estimated Delivery</h3>
+              <p className="text-sm text-muted-foreground">{logistics.estimatedDelivery}</p>
+            </div>
+          </div>
+        )}
 
         {/* Shipping cards — 2-col grid */}
         <div className="grid gap-6 md:grid-cols-2">
