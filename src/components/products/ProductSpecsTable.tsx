@@ -60,25 +60,38 @@ export function ProductSpecsTable({ product }: ProductSpecsTableProps) {
           ))}
         </div>
 
-        {/* Desktop: Compact table */}
-        <div className="hidden md:block bg-card rounded-xl overflow-hidden shadow-soft">
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-muted/50">
-                <TableHead className="font-semibold text-foreground w-1/3 px-3 py-2 h-auto text-sm">Parameter</TableHead>
-                <TableHead className="font-semibold text-foreground px-3 py-2 h-auto text-sm">Specification Details</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {allRows.map((row, i) => (
-                <TableRow key={i}>
-                  <TableCell className="font-medium px-3 py-2 text-sm">{row.label}</TableCell>
-                  <TableCell className="px-3 py-2 text-sm">{row.value}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
+        {/* Desktop: Two-column table */}
+        {(() => {
+          const mid = Math.ceil(allRows.length / 2);
+          const leftRows = allRows.slice(0, mid);
+          const rightRows = allRows.slice(mid);
+          const renderColumn = (rows: typeof allRows) => (
+            <div className="bg-card rounded-xl overflow-hidden shadow-soft">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-muted/50">
+                    <TableHead className="font-semibold text-foreground w-2/5 px-3 py-2 h-auto text-sm">Parameter</TableHead>
+                    <TableHead className="font-semibold text-foreground px-3 py-2 h-auto text-sm">Value</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {rows.map((row, i) => (
+                    <TableRow key={i} className={i % 2 === 0 ? "bg-muted/20" : ""}>
+                      <TableCell className="font-medium px-3 py-2 text-sm">{row.label}</TableCell>
+                      <TableCell className="px-3 py-2 text-sm">{row.value}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          );
+          return (
+            <div className="hidden md:grid grid-cols-2 gap-4">
+              {renderColumn(leftRows)}
+              {renderColumn(rightRows)}
+            </div>
+          );
+        })()}
       </div>
     </section>
   );
