@@ -1,25 +1,16 @@
 
 
-## Balance Photo Layouts in Factory Photos & Farmers Sections
-
-### Problem
-- **Factory Photos**: Most categories have 2 photos in a 4-column grid, leaving half the row empty. "Office" has only 1 photo.
-- **Farmers Section**: "Farmers Families" has 2 photos, "Fruits Plantations" has 3 — neither fills a 4-column row.
-
-### Solution
-Remove per-category sub-grids and use a single flat grid for each section. This lets all photos flow naturally into rows without awkward gaps. Keep category labels as overlays or remove them (the alt text already carries the SEO value). Add photos where needed to fill rows evenly.
+## Add Text Captions Below Each Photo in Factory & Farmers Sections
 
 ### Changes
 
 **`src/components/home/FactoryGallerySection.tsx`**
-- Replace the grouped layout with a single flat `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` grid (15 photos = 3 full rows of 5)
-- Remove per-category headings — the section title "Factory Photos" is sufficient
-- Keep all 15 photos as-is
+- Add a short `label` field to each photo object, derived from the alt text (e.g. "Cold Storage – Unit 1", "Cleaning & Peeling – Station 1", "Blanching – Line 1", etc.)
+- Below each `OptimizedImage`, add a `<p>` caption with `p-2 text-center text-xs font-medium text-foreground` styling
 
 **`src/components/home/FarmersSection.tsx`**
-- Replace grouped layout with a single flat `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` grid
-- Add 5 more placeholder photos (total 10 = 2 full rows of 5) with relevant alt tags for additional farmer families and plantation varieties (e.g., coconut, banana, jackfruit plantations)
-- Remove per-category headings
+- Same approach: add a `label` field to each photo (e.g. "Farmer Family 1", "Dragon Fruit Plantation", "Papaya Plantation", etc.)
+- Add matching `<p>` caption below each image
 
-Both sections will now have clean, fully filled grids with no orphan items.
+Labels will be concise, human-readable descriptions so visitors understand what each placeholder photo represents even before real images are added.
 
