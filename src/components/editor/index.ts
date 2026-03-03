@@ -6,7 +6,7 @@ export { default as EditorAvailabilitySection } from "./EditorAvailabilitySectio
 export { default as EditorPackagingSection } from "./EditorPackagingSection";
 export { default as EditorLogisticsSection } from "./EditorLogisticsSection";
 export { default as EditorApplicationsSection } from "./EditorApplicationsSection";
-export { default as EditorComplianceSection } from "./EditorComplianceSection";
+
 export { default as EditorFaqsSection } from "./EditorFaqsSection";
 export { default as EditorRelatedSection } from "./EditorRelatedSection";
 export { default as EditorSpecificationsSection } from "./EditorSpecificationsSection";
