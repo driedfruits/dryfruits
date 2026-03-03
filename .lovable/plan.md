@@ -1,16 +1,10 @@
 
 
-## Remove Packaging Options & Rebalance Logistics Layout
+## Remove Duplicate Export Documentation
 
-### Changes to `src/components/products/ProductLogistics.tsx`
+Lines 31-39 contain a duplicate "Export Documentation" card inside the 2-col grid. The full-width version (lines 19-27) should remain. Remove the duplicate and the LCL + FCL cards stay in the 2-col grid alone.
 
-Remove the "Packaging Options" card (lines 19-30) since packaging info already exists in the `ProductDescriptionPackaging` section above.
-
-Rebalance the remaining 3 cards into a clean layout:
-- **Top row**: Export Documentation (full width)
-- **Bottom row**: LCL Pallet + FCL Container (2-col grid)
-
-This gives the shipping cards equal visual weight and avoids an odd 3-card grid. The section title changes to "Logistics & Shipping" since packaging is no longer part of it.
-
-Remove the unused `Package` import from lucide-react.
+### Change in `src/components/products/ProductLogistics.tsx`
+- Delete lines 31-39 (the duplicate Export Documentation card inside the grid)
+- The grid keeps only the LCL and FCL cards side by side
 
