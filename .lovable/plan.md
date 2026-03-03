@@ -1,27 +1,17 @@
 
 
-## Add Farmers & Suppliers Section to Homepage
+## Replace Product Links with Photo Cards on Homepage
 
 ### What
-New `FarmersSection` component on the homepage with 5 placeholder photos, placed after `FactoryGallerySection`.
+Replace the current gradient-colored text-only product links in `ProductCategoriesSection` with card-style links featuring placeholder thumbnail images, similar to the `ProductCard` component used on the Products page.
 
-### Photos (5 total)
+### Changes
 
-| Category | Count | Alt text |
-|---|---|---|
-| Farmers Families | 2 | "Local farmer family supplying fresh tropical fruits to Indonesian dried fruit factory – family 1/2" |
-| Fruits Plantations | 3 | "Dragon fruit plantation supplying fresh fruits for dehydration in Indonesia" / "Papaya plantation…" / "Mango plantation…" |
-
-### Implementation
-
-**New file: `src/components/home/FarmersSection.tsx`**
-- Same pattern as `FactoryGallerySection`: data array with `category`, `src` (`/placeholder.svg`), `alt`, `width` (400), `height` (300)
-- Two groups: "Farmers Families" (2 photos), "Fruits Plantations" (3 photos)
-- Section title: "Our Farmers and Fresh Fruits Suppliers"
-- Responsive grid: 2 cols mobile, 3 cols md, 4 cols lg
-- Uses `OptimizedImage`, `memo` wrapped
-
-**Modified files:**
-- `src/components/home/index.ts` — add `FarmersSection` export
-- `src/pages/HomePage.tsx` — import and place `<FarmersSection />` after `<FactoryGallerySection />`
+**Modified file: `src/components/home/ProductCategoriesSection.tsx`**
+- Replace the gradient `<Link>` blocks with card-style layout:
+  - Top: `OptimizedImage` using `/placeholder.svg`, `width={400}`, `height={400}`, `aspectRatio="square"`, with product-specific alt tags (e.g. "Dried mango wholesale from Indonesia")
+  - Bottom: product name + "View Details →" text
+  - Card styling: `bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-glow` (matching `ProductCard` pattern)
+- Keep the same grid: `grid-cols-2 md:grid-cols-3 lg:grid-cols-5`
+- Keep the "View All Products" CTA button at the bottom
 
