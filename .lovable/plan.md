@@ -1,16 +1,29 @@
 
 
-## Integrate Web3Forms for Contact and Catalog Forms
+## Change Photo Grid to 4 Columns on Desktop
 
-Web3Forms access key (`cac19d89-6caa-40d7-b262-2f9ba0236a31`) is a publishable key, safe to store in the codebase.
+### Findings
+- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
+- Captions are present in the code with `label` fields and `<p>` tags
+- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
+- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
+
+### Problem
+Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
+- Factory: reduce from 15 to 12, or increase to 16
+- Farmers: keep 8 (reduce from 10), or increase to 12
+
+### Recommendation
+- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
+- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
 
 ### Changes
 
-**`src/lib/constants.ts`** — Add `WEB3FORMS_ACCESS_KEY` constant.
+**`src/components/home/FactoryGallerySection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
 
-**`src/components/forms/ContactForm.tsx`** — Replace the simulated `setTimeout` submission with a real `fetch` POST to `https://api.web3forms.com/submit`, sending `access_key`, `name`, `email`, `company`, `country`, `phone`, `product`, `quantity`, `message`, and a `subject` derived from the variant (e.g. "Quote Request from [name]"). Handle success/error from the API response.
-
-**`src/components/forms/CatalogForm.tsx`** — Same pattern: replace simulated submission with a real Web3Forms POST, sending `access_key`, `name`, `email`, `company`, and `subject: "Catalog Download Request"`. Handle success/error.
-
-Both forms keep their existing validation, loading states, and success screens — only the submission logic changes.
+**`src/components/home/FarmersSection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
 

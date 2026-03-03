@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { products, productCategories } from "@/data/companyData";
 import { Loader2, Send, CheckCircle2 } from "lucide-react";
+import { WEB3FORMS_ACCESS_KEY } from "@/lib/constants";
 
 interface ContactFormProps {
   variant?: "contact" | "quote" | "sample";
@@ -68,27 +69,53 @@ export function ContactForm({ variant = "contact", preselectedProduct, className
     if (!validate()) return;
     
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    toast({
-      title: variant === "sample" ? "Sample Request Sent!" : "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      country: "",
-      phone: "",
-      product: "",
-      quantity: "",
-      message: "",
-    });
-    setIsSubmitting(false);
-    setShowSuccess(true);
+
+    const subjectMap = {
+      contact: `New Inquiry from ${formData.name}`,
+      quote: `Quote Request from ${formData.name}`,
+      sample: `Sample Request from ${formData.name}`,
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: subjectMap[variant],
+          from_name: formData.name,
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          country: formData.country,
+          phone: formData.phone,
+          product: formData.product || "N/A",
+          quantity: formData.quantity || "N/A",
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: variant === "sample" ? "Sample Request Sent!" : "Message Sent!",
+          description: "We'll get back to you within 24 hours.",
+        });
+        setFormData({ name: "", email: "", company: "", country: "", phone: "", product: "", quantity: "", message: "" });
+        setShowSuccess(true);
+      } else {
+        throw new Error(result.message || "Submission failed");
+      }
+    } catch {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or contact us via WhatsApp.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   useEffect(() => {
