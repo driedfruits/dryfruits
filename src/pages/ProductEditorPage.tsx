@@ -13,7 +13,7 @@ import {
   EditorPackagingSection,
   EditorLogisticsSection,
   EditorApplicationsSection,
-  EditorComplianceSection,
+  
   EditorFaqsSection,
   EditorRelatedSection,
   EditorSpecificationsSection,
@@ -59,9 +59,6 @@ const ProductEditorPage = () => {
   const [estimatedDelivery, setEstimatedDelivery] = useState("");
   const [exportDocuments, setExportDocuments] = useState("");
   const [applications, setApplications] = useState<string[]>([]);
-  const [complianceUsa, setComplianceUsa] = useState("");
-  const [complianceEu, setComplianceEu] = useState("");
-  const [complianceGlobal, setComplianceGlobal] = useState("");
   const [faqs, setFaqs] = useState<Array<{ question: string; answer: string }>>([]);
   const [relatedProducts, setRelatedProducts] = useState<string[]>([]);
   const [imgMain, setImgMain] = useState("");
@@ -112,9 +109,6 @@ const ProductEditorPage = () => {
     setEstimatedDelivery(product.logistics?.estimatedDelivery || "");
     setExportDocuments((product.exportDocuments || []).join("\n"));
     setApplications([...(product.applications || [])]);
-    setComplianceUsa(product.compliance?.usa || "");
-    setComplianceEu(product.compliance?.eu || "");
-    setComplianceGlobal(product.compliance?.global || "");
     setFaqs(product.faqs?.map((f) => ({ ...f })) || []);
     setRelatedProducts([...(product.relatedProducts || [])]);
     setImgMain(product.images?.main || "");
@@ -194,13 +188,13 @@ const ProductEditorPage = () => {
         packaging: { bulk: packagingBulk, retail: packagingRetail, custom: packagingCustom },
         logistics: { portOfLoading: portOfLoading || undefined, incoterms: incoterms ? incoterms.split(",").map((s) => s.trim()) : undefined, containerLoad20ft: containerLoad20ft || undefined, containerLoad40ft: containerLoad40ft || undefined, estimatedDelivery: estimatedDelivery || undefined },
         exportDocuments: exportDocuments.trim() ? exportDocuments.split("\n").map(s => s.trim()).filter(Boolean) : undefined,
-        compliance: (complianceUsa || complianceEu || complianceGlobal) ? { usa: complianceUsa || undefined, eu: complianceEu || undefined, global: complianceGlobal || undefined } : undefined,
+        
         faqs: faqs.length > 0 ? faqs : undefined,
         relatedProducts: relatedProducts.length > 0 ? relatedProducts : undefined,
       },
       null, 2
     );
-  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, estimatedDelivery, exportDocuments, complianceUsa, complianceEu, complianceGlobal, faqs, relatedProducts]);
+  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, estimatedDelivery, exportDocuments, faqs, relatedProducts]);
 
   const handleCopy = async () => {
     if (!validate()) {
@@ -243,7 +237,7 @@ const ProductEditorPage = () => {
         <EditorAvailabilitySection peakSeason={peakSeason} setPeakSeason={setPeakSeason} offPeakSeason={offPeakSeason} setOffPeakSeason={setOffPeakSeason} currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} harvestMonths={harvestMonths} setHarvestMonths={setHarvestMonths} />
         <EditorPackagingSection bulk={packagingBulk} setBulk={setPackagingBulk} retail={packagingRetail} setRetail={setPackagingRetail} custom={packagingCustom} setCustom={setPackagingCustom} errors={validationErrors} />
         <EditorLogisticsSection portOfLoading={portOfLoading} setPortOfLoading={setPortOfLoading} incoterms={incoterms} setIncoterms={setIncoterms} containerLoad20ft={containerLoad20ft} setContainerLoad20ft={setContainerLoad20ft} containerLoad40ft={containerLoad40ft} setContainerLoad40ft={setContainerLoad40ft} estimatedDelivery={estimatedDelivery} setEstimatedDelivery={setEstimatedDelivery} exportDocuments={exportDocuments} setExportDocuments={setExportDocuments} />
-        <EditorComplianceSection usa={complianceUsa} setUsa={setComplianceUsa} eu={complianceEu} setEu={setComplianceEu} global={complianceGlobal} setGlobal={setComplianceGlobal} />
+        
         <EditorFaqsSection faqs={faqs} addFaq={addFaq} removeFaq={removeFaq} updateFaq={updateFaq} />
         <EditorRelatedSection selectedId={selectedId} relatedProducts={relatedProducts} toggleRelated={toggleRelated} />
       </div>
