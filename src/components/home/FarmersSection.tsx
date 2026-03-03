@@ -2,16 +2,16 @@ import { memo } from "react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const farmerPhotos = [
-  { src: "/placeholder.svg", alt: "Local farmer family supplying fresh tropical fruits to Indonesian dried fruit factory – family 1", width: 400, height: 300 },
-  { src: "/placeholder.svg", alt: "Local farmer family supplying fresh tropical fruits to Indonesian dried fruit factory – family 2", width: 400, height: 300 },
-  { src: "/placeholder.svg", alt: "Dragon fruit plantation supplying fresh fruits for dehydration in Indonesia", width: 400, height: 300 },
-  { src: "/placeholder.svg", alt: "Papaya plantation supplying fresh fruits for dehydration in Indonesia", width: 400, height: 300 },
-  { src: "/placeholder.svg", alt: "Mango plantation supplying fresh fruits for dehydration in Indonesia", width: 400, height: 300 },
-  { src: "/placeholder.svg", alt: "Local farmer family harvesting fresh pineapples for dried fruit production – family 3", width: 400, height: 300 },
-  { src: "/placeholder.svg", alt: "Coconut plantation supplying fresh coconuts for dehydrated coconut chips in Indonesia", width: 400, height: 300 },
-  { src: "/placeholder.svg", alt: "Banana plantation supplying fresh bananas for dried banana production in Indonesia", width: 400, height: 300 },
-  { src: "/placeholder.svg", alt: "Jackfruit plantation supplying fresh jackfruit for dehydration in Indonesia", width: 400, height: 300 },
-  { src: "/placeholder.svg", alt: "Local farmer family delivering fresh guava harvest to dried fruit factory – family 4", width: 400, height: 300 },
+  { src: "/placeholder.svg", alt: "Local farmer family supplying fresh tropical fruits to Indonesian dried fruit factory – family 1", label: "Farmer Family 1", width: 400, height: 300 },
+  { src: "/placeholder.svg", alt: "Local farmer family supplying fresh tropical fruits to Indonesian dried fruit factory – family 2", label: "Farmer Family 2", width: 400, height: 300 },
+  { src: "/placeholder.svg", alt: "Dragon fruit plantation supplying fresh fruits for dehydration in Indonesia", label: "Dragon Fruit Plantation", width: 400, height: 300 },
+  { src: "/placeholder.svg", alt: "Papaya plantation supplying fresh fruits for dehydration in Indonesia", label: "Papaya Plantation", width: 400, height: 300 },
+  { src: "/placeholder.svg", alt: "Mango plantation supplying fresh fruits for dehydration in Indonesia", label: "Mango Plantation", width: 400, height: 300 },
+  { src: "/placeholder.svg", alt: "Local farmer family harvesting fresh pineapples for dried fruit production – family 3", label: "Farmer Family 3", width: 400, height: 300 },
+  { src: "/placeholder.svg", alt: "Coconut plantation supplying fresh coconuts for dehydrated coconut chips in Indonesia", label: "Coconut Plantation", width: 400, height: 300 },
+  { src: "/placeholder.svg", alt: "Banana plantation supplying fresh bananas for dried banana production in Indonesia", label: "Banana Plantation", width: 400, height: 300 },
+  { src: "/placeholder.svg", alt: "Jackfruit plantation supplying fresh jackfruit for dehydration in Indonesia", label: "Jackfruit Plantation", width: 400, height: 300 },
+  { src: "/placeholder.svg", alt: "Local farmer family delivering fresh guava harvest to dried fruit factory – family 4", label: "Farmer Family 4", width: 400, height: 300 },
 ];
 
 export const FarmersSection = memo(function FarmersSection() {
@@ -33,6 +33,7 @@ export const FarmersSection = memo(function FarmersSection() {
                 aspectRatio="video"
                 className="w-full h-full"
               />
+              <p className="p-2 text-center text-xs font-medium text-foreground">{photo.label}</p>
             </div>
           ))}
         </div>
