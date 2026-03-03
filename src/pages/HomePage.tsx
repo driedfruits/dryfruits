@@ -36,13 +36,13 @@ export default function HomePage() {
 
       <HeroSection />
       <ManufacturingSection />
-      <ProductionProcessSection />
       <FactoryGallerySection />
       <FarmersSection />
       
       <ProductCategoriesSection />
       <CertificationsSection />
       <TargetSegmentsSection />
+      <ProductionProcessSection />
       <ExportMapSection />
       <CatalogDownloadSection />
       <FinalCTASection />
