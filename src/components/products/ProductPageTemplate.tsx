@@ -110,7 +110,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                 {categoryLabels[product.category]}
               </Link>
               <ChevronRight className="h-4 w-4 shrink-0" />
-              <span className="text-foreground font-medium truncate max-w-[150px] sm:max-w-none">{product.name}</span>
+              <span className="text-foreground font-medium truncate max-w-[150px] sm:max-w-none">{product.shortName}</span>
             </nav>
           </div>
         </div>
