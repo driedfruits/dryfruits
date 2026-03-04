@@ -132,26 +132,7 @@ export const products: Product[] = [
     isOrganic: false,
     sku: "PP-Dq",
     hsCode: "0813.40.4",
-    images: {
-      gallery: [
-        {
-          src: "",
-          alt: "",
-        },
-        {
-          src: "",
-          alt: "",
-        },
-        {
-          src: "",
-          alt: "",
-        },
-        {
-          src: "",
-          alt: "",
-        },
-      ],
-    },
+    images: {},
     metaTitle: "Wholesale Bulk dried dehydrated Papaya from Indonesia",
     metaDescription:
       "Direct manufacturer of premium dried dehydrated papaya from Indonesia. \nUSDA/EU Organic certified available by request. Bulk 10-25kg cartons. MOQ 100kg. ",
