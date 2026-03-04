@@ -127,6 +127,7 @@ export const products: Product[] = [
   {
     id: "dried-papaya",
     name: "Wholesale Bulk Dried Dehydrated Papaya Chunks & Slices",
+    shortName: "Dried Papaya",
     category: "dried-fruits",
     isOrganic: false,
     sku: "PP-Dq",
