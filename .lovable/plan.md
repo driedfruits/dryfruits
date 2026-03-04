@@ -1,29 +1,27 @@
 
 
-## Change Photo Grid to 4 Columns on Desktop
+## Problem
 
-### Findings
-- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
-- Captions are present in the code with `label` fields and `<p>` tags
-- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
-- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
+`src/data/products.ts` was accidentally wiped empty. This file is the **single source of truth** for all product data, the `Product` type, and helper functions. Every build error stems from this empty file.
 
-### Problem
-Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
-- Factory: reduce from 15 to 12, or increase to 16
-- Farmers: keep 8 (reduce from 10), or increase to 12
+## Recovery Plan
 
-### Recommendation
-- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
-- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
+The file structure (interface + helpers) is fully recoverable from `src/utils/productSerializer.ts` which contains `FILE_HEADER` and `FILE_FOOTER` constants with the exact `Product` interface and helper functions.
 
-### Changes
+**However, the actual product data entries are not stored anywhere else in the codebase.** I cannot recover those from code alone.
 
-**`src/components/home/FactoryGallerySection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
+### What I can do:
 
-**`src/components/home/FarmersSection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
+1. **Restore the file skeleton** — Write `src/data/products.ts` with the full `Product` interface, an empty `products` array, and all helper functions. This will fix all build errors immediately.
+
+2. **You will need to re-populate the product data.** Options:
+   - If you have a recent backup or git history, restore the product entries from there
+   - If you previously used the admin editor's "Copy Full File" output, paste that content back
+   - Re-enter products manually via the admin editor once the skeleton is restored
+
+### File to create/restore:
+
+- **`src/data/products.ts`** — Restore with the `Product` interface (from serializer's `FILE_HEADER`), empty `products: Product[] = []`, and all helper functions (`getProductById`, `getProductsByCategory`, `getRelatedProducts`, `productCategories`) from `FILE_FOOTER`.
+
+This will immediately resolve all 12 build errors. The admin editor will load (with no products to select). Once product data is re-added, everything will work as before.
 
