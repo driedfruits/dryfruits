@@ -1,29 +1,30 @@
 
 
-## Change Photo Grid to 4 Columns on Desktop
+## Output full `products.ts` file content instead of single product JSON
 
-### Findings
-- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
-- Captions are present in the code with `label` fields and `<p>` tags
-- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
-- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
+Currently the editor outputs a single product's JSON object. The user wants to copy-paste the **entire `products.ts` file** in one go, so they don't have to find-and-replace individual entries.
 
-### Problem
-Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
-- Factory: reduce from 15 to 12, or increase to 16
-- Farmers: keep 8 (reduce from 10), or increase to 12
+### Approach
 
-### Recommendation
-- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
-- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
+Modify the `jsonOutput` memo and copy logic in `ProductEditorPage.tsx` to:
 
-### Changes
+1. **Build the full file string**: Take the `products` array, replace the currently-edited product with the editor's state, and serialize the entire array into a valid TypeScript file — including the `Product` interface, imports, and the `export const products: Product[] = [...]` wrapper plus the helper functions at the bottom.
 
-**`src/components/home/FactoryGallerySection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
+2. **Simpler alternative (recommended)**: Since the `Product` interface and helper functions rarely change, generate output as:
+   - The static top of the file (interface + type definitions, lines 1–122) as a hardcoded string constant
+   - The full `products` array with the edited product swapped in, serialized as TypeScript object literals
+   - The static bottom of the file (helper functions like `getProductById`, `productCategories`, etc.)
 
-**`src/components/home/FarmersSection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
+3. **Implementation details**:
+   - Create a `buildProductEntry(product)` function that converts a product object to a TypeScript object literal string (not JSON — use unquoted keys, proper booleans, template formatting)
+   - In the `jsonOutput` memo, map over all `products`: for each product, if `id === selectedId`, use the editor state; otherwise, use the original product data unchanged
+   - Wrap with the file header (interface definition) and footer (helper exports)
+   - Store the interface/helpers as string constants imported or inlined
+
+4. **Update the instructions box** to say: "Replace the entire `src/data/products.ts` file with the copied output"
+
+5. **Update the copy button** label to "Copy Full File"
+
+### Files to change
+- `src/pages/ProductEditorPage.tsx` — rewrite `jsonOutput` memo to produce full file, update copy button and instructions text
 
