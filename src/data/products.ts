@@ -127,9 +127,10 @@ export const products: Product[] = [
   {
     id: "dried-papaya",
     name: "Wholesale Bulk Dried Dehydrated Papaya Chunks & Slices",
-    shortName: "Dried Papaya",
     category: "dried-fruits",
     isOrganic: false,
+    sku: "PP-Dq",
+    hsCode: "0813.40.4",
     images: {
       gallery: [
         {
@@ -150,16 +151,19 @@ export const products: Product[] = [
         },
       ],
     },
-    metaTitle: "Wholesale Dried Papaya (Slices) - Bulk Export from Indonesia",
+    metaTitle: "Wholesale Bulk dried dehydrated Papaya from Indonesia",
     metaDescription:
-      "Direct manufacturer of premium dried papaya from Indonesia. USDA/EU Organic certified. Bulk 10-25kg cartons. MOQ 500kg. View specs & pricing.",
-    tagline: "Tropical sweetness in every bite",
+      "Direct manufacturer of premium dried dehydrated papaya from Indonesia. \nUSDA/EU Organic certified available by request. Bulk 10-25kg cartons. MOQ 100kg. ",
+    keywords: ["dried dehydrated papaya chunks"],
+    tagline: "Sugar free, slowly dried papaya chunks",
     description:
-      "Premium dried papaya slices made from sun-ripened Indonesian papayas. Natural sweetness with no added sugar options available.",
-    flavorProfile: "Sweet & testy",
-    texture: "chewy",
+      "Direct manufacturer of premium dried dehydrated papaya from Indonesia. \nUSDA/EU Organic certified available by request. Bulk 10-25kg cartons. MOQ 100kg. ",
+    flavorProfile:
+      "Intensely sweet and vibrant with rich, concentrated tropical notes. The dehydration process locks in a natural, honey-like caramel undertone with zero bitter aftertaste, perfectly capturing the essence of sun-ripened Indonesian papaya.",
+    texture:
+      "Pleasantly chewy, tender, and robust. Our careful drying prcess yields a firm but yielding bite, ensuring the chunks and slices don't become overly tough or ocrystallized, maintaining a premium mouthfeel that consumers love.",
     pricing: {
-      fobBase: "from $3.12/kg ",
+      fobBase: "from $1.12/kg ",
       moq: "100 kg",
       leadTime: "1 week",
       priceTiers: [
@@ -182,11 +186,12 @@ export const products: Product[] = [
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
-    certifications: ["HACCP", "Halal", "Kosher"],
+    certifications: ["HACCP", "USDA Organic"],
     availability: {
       peakSeason: "Year-round (Indonesia)",
       currentStatus: "pre-order",
     },
+    harvestMonths: [1, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1],
     specifications: {
       size: "Chunks 1-2cm, Shreds, Slices, Dices",
       moisture: "14-18%",
@@ -200,7 +205,7 @@ export const products: Product[] = [
       brixLevel: ">12° Brix (Naturally sweet)",
       additives: "Preservative-free / Sulfite-free options",
       foreignMatter: "0%",
-      processingMethod: "Sun-dried / Low-temp dehydrated",
+      processingMethod: "Low-temp dehydrated in industrial ovens",
       grade: "Grade A Export Quality",
       storageTemp: "10-20°C (50-68°F)",
       storageHumidity: "<60% RH",
@@ -218,11 +223,6 @@ export const products: Product[] = [
       incoterms: ["FOB", "CIF", "CFR"],
       containerLoad20ft: "15-18 MT",
       containerLoad40ft: "22-26 MT",
-    },
-    compliance: {
-      usa: "FDA facility registered; Prior Notice compliant; meets Import Alert requirements",
-      eu: "Phytosanitary certified; MRL compliant (Reg. 396/2005); Health Certificate included",
-      global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
       {
