@@ -211,7 +211,7 @@ const ProductEditorPage = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const productOptions = products.map((p) => ({ value: p.id, label: p.name }));
+  const productOptions = products.map((p) => ({ value: p.id, label: p.shortName }));
   const errorCount = Object.keys(validationErrors).length;
 
   return (
