@@ -206,7 +206,7 @@ const ProductEditorPage = () => {
       toast({ title: "Validation failed", description: `${Object.keys(validationErrors).length || "Some"} required fields are missing.`, variant: "destructive" });
       return;
     }
-    await navigator.clipboard.writeText(jsonOutput);
+    await navigator.clipboard.writeText(fullFileOutput);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -262,25 +262,24 @@ const ProductEditorPage = () => {
             </ul>
           </div>
         )}
-        <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800 dark:border-blue-800 dark:bg-blue-950/30 dark:text-blue-300">
-          <p className="font-medium mb-1">How to apply changes:</p>
+        <div className="rounded-lg border border-border bg-muted/50 p-4 text-sm text-muted-foreground">
+          <p className="font-medium mb-1 text-foreground">How to apply changes:</p>
           <ol className="list-decimal list-inside space-y-1 text-xs">
-            <li>Click <strong>Copy</strong> to copy the JSON output below</li>
-            <li>Open <code className="rounded bg-blue-100 px-1 py-0.5 dark:bg-blue-900">src/data/products.ts</code></li>
-            <li>Find the product entry matching <code className="rounded bg-blue-100 px-1 py-0.5 dark:bg-blue-900">{selectedId}</code></li>
-            <li>Replace the entire product object with the copied JSON</li>
+            <li>Click <strong>Copy Full File</strong> below</li>
+            <li>Open <code className="rounded bg-muted px-1 py-0.5">src/data/products.ts</code></li>
+            <li>Select all content (Ctrl+A / Cmd+A) and replace with the copied output</li>
             <li>Save the file</li>
           </ol>
         </div>
         <div className="flex items-center justify-between">
-          <p className="text-sm font-medium text-foreground">JSON Output</p>
+          <p className="text-sm font-medium text-foreground">Full File Output (products.ts)</p>
           <Button variant="outline" size="sm" onClick={handleCopy}>
             {copied ? <Check className="h-4 w-4 mr-1" /> : <Copy className="h-4 w-4 mr-1" />}
-            {copied ? "Copied!" : "Copy"}
+            {copied ? "Copied!" : "Copy Full File"}
           </Button>
         </div>
-        <pre className="bg-muted text-muted-foreground rounded-lg p-4 text-sm overflow-x-auto whitespace-pre-wrap border border-border">
-          {jsonOutput}
+        <pre className="bg-muted text-muted-foreground rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap border border-border max-h-[500px] overflow-y-auto">
+          {fullFileOutput}
         </pre>
       </div>
     </div>
