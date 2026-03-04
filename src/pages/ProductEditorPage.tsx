@@ -51,8 +51,6 @@ const ProductEditorPage = () => {
   const [texture, setTexture] = useState("");
   const [packagingBulk, setPackagingBulk] = useState("");
   const [packagingRetail, setPackagingRetail] = useState("");
-  const [packagingCustom, setPackagingCustom] = useState(false);
-  const [samplePolicy, setSamplePolicy] = useState("");
   const [portOfLoading, setPortOfLoading] = useState("");
   const [incoterms, setIncoterms] = useState("");
   const [containerLoad20ft, setContainerLoad20ft] = useState("");
@@ -101,8 +99,6 @@ const ProductEditorPage = () => {
     setSpecs(specEntries);
     setPackagingBulk(product.packaging.bulk);
     setPackagingRetail(product.packaging.retail);
-    setPackagingCustom(product.packaging.custom);
-    setSamplePolicy(product.pricing.samplePolicy || "");
     setPortOfLoading(product.logistics?.portOfLoading || "");
     setIncoterms(product.logistics?.incoterms?.join(", ") || "");
     setContainerLoad20ft(product.logistics?.containerLoad20ft || "");
@@ -177,18 +173,18 @@ const ProductEditorPage = () => {
     keywords: keywords.trim() ? keywords.split(",").map(k => k.trim()).filter(Boolean) : undefined,
     tagline, description,
     flavorProfile: flavorProfile || undefined, texture: texture || undefined,
-    pricing: { fobBase, moq, leadTime, priceTiers: products.find(p => p.id === selectedId)?.pricing.priceTiers, samplePolicy: samplePolicy || undefined },
+    pricing: { fobBase, moq, leadTime, priceTiers: products.find(p => p.id === selectedId)?.pricing.priceTiers, samplePolicy: products.find(p => p.id === selectedId)?.pricing.samplePolicy },
     certifications: certs,
     availability: { peakSeason: peakSeason || undefined, offPeakSeason: offPeakSeason || undefined, currentStatus: currentStatus as Product["availability"]["currentStatus"] },
     harvestMonths: harvestMonths.some(v => v > 0) ? harvestMonths : undefined,
     specifications: Object.fromEntries(Object.entries(specs).filter(([, v]) => v)) as Product["specifications"],
     applications: applications.length > 0 ? applications : [],
-    packaging: { bulk: packagingBulk, retail: packagingRetail, custom: packagingCustom },
+    packaging: { bulk: packagingBulk, retail: packagingRetail, custom: products.find(p => p.id === selectedId)?.packaging.custom ?? false },
     logistics: { portOfLoading: portOfLoading || undefined, incoterms: incoterms ? incoterms.split(",").map(s => s.trim()) : undefined, containerLoad20ft: containerLoad20ft || undefined, containerLoad40ft: containerLoad40ft || undefined, estimatedDelivery: estimatedDelivery || undefined },
     exportDocuments: exportDocuments.trim() ? exportDocuments.split("\n").map(s => s.trim()).filter(Boolean) : undefined,
     faqs: faqs.length > 0 ? faqs : undefined,
     relatedProducts: relatedProducts.length > 0 ? relatedProducts : [],
-  }), [selectedId, name, shortName, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, estimatedDelivery, exportDocuments, faqs, relatedProducts]);
+  }), [selectedId, name, shortName, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, estimatedDelivery, exportDocuments, faqs, relatedProducts]);
 
   // Build full products.ts file content with the edited product swapped in
   const fullFileOutput = useMemo(() => {
@@ -231,11 +227,11 @@ const ProductEditorPage = () => {
           <FormInput label="Processing Method" value={specs.processingMethod || ""} onChange={(e) => setSpecs(prev => ({ ...prev, processingMethod: e.target.value }))} placeholder="e.g. Sun-dried, Low-temp dehydrated, Freeze-dried" />
           <EditorApplicationsSection applications={applications} addApplication={addApplication} removeApplication={removeApplication} />
         </div>
-        <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} errors={validationErrors} />
+        <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} errors={validationErrors} />
         <EditorSpecificationsSection specs={specs} updateSpec={(key, value) => setSpecs(prev => ({ ...prev, [key]: value }))} errors={validationErrors} />
         <EditorCertificationsSection certs={certs} toggleCert={toggleCert} errors={validationErrors} />
         <EditorAvailabilitySection peakSeason={peakSeason} setPeakSeason={setPeakSeason} offPeakSeason={offPeakSeason} setOffPeakSeason={setOffPeakSeason} currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} harvestMonths={harvestMonths} setHarvestMonths={setHarvestMonths} />
-        <EditorPackagingSection bulk={packagingBulk} setBulk={setPackagingBulk} retail={packagingRetail} setRetail={setPackagingRetail} custom={packagingCustom} setCustom={setPackagingCustom} errors={validationErrors} />
+        <EditorPackagingSection bulk={packagingBulk} setBulk={setPackagingBulk} retail={packagingRetail} setRetail={setPackagingRetail} errors={validationErrors} />
         <EditorLogisticsSection portOfLoading={portOfLoading} setPortOfLoading={setPortOfLoading} incoterms={incoterms} setIncoterms={setIncoterms} containerLoad20ft={containerLoad20ft} setContainerLoad20ft={setContainerLoad20ft} containerLoad40ft={containerLoad40ft} setContainerLoad40ft={setContainerLoad40ft} estimatedDelivery={estimatedDelivery} setEstimatedDelivery={setEstimatedDelivery} exportDocuments={exportDocuments} setExportDocuments={setExportDocuments} />
         
         <EditorFaqsSection faqs={faqs} addFaq={addFaq} removeFaq={removeFaq} updateFaq={updateFaq} />
