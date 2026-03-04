@@ -12,7 +12,7 @@ const EditorRelatedSection = ({ selectedId, relatedProducts, toggleRelated }: Ed
     <p className="text-sm font-medium text-foreground">Related Products</p>
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
       {products.filter((p) => p.id !== selectedId).map((p) => (
-        <FormCheckbox key={p.id} label={p.name} checked={relatedProducts.includes(p.id)} onCheckedChange={() => toggleRelated(p.id)} />
+        <FormCheckbox key={p.id} label={p.shortName} checked={relatedProducts.includes(p.id)} onCheckedChange={() => toggleRelated(p.id)} />
       ))}
     </div>
   </div>
