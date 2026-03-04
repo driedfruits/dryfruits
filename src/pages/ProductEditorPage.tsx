@@ -52,7 +52,6 @@ const ProductEditorPage = () => {
   const [packagingBulk, setPackagingBulk] = useState("");
   const [packagingRetail, setPackagingRetail] = useState("");
   const [packagingCustom, setPackagingCustom] = useState(false);
-  const [priceTiers, setPriceTiers] = useState<Array<{ volume: string; priceRange: string }>>([]);
   const [samplePolicy, setSamplePolicy] = useState("");
   const [portOfLoading, setPortOfLoading] = useState("");
   const [incoterms, setIncoterms] = useState("");
@@ -103,7 +102,6 @@ const ProductEditorPage = () => {
     setPackagingBulk(product.packaging.bulk);
     setPackagingRetail(product.packaging.retail);
     setPackagingCustom(product.packaging.custom);
-    setPriceTiers(product.pricing.priceTiers?.map((t) => ({ ...t })) || []);
     setSamplePolicy(product.pricing.samplePolicy || "");
     setPortOfLoading(product.logistics?.portOfLoading || "");
     setIncoterms(product.logistics?.incoterms?.join(", ") || "");
@@ -158,9 +156,6 @@ const ProductEditorPage = () => {
 
   // Helpers
   const toggleCert = (cert: string) => setCerts((prev) => prev.includes(cert) ? prev.filter((c) => c !== cert) : [...prev, cert]);
-  const addTier = () => setPriceTiers((prev) => [...prev, { volume: "", priceRange: "" }]);
-  const removeTier = (i: number) => setPriceTiers((prev) => prev.filter((_, idx) => idx !== i));
-  const updateTier = (i: number, field: "volume" | "priceRange", val: string) => setPriceTiers((prev) => prev.map((t, idx) => (idx === i ? { ...t, [field]: val } : t)));
   const addApplication = (app: string) => setApplications((prev) => [...prev, app]);
   const removeApplication = (i: number) => setApplications((prev) => prev.filter((_, idx) => idx !== i));
   const addFaq = () => setFaqs((prev) => [...prev, { question: "", answer: "" }]);
@@ -182,7 +177,7 @@ const ProductEditorPage = () => {
     keywords: keywords.trim() ? keywords.split(",").map(k => k.trim()).filter(Boolean) : undefined,
     tagline, description,
     flavorProfile: flavorProfile || undefined, texture: texture || undefined,
-    pricing: { fobBase, moq, leadTime, priceTiers: priceTiers.length > 0 ? priceTiers : undefined, samplePolicy: samplePolicy || undefined },
+    pricing: { fobBase, moq, leadTime, priceTiers: products.find(p => p.id === selectedId)?.pricing.priceTiers, samplePolicy: samplePolicy || undefined },
     certifications: certs,
     availability: { peakSeason: peakSeason || undefined, offPeakSeason: offPeakSeason || undefined, currentStatus: currentStatus as Product["availability"]["currentStatus"] },
     harvestMonths: harvestMonths.some(v => v > 0) ? harvestMonths : undefined,
@@ -236,7 +231,7 @@ const ProductEditorPage = () => {
           <FormInput label="Processing Method" value={specs.processingMethod || ""} onChange={(e) => setSpecs(prev => ({ ...prev, processingMethod: e.target.value }))} placeholder="e.g. Sun-dried, Low-temp dehydrated, Freeze-dried" />
           <EditorApplicationsSection applications={applications} addApplication={addApplication} removeApplication={removeApplication} />
         </div>
-        <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} priceTiers={priceTiers} addTier={addTier} removeTier={removeTier} updateTier={updateTier} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} errors={validationErrors} />
+        <EditorPricingSection fobBase={fobBase} setFobBase={setFobBase} samplePolicy={samplePolicy} setSamplePolicy={setSamplePolicy} moq={moq} setMoq={setMoq} leadTime={leadTime} setLeadTime={setLeadTime} errors={validationErrors} />
         <EditorSpecificationsSection specs={specs} updateSpec={(key, value) => setSpecs(prev => ({ ...prev, [key]: value }))} errors={validationErrors} />
         <EditorCertificationsSection certs={certs} toggleCert={toggleCert} errors={validationErrors} />
         <EditorAvailabilitySection peakSeason={peakSeason} setPeakSeason={setPeakSeason} offPeakSeason={offPeakSeason} setOffPeakSeason={setOffPeakSeason} currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} harvestMonths={harvestMonths} setHarvestMonths={setHarvestMonths} />
