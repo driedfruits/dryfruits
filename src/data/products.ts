@@ -126,24 +126,27 @@ export const products: Product[] = [
   // ==================
   {
     id: "dried-papaya",
-    name: "Wholesale Bulk Dried Dehydrated Papaya Chunks & Slices",
+    name: "Wholesale Bulk Dried Dehydrated Papaya Chunks delivery directed from factory in Indonesia",
     shortName: "Dried Papaya",
     category: "dried-fruits",
     isOrganic: false,
     sku: "PP-Dq",
     hsCode: "0813.40.4",
-    images: {},
-    metaTitle: "Wholesale Bulk dried dehydrated Papaya from Indonesia",
+    images: {
+      gallery: [],
+    },
+    metaTitle: "Dehydrated Papaya Chunks: Bulk Wholesale Factory Indonesia",
     metaDescription:
-      "Direct manufacturer of premium dried dehydrated papaya from Indonesia. \nUSDA/EU Organic certified available by request. Bulk 10-25kg cartons. MOQ 100kg. ",
+      "Dehydrated papaya chunks wholesale! 🔥 Factory direct from Indonesia. ✓ MOQ 100kg, 10 days production time, custom private label. ⏳ Order your sample!",
     keywords: ["dried dehydrated papaya chunks"],
-    tagline: "Sugar free, slowly dried papaya chunks",
+    tagline:
+      "Fully export certified B2B supply (HACCP, Halal, Kosher; USDA Organic by request). Processed via slow dehydration in industrial food-grade ovens.",
     description:
-      "Direct manufacturer of premium dried dehydrated papaya from Indonesia. \nUSDA/EU Organic certified available by request. Bulk 10-25kg cartons. MOQ 100kg. ",
+      "Source premium Indonesian dehydrated papaya chunks directly from our factory for global wholesale import. Our slow-drying process ensures a 100% natural, sugar-free, and chemical-free product with reliable year-round availability. Available in customizable bulk specifications and fully export-certified to meet the strict demands of your B2B supply chain.",
     flavorProfile:
-      "Intensely sweet and vibrant with rich, concentrated tropical notes. The dehydration process locks in a natural, honey-like caramel undertone with zero bitter aftertaste, perfectly capturing the essence of sun-ripened Indonesian papaya.",
+      "Mildly sweet with distinct musky, melon-like tropical notes. The dehydration process concentrates the fruit's natural monosaccharides, resulting in a clean, earthy organoleptic profile with zero astringency.",
     texture:
-      "Pleasantly chewy, tender, and robust. Our careful drying prcess yields a firm but yielding bite, ensuring the chunks and slices don't become overly tough or ocrystallized, maintaining a premium mouthfeel that consumers love.",
+      "Firm, cohesive, and pliable. Whether chopped, cut, or sliced, the chunks maintain a dense, chewy cellular matrix that resists crumbling during transit while avoiding leathery brittleness.",
     pricing: {
       fobBase: "from $1.12/kg ",
       moq: "100 kg",
@@ -239,8 +242,6 @@ export const products: Product[] = [
     hsCode: "0813.40.10",
     tagline: "Sweet and tangy tropical delight",
     images: {
-      main: "",
-      thumbnail: "",
       gallery: [],
     },
     description:
@@ -282,16 +283,32 @@ export const products: Product[] = [
     },
     harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     applications: ["Fruit salads", "Dessert toppings", "Baking", "Cocktails", "Snacking", "Trail mix", "Confectionery"],
-    packaging: { bulk: "10kg plastic bag in box", retail: "50g-500g stand-up pouches (OEM available)", custom: true },
+    packaging: {
+      bulk: "10kg plastic bag in box",
+      retail: "50g-500g stand-up pouches (OEM available)",
+      custom: true,
+    },
     pricing: {
       fobBase: "From $8.00/kg FOB",
       moq: "500 kg",
       leadTime: "2-3 weeks",
       priceTiers: [
-        { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "MOQ - 1 Ton", priceRange: "$9.50 - $10.50/kg" },
-        { volume: "1 - 10 Tons", priceRange: "$8.00 - $9.50/kg" },
-        { volume: "Full Container (>10T)", priceRange: "Contact for quote" },
+        {
+          volume: "Sample (<5kg)",
+          priceRange: "Free (buyer pays shipping)",
+        },
+        {
+          volume: "MOQ - 1 Ton",
+          priceRange: "$9.50 - $10.50/kg",
+        },
+        {
+          volume: "1 - 10 Tons",
+          priceRange: "$8.00 - $9.50/kg",
+        },
+        {
+          volume: "Full Container (>10T)",
+          priceRange: "Contact for quote",
+        },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
@@ -341,8 +358,6 @@ export const products: Product[] = [
     hsCode: "0813.40.90",
     tagline: "Rare superfood innovation",
     images: {
-      main: "",
-      thumbnail: "",
       gallery: [],
     },
     description:
@@ -386,16 +401,32 @@ export const products: Product[] = [
       "Salad toppings",
       "Supplement ingredients",
     ],
-    packaging: { bulk: "12kg foil liner box (nitrogen flush)", retail: "30g-200g pouches", custom: true },
+    packaging: {
+      bulk: "12kg foil liner box (nitrogen flush)",
+      retail: "30g-200g pouches",
+      custom: true,
+    },
     pricing: {
       fobBase: "From $18.00/kg FOB",
       moq: "300 kg",
       leadTime: "3-4 weeks",
       priceTiers: [
-        { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "MOQ - 500 kg", priceRange: "$20.00 - $22.00/kg" },
-        { volume: "500 kg - 2 Tons", priceRange: "$18.00 - $20.00/kg" },
-        { volume: "Large orders (>2T)", priceRange: "Contact for quote" },
+        {
+          volume: "Sample (<5kg)",
+          priceRange: "Free (buyer pays shipping)",
+        },
+        {
+          volume: "MOQ - 500 kg",
+          priceRange: "$20.00 - $22.00/kg",
+        },
+        {
+          volume: "500 kg - 2 Tons",
+          priceRange: "$18.00 - $20.00/kg",
+        },
+        {
+          volume: "Large orders (>2T)",
+          priceRange: "Contact for quote",
+        },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
@@ -445,8 +476,6 @@ export const products: Product[] = [
     hsCode: "0813.40.10",
     tagline: "King of tropical dried fruits",
     images: {
-      main: "",
-      thumbnail: "",
       gallery: [],
     },
     description:
@@ -508,10 +537,22 @@ export const products: Product[] = [
       moq: "500 kg",
       leadTime: "2-3 weeks",
       priceTiers: [
-        { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "MOQ - 1 Ton", priceRange: "$11.00 - $12.00/kg" },
-        { volume: "1 - 10 Tons", priceRange: "$9.50 - $11.00/kg" },
-        { volume: "Full Container (>10T)", priceRange: "Contact for quote" },
+        {
+          volume: "Sample (<5kg)",
+          priceRange: "Free (buyer pays shipping)",
+        },
+        {
+          volume: "MOQ - 1 Ton",
+          priceRange: "$11.00 - $12.00/kg",
+        },
+        {
+          volume: "1 - 10 Tons",
+          priceRange: "$9.50 - $11.00/kg",
+        },
+        {
+          volume: "Full Container (>10T)",
+          priceRange: "Contact for quote",
+        },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
@@ -561,8 +602,6 @@ export const products: Product[] = [
     hsCode: "0813.40.90",
     tagline: "Exotic superfood from the tropics",
     images: {
-      main: "",
-      thumbnail: "",
       gallery: [],
     },
     description:
@@ -611,16 +650,32 @@ export const products: Product[] = [
       "Natural coloring",
       "Confectionery",
     ],
-    packaging: { bulk: "12.5kg carton with nitrogen flush", retail: "30g-250g stand-up pouches", custom: true },
+    packaging: {
+      bulk: "12.5kg carton with nitrogen flush",
+      retail: "30g-250g stand-up pouches",
+      custom: true,
+    },
     pricing: {
       fobBase: "From $12.00/kg FOB",
       moq: "300 kg",
       leadTime: "2-3 weeks",
       priceTiers: [
-        { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "MOQ - 1 Ton", priceRange: "$14.00 - $16.00/kg" },
-        { volume: "1 - 5 Tons", priceRange: "$12.00 - $14.00/kg" },
-        { volume: "Large orders (>5T)", priceRange: "Contact for quote" },
+        {
+          volume: "Sample (<5kg)",
+          priceRange: "Free (buyer pays shipping)",
+        },
+        {
+          volume: "MOQ - 1 Ton",
+          priceRange: "$14.00 - $16.00/kg",
+        },
+        {
+          volume: "1 - 5 Tons",
+          priceRange: "$12.00 - $14.00/kg",
+        },
+        {
+          volume: "Large orders (>5T)",
+          priceRange: "Contact for quote",
+        },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
@@ -670,8 +725,6 @@ export const products: Product[] = [
     hsCode: "0813.40.90",
     tagline: "Indonesia's exotic treasure",
     images: {
-      main: "",
-      thumbnail: "",
       gallery: [],
     },
     description:
@@ -700,16 +753,32 @@ export const products: Product[] = [
     },
     harvestMonths: [2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2],
     applications: ["Exotic snacking", "Gourmet products", "Gift packs", "Specialty mixes"],
-    packaging: { bulk: "5-15 kg cartons", retail: "30g-200g pouches", custom: true },
+    packaging: {
+      bulk: "5-15 kg cartons",
+      retail: "30g-200g pouches",
+      custom: true,
+    },
     pricing: {
       fobBase: "From $15.00/kg FOB",
       moq: "200 kg",
       leadTime: "3-4 weeks",
       priceTiers: [
-        { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "MOQ - 500 kg", priceRange: "$17.00 - $19.00/kg" },
-        { volume: "500 kg - 2 Tons", priceRange: "$15.00 - $17.00/kg" },
-        { volume: "Large orders (>2T)", priceRange: "Contact for quote" },
+        {
+          volume: "Sample (<5kg)",
+          priceRange: "Free (buyer pays shipping)",
+        },
+        {
+          volume: "MOQ - 500 kg",
+          priceRange: "$17.00 - $19.00/kg",
+        },
+        {
+          volume: "500 kg - 2 Tons",
+          priceRange: "$15.00 - $17.00/kg",
+        },
+        {
+          volume: "Large orders (>2T)",
+          priceRange: "Contact for quote",
+        },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
@@ -726,8 +795,6 @@ export const products: Product[] = [
     hsCode: "0813.40.90",
     tagline: "Sustainable superfood alternative",
     images: {
-      main: "",
-      thumbnail: "",
       gallery: [],
     },
     description:
@@ -755,16 +822,32 @@ export const products: Product[] = [
     },
     harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     applications: ["Gluten-free snacks", "Flour alternative", "Chips", "Baking", "Health products"],
-    packaging: { bulk: "10-25 kg cartons", retail: "50g-300g pouches", custom: true },
+    packaging: {
+      bulk: "10-25 kg cartons",
+      retail: "50g-300g pouches",
+      custom: true,
+    },
     pricing: {
       fobBase: "From $6.00/kg FOB",
       moq: "500 kg",
       leadTime: "2-3 weeks",
       priceTiers: [
-        { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "MOQ - 1 Ton", priceRange: "$7.00 - $8.00/kg" },
-        { volume: "1 - 10 Tons", priceRange: "$6.00 - $7.00/kg" },
-        { volume: "Full Container (>10T)", priceRange: "Contact for quote" },
+        {
+          volume: "Sample (<5kg)",
+          priceRange: "Free (buyer pays shipping)",
+        },
+        {
+          volume: "MOQ - 1 Ton",
+          priceRange: "$7.00 - $8.00/kg",
+        },
+        {
+          volume: "1 - 10 Tons",
+          priceRange: "$6.00 - $7.00/kg",
+        },
+        {
+          volume: "Full Container (>10T)",
+          priceRange: "Contact for quote",
+        },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
@@ -781,8 +864,6 @@ export const products: Product[] = [
     hsCode: "0813.40.90",
     tagline: "Nature's candy from the tropics",
     images: {
-      main: "",
-      thumbnail: "",
       gallery: [],
     },
     description:
@@ -823,16 +904,32 @@ export const products: Product[] = [
     },
     harvestMonths: [2, 2, 2, 1, 1, 2, 2, 2, 1, 1, 1, 1],
     applications: ["Snacking", "Vegan meat alternative", "Baking", "Trail mix", "Smoothies", "Desserts"],
-    packaging: { bulk: "10-12.5kg carton with PE liner", retail: "50g-500g stand-up pouches", custom: true },
+    packaging: {
+      bulk: "10-12.5kg carton with PE liner",
+      retail: "50g-500g stand-up pouches",
+      custom: true,
+    },
     pricing: {
       fobBase: "From $10.00/kg FOB",
       moq: "500 kg",
       leadTime: "2-3 weeks",
       priceTiers: [
-        { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "MOQ - 1 Ton", priceRange: "$12.00 - $14.00/kg" },
-        { volume: "1 - 5 Tons", priceRange: "$10.00 - $12.00/kg" },
-        { volume: "Large orders (>5T)", priceRange: "Contact for quote" },
+        {
+          volume: "Sample (<5kg)",
+          priceRange: "Free (buyer pays shipping)",
+        },
+        {
+          volume: "MOQ - 1 Ton",
+          priceRange: "$12.00 - $14.00/kg",
+        },
+        {
+          volume: "1 - 5 Tons",
+          priceRange: "$10.00 - $12.00/kg",
+        },
+        {
+          volume: "Large orders (>5T)",
+          priceRange: "Contact for quote",
+        },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
@@ -882,8 +979,6 @@ export const products: Product[] = [
     hsCode: "0801.11.00",
     tagline: "Tropical versatility in every form",
     images: {
-      main: "",
-      thumbnail: "",
       gallery: [],
     },
     description:
@@ -919,16 +1014,32 @@ export const products: Product[] = [
     },
     harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     applications: ["Bakery", "Confectionery", "Cereal toppings", "Snacking", "Granola", "Smoothies", "Curries"],
-    packaging: { bulk: "25kg multi-wall paper bags", retail: "100g-500g pouches", custom: true },
+    packaging: {
+      bulk: "25kg multi-wall paper bags",
+      retail: "100g-500g pouches",
+      custom: true,
+    },
     pricing: {
       fobBase: "From $2.50/kg FOB",
       moq: "1 ton",
       leadTime: "2-3 weeks",
       priceTiers: [
-        { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "1 - 5 Tons", priceRange: "$3.00 - $3.50/kg" },
-        { volume: "5 - 20 Tons", priceRange: "$2.50 - $3.00/kg" },
-        { volume: "Full Container (>20T)", priceRange: "Contact for quote" },
+        {
+          volume: "Sample (<5kg)",
+          priceRange: "Free (buyer pays shipping)",
+        },
+        {
+          volume: "1 - 5 Tons",
+          priceRange: "$3.00 - $3.50/kg",
+        },
+        {
+          volume: "5 - 20 Tons",
+          priceRange: "$2.50 - $3.00/kg",
+        },
+        {
+          volume: "Full Container (>20T)",
+          priceRange: "Contact for quote",
+        },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
@@ -978,8 +1089,6 @@ export const products: Product[] = [
     hsCode: "0813.40.10",
     tagline: "Classic tropical staple",
     images: {
-      main: "",
-      thumbnail: "",
       gallery: [],
     },
     description:
@@ -1024,16 +1133,32 @@ export const products: Product[] = [
       "Granola bars",
       "Baby food",
     ],
-    packaging: { bulk: "10-12.5kg carton with PE liner", retail: "50g-500g stand-up pouches", custom: true },
+    packaging: {
+      bulk: "10-12.5kg carton with PE liner",
+      retail: "50g-500g stand-up pouches",
+      custom: true,
+    },
     pricing: {
       fobBase: "From $4.50/kg FOB",
       moq: "1 ton",
       leadTime: "2-3 weeks",
       priceTiers: [
-        { volume: "Sample (<5kg)", priceRange: "Free (buyer pays shipping)" },
-        { volume: "1 - 5 Tons", priceRange: "$5.50 - $6.50/kg" },
-        { volume: "5 - 10 Tons", priceRange: "$4.50 - $5.50/kg" },
-        { volume: "Full Container (>10T)", priceRange: "Contact for quote" },
+        {
+          volume: "Sample (<5kg)",
+          priceRange: "Free (buyer pays shipping)",
+        },
+        {
+          volume: "1 - 5 Tons",
+          priceRange: "$5.50 - $6.50/kg",
+        },
+        {
+          volume: "5 - 10 Tons",
+          priceRange: "$4.50 - $5.50/kg",
+        },
+        {
+          volume: "Full Container (>10T)",
+          priceRange: "Contact for quote",
+        },
       ],
       samplePolicy: "Free sample available, buyer pays courier",
     },
