@@ -4,6 +4,7 @@ import { FormInput, FormTextarea, FormSelect } from "@/components/forms/FormElem
 import { Button } from "@/components/ui/button";
 import { Copy, Check, AlertTriangle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { buildFullProductsFile } from "@/utils/productSerializer";
 import {
   EditorSeoSection,
   EditorImagesSection,
@@ -168,43 +169,44 @@ const ProductEditorPage = () => {
   const updateGalleryImage = (i: number, field: "alt", val: string) => setImgGallery((prev) => prev.map((g, idx) => (idx === i ? { ...g, [field]: val } : g)));
   const toggleRelated = (id: string) => setRelatedProducts((prev) => prev.includes(id) ? prev.filter((r) => r !== id) : [...prev, id]);
 
-  const jsonOutput = useMemo(() => {
-    return JSON.stringify(
-      {
-        id: selectedId, name, shortName, category, isOrganic,
-        sku: sku || undefined, hsCode: hsCode || undefined,
-        images: (imgMain || imgThumb || imgGallery.length > 0) ? {
-          main: imgMain || undefined, mainAlt: imgMainAlt || undefined,
-          thumbnail: imgThumb || undefined, thumbnailAlt: imgThumbAlt || undefined,
-          gallery: imgGallery.length > 0 ? imgGallery : undefined,
-        } : undefined,
-        metaTitle: metaTitle || undefined, metaDescription: metaDescription || undefined,
-        keywords: keywords.trim() ? keywords.split(",").map(k => k.trim()).filter(Boolean) : undefined,
-        tagline, description,
-        flavorProfile: flavorProfile || undefined, texture: texture || undefined,
-        pricing: { fobBase, moq, leadTime, priceTiers: priceTiers.length > 0 ? priceTiers : undefined, samplePolicy: samplePolicy || undefined },
-        certifications: certs,
-        availability: { peakSeason: peakSeason || undefined, offPeakSeason: offPeakSeason || undefined, currentStatus },
-        harvestMonths: harvestMonths.some(v => v > 0) ? harvestMonths : undefined,
-        specifications: Object.fromEntries(Object.entries(specs).filter(([_, v]) => v)),
-        applications: applications.length > 0 ? applications : undefined,
-        packaging: { bulk: packagingBulk, retail: packagingRetail, custom: packagingCustom },
-        logistics: { portOfLoading: portOfLoading || undefined, incoterms: incoterms ? incoterms.split(",").map((s) => s.trim()) : undefined, containerLoad20ft: containerLoad20ft || undefined, containerLoad40ft: containerLoad40ft || undefined, estimatedDelivery: estimatedDelivery || undefined },
-        exportDocuments: exportDocuments.trim() ? exportDocuments.split("\n").map(s => s.trim()).filter(Boolean) : undefined,
-        
-        faqs: faqs.length > 0 ? faqs : undefined,
-        relatedProducts: relatedProducts.length > 0 ? relatedProducts : undefined,
-      },
-      null, 2
-    );
-  }, [selectedId, name, shortName, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, estimatedDelivery, exportDocuments, faqs, relatedProducts]);
+  // Build the edited product from current editor state
+  const editedProduct: Product = useMemo(() => ({
+    id: selectedId, name, shortName, category, isOrganic,
+    sku: sku || undefined, hsCode: hsCode || undefined,
+    images: {
+      main: imgMain || undefined, mainAlt: imgMainAlt || undefined,
+      thumbnail: imgThumb || undefined, thumbnailAlt: imgThumbAlt || undefined,
+      gallery: imgGallery.filter(g => g.src || g.alt),
+    },
+    metaTitle: metaTitle || undefined, metaDescription: metaDescription || undefined,
+    keywords: keywords.trim() ? keywords.split(",").map(k => k.trim()).filter(Boolean) : undefined,
+    tagline, description,
+    flavorProfile: flavorProfile || undefined, texture: texture || undefined,
+    pricing: { fobBase, moq, leadTime, priceTiers: priceTiers.length > 0 ? priceTiers : undefined, samplePolicy: samplePolicy || undefined },
+    certifications: certs,
+    availability: { peakSeason: peakSeason || undefined, offPeakSeason: offPeakSeason || undefined, currentStatus: currentStatus as Product["availability"]["currentStatus"] },
+    harvestMonths: harvestMonths.some(v => v > 0) ? harvestMonths : undefined,
+    specifications: Object.fromEntries(Object.entries(specs).filter(([, v]) => v)) as Product["specifications"],
+    applications: applications.length > 0 ? applications : [],
+    packaging: { bulk: packagingBulk, retail: packagingRetail, custom: packagingCustom },
+    logistics: { portOfLoading: portOfLoading || undefined, incoterms: incoterms ? incoterms.split(",").map(s => s.trim()) : undefined, containerLoad20ft: containerLoad20ft || undefined, containerLoad40ft: containerLoad40ft || undefined, estimatedDelivery: estimatedDelivery || undefined },
+    exportDocuments: exportDocuments.trim() ? exportDocuments.split("\n").map(s => s.trim()).filter(Boolean) : undefined,
+    faqs: faqs.length > 0 ? faqs : undefined,
+    relatedProducts: relatedProducts.length > 0 ? relatedProducts : [],
+  }), [selectedId, name, shortName, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, estimatedDelivery, exportDocuments, faqs, relatedProducts]);
+
+  // Build full products.ts file content with the edited product swapped in
+  const fullFileOutput = useMemo(() => {
+    const allProducts = products.map(p => p.id === selectedId ? editedProduct : p);
+    return buildFullProductsFile(allProducts);
+  }, [selectedId, editedProduct]);
 
   const handleCopy = async () => {
     if (!validate()) {
       toast({ title: "Validation failed", description: `${Object.keys(validationErrors).length || "Some"} required fields are missing.`, variant: "destructive" });
       return;
     }
-    await navigator.clipboard.writeText(jsonOutput);
+    await navigator.clipboard.writeText(fullFileOutput);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -260,25 +262,24 @@ const ProductEditorPage = () => {
             </ul>
           </div>
         )}
-        <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800 dark:border-blue-800 dark:bg-blue-950/30 dark:text-blue-300">
-          <p className="font-medium mb-1">How to apply changes:</p>
+        <div className="rounded-lg border border-border bg-muted/50 p-4 text-sm text-muted-foreground">
+          <p className="font-medium mb-1 text-foreground">How to apply changes:</p>
           <ol className="list-decimal list-inside space-y-1 text-xs">
-            <li>Click <strong>Copy</strong> to copy the JSON output below</li>
-            <li>Open <code className="rounded bg-blue-100 px-1 py-0.5 dark:bg-blue-900">src/data/products.ts</code></li>
-            <li>Find the product entry matching <code className="rounded bg-blue-100 px-1 py-0.5 dark:bg-blue-900">{selectedId}</code></li>
-            <li>Replace the entire product object with the copied JSON</li>
+            <li>Click <strong>Copy Full File</strong> below</li>
+            <li>Open <code className="rounded bg-muted px-1 py-0.5">src/data/products.ts</code></li>
+            <li>Select all content (Ctrl+A / Cmd+A) and replace with the copied output</li>
             <li>Save the file</li>
           </ol>
         </div>
         <div className="flex items-center justify-between">
-          <p className="text-sm font-medium text-foreground">JSON Output</p>
+          <p className="text-sm font-medium text-foreground">Full File Output (products.ts)</p>
           <Button variant="outline" size="sm" onClick={handleCopy}>
             {copied ? <Check className="h-4 w-4 mr-1" /> : <Copy className="h-4 w-4 mr-1" />}
-            {copied ? "Copied!" : "Copy"}
+            {copied ? "Copied!" : "Copy Full File"}
           </Button>
         </div>
-        <pre className="bg-muted text-muted-foreground rounded-lg p-4 text-sm overflow-x-auto whitespace-pre-wrap border border-border">
-          {jsonOutput}
+        <pre className="bg-muted text-muted-foreground rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap border border-border max-h-[500px] overflow-y-auto">
+          {fullFileOutput}
         </pre>
       </div>
     </div>
