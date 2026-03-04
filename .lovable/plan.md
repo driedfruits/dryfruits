@@ -1,29 +1,35 @@
 
 
-## Change Photo Grid to 4 Columns on Desktop
+## Use `shortName` across all UI components
 
-### Findings
-- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
-- Captions are present in the code with `label` fields and `<p>` tags
-- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
-- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
+Replace long SEO product names and ID-derived names with the centralized `shortName` field in these locations:
 
-### Problem
-Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
-- Factory: reduce from 15 to 12, or increase to 16
-- Farmers: keep 8 (reduce from 10), or increase to 12
+### 1. Footer (`src/components/layout/Footer.tsx`, line 11)
+Replace the `id.split('-').map(...)` derivation with `p.shortName`.
 
-### Recommendation
-- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
-- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
+### 2. Product Card (`src/components/products/ProductCard.tsx`, line 59)
+Display `product.shortName` instead of `product.name` in the visible `<h3>`. Keep `product.name` in the `alt` attribute for SEO.
 
-### Changes
+Update `ProductCardProps` interface to include `shortName`.
 
-**`src/components/home/FactoryGallerySection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
+### 3. Product Comparison Table (`src/components/products/ProductComparisonTable.tsx`)
+Use `product.shortName` in the selected-product chips (line 209), table headers (line 264), and mobile card titles (line 342). Keep `product.name` in aria-labels.
 
-**`src/components/home/FarmersSection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
+### 4. Product Page Breadcrumb (`src/components/products/ProductPageTemplate.tsx`, line 113)
+Display `product.shortName` in the breadcrumb trail. Keep `product.name` in SEO meta tags (lines 48-50) and structured data (line 61).
+
+### 5. Sticky Inquiry Bar (`src/components/products/StickyInquiryBar.tsx`, line 17)
+Use `product.shortName` in the visible label. Keep `product.name` in the WhatsApp message for context.
+
+### 6. Related Products (`src/components/products/RelatedProducts.tsx`)
+Use `related.shortName` for the visible card title. Keep `product.name` in `alt` for SEO.
+
+### 7. Homepage Product Cards (`src/components/home/ProductCategoriesSection.tsx`)
+Replace the `shortNames` map and `getShortName` helper with `product.shortName` — eliminating the duplicated mapping.
+
+### What stays as `product.name`
+- SEO titles, meta descriptions, keywords
+- Image alt attributes
+- Structured data / JSON-LD
+- Editor page fields
 
