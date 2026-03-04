@@ -4,7 +4,6 @@ import { PrimaryButton, SecondaryButton, IconButton } from "@/components/CTAButt
 import { Menu, X, Leaf } from "lucide-react";
 
 const navigation = [
-  { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
   { name: "About Us", href: "/about" },
   { name: "Certifications", href: "/certifications" },
