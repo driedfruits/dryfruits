@@ -27,6 +27,7 @@ const ProductEditorPage = () => {
 
   // State
   const [name, setName] = useState("");
+  const [shortName, setShortName] = useState("");
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
   const [fobBase, setFobBase] = useState("");
@@ -71,6 +72,7 @@ const ProductEditorPage = () => {
 
   const loadProduct = (product: Product) => {
     setName(product.name);
+    setShortName(product.shortName || "");
     setCategory(product.category);
     setIsOrganic(product.isOrganic);
     setSku(product.sku || "");
@@ -136,6 +138,7 @@ const ProductEditorPage = () => {
   const validate = (): boolean => {
     const errors: Record<string, string> = {};
     if (!name.trim()) errors.name = "Product name is required";
+    if (!shortName.trim()) errors.shortName = "Short name is required";
     if (!tagline.trim()) errors.tagline = "Tagline is required";
     if (!description.trim()) errors.description = "Description is required";
     if (!fobBase.trim()) errors.fobBase = "FOB base price is required";
@@ -168,7 +171,7 @@ const ProductEditorPage = () => {
   const jsonOutput = useMemo(() => {
     return JSON.stringify(
       {
-        id: selectedId, name, category, isOrganic,
+        id: selectedId, name, shortName, category, isOrganic,
         sku: sku || undefined, hsCode: hsCode || undefined,
         images: (imgMain || imgThumb || imgGallery.length > 0) ? {
           main: imgMain || undefined, mainAlt: imgMainAlt || undefined,
@@ -194,7 +197,7 @@ const ProductEditorPage = () => {
       },
       null, 2
     );
-  }, [selectedId, name, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, estimatedDelivery, exportDocuments, faqs, relatedProducts]);
+  }, [selectedId, name, shortName, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, priceTiers, samplePolicy, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, packagingCustom, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, estimatedDelivery, exportDocuments, faqs, relatedProducts]);
 
   const handleCopy = async () => {
     if (!validate()) {
@@ -215,7 +218,7 @@ const ProductEditorPage = () => {
       <FormSelect label="Select Product" options={productOptions} value={selectedId} onChange={handleProductChange} />
 
       <div className="mt-8 space-y-6">
-        <EditorSeoSection name={name} setName={setName} metaTitle={metaTitle} setMetaTitle={setMetaTitle} metaDescription={metaDescription} setMetaDescription={setMetaDescription} keywords={keywords} setKeywords={setKeywords} errors={validationErrors} />
+        <EditorSeoSection name={name} setName={setName} shortName={shortName} setShortName={setShortName} metaTitle={metaTitle} setMetaTitle={setMetaTitle} metaDescription={metaDescription} setMetaDescription={setMetaDescription} keywords={keywords} setKeywords={setKeywords} errors={validationErrors} />
         <EditorImagesSection imgMain={imgMain} imgMainAlt={imgMainAlt} setImgMainAlt={setImgMainAlt} imgThumb={imgThumb} imgThumbAlt={imgThumbAlt} setImgThumbAlt={setImgThumbAlt} imgGallery={imgGallery} updateGalleryImage={updateGalleryImage} />
         <div className="space-y-4 rounded-lg border border-border p-4">
           <p className="text-sm font-medium text-foreground">Trade Identification</p>
