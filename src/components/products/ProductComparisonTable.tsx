@@ -206,7 +206,7 @@ export function ProductComparisonTable() {
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-sm text-foreground truncate">
-                      {product.name}
+                      {product.shortName}
                     </p>
                     <p className="text-xs text-muted-foreground truncate">
                       {categoryLabels[product.category] || product.category}
@@ -237,7 +237,7 @@ export function ProductComparisonTable() {
                   <SelectContent>
                     {availableProducts.map((p) => (
                       <SelectItem key={p.id} value={p.id}>
-                        {p.name}
+                        {p.shortName}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -259,9 +259,9 @@ export function ProductComparisonTable() {
                   <TableHead className="min-w-[160px] sticky left-0 bg-card z-10">
                     Specification
                   </TableHead>
-                  {selectedProducts.map((product) => (
+                    {selectedProducts.map((product) => (
                     <TableHead key={product.id} className="min-w-[140px] text-center">
-                      {product.name}
+                      {product.shortName}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -339,7 +339,7 @@ export function ProductComparisonTable() {
                   <CarouselItem key={product.id}>
                     <div className="rounded-lg border border-border bg-background p-4">
                       <div className="flex items-center justify-between mb-4">
-                        <h3 className="font-bold text-lg text-foreground">{product.name}</h3>
+                        <h3 className="font-bold text-lg text-foreground">{product.shortName}</h3>
                         <Button asChild variant="outline" size="sm" className="min-h-[44px]">
                           <Link to={`/products/${product.category}/${product.id}`}>
                             View <ExternalLink className="h-3 w-3 ml-1" />

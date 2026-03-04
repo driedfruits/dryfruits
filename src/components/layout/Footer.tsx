@@ -8,7 +8,7 @@ const driedFruits = getProductsByCategory("dried-fruits");
 const footerLinks = {
   products: [
     { name: "All Dried Fruits", href: "/products" },
-    ...driedFruits.map(p => ({ name: p.id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), href: `/products/dried-fruits/${p.id}` })),
+    ...driedFruits.map(p => ({ name: p.shortName, href: `/products/dried-fruits/${p.id}` })),
   ],
   company: [
     { name: "About Us", href: "/about" },

@@ -14,7 +14,7 @@ export function StickyInquiryBar({ product }: StickyInquiryBarProps) {
         <div className="flex items-center justify-between gap-3">
           <div className="flex-1 min-w-0">
             <p className="text-base font-medium text-foreground truncate">
-              Bulk {product.name}?
+              Bulk {product.shortName}?
             </p>
             <p className="text-sm text-muted-foreground">{product.pricing.fobBase}</p>
           </div>

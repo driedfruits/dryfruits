@@ -7,6 +7,7 @@ interface ProductCardProps {
   product: {
     id: string;
     name: string;
+    shortName: string;
     tagline: string;
     category: string;
     isOrganic?: boolean;
@@ -56,7 +57,7 @@ export const ProductCard = memo(function ProductCard({
           </div>
         )}
         <div className="p-4">
-          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{product.name}</h3>
+          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{product.shortName}</h3>
           <p className="text-sm text-muted-foreground">{product.tagline}</p>
           {showImage && <p className="text-sm text-primary font-medium mt-2">View Details →</p>}
         </div>

@@ -33,7 +33,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
               />
               <div className="p-4">
                 <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
-                  {related.name}
+                  {related.shortName}
                 </h3>
                 <p className="text-xs text-muted-foreground">{related.pricing.fobBase}</p>
               </div>
