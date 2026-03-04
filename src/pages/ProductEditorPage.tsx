@@ -4,6 +4,7 @@ import { FormInput, FormTextarea, FormSelect } from "@/components/forms/FormElem
 import { Button } from "@/components/ui/button";
 import { Copy, Check, AlertTriangle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { buildFullProductsFile } from "@/utils/productSerializer";
 import {
   EditorSeoSection,
   EditorImagesSection,
