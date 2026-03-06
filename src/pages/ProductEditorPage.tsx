@@ -167,7 +167,7 @@ const ProductEditorPage = () => {
     images: {
       main: imgMain || undefined, mainAlt: imgMainAlt || undefined,
       thumbnail: imgThumb || undefined, thumbnailAlt: imgThumbAlt || undefined,
-      gallery: imgGallery.filter(g => g.src || g.alt),
+      gallery: imgGallery.filter(g => g.src.trim()),
     },
     metaTitle: metaTitle || undefined, metaDescription: metaDescription || undefined,
     keywords: keywords.trim() ? keywords.split(",").map(k => k.trim()).filter(Boolean) : undefined,

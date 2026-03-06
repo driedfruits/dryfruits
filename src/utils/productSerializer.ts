@@ -182,7 +182,9 @@ function serializeValue(val: unknown, depth: number): string {
     }
     const pad = "  ".repeat(depth);
     const innerPad = "  ".repeat(depth + 1);
-    const items = val.map(v => `${innerPad}${serializeValue(v, depth + 1)},`).join("\n");
+    const serialized = val.map(v => serializeValue(v, depth + 1)).filter(s => s !== "{}");
+    if (serialized.length === 0) return "[]";
+    const items = serialized.map(s => `${innerPad}${s},`).join("\n");
     return `[\n${items}\n${pad}]`;
   }
   if (typeof val === "object") {
