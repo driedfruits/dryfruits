@@ -133,7 +133,7 @@ export const products: Product[] = [
     sku: "PP-Dq",
     hsCode: "0813.40.4",
     images: {
-      gallery: [{ src: "", alt: "" }, { src: "", alt: "" }, { src: "", alt: "" }, { src: "", alt: "" }],
+      gallery: [{}, {}, {}, {}],
     },
     metaTitle: "Wholesale Bulk dried dehydrated Papaya from Indonesia",
     metaDescription:
