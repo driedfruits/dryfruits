@@ -1,27 +1,29 @@
 
 
-## Test Results Summary
+## Change Photo Grid to 4 Columns on Desktop
 
-### What was tested on `/admin/products`:
+### Findings
+- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
+- Captions are present in the code with `label` fields and `<p>` tags
+- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
+- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
 
-1. **Create Product — SUCCESS**
-   - Clicked "New Product", filled in required fields (name, short name, tagline, description, pricing, specs, packaging, certifications, flavor profile)
-   - Clicked "Create Product"
-   - Toast appeared: **"Product created! Test Dried Mango has been saved to the database."**
-   - Page reloaded and "Dried Mango" appeared in the product dropdown, confirming data round-tripped through the database
-
-2. **Read/Load Product — SUCCESS**
-   - After creation, the product was fetched from the database and populated all form fields correctly
-
-3. **Delete Product — NOT COMPLETED**
-   - The browser automation timed out before completing the delete test
-   - The Delete button is visible at the bottom of the form — **recommend testing this manually** by scrolling to the bottom and clicking Delete
-
-### Issues Found
-- **Minor**: The Bulk Packaging field got duplicated text ("10kg carton10kg carton") during automation — this is a browser automation quirk, not a code bug
-- **RLS policies**: All write policies are currently set to `Permissive: No` — this means they are **restrictive** policies. The product still saved because there are both anon and authenticated policies. However, this should be reviewed — restrictive policies require ALL to pass, which could cause issues. Worth verifying the RLS setup is intentional.
+### Problem
+Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
+- Factory: reduce from 15 to 12, or increase to 16
+- Farmers: keep 8 (reduce from 10), or increase to 12
 
 ### Recommendation
-- Manually test the **Delete** flow by scrolling to the bottom of `/admin/products` and clicking the red Delete button
-- Consider fixing RLS policies from restrictive (`Permissive: No`) to permissive (`Permissive: Yes`) to avoid potential access issues
+- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
+- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
+
+### Changes
+
+**`src/components/home/FactoryGallerySection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
+
+**`src/components/home/FarmersSection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
 
