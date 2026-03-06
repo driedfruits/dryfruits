@@ -1,5 +1,5 @@
 import { memo, useCallback } from "react";
-import { PackageSearch, Droplets, Flame, Sun, Leaf, Zap, Package } from "lucide-react";
+import { Sun, Leaf, Zap, Package } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Badge } from "@/components/ui/badge";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
@@ -10,7 +10,6 @@ import {
   TableRow } from
 "@/components/ui/table";
 import {
-  processSteps,
   detailedBlocks,
   technicalSpecs,
   processImages,
@@ -18,11 +17,6 @@ import {
   sustainabilityBadges } from
 "@/data/productionData";
 
-const stepIcons = {
-  PackageSearch,
-  Droplets,
-  Flame
-} as const;
 
 export const ProductionProcessSection = memo(function ProductionProcessSection() {
   const handleCtaClick = useCallback((eventName: string) => {
@@ -70,27 +64,6 @@ export const ProductionProcessSection = memo(function ProductionProcessSection()
           </div>
         </div>
 
-        {/* ── Three-Step Icons Row ── */}
-        <div className="grid gap-8 md:grid-cols-3 mb-20">
-          {processSteps.map((step, i) => {
-            const Icon = stepIcons[step.icon];
-            return (
-              <div key={step.title} className="text-center space-y-4">
-                <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Icon className="w-8 h-8 text-primary" />
-                </div>
-                <div className="flex items-center justify-center gap-2">
-                  <span className="text-sm font-semibold text-muted-foreground">Step {i + 1}</span>
-                </div>
-                <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{step.description}</p>
-                <Badge variant="secondary" className="text-xs">
-                  {step.statLabel}: {step.statValue}
-                </Badge>
-              </div>);
-
-          })}
-        </div>
 
         {/* ── Detailed Flow Blocks ── */}
         <div className="space-y-16 mb-20">
