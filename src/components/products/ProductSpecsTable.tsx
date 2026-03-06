@@ -25,10 +25,7 @@ const specLabels: Record<string, string> = {
   packagingMethod: "Bulk Packaging Method",
   salmonella: "Salmonella",
   eColi: "E. coli",
-  fatContent: "Fat Content",
   defects: "Defects",
-  aflatoxins: "Aflatoxins",
-  testingMethod: "Testing Method",
 };
 
 export function ProductSpecsTable({ product }: ProductSpecsTableProps) {

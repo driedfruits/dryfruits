@@ -38,12 +38,9 @@ export interface Product {
     foreignMatter?: string;
     processingMethod?: string;
     grade?: string;
-    fatContent?: string;
     defects?: string;
     salmonella?: string;
     eColi?: string;
-    aflatoxins?: string;
-    testingMethod?: string;
     so2Level?: string;
     totalPlateCount?: string;
     waterActivity?: string;

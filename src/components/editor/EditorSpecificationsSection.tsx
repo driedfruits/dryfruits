@@ -20,8 +20,6 @@ const specGroups = [
       { key: "so2Level", label: "SO₂ / Preservatives" },
       { key: "additives", label: "Additives" },
       { key: "foreignMatter", label: "Foreign Matter" },
-      { key: "fatContent", label: "Fat Content" },
-      { key: "aflatoxins", label: "Aflatoxins" },
     ],
   },
   {
@@ -31,7 +29,7 @@ const specGroups = [
       { key: "yeastMold", label: "Yeast & Mold" },
       { key: "salmonella", label: "Salmonella" },
       { key: "eColi", label: "E. coli" },
-      { key: "testingMethod", label: "Testing Method" },
+      
     ],
   },
   {
