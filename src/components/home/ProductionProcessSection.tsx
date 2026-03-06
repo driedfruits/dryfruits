@@ -1,5 +1,5 @@
 import { memo, useCallback } from "react";
-import { PackageSearch, Droplets, Flame, Sun, Leaf, Zap, Package } from "lucide-react";
+import { Sun, Leaf, Zap, Package } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Badge } from "@/components/ui/badge";
 import { PrimaryButton, SecondaryButton } from "@/components/CTAButton";
@@ -10,7 +10,6 @@ import {
   TableRow } from
 "@/components/ui/table";
 import {
-  processSteps,
   detailedBlocks,
   technicalSpecs,
   processImages,
@@ -18,11 +17,6 @@ import {
   sustainabilityBadges } from
 "@/data/productionData";
 
-const stepIcons = {
-  PackageSearch,
-  Droplets,
-  Flame
-} as const;
 
 export const ProductionProcessSection = memo(function ProductionProcessSection() {
   const handleCtaClick = useCallback((eventName: string) => {
