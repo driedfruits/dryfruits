@@ -1,26 +1,29 @@
 
 
-## Root Cause
+## Change Photo Grid to 4 Columns on Desktop
 
-Two bugs in the serialization pipeline produce invalid TypeScript when pasted:
+### Findings
+- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
+- Captions are present in the code with `label` fields and `<p>` tags
+- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
+- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
 
-1. **Empty gallery objects**: The editor initializes 4 gallery slots as `{src: "", alt: ""}`. The filter `imgGallery.filter(g => g.src || g.alt)` keeps items where either field is truthy — but when both are empty strings, they get filtered out correctly. However, the `serializeValue` function filters out empty string values (line 192: `v !== ""`), so a gallery item like `{src: "", alt: "some alt"}` becomes `{alt: "some alt"}` — missing `src`, which violates the type.
+### Problem
+Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
+- Factory: reduce from 15 to 12, or increase to 16
+- Farmers: keep 8 (reduce from 10), or increase to 12
 
-2. **Current build error**: The actual data in products.ts line 136 has `gallery: [{}, {}, {}, {}]` — four empty objects. This means gallery items with only empty strings got through the filter (both `src` and `alt` were empty but the objects existed), then the serializer stripped all empty string properties, leaving `{}`.
-
-**The real fix**: The `gallery` filter in `editedProduct` should be stricter — only include items where `src` is non-empty (since `src` is required by the type). And as a safety net, the serializer should skip empty objects in arrays.
+### Recommendation
+- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
+- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
 
 ### Changes
 
-**1. `src/pages/ProductEditorPage.tsx` (line 170)**
-- Change gallery filter from `g => g.src || g.alt` to `g => g.src.trim()` — only include gallery items that have an actual image source
+**`src/components/home/FactoryGallerySection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
 
-**2. `src/utils/productSerializer.ts` (line 191-197)**
-- Add a guard in `serializeValue` for objects: after filtering out empty/undefined/null entries, if no entries remain AND we're inside an array context, skip the item entirely
-- Simpler approach: in the array serialization (line 185), filter out items that serialize to `{}` before joining
-
-**3. `src/data/products.ts` (line 136)** — Fix the immediate build error
-- Remove `gallery: [{}, {}, {}, {}]` → remove the entire `gallery` key (or set to empty array `[]`)
-
-This ensures the "Copy Full File" output is always valid TypeScript that can be pasted without errors.
+**`src/components/home/FarmersSection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
 
