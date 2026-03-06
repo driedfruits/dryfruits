@@ -1,6 +1,8 @@
 import { useState, useMemo } from "react";
 import { Ship, Package, Calculator } from "lucide-react";
-import { products, companyInfo, type Product } from "@/data/companyData";
+import { companyInfo } from "@/data/companyData";
+import type { Product } from "@/data/products";
+import { useProducts } from "@/contexts/ProductsContext";
 import { FormSelect } from "@/components/forms/FormElements";
 
 const bagSizeOptions = [
@@ -41,6 +43,7 @@ interface ContainerCalculatorProps {
 }
 
 export function ContainerCalculator({ defaultProductId, compact = false, headingLevel = "h2" }: ContainerCalculatorProps) {
+  const { products } = useProducts();
   const [selectedProductId, setSelectedProductId] = useState(defaultProductId || "");
   const [bagSize, setBagSize] = useState("25");
 
@@ -54,12 +57,12 @@ export function ContainerCalculator({ defaultProductId, compact = false, heading
       grouped[product.category].push(product);
     });
     return grouped;
-  }, []);
+  }, [products]);
 
   // Get selected product
   const selectedProduct = useMemo(() => {
     return products.find((p) => p.id === selectedProductId);
-  }, [selectedProductId]);
+  }, [selectedProductId, products]);
 
   // Calculate container loads
   const calculations = useMemo(() => {

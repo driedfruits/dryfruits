@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { FormInput, FormTextarea, FormSelect } from "./FormElements";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { products, productCategories } from "@/data/companyData";
+import { useProducts } from "@/contexts/ProductsContext";
 import { Loader2, Send, CheckCircle2 } from "lucide-react";
 import { WEB3FORMS_ACCESS_KEY } from "@/lib/constants";
 
@@ -28,6 +28,7 @@ export function ContactForm({ variant = "contact", preselectedProduct, className
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const { products } = useProducts();
   const productOptions = [
     { value: "", label: "Select a product" },
     ...products.map((p) => ({ value: p.id, label: p.shortName })),

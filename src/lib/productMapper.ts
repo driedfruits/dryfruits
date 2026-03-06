@@ -107,7 +107,7 @@ export function mapProductToRow(product: Product): ProductRow {
     meta_title: product.metaTitle ?? null,
     meta_description: product.metaDescription ?? null,
     keywords: product.keywords ?? null,
-    specifications: product.specifications as unknown as Record<string, unknown>,
+    specifications: product.specifications as unknown as Record<string, string>,
     availability: product.availability
       ? {
           peakSeason: product.availability.peakSeason || "",

@@ -2,12 +2,14 @@ import { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { PrimaryButton } from "@/components/CTAButton";
-import { getProductsByCategory } from "@/data/companyData";
+import { getProductsByCategory } from "@/data/products";
+import { useProducts } from "@/contexts/ProductsContext";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 
 
 export const ProductCategoriesSection = memo(function ProductCategoriesSection() {
-  const driedFruits = useMemo(() => getProductsByCategory("dried-fruits"), []);
+  const { products } = useProducts();
+  const driedFruits = useMemo(() => getProductsByCategory(products, "dried-fruits"), [products]);
 
   return (
     <section className="py-20">

@@ -21,7 +21,7 @@ import {
   Sparkles,
   Apple
 } from "lucide-react";
-import { storageGuidelines, products, storageFAQs } from "@/data/companyData";
+import { storageGuidelines, storageFAQs } from "@/data/companyData";
 import { generateFAQSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
 import { FAQAccordion } from "@/components/ui/faq-accordion";
