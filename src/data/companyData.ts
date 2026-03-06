@@ -1,5 +1,4 @@
 // Centralized data exports - re-exports from modular files for backwards compatibility
-// This ensures existing imports continue to work while code is organized into smaller modules
 
 // Company information and related data
 export {
@@ -20,12 +19,11 @@ export { faqItems } from "./faqData";
 // Shipping data
 export { shippingProcess, exportDocs } from "./shippingData";
 
-// Product type, data, and helpers
+// Product type and helpers (now pure functions that take products array as arg)
 export type { Product } from "./products";
 export {
-  products,
   getProductById,
   getProductsByCategory,
   getRelatedProducts,
-  productCategories,
+  getProductCategories,
 } from "./products";

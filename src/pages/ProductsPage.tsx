@@ -4,9 +4,9 @@ import { SEO } from "@/components/SEO";
 import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema, generateItemListSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
-import { products } from "@/data/companyData";
+import { useProducts } from "@/contexts/ProductsContext";
 import { ProductCard, ProductComparisonTable } from "@/components/products";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Loader2 } from "lucide-react";
 
 const breadcrumbItems = [
   { name: "Home", url: SITE_URL },
@@ -14,6 +14,8 @@ const breadcrumbItems = [
 ];
 
 export default function ProductsPage() {
+  const { products, loading } = useProducts();
+
   return (
     <Layout>
       <SEO
@@ -29,14 +31,16 @@ export default function ProductsPage() {
           __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbItems)),
         }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            generateItemListSchema(products, "Dried Fruits", `${SITE_URL}/products`)
-          ),
-        }}
-      />
+      {products.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              generateItemListSchema(products, "Dried Fruits", `${SITE_URL}/products`)
+            ),
+          }}
+        />
+      )}
 
       <section className="py-16 bg-gradient-to-br from-primary to-tropical-green-light animate-content-reveal">
         <div className="container text-center text-primary-foreground">
@@ -65,16 +69,22 @@ export default function ProductsPage() {
 
           {/* All Products Grid */}
           <h2 className="text-3xl font-bold text-foreground mb-8">Our Dried Fruits</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {products.map((product, index) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                animationDelay={150 + index * 50}
-                showImage
-              />
-            ))}
-          </div>
+          {loading ? (
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            </div>
+          ) : (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {products.map((product, index) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  animationDelay={150 + index * 50}
+                  showImage
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </Layout>
