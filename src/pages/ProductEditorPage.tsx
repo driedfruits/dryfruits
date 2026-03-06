@@ -1,10 +1,12 @@
-import { useState, useMemo } from "react";
-import { products, type Product } from "@/data/products";
+import { useState, useMemo, useEffect } from "react";
+import { useProducts } from "@/contexts/ProductsContext";
+import { supabase } from "@/integrations/supabase/client";
+import { mapProductToRow } from "@/lib/productMapper";
+import type { Product } from "@/data/products";
 import { FormInput, FormTextarea, FormSelect } from "@/components/forms/FormElements";
 import { Button } from "@/components/ui/button";
-import { Copy, Check, AlertTriangle } from "lucide-react";
+import { Save, Plus, Trash2, AlertTriangle, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { buildFullProductsFile } from "@/utils/productSerializer";
 import {
   EditorSeoSection,
   EditorImagesSection,
@@ -14,15 +16,33 @@ import {
   EditorPackagingSection,
   EditorLogisticsSection,
   EditorApplicationsSection,
-  
   EditorFaqsSection,
   EditorRelatedSection,
   EditorSpecificationsSection,
 } from "@/components/editor";
 
+const EMPTY_PRODUCT: Product = {
+  id: "",
+  name: "",
+  shortName: "",
+  category: "dried-fruits",
+  isOrganic: false,
+  tagline: "",
+  description: "",
+  specifications: {},
+  applications: [],
+  packaging: { bulk: "", retail: "", custom: false },
+  pricing: { fobBase: "", moq: "", leadTime: "" },
+  certifications: [],
+  relatedProducts: [],
+};
+
 const ProductEditorPage = () => {
-  const [selectedId, setSelectedId] = useState(products[0]?.id || "");
-  const [copied, setCopied] = useState(false);
+  const { products, loading: productsLoading, refetch } = useProducts();
+  const [selectedId, setSelectedId] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [isNewProduct, setIsNewProduct] = useState(false);
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
   const { toast } = useToast();
 
@@ -116,17 +136,28 @@ const ProductEditorPage = () => {
     setImgGallery([...rawGallery, ...Array(4).fill(null).map(() => ({ src: "", alt: "" }))].slice(0, 4));
   };
 
-  useState(() => {
-    const p = products.find((p) => p.id === selectedId);
-    if (p) loadProduct(p);
-  });
+  // Load first product when products arrive
+  useEffect(() => {
+    if (products.length > 0 && !selectedId && !isNewProduct) {
+      setSelectedId(products[0].id);
+      loadProduct(products[0]);
+    }
+  }, [products]);
 
   const handleProductChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const id = e.target.value;
     setSelectedId(id);
+    setIsNewProduct(false);
     setValidationErrors({});
     const product = products.find((p) => p.id === id);
     if (product) loadProduct(product);
+  };
+
+  const handleNewProduct = () => {
+    setIsNewProduct(true);
+    setSelectedId("");
+    setValidationErrors({});
+    loadProduct(EMPTY_PRODUCT);
   };
 
   // Validation
@@ -146,6 +177,11 @@ const ProductEditorPage = () => {
     if (!specs.shelfLife?.trim()) errors["specs.shelfLife"] = "Shelf life is required";
     if (!specs.origin?.trim()) errors["specs.origin"] = "Origin is required";
     if (!flavorProfile.trim()) errors.flavorProfile = "Flavor profile is required";
+    if (isNewProduct) {
+      const newId = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      if (!newId) errors.name = "Product name must generate a valid ID";
+      if (products.some((p) => p.id === newId)) errors.name = "A product with this name already exists";
+    }
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -160,47 +196,118 @@ const ProductEditorPage = () => {
   const updateGalleryImage = (i: number, field: "alt", val: string) => setImgGallery((prev) => prev.map((g, idx) => (idx === i ? { ...g, [field]: val } : g)));
   const toggleRelated = (id: string) => setRelatedProducts((prev) => prev.includes(id) ? prev.filter((r) => r !== id) : [...prev, id]);
 
-  // Build the edited product from current editor state
-  const editedProduct: Product = useMemo(() => ({
-    id: selectedId, name, shortName, category, isOrganic,
-    sku: sku || undefined, hsCode: hsCode || undefined,
-    images: {
-      main: imgMain || undefined, mainAlt: imgMainAlt || undefined,
-      thumbnail: imgThumb || undefined, thumbnailAlt: imgThumbAlt || undefined,
-      gallery: imgGallery.filter(g => g.src.trim()),
-    },
-    metaTitle: metaTitle || undefined, metaDescription: metaDescription || undefined,
-    keywords: keywords.trim() ? keywords.split(",").map(k => k.trim()).filter(Boolean) : undefined,
-    tagline, description,
-    flavorProfile: flavorProfile || undefined, texture: texture || undefined,
-    pricing: { fobBase, moq, leadTime },
-    certifications: certs,
-    availability: { peakSeason: peakSeason || undefined, offPeakSeason: offPeakSeason || undefined, currentStatus: currentStatus as Product["availability"]["currentStatus"] },
-    harvestMonths: harvestMonths.some(v => v > 0) ? harvestMonths : undefined,
-    specifications: Object.fromEntries(Object.entries(specs).filter(([, v]) => v)) as Product["specifications"],
-    applications: applications.length > 0 ? applications : [],
-    packaging: { bulk: packagingBulk, retail: packagingRetail, custom: products.find(p => p.id === selectedId)?.packaging.custom ?? false },
-    logistics: { portOfLoading: portOfLoading || undefined, incoterms: incoterms ? incoterms.split(",").map(s => s.trim()) : undefined, containerLoad20ft: containerLoad20ft || undefined, containerLoad40ft: containerLoad40ft || undefined, estimatedDelivery: estimatedDelivery || undefined },
-    exportDocuments: exportDocuments.trim() ? exportDocuments.split("\n").map(s => s.trim()).filter(Boolean) : undefined,
-    faqs: faqs.length > 0 ? faqs : undefined,
-    relatedProducts: relatedProducts.length > 0 ? relatedProducts : [],
-  }), [selectedId, name, shortName, category, isOrganic, sku, hsCode, imgMain, imgMainAlt, imgThumb, imgThumbAlt, imgGallery, metaTitle, metaDescription, keywords, tagline, description, flavorProfile, texture, fobBase, moq, leadTime, certs, peakSeason, offPeakSeason, currentStatus, harvestMonths, specs, applications, packagingBulk, packagingRetail, portOfLoading, incoterms, containerLoad20ft, containerLoad40ft, estimatedDelivery, exportDocuments, faqs, relatedProducts]);
+  // Build the edited product
+  const buildProduct = (): Product => {
+    const productId = isNewProduct
+      ? name.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+      : selectedId;
 
-  // Build full products.ts file content with the edited product swapped in
-  const fullFileOutput = useMemo(() => {
-    const allProducts = products.map(p => p.id === selectedId ? editedProduct : p);
-    return buildFullProductsFile(allProducts);
-  }, [selectedId, editedProduct]);
+    return {
+      id: productId,
+      name,
+      shortName,
+      category,
+      isOrganic,
+      sku: sku || undefined,
+      hsCode: hsCode || undefined,
+      images: {
+        main: imgMain || undefined,
+        mainAlt: imgMainAlt || undefined,
+        thumbnail: imgThumb || undefined,
+        thumbnailAlt: imgThumbAlt || undefined,
+        gallery: imgGallery.filter(g => g.src.trim()),
+      },
+      metaTitle: metaTitle || undefined,
+      metaDescription: metaDescription || undefined,
+      keywords: keywords.trim() ? keywords.split(",").map(k => k.trim()).filter(Boolean) : undefined,
+      tagline,
+      description,
+      flavorProfile: flavorProfile || undefined,
+      texture: texture || undefined,
+      pricing: { fobBase, moq, leadTime },
+      certifications: certs,
+      availability: {
+        peakSeason: peakSeason || undefined,
+        offPeakSeason: offPeakSeason || undefined,
+        currentStatus: currentStatus as Product["availability"]["currentStatus"],
+      },
+      harvestMonths: harvestMonths.some(v => v > 0) ? harvestMonths : undefined,
+      specifications: Object.fromEntries(Object.entries(specs).filter(([, v]) => v)) as Product["specifications"],
+      applications: applications.length > 0 ? applications : [],
+      packaging: { bulk: packagingBulk, retail: packagingRetail, custom: products.find(p => p.id === selectedId)?.packaging.custom ?? false },
+      logistics: {
+        portOfLoading: portOfLoading || undefined,
+        incoterms: incoterms ? incoterms.split(",").map(s => s.trim()) : undefined,
+        containerLoad20ft: containerLoad20ft || undefined,
+        containerLoad40ft: containerLoad40ft || undefined,
+        estimatedDelivery: estimatedDelivery || undefined,
+      },
+      exportDocuments: exportDocuments.trim() ? exportDocuments.split("\n").map(s => s.trim()).filter(Boolean) : undefined,
+      faqs: faqs.length > 0 ? faqs : undefined,
+      relatedProducts: relatedProducts.length > 0 ? relatedProducts : [],
+    };
+  };
 
-  const handleCopy = async () => {
+  // Save to database
+  const handleSave = async () => {
     if (!validate()) {
       toast({ title: "Validation failed", description: `${Object.keys(validationErrors).length || "Some"} required fields are missing.`, variant: "destructive" });
       return;
     }
-    await navigator.clipboard.writeText(fullFileOutput);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+
+    setSaving(true);
+    const product = buildProduct();
+    const row = mapProductToRow(product);
+
+    // Remove created_at/updated_at — let the DB handle them
+    const { created_at, updated_at, ...upsertData } = row;
+
+    const { error } = await supabase
+      .from("products")
+      .upsert(upsertData as any, { onConflict: "id" });
+
+    if (error) {
+      console.error("Save failed:", error);
+      toast({ title: "Save failed", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: isNewProduct ? "Product created!" : "Product saved!", description: `${product.name} has been saved to the database.` });
+      setIsNewProduct(false);
+      setSelectedId(product.id);
+      await refetch();
+    }
+    setSaving(false);
   };
+
+  // Delete from database
+  const handleDelete = async () => {
+    if (!selectedId || isNewProduct) return;
+    const confirmed = window.confirm(`Are you sure you want to delete "${name}"? This cannot be undone.`);
+    if (!confirmed) return;
+
+    setDeleting(true);
+    const { error } = await supabase
+      .from("products")
+      .delete()
+      .eq("id", selectedId);
+
+    if (error) {
+      toast({ title: "Delete failed", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: "Product deleted", description: `${name} has been removed.` });
+      await refetch();
+      setSelectedId("");
+      loadProduct(EMPTY_PRODUCT);
+    }
+    setDeleting(false);
+  };
+
+  if (productsLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   const productOptions = products.map((p) => ({ value: p.id, label: p.shortName }));
   const errorCount = Object.keys(validationErrors).length;
@@ -208,9 +315,23 @@ const ProductEditorPage = () => {
   return (
     <div className="min-h-screen bg-background p-4 sm:p-8 max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-foreground">Product Data Editor</h1>
-      <FormSelect label="Select Product" options={productOptions} value={selectedId} onChange={handleProductChange} />
 
-      <div className="mt-8 space-y-6">
+      <div className="flex items-end gap-3 mb-4">
+        <div className="flex-1">
+          <FormSelect label="Select Product" options={productOptions} value={selectedId} onChange={handleProductChange} />
+        </div>
+        <Button variant="outline" onClick={handleNewProduct} className="mb-0.5">
+          <Plus className="h-4 w-4 mr-1" /> New Product
+        </Button>
+      </div>
+
+      {isNewProduct && (
+        <div className="rounded-lg border border-primary/50 bg-primary/5 p-3 mb-6 text-sm text-foreground">
+          Creating a new product. The ID will be auto-generated from the product name.
+        </div>
+      )}
+
+      <div className="mt-4 space-y-6">
         <EditorSeoSection name={name} setName={setName} shortName={shortName} setShortName={setShortName} tagline={tagline} setTagline={setTagline} description={description} setDescription={setDescription} metaTitle={metaTitle} setMetaTitle={setMetaTitle} metaDescription={metaDescription} setMetaDescription={setMetaDescription} keywords={keywords} setKeywords={setKeywords} errors={validationErrors} />
         <EditorImagesSection imgMain={imgMain} imgMainAlt={imgMainAlt} setImgMainAlt={setImgMainAlt} imgThumb={imgThumb} imgThumbAlt={imgThumbAlt} setImgThumbAlt={setImgThumbAlt} imgGallery={imgGallery} updateGalleryImage={updateGalleryImage} />
         <div className="space-y-4 rounded-lg border border-border p-4">
@@ -231,12 +352,11 @@ const ProductEditorPage = () => {
         <EditorAvailabilitySection peakSeason={peakSeason} setPeakSeason={setPeakSeason} offPeakSeason={offPeakSeason} setOffPeakSeason={setOffPeakSeason} currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} harvestMonths={harvestMonths} setHarvestMonths={setHarvestMonths} />
         <EditorPackagingSection bulk={packagingBulk} setBulk={setPackagingBulk} retail={packagingRetail} setRetail={setPackagingRetail} errors={validationErrors} />
         <EditorLogisticsSection portOfLoading={portOfLoading} setPortOfLoading={setPortOfLoading} incoterms={incoterms} setIncoterms={setIncoterms} containerLoad20ft={containerLoad20ft} setContainerLoad20ft={setContainerLoad20ft} containerLoad40ft={containerLoad40ft} setContainerLoad40ft={setContainerLoad40ft} estimatedDelivery={estimatedDelivery} setEstimatedDelivery={setEstimatedDelivery} exportDocuments={exportDocuments} setExportDocuments={setExportDocuments} />
-        
         <EditorFaqsSection faqs={faqs} addFaq={addFaq} removeFaq={removeFaq} updateFaq={updateFaq} />
-        <EditorRelatedSection selectedId={selectedId} relatedProducts={relatedProducts} toggleRelated={toggleRelated} />
+        <EditorRelatedSection selectedId={selectedId} relatedProducts={relatedProducts} toggleRelated={toggleRelated} allProducts={products} />
       </div>
 
-      {/* JSON Output */}
+      {/* Action Bar */}
       <div className="mt-8 space-y-3">
         {errorCount > 0 && (
           <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
@@ -251,25 +371,19 @@ const ProductEditorPage = () => {
             </ul>
           </div>
         )}
-        <div className="rounded-lg border border-border bg-muted/50 p-4 text-sm text-muted-foreground">
-          <p className="font-medium mb-1 text-foreground">How to apply changes:</p>
-          <ol className="list-decimal list-inside space-y-1 text-xs">
-            <li>Click <strong>Copy Full File</strong> below</li>
-            <li>Open <code className="rounded bg-muted px-1 py-0.5">src/data/products.ts</code></li>
-            <li>Select all content (Ctrl+A / Cmd+A) and replace with the copied output</li>
-            <li>Save the file</li>
-          </ol>
-        </div>
-        <div className="flex items-center justify-between">
-          <p className="text-sm font-medium text-foreground">Full File Output (products.ts)</p>
-          <Button variant="outline" size="sm" onClick={handleCopy}>
-            {copied ? <Check className="h-4 w-4 mr-1" /> : <Copy className="h-4 w-4 mr-1" />}
-            {copied ? "Copied!" : "Copy Full File"}
+
+        <div className="flex items-center gap-3">
+          <Button onClick={handleSave} disabled={saving} className="flex-1">
+            {saving ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Save className="h-4 w-4 mr-2" />}
+            {isNewProduct ? "Create Product" : "Save Changes"}
           </Button>
+          {!isNewProduct && selectedId && (
+            <Button variant="destructive" onClick={handleDelete} disabled={deleting}>
+              {deleting ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Trash2 className="h-4 w-4 mr-2" />}
+              Delete
+            </Button>
+          )}
         </div>
-        <pre className="bg-muted text-muted-foreground rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap border border-border max-h-[500px] overflow-y-auto">
-          {fullFileOutput}
-        </pre>
       </div>
     </div>
   );

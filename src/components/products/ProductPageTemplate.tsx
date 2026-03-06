@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { type Product, getRelatedProducts, companyInfo } from "@/data/companyData";
+import type { Product } from "@/data/products";
+import { getRelatedProducts } from "@/data/products";
+import { companyInfo } from "@/data/companyData";
+import { useProducts } from "@/contexts/ProductsContext";
 import { SEO } from "@/components/SEO";
 import { getCategorySocialImage } from "@/lib/socialImages";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -28,7 +31,8 @@ interface ProductPageTemplateProps {
 }
 
 export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
-  const relatedProducts = getRelatedProducts(product.id);
+  const { products } = useProducts();
+  const relatedProducts = getRelatedProducts(products, product.id);
 
   // Image gallery state
   const gallery = product.images?.gallery || [];

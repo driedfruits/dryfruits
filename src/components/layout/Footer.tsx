@@ -1,29 +1,32 @@
 import { Link } from "react-router-dom";
-import { companyInfo, socialLinks, certifications, getProductsByCategory } from "@/data/companyData";
+import { companyInfo, socialLinks, certifications } from "@/data/companyData";
+import { getProductsByCategory } from "@/data/products";
+import { useProducts } from "@/contexts/ProductsContext";
 import { socialIcons } from "@/lib/socialIcons";
 import { Leaf, Mail, Phone, MapPin, Clock, FileText } from "lucide-react";
 
-const driedFruits = getProductsByCategory("dried-fruits");
-
-const footerLinks = {
-  products: [
-    { name: "All Dried Fruits", href: "/products" },
-    ...driedFruits.map(p => ({ name: p.shortName, href: `/products/dried-fruits/${p.id}` })),
-  ],
-  company: [
-    { name: "About Us", href: "/about" },
-    { name: "Certifications", href: "/certifications" },
-  ],
-  resources: [
-    { name: "Shipping & Logistics", href: "/shipping" },
-    { name: "Storage Guide", href: "/storage-guide" },
-    { name: "Free Samples", href: "/samples" },
-    { name: "Download Catalog", href: "/catalog" },
-    { name: "Contact Us", href: "/contact" },
-  ],
-};
-
 export function Footer() {
+  const { products } = useProducts();
+  const driedFruits = getProductsByCategory(products, "dried-fruits");
+
+  const footerLinks = {
+    products: [
+      { name: "All Dried Fruits", href: "/products" },
+      ...driedFruits.map(p => ({ name: p.shortName, href: `/products/dried-fruits/${p.id}` })),
+    ],
+    company: [
+      { name: "About Us", href: "/about" },
+      { name: "Certifications", href: "/certifications" },
+    ],
+    resources: [
+      { name: "Shipping & Logistics", href: "/shipping" },
+      { name: "Storage Guide", href: "/storage-guide" },
+      { name: "Free Samples", href: "/samples" },
+      { name: "Download Catalog", href: "/catalog" },
+      { name: "Contact Us", href: "/contact" },
+    ],
+  };
+
   return (
     <footer className="bg-foreground text-on-dark">
       {/* Main Footer */}
@@ -44,19 +47,12 @@ export function Footer() {
               {companyInfo.tagline}. Premium dried fruits for global B2B buyers.
             </p>
             
-            {/* Contact Info */}
             <address className="not-italic space-y-1">
-              <a 
-                href={`mailto:${companyInfo.email}`}
-                className="flex items-center gap-3 py-2 min-h-[48px] text-base text-on-dark-muted hover:text-primary transition-colors"
-              >
+              <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-3 py-2 min-h-[48px] text-base text-on-dark-muted hover:text-primary transition-colors">
                 <Mail className="h-5 w-5 shrink-0" aria-hidden="true" />
                 {companyInfo.email}
               </a>
-              <a 
-                href={`tel:${companyInfo.phone}`}
-                className="flex items-center gap-3 py-2 min-h-[48px] text-base text-on-dark-muted hover:text-primary transition-colors"
-              >
+              <a href={`tel:${companyInfo.phone}`} className="flex items-center gap-3 py-2 min-h-[48px] text-base text-on-dark-muted hover:text-primary transition-colors">
                 <Phone className="h-5 w-5 shrink-0" aria-hidden="true" />
                 {companyInfo.phone}
               </a>
@@ -77,12 +73,7 @@ export function Footer() {
             <ul className="space-y-1">
               {footerLinks.products.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    to={link.href}
-                    className="block py-2 text-base text-on-dark-muted hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </Link>
+                  <Link to={link.href} className="block py-2 text-base text-on-dark-muted hover:text-primary transition-colors">{link.name}</Link>
                 </li>
               ))}
             </ul>
@@ -94,12 +85,7 @@ export function Footer() {
             <ul className="space-y-1">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    to={link.href}
-                    className="block py-2 text-base text-on-dark-muted hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </Link>
+                  <Link to={link.href} className="block py-2 text-base text-on-dark-muted hover:text-primary transition-colors">{link.name}</Link>
                 </li>
               ))}
             </ul>
@@ -111,12 +97,7 @@ export function Footer() {
             <ul className="space-y-1">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    to={link.href}
-                    className="block py-2 text-base text-on-dark-muted hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </Link>
+                  <Link to={link.href} className="block py-2 text-base text-on-dark-muted hover:text-primary transition-colors">{link.name}</Link>
                 </li>
               ))}
             </ul>
@@ -125,34 +106,21 @@ export function Footer() {
 
         {/* Certifications & Social */}
         <div className="mt-12 pt-8 border-t border-on-dark-subtle/30 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-          {/* Certifications */}
           <div className="flex flex-wrap items-center gap-4">
             <span className="text-sm text-on-dark-subtle">Certified:</span>
             {certifications.map((cert) => (
-              <div 
-                key={cert.id}
-                className="flex items-center gap-1 text-sm text-on-dark-muted bg-on-dark/10 px-3 py-1 rounded-full"
-              >
+              <div key={cert.id} className="flex items-center gap-1 text-sm text-on-dark-muted bg-on-dark/10 px-3 py-1 rounded-full">
                 <Leaf className="h-4 w-4" aria-hidden="true" />
                 {cert.name}
               </div>
             ))}
           </div>
-
-          {/* Social Links */}
           <div className="flex items-center gap-4">
             <span className="text-sm text-on-dark-subtle">Follow us:</span>
             {Object.entries(socialLinks).map(([key, url]) => {
               const Icon = socialIcons[key as keyof typeof socialIcons];
               return (
-                <a
-                  key={key}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-on-dark/10 text-on-dark-muted hover:bg-primary hover:text-primary-foreground transition-colors"
-                  aria-label={`Follow us on ${key}`}
-                >
+                <a key={key} href={url} target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-full bg-on-dark/10 text-on-dark-muted hover:bg-primary hover:text-primary-foreground transition-colors" aria-label={`Follow us on ${key}`}>
                   <Icon className="h-5 w-5" />
                 </a>
               );
@@ -164,7 +132,6 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-on-dark-subtle/30">
         <div className="container py-6">
-          {/* Legal Identifiers Row */}
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-4 text-sm text-on-dark-subtle">
             <span className="flex items-center gap-2">
               <FileText className="h-4 w-4" aria-hidden="true" />
@@ -175,19 +142,13 @@ export function Footer() {
               <span>NPWP: {companyInfo.legalInfo.npwp.value}</span>
             </span>
           </div>
-          
-          {/* Copyright & Links Row */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <p className="text-sm text-on-dark-subtle">
               © {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
             </p>
             <div className="flex items-center gap-2">
-              <Link to="/privacy" className="py-2 px-3 min-h-[44px] flex items-center text-base text-on-dark-subtle hover:text-primary transition-colors">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="py-2 px-3 min-h-[44px] flex items-center text-base text-on-dark-subtle hover:text-primary transition-colors">
-                Terms of Service
-              </Link>
+              <Link to="/privacy" className="py-2 px-3 min-h-[44px] flex items-center text-base text-on-dark-subtle hover:text-primary transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="py-2 px-3 min-h-[44px] flex items-center text-base text-on-dark-subtle hover:text-primary transition-colors">Terms of Service</Link>
             </div>
           </div>
         </div>

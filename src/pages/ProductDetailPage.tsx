@@ -2,8 +2,10 @@ import { Suspense, lazy } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { ProductPageSkeleton } from "@/components/products";
-import { getProductById } from "@/data/companyData";
+import { useProducts } from "@/contexts/ProductsContext";
+import { getProductById } from "@/data/products";
 import { getProductRedirect } from "@/lib/redirects";
+import { Loader2 } from "lucide-react";
 
 // Lazy load the heavy template component
 const ProductPageTemplate = lazy(() =>
@@ -14,13 +16,25 @@ const ProductPageTemplate = lazy(() =>
 
 export default function ProductDetailPage() {
   const { category, productId } = useParams();
+  const { products, loading } = useProducts();
+
   // Check if productId is an alias that needs redirecting
   const redirectProductId = productId ? getProductRedirect(productId) : null;
   if (redirectProductId) {
     return <Navigate to={`/products/${category}/${redirectProductId}`} replace />;
   }
 
-  const product = getProductById(productId || "");
+  if (loading) {
+    return (
+      <Layout>
+        <div className="flex items-center justify-center py-20">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </Layout>
+    );
+  }
+
+  const product = getProductById(products, productId || "");
 
   if (!product) {
     return (
