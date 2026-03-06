@@ -77,11 +77,6 @@ export interface Product {
     fobBase: string;
     moq: string;
     leadTime: string;
-    priceTiers?: Array<{
-      volume: string;
-      priceRange: string;
-    }>;
-    samplePolicy?: string;
   };
 
   // Logistics (optional - uses company defaults if not set)

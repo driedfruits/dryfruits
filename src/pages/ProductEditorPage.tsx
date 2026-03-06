@@ -173,7 +173,7 @@ const ProductEditorPage = () => {
     keywords: keywords.trim() ? keywords.split(",").map(k => k.trim()).filter(Boolean) : undefined,
     tagline, description,
     flavorProfile: flavorProfile || undefined, texture: texture || undefined,
-    pricing: { fobBase, moq, leadTime, priceTiers: products.find(p => p.id === selectedId)?.pricing.priceTiers, samplePolicy: products.find(p => p.id === selectedId)?.pricing.samplePolicy },
+    pricing: { fobBase, moq, leadTime },
     certifications: certs,
     availability: { peakSeason: peakSeason || undefined, offPeakSeason: offPeakSeason || undefined, currentStatus: currentStatus as Product["availability"]["currentStatus"] },
     harvestMonths: harvestMonths.some(v => v > 0) ? harvestMonths : undefined,
