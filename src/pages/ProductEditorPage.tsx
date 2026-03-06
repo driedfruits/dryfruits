@@ -211,15 +211,13 @@ const ProductEditorPage = () => {
       <FormSelect label="Select Product" options={productOptions} value={selectedId} onChange={handleProductChange} />
 
       <div className="mt-8 space-y-6">
-        <EditorSeoSection name={name} setName={setName} shortName={shortName} setShortName={setShortName} metaTitle={metaTitle} setMetaTitle={setMetaTitle} metaDescription={metaDescription} setMetaDescription={setMetaDescription} keywords={keywords} setKeywords={setKeywords} errors={validationErrors} />
+        <EditorSeoSection name={name} setName={setName} shortName={shortName} setShortName={setShortName} tagline={tagline} setTagline={setTagline} description={description} setDescription={setDescription} metaTitle={metaTitle} setMetaTitle={setMetaTitle} metaDescription={metaDescription} setMetaDescription={setMetaDescription} keywords={keywords} setKeywords={setKeywords} errors={validationErrors} />
         <EditorImagesSection imgMain={imgMain} imgMainAlt={imgMainAlt} setImgMainAlt={setImgMainAlt} imgThumb={imgThumb} imgThumbAlt={imgThumbAlt} setImgThumbAlt={setImgThumbAlt} imgGallery={imgGallery} updateGalleryImage={updateGalleryImage} />
         <div className="space-y-4 rounded-lg border border-border p-4">
           <p className="text-sm font-medium text-foreground">Trade Identification</p>
           <FormInput label="SKU" value={sku} onChange={(e) => setSku(e.target.value)} placeholder="e.g. DF-PAP-001" />
           <FormInput label="HS Code" value={hsCode} onChange={(e) => setHsCode(e.target.value)} placeholder="e.g. 0813.40.00" />
         </div>
-        <FormInput label="Tagline" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="e.g. Tropical sweetness in every bite" required error={validationErrors.tagline} />
-        <FormTextarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Product description..." required error={validationErrors.description} />
         <div className="space-y-4 rounded-lg border border-border p-4">
           <p className="text-sm font-medium text-foreground">Product Description (Sensory)</p>
           <FormTextarea label="Flavor Profile" value={flavorProfile} onChange={(e) => setFlavorProfile(e.target.value)} placeholder="e.g. Sweet, tangy tropical flavor with caramelized notes" required error={validationErrors.flavorProfile} />

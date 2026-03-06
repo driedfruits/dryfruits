@@ -5,6 +5,10 @@ interface EditorSeoSectionProps {
   setName: (v: string) => void;
   shortName: string;
   setShortName: (v: string) => void;
+  tagline: string;
+  setTagline: (v: string) => void;
+  description: string;
+  setDescription: (v: string) => void;
   metaTitle: string;
   setMetaTitle: (v: string) => void;
   metaDescription: string;
@@ -14,14 +18,21 @@ interface EditorSeoSectionProps {
   errors?: Record<string, string>;
 }
 
-const EditorSeoSection = ({ name, setName, shortName, setShortName, metaTitle, setMetaTitle, metaDescription, setMetaDescription, keywords, setKeywords, errors }: EditorSeoSectionProps) => (
-  <div className="space-y-4 rounded-lg border border-border p-4">
-    <p className="text-sm font-medium text-foreground">SEO & Page Settings</p>
-    <FormInput label="Hero H1 Title (SEO)" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Premium Dried Pineapple" required error={errors?.name} />
-    <FormInput label="Short Name (UI labels)" value={shortName} onChange={(e) => setShortName(e.target.value)} placeholder="e.g. Dried Pineapple" required error={errors?.shortName} />
-    <FormInput label="Meta Title" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} placeholder="e.g. Buy Dried Pineapple Wholesale | DFT Indonesia" />
-    <FormTextarea label="Meta Description" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} placeholder="SEO description for search results (150-160 chars recommended)" />
-    <FormInput label="SEO Keywords (comma-separated)" value={keywords} onChange={(e) => setKeywords(e.target.value)} placeholder="e.g. bulk dried pineapple, wholesale dried fruit Indonesia" />
+const EditorSeoSection = ({ name, setName, shortName, setShortName, tagline, setTagline, description, setDescription, metaTitle, setMetaTitle, metaDescription, setMetaDescription, keywords, setKeywords, errors }: EditorSeoSectionProps) => (
+  <div className="space-y-6">
+    <div className="space-y-4 rounded-lg border border-border p-4">
+      <p className="text-sm font-medium text-foreground">Page Display</p>
+      <FormInput label="Hero H1 Title (SEO)" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Premium Dried Pineapple" required error={errors?.name} />
+      <FormInput label="Short Name (UI labels)" value={shortName} onChange={(e) => setShortName(e.target.value)} placeholder="e.g. Dried Pineapple" required error={errors?.shortName} />
+      <FormInput label="Tagline" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="e.g. Tropical sweetness in every bite" required error={errors?.tagline} />
+      <FormTextarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Product description..." required error={errors?.description} />
+    </div>
+    <div className="space-y-4 rounded-lg border border-border p-4">
+      <p className="text-sm font-medium text-foreground">SEO Meta Tags</p>
+      <FormInput label="Meta Title" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} placeholder="e.g. Buy Dried Pineapple Wholesale | DFT Indonesia" />
+      <FormTextarea label="Meta Description" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} placeholder="SEO description for search results (150-160 chars recommended)" />
+      <FormInput label="SEO Keywords (comma-separated)" value={keywords} onChange={(e) => setKeywords(e.target.value)} placeholder="e.g. bulk dried pineapple, wholesale dried fruit Indonesia" />
+    </div>
   </div>
 );
 
