@@ -133,7 +133,7 @@ export const products: Product[] = [
     sku: "PP-Dq",
     hsCode: "0813.40.4",
     images: {
-      gallery: [],
+      gallery: [{}, {}, {}, {}],
     },
     metaTitle: "Wholesale Bulk dried dehydrated Papaya from Indonesia",
     metaDescription:
@@ -147,11 +147,11 @@ export const products: Product[] = [
     flavorProfile:
       "Intensely sweet and vibrant with rich, concentrated tropical notes. The dehydration process locks in a natural, honey-like caramel undertone with zero bitter aftertaste, perfectly capturing the essence of sun-ripened Indonesian papaya.",
     texture:
-      "Pleasantly chewy, tender, and robust. Our careful drying porces yields a firm but yielding bite, ensuring the chunks and slices don't become overly tough or ocrystallized, maintaining a premium mouthfeel that consumers love.",
+      "Pleasantly chewy, tender, and robust. Our careful drying prcess yields a firm but yielding bite, ensuring the chunks and slices don't become overly tough or ocrystallized, maintaining a premium mouthfeel that consumers love.",
     pricing: {
       fobBase: "from $1.12/kg ",
       moq: "100 kg",
-      leadTime: "7 days",
+      leadTime: "1 week",
       priceTiers: [
         {
           volume: "Sample (<5kg)",
@@ -179,16 +179,16 @@ export const products: Product[] = [
     },
     harvestMonths: [1, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1],
     specifications: {
-      size: "Spears, Chunks, Dices ",
-      moisture: "18-25%",
+      size: "Chunks 1-2cm, Shreds, Slices, Dices",
+      moisture: "14-18%",
       waterActivity: "≤0.60 aw",
       so2Level: "<200ppm SO₂ (sulfite-free options available)",
       totalPlateCount: "<10⁵ CFU/g",
       yeastMold: "<10³ CFU/g",
       color: "Golden Orange to Yellow",
       shelfLife: "18-24 months",
-      origin: "Magelang, Central Java, Indonesia",
-      brixLevel: ">60 °Bx (no added sugar)",
+      origin: "Central Java, Indonesia",
+      brixLevel: ">12° Brix (Naturally sweet)",
       additives: "Preservative-free / Sulfite-free options",
       foreignMatter: "0%",
       processingMethod: "Low-temp dehydrated in industrial ovens",
@@ -201,7 +201,7 @@ export const products: Product[] = [
     applications: ["Breakfast cereals", "Trail mix", "Baked goods", "Smoothie bowls", "Snacking", "Confectionery"],
     packaging: {
       bulk: "10-12.5kg carton with PE liner",
-      retail: "50g-500g stand-up pouches (OEM available) with your brand",
+      retail: "50g-500g stand-up pouches (OEM available)",
       custom: true,
     },
     logistics: {
@@ -210,7 +210,6 @@ export const products: Product[] = [
       containerLoad20ft: "15-18 MT",
       containerLoad40ft: "22-26 MT",
     },
-    exportDocuments: ["Bill of Lading", "Certificate of Origin", "Phyto certificate", "Health certificate"],
     faqs: [
       {
         question: "What are the microbiological specifications?",
@@ -237,39 +236,61 @@ export const products: Product[] = [
   },
   {
     id: "dried-pineapple",
-    name: "Dried Pineapple",
+    name: "Wholesale Bulk Dried Dehydrated Pineapple Chunks and Rings delivery directed from factory in Indonesia",
     shortName: "Dried Pineapple",
     category: "dried-fruits",
+    isOrganic: true,
     sku: "DFT-DPI-001",
     hsCode: "0813.40.10",
-    tagline: "Sweet and tangy tropical delight",
     images: {
       gallery: [],
     },
-    description:
-      "Naturally dried pineapple rings and chunks from premium Cayenne pineapples. Perfect balance of sweet and tangy.",
-    flavorProfile: "Vibrant sweet-tangy balance with aromatic pineapple essence",
-    texture: "Chewy with slight crispness on edges",
-    metaTitle: "Wholesale Dried Pineapple (Rings/Chunks) - Bulk Export from Indonesia",
+    metaTitle: "Dried Pineapple Chunks & Rings: Wholesale Bulk Factory Direct",
     metaDescription:
-      "Premium dried pineapple from Indonesia. USDA/EU Organic certified. Bulk packaging available. MOQ 500kg. Direct from manufacturer.",
+      "Wholesale Bulk Dried Pineapple from Indonesia. ✓ 100% sugar-free rings & chunks. Custom B2B packing. ⏳ 6-day production time. 🔥 Request a quote today!",
     keywords: [
       "bulk dried pineapple",
       "wholesale dried pineapple Indonesia",
       "dried pineapple supplier",
       "dried pineapple specifications",
     ],
+    tagline:
+      "Sugar Free, Slow dehydrated dried Pineapple chunks and rings. Fully export certified for B2B wholesale with HACCP, USDA, Halal, Kosher; organic certificate available by request.",
+    description:
+      "Source premium, slow-dried pineapple slices and chunks directly from our Indonesian manufacturing facility. Our 100% sugar-free and chemical-free processing guarantees exceptional organoleptic quality for bulk importers of dried fruits from Indonesia to all the world. Available in custom buyer brands or bulk packaging to meet your exact B2B wholesale specifications.",
+    flavorProfile:
+      "Concentrated tropical sweetness with vibrant, tangy citrus undertones. The profile is characterized by distinct enzymatic notes, presenting a natural caramelization of native fruit sugars without added sweeteners.",
+    texture:
+      "Firm, chewy, and mildly fibrous. Slices and rings offer a dense bite with moderate pliability, while chopped chunks retain a dense, leathery consistency with highly concentrated acidity and sweetness.",
+    pricing: {
+      fobBase: "from $2.15/kg FOB",
+      moq: "100 kg",
+      leadTime: "6 days",
+      priceTiers: [
+        {
+          volume: "Sample (<5kg)",
+          priceRange: "Free (buyer pays shipping)",
+        },
+      ],
+      samplePolicy: "Free sample available, buyer pays courier",
+    },
+    certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
+    availability: {
+      peakSeason: "Year-round",
+      currentStatus: "in-stock",
+    },
+    harvestMonths: [0, 1, 1, 2, 2, 2, 2, 1, 1, 1, 2, 2],
     specifications: {
-      size: "Rings, Core-rings, Tidbits, Chunks, Slices",
-      moisture: "15-20%",
+      size: "Rings/Slices, Chunks, Dices, Tidbits",
+      moisture: "Max 15% ",
       waterActivity: "≤0.60 aw",
       so2Level: "<200ppm SO₂ (sulfite-free options available)",
       totalPlateCount: "<10⁵ CFU/g",
       yeastMold: "<10³ CFU/g",
-      color: "Golden Yellow",
+      color: "Vibrant Golden Yellow ",
       shelfLife: "18-24 months",
       origin: "Lampung, Indonesia",
-      brixLevel: ">14° Brix (Naturally sweet-tangy)",
+      brixLevel: "55 - 65 °Bx (no added sugar)",
       additives: "Preservative-free / Sulfite-free options",
       foreignMatter: "0%",
       processingMethod: "Sun-dried / Low-temp dehydrated",
@@ -279,51 +300,17 @@ export const products: Product[] = [
       salmonella: "Absent/25g",
       eColi: "Absent",
     },
-    availability: {
-      peakSeason: "Year-round",
-      currentStatus: "in-stock",
-    },
-    harvestMonths: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     applications: ["Fruit salads", "Dessert toppings", "Baking", "Cocktails", "Snacking", "Trail mix", "Confectionery"],
     packaging: {
       bulk: "10kg plastic bag in box",
       retail: "50g-500g stand-up pouches (OEM available)",
       custom: true,
     },
-    pricing: {
-      fobBase: "From $8.00/kg FOB",
-      moq: "500 kg",
-      leadTime: "2-3 weeks",
-      priceTiers: [
-        {
-          volume: "Sample (<5kg)",
-          priceRange: "Free (buyer pays shipping)",
-        },
-        {
-          volume: "MOQ - 1 Ton",
-          priceRange: "$9.50 - $10.50/kg",
-        },
-        {
-          volume: "1 - 10 Tons",
-          priceRange: "$8.00 - $9.50/kg",
-        },
-        {
-          volume: "Full Container (>10T)",
-          priceRange: "Contact for quote",
-        },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
-    },
     logistics: {
       portOfLoading: "Semarang, Indonesia",
       incoterms: ["FOB", "CIF", "CFR"],
       containerLoad20ft: "15-18 MT",
       containerLoad40ft: "22-26 MT",
-    },
-    compliance: {
-      usa: "FDA facility registered; Prior Notice compliant; meets Import Alert requirements",
-      eu: "Phytosanitary certified; MRL compliant (Reg. 396/2005); Health Certificate included",
-      global: "Codex Alimentarius compliant; GFSI-recognized food safety certification",
     },
     faqs: [
       {
@@ -347,8 +334,6 @@ export const products: Product[] = [
           "Yes, we offer sulfite-free dried pineapple for clean-label products. Slightly darker color but excellent flavor retention.",
       },
     ],
-    certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
-    isOrganic: true,
     relatedProducts: ["dried-papaya", "dried-mango", "dried-banana", "dried-dragon-fruit"],
   },
   {
