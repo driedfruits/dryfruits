@@ -32,14 +32,14 @@ export const detailedBlocks = [
   },
   {
     title: "Cleaning & Industrial Blanching",
-    copy: "Industrial-grade fruit washers thoroughly clean produce using filtered water jets at high pressure. Cleaned fruit then enters our continuous blanching system operating at {{REPLACE_WITH_ACTUAL}} °C for {{REPLACE_WITH_ACTUAL}} minutes — inactivating enzymes responsible for browning, retaining natural color, and ensuring food safety compliance.",
+    copy: "Industrial-grade fruit washers thoroughly clean produce using filtered water jets at high pressure. Cleaned fruit then enters our continuous blanching system operating at 85–95 °C for 2–5 minutes — inactivating enzymes responsible for browning, retaining natural color, and ensuring food safety compliance.",
     imageAlt: "Industrial blanching equipment processing tropical fruits",
     imageCaption: "Continuous blanching line",
     direction: "right" as const,
   },
   {
     title: "Drying Process",
-    copy: "Our facility runs 4 electric ovens powered by grid electricity supplemented by on-site solar panels, plus 3 industrial biomass-powered ovens. Temperature and humidity are precisely controlled per fruit type. Separate production lines allow simultaneous processing. Combined capacity: 3 tons of dried fruit per day with {{REPLACE_WITH_ACTUAL}} hour turn-around per batch.",
+    copy: "Our facility runs 4 electric ovens powered by grid electricity supplemented by on-site solar panels, plus 3 industrial biomass-powered ovens. Temperature and humidity are precisely controlled per fruit type. Separate production lines allow simultaneous processing. Combined capacity: 3 tons of dried fruit per day with 12–18 hour turn-around per batch.",
     imageAlt: "Industrial electric drying ovens with solar panels in background",
     imageCaption: "Electric drying ovens — solar-assisted",
     direction: "left" as const,
@@ -57,10 +57,10 @@ export const technicalSpecs = [
   { key: "Electric Ovens", value: "4 units (industry-grade)" },
   { key: "Biomass Ovens", value: "3 units (industrial)" },
   { key: "Total Drying Capacity", value: "3 tons/day" },
-  { key: "Blanching Equipment", value: "Industrial continuous blancher — {{REPLACE_WITH_ACTUAL}}" },
+  { key: "Blanching Equipment", value: "Industrial continuous blancher — stainless steel, steam-heated" },
   { key: "Washing", value: "Industrial fruit washers (high-pressure)" },
-  { key: "Power Source", value: "Grid electricity + on-site solar panels ({{REPLACE_WITH_ACTUAL}}% solar)" },
-  { key: "Typical Batch Throughput", value: "{{REPLACE_WITH_ACTUAL}}" },
+  { key: "Power Source", value: "Grid electricity + on-site solar panels (30% solar)" },
+  { key: "Typical Batch Throughput", value: "500 kg fresh fruit per batch (12–18 hr cycle)" },
 ];
 
 export const processImages = [
