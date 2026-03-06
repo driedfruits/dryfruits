@@ -10,13 +10,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "@/components/ui/carousel";
-import {
   processSteps,
   detailedBlocks,
   technicalSpecs,
@@ -42,24 +35,16 @@ export const ProductionProcessSection = memo(function ProductionProcessSection()
         {/* ── Top Row: Carousel + Stats ── */}
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center mb-16">
           {/* Carousel */}
-          <div className="relative">
-            <Carousel opts={{ loop: true }} className="w-full">
-              <CarouselContent>
-                {processImages.map((img, i) => (
-                  <CarouselItem key={i}>
-                    <OptimizedImage
-                      src={img.src}
-                      alt={img.alt}
-                      aspectRatio="video"
-                      className="rounded-xl"
-                    />
-                    <p className="text-sm text-muted-foreground mt-2 text-center">{img.caption}</p>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-2" />
-              <CarouselNext className="right-2" />
-            </Carousel>
+          <div>
+            <OptimizedImage
+              src={processImages[0]?.src ?? "/placeholder.svg"}
+              alt={processImages[0]?.alt ?? "Production process"}
+              aspectRatio="video"
+              className="rounded-xl"
+            />
+            {processImages[0]?.caption && (
+              <p className="text-sm text-muted-foreground mt-2 text-center">{processImages[0].caption}</p>
+            )}
           </div>
 
           {/* Heading + Stat Cards */}
