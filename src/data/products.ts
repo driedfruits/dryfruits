@@ -145,25 +145,6 @@ export const products: Product[] = [
       fobBase: "from $1.12/kg ",
       moq: "100 kg",
       leadTime: "1 week",
-      priceTiers: [
-        {
-          volume: "Sample (<5kg)",
-          priceRange: "Free (buyer pays shipping)",
-        },
-        {
-          volume: "MOQ - 1 Ton",
-          priceRange: "$8.50 - $9.50/kg",
-        },
-        {
-          volume: "1 - 10 Tons",
-          priceRange: "$7.50 - $8.50/kg",
-        },
-        {
-          volume: "Full Container (>10T)",
-          priceRange: "Contact for quote",
-        },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
     },
     certifications: ["HACCP", "USDA Organic"],
     availability: {
@@ -259,13 +240,6 @@ export const products: Product[] = [
       fobBase: "from $2.15/kg FOB",
       moq: "100 kg",
       leadTime: "6 days",
-      priceTiers: [
-        {
-          volume: "Sample (<5kg)",
-          priceRange: "Free (buyer pays shipping)",
-        },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
     },
     certifications: ["USDA Organic", "EU Organic", "HACCP", "Halal"],
     availability: {
@@ -390,25 +364,6 @@ export const products: Product[] = [
       fobBase: "From $18.00/kg FOB",
       moq: "300 kg",
       leadTime: "3-4 weeks",
-      priceTiers: [
-        {
-          volume: "Sample (<5kg)",
-          priceRange: "Free (buyer pays shipping)",
-        },
-        {
-          volume: "MOQ - 500 kg",
-          priceRange: "$20.00 - $22.00/kg",
-        },
-        {
-          volume: "500 kg - 2 Tons",
-          priceRange: "$18.00 - $20.00/kg",
-        },
-        {
-          volume: "Large orders (>2T)",
-          priceRange: "Contact for quote",
-        },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
     },
     logistics: {
       portOfLoading: "Semarang, Indonesia",
@@ -516,25 +471,6 @@ export const products: Product[] = [
       fobBase: "From $9.50/kg FOB",
       moq: "500 kg",
       leadTime: "2-3 weeks",
-      priceTiers: [
-        {
-          volume: "Sample (<5kg)",
-          priceRange: "Free (buyer pays shipping)",
-        },
-        {
-          volume: "MOQ - 1 Ton",
-          priceRange: "$11.00 - $12.00/kg",
-        },
-        {
-          volume: "1 - 10 Tons",
-          priceRange: "$9.50 - $11.00/kg",
-        },
-        {
-          volume: "Full Container (>10T)",
-          priceRange: "Contact for quote",
-        },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
     },
     logistics: {
       portOfLoading: "Semarang, Indonesia",
@@ -639,25 +575,6 @@ export const products: Product[] = [
       fobBase: "From $12.00/kg FOB",
       moq: "300 kg",
       leadTime: "2-3 weeks",
-      priceTiers: [
-        {
-          volume: "Sample (<5kg)",
-          priceRange: "Free (buyer pays shipping)",
-        },
-        {
-          volume: "MOQ - 1 Ton",
-          priceRange: "$14.00 - $16.00/kg",
-        },
-        {
-          volume: "1 - 5 Tons",
-          priceRange: "$12.00 - $14.00/kg",
-        },
-        {
-          volume: "Large orders (>5T)",
-          priceRange: "Contact for quote",
-        },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
     },
     logistics: {
       portOfLoading: "Semarang, Indonesia",
@@ -742,25 +659,6 @@ export const products: Product[] = [
       fobBase: "From $15.00/kg FOB",
       moq: "200 kg",
       leadTime: "3-4 weeks",
-      priceTiers: [
-        {
-          volume: "Sample (<5kg)",
-          priceRange: "Free (buyer pays shipping)",
-        },
-        {
-          volume: "MOQ - 500 kg",
-          priceRange: "$17.00 - $19.00/kg",
-        },
-        {
-          volume: "500 kg - 2 Tons",
-          priceRange: "$15.00 - $17.00/kg",
-        },
-        {
-          volume: "Large orders (>2T)",
-          priceRange: "Contact for quote",
-        },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
     },
     certifications: ["USDA Organic", "HACCP", "Halal"],
     isOrganic: true,
@@ -811,25 +709,6 @@ export const products: Product[] = [
       fobBase: "From $6.00/kg FOB",
       moq: "500 kg",
       leadTime: "2-3 weeks",
-      priceTiers: [
-        {
-          volume: "Sample (<5kg)",
-          priceRange: "Free (buyer pays shipping)",
-        },
-        {
-          volume: "MOQ - 1 Ton",
-          priceRange: "$7.00 - $8.00/kg",
-        },
-        {
-          volume: "1 - 10 Tons",
-          priceRange: "$6.00 - $7.00/kg",
-        },
-        {
-          volume: "Full Container (>10T)",
-          priceRange: "Contact for quote",
-        },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
     },
     certifications: ["USDA Organic", "HACCP", "Halal"],
     isOrganic: true,
@@ -893,25 +772,6 @@ export const products: Product[] = [
       fobBase: "From $10.00/kg FOB",
       moq: "500 kg",
       leadTime: "2-3 weeks",
-      priceTiers: [
-        {
-          volume: "Sample (<5kg)",
-          priceRange: "Free (buyer pays shipping)",
-        },
-        {
-          volume: "MOQ - 1 Ton",
-          priceRange: "$12.00 - $14.00/kg",
-        },
-        {
-          volume: "1 - 5 Tons",
-          priceRange: "$10.00 - $12.00/kg",
-        },
-        {
-          volume: "Large orders (>5T)",
-          priceRange: "Contact for quote",
-        },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
     },
     logistics: {
       portOfLoading: "Semarang, Indonesia",
@@ -1003,25 +863,6 @@ export const products: Product[] = [
       fobBase: "From $2.50/kg FOB",
       moq: "1 ton",
       leadTime: "2-3 weeks",
-      priceTiers: [
-        {
-          volume: "Sample (<5kg)",
-          priceRange: "Free (buyer pays shipping)",
-        },
-        {
-          volume: "1 - 5 Tons",
-          priceRange: "$3.00 - $3.50/kg",
-        },
-        {
-          volume: "5 - 20 Tons",
-          priceRange: "$2.50 - $3.00/kg",
-        },
-        {
-          volume: "Full Container (>20T)",
-          priceRange: "Contact for quote",
-        },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
     },
     logistics: {
       portOfLoading: "Semarang, Indonesia",
@@ -1122,25 +963,6 @@ export const products: Product[] = [
       fobBase: "From $4.50/kg FOB",
       moq: "1 ton",
       leadTime: "2-3 weeks",
-      priceTiers: [
-        {
-          volume: "Sample (<5kg)",
-          priceRange: "Free (buyer pays shipping)",
-        },
-        {
-          volume: "1 - 5 Tons",
-          priceRange: "$5.50 - $6.50/kg",
-        },
-        {
-          volume: "5 - 10 Tons",
-          priceRange: "$4.50 - $5.50/kg",
-        },
-        {
-          volume: "Full Container (>10T)",
-          priceRange: "Contact for quote",
-        },
-      ],
-      samplePolicy: "Free sample available, buyer pays courier",
     },
     logistics: {
       portOfLoading: "Semarang, Indonesia",
