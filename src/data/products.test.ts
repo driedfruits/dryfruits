@@ -125,14 +125,6 @@ describe("products data validation", () => {
         });
       }
 
-      if (product.pricing.priceTiers) {
-        it("has valid price tiers", () => {
-          product.pricing.priceTiers!.forEach((tier) => {
-            expect(tier.volume).toBeTruthy();
-            expect(tier.priceRange).toBeTruthy();
-          });
-        });
-      }
 
       if (product.exportDocuments) {
         it("has valid export documents array", () => {

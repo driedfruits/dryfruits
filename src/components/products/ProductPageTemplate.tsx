@@ -10,7 +10,6 @@ import { OptimizedImage } from "@/components/ui/optimized-image";
 import { cn } from "@/lib/utils";
 import { Leaf, Package, FileText, ChevronRight } from "lucide-react";
 import { ProductSpecsTable } from "./ProductSpecsTable";
-import { ProductPriceTiers } from "./ProductPriceTiers";
 import { ProductLogistics } from "./ProductLogistics";
 import { ProductFAQ } from "./ProductFAQ";
 
