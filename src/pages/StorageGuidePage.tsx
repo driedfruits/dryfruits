@@ -22,6 +22,7 @@ import {
   Apple
 } from "lucide-react";
 import { storageGuidelines, storageFAQs } from "@/data/companyData";
+import { useProducts } from "@/contexts/ProductsContext";
 import { generateFAQSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
 import { FAQAccordion } from "@/components/ui/faq-accordion";
@@ -48,6 +49,7 @@ const breadcrumbItems = [
 ];
 
 export default function StorageGuidePage() {
+  const { products } = useProducts();
   // Get unique products with storage specs for reference table
   const productsWithStorage = products.filter(
     p => p.specifications.storageTemp || p.specifications.storageHumidity || p.specifications.waterActivity
