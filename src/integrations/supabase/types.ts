@@ -14,7 +14,102 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      products: {
+        Row: {
+          applications: string[]
+          availability: Json | null
+          category: string
+          certifications: string[]
+          compliance: Json | null
+          created_at: string
+          description: string
+          export_documents: string[] | null
+          faqs: Json | null
+          flavor_profile: string | null
+          harvest_months: number[] | null
+          hs_code: string | null
+          id: string
+          images: Json | null
+          is_organic: boolean
+          keywords: string[] | null
+          logistics: Json | null
+          meta_description: string | null
+          meta_title: string | null
+          name: string
+          packaging: Json
+          pricing: Json
+          related_products: string[]
+          short_name: string
+          sku: string | null
+          specifications: Json
+          tagline: string
+          texture: string | null
+          updated_at: string
+        }
+        Insert: {
+          applications?: string[]
+          availability?: Json | null
+          category?: string
+          certifications?: string[]
+          compliance?: Json | null
+          created_at?: string
+          description?: string
+          export_documents?: string[] | null
+          faqs?: Json | null
+          flavor_profile?: string | null
+          harvest_months?: number[] | null
+          hs_code?: string | null
+          id: string
+          images?: Json | null
+          is_organic?: boolean
+          keywords?: string[] | null
+          logistics?: Json | null
+          meta_description?: string | null
+          meta_title?: string | null
+          name: string
+          packaging?: Json
+          pricing?: Json
+          related_products?: string[]
+          short_name: string
+          sku?: string | null
+          specifications?: Json
+          tagline?: string
+          texture?: string | null
+          updated_at?: string
+        }
+        Update: {
+          applications?: string[]
+          availability?: Json | null
+          category?: string
+          certifications?: string[]
+          compliance?: Json | null
+          created_at?: string
+          description?: string
+          export_documents?: string[] | null
+          faqs?: Json | null
+          flavor_profile?: string | null
+          harvest_months?: number[] | null
+          hs_code?: string | null
+          id?: string
+          images?: Json | null
+          is_organic?: boolean
+          keywords?: string[] | null
+          logistics?: Json | null
+          meta_description?: string | null
+          meta_title?: string | null
+          name?: string
+          packaging?: Json
+          pricing?: Json
+          related_products?: string[]
+          short_name?: string
+          sku?: string | null
+          specifications?: Json
+          tagline?: string
+          texture?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
