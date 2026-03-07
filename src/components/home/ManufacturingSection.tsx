@@ -59,7 +59,7 @@ export const ManufacturingSection = memo(function ManufacturingSection() {
           {/* Right Column — Image Placeholder */}
           <div className="rounded-2xl overflow-hidden bg-muted aspect-[4/3]">
             <OptimizedImage
-              src="/placeholder.svg"
+              src="/lovable-uploads/00a1d19f-1a9d-4595-b63c-fbeb17f9e57d.jpg"
               alt="PT Dried Fruits Total Indonesia factory facility in Magelang, Central Java"
               width={600}
               height={450}
