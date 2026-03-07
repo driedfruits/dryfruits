@@ -25,6 +25,7 @@ export const processSteps = [
 export const detailedBlocks = [
   {
     title: "Raw Material Intake & Sorting",
+    imageSrc: "/lovable-uploads/891e186e-2a8c-4288-8a33-4d9138f48847.jpg",
     copy: "Fresh tropical fruits arrive in bulk crates from our partner farms across Indonesia. Each batch passes through a multi-point QA checkpoint where trained staff remove foreign matter and grade fruit by size, ripeness, and variety using industrial conveyor systems. Only fruit meeting our export-grade specifications proceeds to processing.",
     imageAlt: "Workers sorting fresh tropical fruit on industrial conveyor belt",
     imageCaption: "Fruit grading and sorting line",
@@ -32,6 +33,7 @@ export const detailedBlocks = [
   },
   {
     title: "Cleaning & Industrial Blanching",
+    imageSrc: "/placeholder.svg",
     copy: "Industrial-grade fruit washers thoroughly clean produce using filtered water jets at high pressure. Cleaned fruit then enters our continuous blanching system operating at 85–95 °C for 2–5 minutes — inactivating enzymes responsible for browning, retaining natural color, and ensuring food safety compliance.",
     imageAlt: "Industrial blanching equipment processing tropical fruits",
     imageCaption: "Continuous blanching line",
@@ -39,6 +41,7 @@ export const detailedBlocks = [
   },
   {
     title: "Drying Process",
+    imageSrc: "/placeholder.svg",
     copy: "Our facility runs 4 electric ovens powered by grid electricity supplemented by on-site solar panels, plus 3 industrial biomass-powered ovens. Temperature and humidity are precisely controlled per fruit type. Separate production lines allow simultaneous processing. Combined capacity: 3 tons of dried fruit per day with 12–18 hour turn-around per batch.",
     imageAlt: "Industrial electric drying ovens with solar panels in background",
     imageCaption: "Electric drying ovens — solar-assisted",
@@ -46,6 +49,7 @@ export const detailedBlocks = [
   },
   {
     title: "Quality Control & Packaging",
+    imageSrc: "/placeholder.svg",
     copy: "Dried fruit undergoes final moisture testing to verify shelf-stability targets. Metal detection scanners ensure product purity. Automated weighing systems guarantee accurate fill weights. Product is hygienically packed in food-grade export packaging with full traceability labeling for international shipping.",
     imageAlt: "Quality control station with moisture testing and metal detection equipment",
     imageCaption: "QC and export packaging station",
