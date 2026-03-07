@@ -75,7 +75,7 @@ export const ProductionProcessSection = memo(function ProductionProcessSection()
             }>
             
               <OptimizedImage
-              src="/placeholder.svg"
+              src={block.imageSrc ?? "/placeholder.svg"}
               alt={block.imageAlt}
               aspectRatio="video"
               className="rounded-xl" />
