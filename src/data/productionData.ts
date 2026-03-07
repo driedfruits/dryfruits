@@ -64,7 +64,7 @@ export const technicalSpecs = [
 ];
 
 export const processImages = [
-  { src: "/placeholder.svg", alt: "Panoramic view of drying ovens with solar panels in background", caption: "Our solar-assisted drying facility" },
+  { src: "/lovable-uploads/8efed6de-7456-49c3-ad42-494d044a50bc.jpg", alt: "Panoramic view of drying ovens with solar panels in background", caption: "Our solar-assisted drying facility" },
   { src: "/placeholder.svg", alt: "Interior of electric drying oven showing loaded fruit racks", caption: "Electric oven interior with fruit racks" },
   { src: "/placeholder.svg", alt: "Close-up of industrial blanching equipment in operation", caption: "Continuous blanching system" },
   { src: "/placeholder.svg", alt: "Industrial fruit washing and cleaning line with water jets", caption: "High-pressure fruit washing line" },
