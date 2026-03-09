@@ -1,28 +1,29 @@
 
 
-## Remove Avocado, Snake Fruit & Rambutan References
+## Change Photo Grid to 4 Columns on Desktop
 
-These three fruits need to be removed from across the website. Avocado was already deleted from the DB but Snake Fruit still exists. Rambutan only appears in static frontend lists (never had a DB entry).
+### Findings
+- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
+- Captions are present in the code with `label` fields and `<p>` tags
+- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
+- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
+
+### Problem
+Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
+- Factory: reduce from 15 to 12, or increase to 16
+- Farmers: keep 8 (reduce from 10), or increase to 12
+
+### Recommendation
+- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
+- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
 
 ### Changes
 
-**1. Delete Snake Fruit from database**
-- Run migration: `DELETE FROM products WHERE id = 'dried-snake-fruit';`
+**`src/components/home/FactoryGallerySection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
 
-**2. Clean up related_products references in DB**
-- Update all products whose `related_products` JSONB array references `dried-snake-fruit` or `dried-avocado` — remove those entries from the arrays.
-
-**3. Frontend static lists** — remove all three fruits from:
-- `src/components/home/HeroSection.tsx` — fruits array (lines 6-8)
-- `src/components/home/ManufacturingSection.tsx` — fruits array (lines 6-8)
-
-**4. Redirects** — `src/lib/redirects.ts`:
-- Remove avocado aliases (lines 106-107) and snake fruit aliases (lines 101-103)
-- Add redirects from `/products/dried-fruits/dried-avocado` → `/products` and `/products/dried-fruits/dried-snake-fruit` → `/products` so old URLs don't 404
-
-**5. Static SEO files**:
-- `public/sitemap.xml` — remove avocado and snake-fruit URLs
-- `public/llm.html` — remove avocado and snake fruit from product lists, update counts
-
-**6. Storage guide** — `src/pages/StorageGuidePage.tsx` line 264: change "coconut and avocado" to just "coconut" in the nitrogen flushing description
+**`src/components/home/FarmersSection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
 

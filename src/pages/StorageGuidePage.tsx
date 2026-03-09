@@ -261,7 +261,7 @@ export default function StorageGuidePage() {
             <div className="grid gap-4 md:grid-cols-2">
               {[
                 { title: "Moisture Barrier Films", desc: "Use high-barrier packaging (MVTR <1g/m²/day) to prevent moisture ingress during storage and transit." },
-                { title: "Nitrogen Flushing", desc: "Essential for high-fat products like coconut and avocado to prevent oxidation. Maintain O₂ <2%." },
+                { title: "Nitrogen Flushing", desc: "Essential for high-fat products like coconut to prevent oxidation. Maintain O₂ <2%." },
                 { title: "Vacuum Sealing", desc: "Extends shelf life by 30-50% for dried fruits. Reduces oxidation and moisture absorption." },
                 { title: "Re-sealing Protocol", desc: "After sampling, immediately reseal with heat sealer. Never use clips or folds for bulk storage." },
               ].map((item, idx) => (

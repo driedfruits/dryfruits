@@ -64,6 +64,10 @@ export const redirectRules: RedirectRule[] = [
   { from: "/category/uncategorized/feed", to: "/" },
   { from: "/hello-world", to: "/" },
   
+  // Removed product redirects
+  { from: "/products/dried-fruits/dried-avocado", to: "/products" },
+  { from: "/products/dried-fruits/dried-snake-fruit", to: "/products" },
+  
   // Category misspellings
   { from: "/products/dried-fruit", to: "/products/dried-fruits" },
   { from: "/products/dried", to: "/products/dried-fruits" },
@@ -98,13 +102,8 @@ export const productAliases: Record<string, string> = {
   "jackfruit": "dried-jackfruit",
   "coconut-dried": "dried-coconut",
   "coconut": "dried-coconut",
-  "salak": "dried-snake-fruit",
-  "snake": "dried-snake-fruit",
-  "snakefruit": "dried-snake-fruit",
   "breadfruit-dried": "dried-breadfruit",
   "breadfruit": "dried-breadfruit",
-  "avocado-dried": "dried-avocado",
-  "avocado": "dried-avocado",
   
 };
 
