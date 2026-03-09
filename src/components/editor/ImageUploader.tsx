@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Upload, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,18 +11,21 @@ interface ImageUploaderProps {
   onRemove: () => void;
 }
 
+const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const ACCEPTED = ".jpg,.jpeg,.png,.webp";
-const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_SIZE = 5 * 1024 * 1024;
 
 const ImageUploader = ({ currentSrc, productId, slot, onUploaded, onRemove }: ImageUploaderProps) => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+  const [dragOver, setDragOver] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
+  const processFile = useCallback(async (file: File) => {
+    if (!ACCEPTED_TYPES.includes(file.type)) {
+      setError("Only JPEG, PNG, and WebP files are accepted");
+      return;
+    }
     if (file.size > MAX_SIZE) {
       setError("File must be under 5MB");
       return;
@@ -47,14 +50,43 @@ const ImageUploader = ({ currentSrc, productId, slot, onUploaded, onRemove }: Im
     const { data } = supabase.storage.from("product-images").getPublicUrl(path);
     onUploaded(data.publicUrl);
     setUploading(false);
+  }, [productId, slot, onUploaded]);
 
-    // Reset input so same file can be re-selected
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) processFile(file);
     if (inputRef.current) inputRef.current.value = "";
   };
 
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setDragOver(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) processFile(file);
+  }, [processFile]);
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setDragOver(true);
+  }, []);
+
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setDragOver(false);
+  }, []);
+
   return (
     <div className="space-y-2">
-      <div className="flex items-center gap-2">
+      <div
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        className={`flex items-center gap-2 rounded-lg border-2 border-dashed p-2 transition-colors ${
+          dragOver
+            ? "border-primary bg-primary/5"
+            : "border-transparent"
+        }`}
+      >
         {currentSrc ? (
           <img
             src={currentSrc}
@@ -66,38 +98,41 @@ const ImageUploader = ({ currentSrc, productId, slot, onUploaded, onRemove }: Im
             <Upload className="h-4 w-4 text-muted-foreground" />
           </div>
         )}
-        <div className="flex gap-1.5">
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            disabled={uploading}
-            onClick={() => inputRef.current?.click()}
-          >
-            {uploading ? (
-              <Loader2 className="h-3.5 w-3.5 animate-spin" />
-            ) : (
-              <Upload className="h-3.5 w-3.5" />
-            )}
-            <span className="ml-1.5">{currentSrc ? "Replace" : "Upload"}</span>
-          </Button>
-          {currentSrc && (
+        <div className="flex flex-col gap-1">
+          <div className="flex gap-1.5">
             <Button
               type="button"
-              variant="ghost"
+              variant="outline"
               size="sm"
-              onClick={onRemove}
-              className="text-destructive hover:text-destructive"
+              disabled={uploading}
+              onClick={() => inputRef.current?.click()}
             >
-              <X className="h-3.5 w-3.5" />
+              {uploading ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <Upload className="h-3.5 w-3.5" />
+              )}
+              <span className="ml-1.5">{currentSrc ? "Replace" : "Upload"}</span>
             </Button>
-          )}
+            {currentSrc && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={onRemove}
+                className="text-destructive hover:text-destructive"
+              >
+                <X className="h-3.5 w-3.5" />
+              </Button>
+            )}
+          </div>
+          <span className="text-[10px] text-muted-foreground">or drag & drop</span>
         </div>
         <input
           ref={inputRef}
           type="file"
           accept={ACCEPTED}
-          onChange={handleUpload}
+          onChange={handleChange}
           className="hidden"
         />
       </div>
