@@ -175,7 +175,7 @@ export function useProductEditor() {
   const addFaq = () => setFaqs((prev) => [...prev, { question: "", answer: "" }]);
   const removeFaq = (i: number) => setFaqs((prev) => prev.filter((_, idx) => idx !== i));
   const updateFaq = (i: number, field: "question" | "answer", val: string) => setFaqs((prev) => prev.map((f, idx) => (idx === i ? { ...f, [field]: val } : f)));
-  const updateGalleryImage = (i: number, field: "alt", val: string) => setImgGallery((prev) => prev.map((g, idx) => (idx === i ? { ...g, [field]: val } : g)));
+  const updateGalleryImage = (i: number, field: "src" | "alt", val: string) => setImgGallery((prev) => prev.map((g, idx) => (idx === i ? { ...g, [field]: val } : g)));
   const toggleRelated = (id: string) => setRelatedProducts((prev) => prev.includes(id) ? prev.filter((r) => r !== id) : [...prev, id]);
   const updateSpec = (key: string, value: string) => setSpecs((prev) => ({ ...prev, [key]: value }));
 
@@ -294,7 +294,7 @@ export function useProductEditor() {
     containerLoad20ft, setContainerLoad20ft, containerLoad40ft, setContainerLoad40ft,
     estimatedDelivery, setEstimatedDelivery, exportDocuments, setExportDocuments,
     applications, faqs, relatedProducts,
-    imgMain, imgMainAlt, setImgMainAlt, imgThumb, imgThumbAlt, setImgThumbAlt, imgGallery,
+    imgMain, setImgMain, imgMainAlt, setImgMainAlt, imgThumb, setImgThumb, imgThumbAlt, setImgThumbAlt, imgGallery,
     // Actions
     handleProductChange, handleNewProduct, handleSave, handleDelete,
     toggleCert, addApplication, removeApplication, addFaq, removeFaq, updateFaq,
