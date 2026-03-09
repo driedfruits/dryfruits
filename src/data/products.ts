@@ -67,6 +67,8 @@ export interface Product {
     bulk: string;
     retail: string;
     custom: boolean;
+    retailImage?: string;
+    bulkImage?: string;
   };
 
   // Pricing (enhanced)

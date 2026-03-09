@@ -63,8 +63,8 @@ export function ProductDescriptionPackaging({ product }: ProductDescriptionPacka
             <div className="grid gap-6 sm:grid-cols-2">
               {/* Retail Pouch */}
               <div className="bg-card rounded-xl overflow-hidden shadow-soft">
-                <OptimizedImage
-                  src="/placeholder.svg"
+              <OptimizedImage
+                  src={product.packaging?.retailImage || "/placeholder.svg"}
                   alt={`${product.name} retail standing pouch with private label branding`}
                   aspectRatio="video"
                   width={400}
@@ -82,8 +82,8 @@ export function ProductDescriptionPackaging({ product }: ProductDescriptionPacka
 
               {/* Bulk HORECA */}
               <div className="bg-card rounded-xl overflow-hidden shadow-soft">
-                <OptimizedImage
-                  src="/placeholder.svg"
+              <OptimizedImage
+                  src={product.packaging?.bulkImage || "/placeholder.svg"}
                   alt={`${product.name} bulk 10kg HORECA carton pack`}
                   aspectRatio="video"
                   width={400}
