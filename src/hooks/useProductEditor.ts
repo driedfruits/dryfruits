@@ -176,6 +176,14 @@ export function useProductEditor() {
   const removeFaq = (i: number) => setFaqs((prev) => prev.filter((_, idx) => idx !== i));
   const updateFaq = (i: number, field: "question" | "answer", val: string) => setFaqs((prev) => prev.map((f, idx) => (idx === i ? { ...f, [field]: val } : f)));
   const updateGalleryImage = (i: number, field: "src" | "alt", val: string) => setImgGallery((prev) => prev.map((g, idx) => (idx === i ? { ...g, [field]: val } : g)));
+  const reorderGalleryImages = (fromIndex: number, toIndex: number) => {
+    setImgGallery((prev) => {
+      const next = [...prev];
+      const [moved] = next.splice(fromIndex, 1);
+      next.splice(toIndex, 0, moved);
+      return next;
+    });
+  };
   const toggleRelated = (id: string) => setRelatedProducts((prev) => prev.includes(id) ? prev.filter((r) => r !== id) : [...prev, id]);
   const updateSpec = (key: string, value: string) => setSpecs((prev) => ({ ...prev, [key]: value }));
 
@@ -298,6 +306,6 @@ export function useProductEditor() {
     // Actions
     handleProductChange, handleNewProduct, handleSave, handleDelete,
     toggleCert, addApplication, removeApplication, addFaq, removeFaq, updateFaq,
-    updateGalleryImage, toggleRelated, updateSpec,
+    updateGalleryImage, reorderGalleryImages, toggleRelated, updateSpec,
   };
 }
