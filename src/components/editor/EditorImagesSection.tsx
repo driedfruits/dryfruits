@@ -9,10 +9,6 @@ interface EditorImagesSectionProps {
   setImgMain: (v: string) => void;
   imgMainAlt: string;
   setImgMainAlt: (v: string) => void;
-  imgThumb: string;
-  setImgThumb: (v: string) => void;
-  imgThumbAlt: string;
-  setImgThumbAlt: (v: string) => void;
   imgGallery: Array<{ src: string; alt: string }>;
   updateGalleryImage: (i: number, field: "src" | "alt", val: string) => void;
   reorderGalleryImages: (fromIndex: number, toIndex: number) => void;
@@ -21,7 +17,6 @@ interface EditorImagesSectionProps {
 const EditorImagesSection = ({
   productId,
   imgMain, setImgMain, imgMainAlt, setImgMainAlt,
-  imgThumb, setImgThumb, imgThumbAlt, setImgThumbAlt,
   imgGallery, updateGalleryImage, reorderGalleryImages,
 }: EditorImagesSectionProps) => {
   const [dragIdx, setDragIdx] = useState<number | null>(null);
@@ -64,13 +59,6 @@ const EditorImagesSection = ({
         <p className="text-xs font-medium text-muted-foreground">Main Image</p>
         <ImageUploader currentSrc={imgMain} productId={productId} slot="main" onUploaded={setImgMain} onRemove={() => setImgMain("")} />
         <FormInput label="Main Image Alt Text" value={imgMainAlt} onChange={(e) => setImgMainAlt(e.target.value)} placeholder="Descriptive alt text for SEO" />
-      </div>
-
-      {/* Thumbnail */}
-      <div className="space-y-2">
-        <p className="text-xs font-medium text-muted-foreground">Thumbnail</p>
-        <ImageUploader currentSrc={imgThumb} productId={productId} slot="thumbnail" onUploaded={setImgThumb} onRemove={() => setImgThumb("")} />
-        <FormInput label="Thumbnail Alt Text" value={imgThumbAlt} onChange={(e) => setImgThumbAlt(e.target.value)} placeholder="Thumbnail alt text" />
       </div>
 
       {/* Gallery */}
