@@ -1,26 +1,29 @@
 
 
-## Add Photo Upload to Admin Product Editor
+## Change Photo Grid to 4 Columns on Desktop
 
-Currently the admin editor only allows editing alt text — image paths are read-only with a note "Image paths are managed in code." We'll add the ability to upload images directly from the admin page using Supabase Storage.
+### Findings
+- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
+- Captions are present in the code with `label` fields and `<p>` tags
+- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
+- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
 
-### Steps
+### Problem
+Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
+- Factory: reduce from 15 to 12, or increase to 16
+- Farmers: keep 8 (reduce from 10), or increase to 12
 
-1. **Create a `product-images` storage bucket** via migration — public bucket so images can be served directly.
+### Recommendation
+- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
+- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
 
-2. **Add an upload helper** — a small reusable `ImageUploader` component with a file input that uploads to `product-images/{productId}/{slot}.{ext}` (slots: `main`, `thumbnail`, `gallery-0` through `gallery-3`). Shows current preview + upload button + remove button.
+### Changes
 
-3. **Update `EditorImagesSection`** — replace the read-only image display with the `ImageUploader` component for each slot (main, thumbnail, 4 gallery slots). Each slot gets an upload button alongside the existing alt text field.
+**`src/components/home/FactoryGallerySection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
 
-4. **Update `useProductEditor` hook** — add setters for `imgMain`, `imgThumb`, and gallery `src` fields (currently only alt is editable). Add `setImgMain`, `setImgThumb`, and expand `updateGalleryImage` to accept `"src" | "alt"`.
-
-5. **Wire upload flow** — on successful upload, the public URL is set into the corresponding image state field, which then gets saved to the database via the existing `buildProduct` → `handleSave` flow.
-
-### Technical Details
-
-- Storage bucket: `product-images`, public, with permissive RLS (matches current DB policy approach)
-- Upload path pattern: `{productId}/{slot}-{timestamp}.{ext}` to avoid cache issues
-- Accepted formats: JPEG, PNG, WebP; max 5MB per file
-- The `ImageUploader` component handles upload state (loading spinner, error display) internally
-- No schema changes needed — the existing `images` JSONB column already stores paths
+**`src/components/home/FarmersSection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
 
