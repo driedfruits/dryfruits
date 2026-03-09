@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import type { Product } from "@/data/products";
 import { getRelatedProducts } from "@/data/products";
@@ -47,6 +47,10 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
     ...Array(4).fill(`${product.name} view`),
   ].slice(0, 4);
   const [selectedImage, setSelectedImage] = useState(allImages[0]);
+
+  useEffect(() => {
+    setSelectedImage(allImages[0]);
+  }, [product.id]);
 
   const seoTitle = product.metaTitle || `Wholesale ${product.name} - Bulk Export from Indonesia`;
   const seoDescription = product.metaDescription || `Direct manufacturer of premium ${product.name.toLowerCase()} from Indonesia. ${product.isOrganic ? "USDA/EU Organic certified. " : ""}Bulk packaging available. MOQ ${product.pricing.moq}. View specs & pricing.`;
