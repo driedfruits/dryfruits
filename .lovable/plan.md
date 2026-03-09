@@ -1,29 +1,19 @@
 
 
-## Change Photo Grid to 4 Columns on Desktop
+## Remove Thumbnail from Admin Editor
 
-### Findings
-- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
-- Captions are present in the code with `label` fields and `<p>` tags
-- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
-- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
-
-### Problem
-Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
-- Factory: reduce from 15 to 12, or increase to 16
-- Farmers: keep 8 (reduce from 10), or increase to 12
-
-### Recommendation
-- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
-- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
+The `thumbnail` field is only used as an optional `placeholderSrc` prop in 3 components (ProductCard, ProductCategoriesSection, ProductPageTemplate) — it serves as a blurry placeholder while the main image loads. No page actually displays it as a standalone image. Removing it from the editor simplifies the admin workflow with zero visual impact.
 
 ### Changes
 
-**`src/components/home/FactoryGallerySection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
+**1. `src/components/editor/EditorImagesSection.tsx`**
+- Remove the Thumbnail section (lines 69-74) and its props (`imgThumb`, `setImgThumb`, `imgThumbAlt`, `setImgThumbAlt`)
 
-**`src/components/home/FarmersSection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
+**2. `src/pages/ProductEditorPage.tsx`**
+- Stop passing thumbnail props to `EditorImagesSection`
+
+**3. `src/hooks/useProductEditor.ts`**
+- Keep the `imgThumb`/`imgThumbAlt` state internally so existing DB data still gets saved, but no need to expose it in the editor UI. Alternatively, stop saving it entirely — existing references in the frontend gracefully handle `undefined`.
+
+The `thumbnail` field remains in the `Product` type and mapper so existing data isn't broken, but admins no longer need to manage it.
 
