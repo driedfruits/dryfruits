@@ -51,6 +51,10 @@
 /green                      /sustainability                301
 /environment                /sustainability                301
 
+# Removed product redirects
+/products/dried-fruits/dried-avocado    /products          301
+/products/dried-fruits/dried-snake-fruit /products         301
+
 # Category redirects (common misspellings)
 /products/dried-fruit       /products/dried-fruits         301
 /products/dried             /products/dried-fruits         301

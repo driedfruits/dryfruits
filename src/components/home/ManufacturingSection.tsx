@@ -3,8 +3,8 @@ import { companyInfo } from "@/data/companyInfo";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const fruits = [
-  "Dragon Fruit", "Papaya", "Mango", "Avocado", "Pineapple",
-  "Snakefruit", "Guava", "Jackfruit", "Longan", "Rambutan",
+  "Dragon Fruit", "Papaya", "Mango", "Pineapple",
+  "Guava", "Jackfruit", "Longan", "Coconut", "Banana", "Breadfruit",
 ];
 
 export const ManufacturingSection = memo(function ManufacturingSection() {

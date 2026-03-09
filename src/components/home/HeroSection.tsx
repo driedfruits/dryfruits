@@ -3,8 +3,8 @@ import { Leaf, ArrowRight, Package } from "lucide-react";
 import { PrimaryButton, SecondaryLightButton } from "@/components/CTAButton";
 
 const fruits = [
-  "Dragon Fruit", "Papaya", "Mango", "Avocado", "Pineapple",
-  "Snakefruit", "Guava", "Jackfruit", "Longan", "Rambutan",
+  "Dragon Fruit", "Papaya", "Mango", "Pineapple",
+  "Guava", "Jackfruit", "Longan", "Coconut", "Banana", "Breadfruit",
 ];
 
 export const HeroSection = memo(function HeroSection() {
