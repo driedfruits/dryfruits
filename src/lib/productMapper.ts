@@ -52,6 +52,8 @@ export function mapRowToProduct(row: ProductRow): Product {
       bulk: (packaging.bulk as string) || "",
       retail: (packaging.retail as string) || "",
       custom: (packaging.custom as boolean) ?? false,
+      retailImage: (packaging.retailImage as string) || undefined,
+      bulkImage: (packaging.bulkImage as string) || undefined,
     },
     pricing: {
       fobBase: pricing.fobBase || "",
@@ -121,6 +123,8 @@ export function mapProductToRow(product: Product): ProductRow {
       bulk: product.packaging.bulk,
       retail: product.packaging.retail,
       custom: product.packaging.custom,
+      retailImage: product.packaging.retailImage || "",
+      bulkImage: product.packaging.bulkImage || "",
     },
     pricing: {
       fobBase: product.pricing.fobBase,

@@ -1,32 +1,29 @@
 
 
-## Add Packaging Photo Uploads to Admin Editor
+## Change Photo Grid to 4 Columns on Desktop
 
-Currently the packaging section on product pages shows `/placeholder.svg` for both retail and bulk packaging cards. We'll add image upload fields to the admin editor so admins can upload real packaging photos, store the URLs in the existing `packaging` JSONB column, and display them on the frontend.
+### Findings
+- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
+- Captions are present in the code with `label` fields and `<p>` tags
+- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
+- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
+
+### Problem
+Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
+- Factory: reduce from 15 to 12, or increase to 16
+- Farmers: keep 8 (reduce from 10), or increase to 12
+
+### Recommendation
+- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
+- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
 
 ### Changes
 
-**1. Data layer — no DB migration needed**
-The `packaging` JSONB column already stores `{bulk, retail, custom}`. We'll add `retailImage` and `bulkImage` string fields to it. Since it's JSONB, no schema change required.
+**`src/components/home/FactoryGallerySection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
 
-**2. `src/data/products.ts`** — Product interface
-Add optional `retailImage` and `bulkImage` to the `packaging` type.
-
-**3. `src/lib/productMapper.ts`** — both directions
-Map `retailImage` / `bulkImage` through the JSONB packaging object in `mapRowToProduct` and `mapProductToRow`.
-
-**4. `src/hooks/useProductEditor.ts`**
-- Add `packagingRetailImage` / `packagingBulkImage` state fields
-- Wire them into `loadProduct` and `buildProduct`
-- Expose setters
-
-**5. `src/components/editor/EditorPackagingSection.tsx`**
-- Add two `ImageUploader` components (one for retail, one for bulk) below the existing text inputs
-- Accept `productId` prop for storage paths
-
-**6. `src/pages/ProductEditorPage.tsx`**
-- Pass new image state + `productId` to `EditorPackagingSection`
-
-**7. `src/components/products/ProductDescriptionPackaging.tsx`**
-- Replace hardcoded `/placeholder.svg` with `product.packaging.retailImage` and `product.packaging.bulkImage`, falling back to placeholder when not set
+**`src/components/home/FarmersSection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
 

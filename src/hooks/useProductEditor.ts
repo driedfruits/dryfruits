@@ -55,6 +55,8 @@ export function useProductEditor() {
   const [texture, setTexture] = useState("");
   const [packagingBulk, setPackagingBulk] = useState("");
   const [packagingRetail, setPackagingRetail] = useState("");
+  const [packagingRetailImage, setPackagingRetailImage] = useState("");
+  const [packagingBulkImage, setPackagingBulkImage] = useState("");
   const [portOfLoading, setPortOfLoading] = useState("");
   const [incoterms, setIncoterms] = useState("");
   const [containerLoad20ft, setContainerLoad20ft] = useState("");
@@ -103,6 +105,8 @@ export function useProductEditor() {
     setSpecs(specEntries);
     setPackagingBulk(product.packaging.bulk);
     setPackagingRetail(product.packaging.retail);
+    setPackagingRetailImage(product.packaging.retailImage || "");
+    setPackagingBulkImage(product.packaging.bulkImage || "");
     setPortOfLoading(product.logistics?.portOfLoading || "");
     setIncoterms(product.logistics?.incoterms?.join(", ") || "");
     setContainerLoad20ft(product.logistics?.containerLoad20ft || "");
@@ -224,7 +228,7 @@ export function useProductEditor() {
       harvestMonths: harvestMonths.some(v => v > 0) ? harvestMonths : undefined,
       specifications: Object.fromEntries(Object.entries(specs).filter(([, v]) => v)) as Product["specifications"],
       applications: applications.length > 0 ? applications : [],
-      packaging: { bulk: packagingBulk, retail: packagingRetail, custom: products.find(p => p.id === selectedId)?.packaging.custom ?? false },
+      packaging: { bulk: packagingBulk, retail: packagingRetail, custom: products.find(p => p.id === selectedId)?.packaging.custom ?? false, retailImage: packagingRetailImage || undefined, bulkImage: packagingBulkImage || undefined },
       logistics: {
         portOfLoading: portOfLoading || undefined,
         incoterms: incoterms ? incoterms.split(",").map(s => s.trim()) : undefined,
@@ -298,6 +302,7 @@ export function useProductEditor() {
     harvestMonths, setHarvestMonths, keywords, setKeywords, specs, tagline, setTagline,
     description, setDescription, flavorProfile, setFlavorProfile, texture, setTexture,
     packagingBulk, setPackagingBulk, packagingRetail, setPackagingRetail,
+    packagingRetailImage, setPackagingRetailImage, packagingBulkImage, setPackagingBulkImage,
     portOfLoading, setPortOfLoading, incoterms, setIncoterms,
     containerLoad20ft, setContainerLoad20ft, containerLoad40ft, setContainerLoad40ft,
     estimatedDelivery, setEstimatedDelivery, exportDocuments, setExportDocuments,
