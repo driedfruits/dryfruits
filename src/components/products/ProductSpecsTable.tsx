@@ -29,7 +29,9 @@ const specLabels: Record<string, string> = {
 };
 
 export function ProductSpecsTable({ product }: ProductSpecsTableProps) {
-  const specs = Object.entries(product.specifications).filter(([_, value]) => value);
+  const specs = Object.entries(product.specifications).filter(
+    ([key, value]) => value && value !== "--" && value !== "-" && key in specLabels
+  );
 
   const allRows = [
     { label: "Product Name", value: product.name },
