@@ -1,35 +1,29 @@
 
 
-## Add GA4 & Facebook Pixel Event Tracking
+## Change Photo Grid to 4 Columns on Desktop
 
-### What changes
+### Findings
+- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
+- Captions are present in the code with `label` fields and `<p>` tags
+- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
+- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
 
-**1. Create a centralized analytics utility** — `src/lib/analytics.ts`
-- Helper functions `trackGA4Event()` and `trackFBPixelEvent()` that safely call `gtag()` and `fbq()` with proper TypeScript declarations
-- One place to manage all event tracking
+### Problem
+Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
+- Factory: reduce from 15 to 12, or increase to 16
+- Farmers: keep 8 (reduce from 10), or increase to 12
 
-**2. Add Facebook Pixel base script** — `index.html`
-- Standard FB Pixel initialization snippet (needs your Pixel ID)
+### Recommendation
+- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
+- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
 
-**3. Update `useWhatsApp` hook** — `src/hooks/useWhatsApp.ts`
-- Replace the `console.log` analytics stub with real GA4 + FB Pixel calls
-- GA4 event: `whatsapp_click` with params `{ source, message_preview }`
-- FB Pixel event: `Contact` with `{ content_name: 'WhatsApp', source }`
+### Changes
 
-**4. Update `ContactForm`** — `src/components/forms/ContactForm.tsx`
-- On successful submission: fire GA4 `form_submit` event with `{ form_type: variant }` and FB Pixel `Lead` event
+**`src/components/home/FactoryGallerySection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
 
-**5. Update `CatalogForm`** — `src/components/forms/CatalogForm.tsx`
-- On successful submission: fire GA4 `catalog_download` event and FB Pixel `Lead` event with `{ content_name: 'Catalog' }`
-
-### Events summary
-
-| Action | GA4 Event | FB Pixel Event |
-|--------|-----------|----------------|
-| WhatsApp click | `whatsapp_click` | `Contact` |
-| Contact/Quote/Sample form submit | `form_submit` | `Lead` |
-| Catalog form submit | `catalog_download` | `Lead` |
-
-### What I need from you
-- **Facebook Pixel ID** (e.g. `123456789012345`)
+**`src/components/home/FarmersSection.tsx`**
+- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
+- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
 

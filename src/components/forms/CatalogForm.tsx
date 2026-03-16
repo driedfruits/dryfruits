@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Download, Loader2, CheckCircle2 } from "lucide-react";
 import { WEB3FORMS_ACCESS_KEY } from "@/lib/constants";
+import { trackGA4Event, trackFBPixelEvent } from "@/lib/analytics";
 
 interface CatalogFormProps {
   className?: string;
@@ -59,6 +60,8 @@ export function CatalogForm({ className }: CatalogFormProps) {
       const result = await response.json();
 
       if (result.success) {
+        trackGA4Event("catalog_download", { form_type: "catalog" });
+        trackFBPixelEvent("Lead", { content_name: "Catalog" });
         toast({
           title: "Catalog Request Received!",
           description: "Check your email for the download link.",

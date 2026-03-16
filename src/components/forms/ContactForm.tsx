@@ -5,6 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useProducts } from "@/contexts/ProductsContext";
 import { Loader2, Send, CheckCircle2 } from "lucide-react";
 import { WEB3FORMS_ACCESS_KEY } from "@/lib/constants";
+import { trackGA4Event, trackFBPixelEvent } from "@/lib/analytics";
 
 interface ContactFormProps {
   variant?: "contact" | "quote" | "sample";
@@ -99,6 +100,8 @@ export function ContactForm({ variant = "contact", preselectedProduct, className
       const result = await response.json();
 
       if (result.success) {
+        trackGA4Event("form_submit", { form_type: variant });
+        trackFBPixelEvent("Lead", { content_name: variant });
         toast({
           title: variant === "sample" ? "Sample Request Sent!" : "Message Sent!",
           description: "We'll get back to you within 24 hours.",
