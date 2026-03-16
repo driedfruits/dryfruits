@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Download, Loader2, CheckCircle2 } from "lucide-react";
 import { WEB3FORMS_ACCESS_KEY } from "@/lib/constants";
+import { trackGA4Event, trackFBPixelEvent } from "@/lib/analytics";
 
 interface CatalogFormProps {
   className?: string;
