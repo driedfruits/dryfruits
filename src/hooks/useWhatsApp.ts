@@ -19,13 +19,14 @@ export function useWhatsApp({
   const handleClick = useCallback(
     (e?: React.MouseEvent) => {
       e?.preventDefault();
-      // Analytics stub — swap for GA/GTM/Plausible later
-      console.log(JSON.stringify({
-        event: "whatsapp_click",
+      trackGA4Event("whatsapp_click", {
         source,
-        message,
-        timestamp: new Date().toISOString(),
-      }));
+        message_preview: message.slice(0, 100),
+      });
+      trackFBPixelEvent("Contact", {
+        content_name: "WhatsApp",
+        source,
+      });
       window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     },
     [whatsappUrl, source, message]

@@ -100,6 +100,8 @@ export function ContactForm({ variant = "contact", preselectedProduct, className
       const result = await response.json();
 
       if (result.success) {
+        trackGA4Event("form_submit", { form_type: variant });
+        trackFBPixelEvent("Lead", { content_name: variant });
         toast({
           title: variant === "sample" ? "Sample Request Sent!" : "Message Sent!",
           description: "We'll get back to you within 24 hours.",

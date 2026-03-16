@@ -60,6 +60,8 @@ export function CatalogForm({ className }: CatalogFormProps) {
       const result = await response.json();
 
       if (result.success) {
+        trackGA4Event("catalog_download", { form_type: "catalog" });
+        trackFBPixelEvent("Lead", { content_name: "Catalog" });
         toast({
           title: "Catalog Request Received!",
           description: "Check your email for the download link.",
