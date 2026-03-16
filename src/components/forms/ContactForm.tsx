@@ -5,6 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useProducts } from "@/contexts/ProductsContext";
 import { Loader2, Send, CheckCircle2 } from "lucide-react";
 import { WEB3FORMS_ACCESS_KEY } from "@/lib/constants";
+import { trackGA4Event, trackFBPixelEvent } from "@/lib/analytics";
 
 interface ContactFormProps {
   variant?: "contact" | "quote" | "sample";
