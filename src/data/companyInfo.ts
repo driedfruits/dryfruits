@@ -6,8 +6,8 @@ export const companyInfo = {
   established: 2015,
   
   // Contact
-  phone: "+62 857 2528 5059",
-  whatsapp: "+6285725285059",
+  phone: "+62 857 7062 3248",
+  whatsapp: "+6285770623248",
   email: "export@dryfruits.biz",
   
   // Address
