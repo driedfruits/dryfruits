@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { companyInfo } from "@/data/companyData";
+import { trackGA4Event, trackFBPixelEvent } from "@/lib/analytics";
 
 interface UseWhatsAppOptions {
   message?: string;
