@@ -17,8 +17,8 @@ function hslToHex(h: number, s: number, l: number): string {
 
 function parseHSL(raw: string): { h: number; s: number; l: number; hex: string; hsl: string } | null {
   if (!raw) return null;
-  const parts = raw.trim().split(/\s+/).map(Number);
-  if (parts.length < 3) return null;
+  const parts = raw.trim().split(/\s+/).map((v) => parseFloat(v));
+  if (parts.length < 3 || parts.some(isNaN)) return null;
   const [h, s, l] = parts;
   return { h, s, l, hex: hslToHex(h, s, l), hsl: `hsl(${h}, ${s}%, ${l}%)` };
 }
