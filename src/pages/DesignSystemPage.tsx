@@ -1,6 +1,23 @@
 import { Layout } from "@/components/layout/Layout";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Home, Search, Settings, User, Mail, Phone, MapPin, Clock,
+  Package, Leaf, Award, Shield, Truck, Globe, FileText, Download,
+  ChevronRight, ArrowRight, ExternalLink, Check, X, AlertTriangle,
+  Star, Heart, Share2, Eye, Edit, Trash2, Plus, Minus,
+  Sun, Moon, Menu, Filter, SortAsc, BarChart3, PieChart, TrendingUp,
+  MessageCircle, Send, Camera, Image, Upload, Clipboard, Copy,
+  Lock, Unlock, Key, Bell, BellOff, Bookmark, BookmarkCheck,
+  Calendar, CreditCard, ShoppingCart, Tag, Percent, Zap
+} from "lucide-react";
 import { useEffect, useState } from "react";
 
 // HSL string to hex converter
@@ -456,6 +473,312 @@ export default function DesignSystemPage() {
           <p className="mt-3 text-xs text-muted-foreground">
             Stagger delays: <code className="font-mono bg-muted px-1 rounded">.animation-delay-75</code> through <code className="font-mono bg-muted px-1 rounded">.animation-delay-300</code>
           </p>
+        </section>
+
+        {/* ── 10. ICON LIBRARY ── */}
+        <section>
+          <SectionTitle>10. Icon Library (Lucide React)</SectionTitle>
+          <p className="text-sm text-muted-foreground mb-6">
+            Import individually: <code className="font-mono bg-muted px-1.5 py-0.5 rounded text-xs">{"import { IconName } from 'lucide-react'"}</code>. 
+            All icons are tree-shaken — only imported icons ship in the bundle.
+          </p>
+
+          <SubSection title="Navigation & UI">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+              {[
+                { icon: Home, name: "Home" }, { icon: Search, name: "Search" }, { icon: Settings, name: "Settings" },
+                { icon: User, name: "User" }, { icon: Menu, name: "Menu" }, { icon: Filter, name: "Filter" },
+                { icon: SortAsc, name: "SortAsc" }, { icon: ChevronRight, name: "ChevronRight" },
+                { icon: ArrowRight, name: "ArrowRight" }, { icon: ExternalLink, name: "ExternalLink" },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1.5 p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors">
+                  <Icon className="h-5 w-5 text-foreground" />
+                  <span className="text-[10px] text-muted-foreground font-mono truncate w-full text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+          </SubSection>
+
+          <SubSection title="Communication & Actions">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+              {[
+                { icon: Mail, name: "Mail" }, { icon: Phone, name: "Phone" }, { icon: MessageCircle, name: "MessageCircle" },
+                { icon: Send, name: "Send" }, { icon: Bell, name: "Bell" }, { icon: BellOff, name: "BellOff" },
+                { icon: Share2, name: "Share2" }, { icon: Clipboard, name: "Clipboard" },
+                { icon: Copy, name: "Copy" }, { icon: Download, name: "Download" },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1.5 p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors">
+                  <Icon className="h-5 w-5 text-foreground" />
+                  <span className="text-[10px] text-muted-foreground font-mono truncate w-full text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+          </SubSection>
+
+          <SubSection title="Business & Commerce">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+              {[
+                { icon: Package, name: "Package" }, { icon: Truck, name: "Truck" }, { icon: Globe, name: "Globe" },
+                { icon: ShoppingCart, name: "ShoppingCart" }, { icon: CreditCard, name: "CreditCard" },
+                { icon: Tag, name: "Tag" }, { icon: Percent, name: "Percent" }, { icon: BarChart3, name: "BarChart3" },
+                { icon: PieChart, name: "PieChart" }, { icon: TrendingUp, name: "TrendingUp" },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1.5 p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors">
+                  <Icon className="h-5 w-5 text-foreground" />
+                  <span className="text-[10px] text-muted-foreground font-mono truncate w-full text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+          </SubSection>
+
+          <SubSection title="Brand & Industry">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+              {[
+                { icon: Leaf, name: "Leaf" }, { icon: Award, name: "Award" }, { icon: Shield, name: "Shield" },
+                { icon: Star, name: "Star" }, { icon: Heart, name: "Heart" }, { icon: Bookmark, name: "Bookmark" },
+                { icon: BookmarkCheck, name: "BookmarkCheck" }, { icon: Zap, name: "Zap" },
+                { icon: MapPin, name: "MapPin" }, { icon: Calendar, name: "Calendar" },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1.5 p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors">
+                  <Icon className="h-5 w-5 text-foreground" />
+                  <span className="text-[10px] text-muted-foreground font-mono truncate w-full text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+          </SubSection>
+
+          <SubSection title="Status & Feedback">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+              {[
+                { icon: Check, name: "Check" }, { icon: X, name: "X" }, { icon: AlertTriangle, name: "AlertTriangle" },
+                { icon: Eye, name: "Eye" }, { icon: Edit, name: "Edit" }, { icon: Trash2, name: "Trash2" },
+                { icon: Plus, name: "Plus" }, { icon: Minus, name: "Minus" },
+                { icon: Lock, name: "Lock" }, { icon: Unlock, name: "Unlock" },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1.5 p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors">
+                  <Icon className="h-5 w-5 text-foreground" />
+                  <span className="text-[10px] text-muted-foreground font-mono truncate w-full text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+          </SubSection>
+
+          <SubSection title="Icon Sizes">
+            <div className="flex items-end gap-6 p-6 rounded-lg bg-card border border-border">
+              {[
+                { size: 16, label: "16px (xs)" },
+                { size: 20, label: "20px (sm)" },
+                { size: 24, label: "24px (default)" },
+                { size: 32, label: "32px (lg)" },
+                { size: 48, label: "48px (xl)" },
+              ].map(({ size, label }) => (
+                <div key={size} className="flex flex-col items-center gap-2">
+                  <Package size={size} className="text-primary" />
+                  <span className="text-xs text-muted-foreground font-mono">{label}</span>
+                </div>
+              ))}
+            </div>
+          </SubSection>
+        </section>
+
+        {/* ── 11. COMPONENT EXAMPLES ── */}
+        <section>
+          <SectionTitle>11. Component Examples</SectionTitle>
+
+          {/* Cards */}
+          <SubSection title="Cards">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Basic Card */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Basic Card</CardTitle>
+                  <CardDescription>Default card with header, content, and footer.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">Cards use <code className="font-mono text-xs bg-muted px-1 rounded">--card</code> background with <code className="font-mono text-xs bg-muted px-1 rounded">--card-foreground</code> text.</p>
+                </CardContent>
+                <CardFooter>
+                  <Button size="sm">Action</Button>
+                </CardFooter>
+              </Card>
+
+              {/* Product-style Card */}
+              <Card className="overflow-hidden">
+                <div className="h-40 bg-gradient-to-br from-tropical-green to-tropical-green-light flex items-center justify-center">
+                  <Package className="h-12 w-12 text-on-primary" />
+                </div>
+                <CardHeader>
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-primary text-primary-foreground">Organic</Badge>
+                    <Badge variant="outline">Premium</Badge>
+                  </div>
+                  <CardTitle className="text-lg">Dried Mango</CardTitle>
+                  <CardDescription>Sweet, chewy tropical fruit slices</CardDescription>
+                </CardHeader>
+                <CardFooter className="flex justify-between">
+                  <span className="text-sm font-semibold text-foreground">$8.50/kg</span>
+                  <Button size="sm" variant="outline">
+                    <ArrowRight className="h-4 w-4" /> Details
+                  </Button>
+                </CardFooter>
+              </Card>
+
+              {/* Stat Card */}
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Monthly Orders</CardTitle>
+                  <TrendingUp className="h-4 w-4 text-tropical-green" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-foreground">2,350</div>
+                  <p className="text-xs text-tropical-green flex items-center gap-1 mt-1">
+                    <TrendingUp className="h-3 w-3" /> +12.5% from last month
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </SubSection>
+
+          {/* Forms */}
+          <SubSection title="Forms">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Contact-style Form */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Contact Form</CardTitle>
+                  <CardDescription>Standard form layout with labels and inputs.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="ds-first">First Name</Label>
+                      <Input id="ds-first" placeholder="John" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="ds-last">Last Name</Label>
+                      <Input id="ds-last" placeholder="Doe" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="ds-email">Email</Label>
+                    <Input id="ds-email" type="email" placeholder="john@company.com" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="ds-message">Message</Label>
+                    <Textarea id="ds-message" placeholder="Tell us about your requirements..." rows={3} />
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Button className="w-full">
+                    <Send className="h-4 w-4" /> Send Message
+                  </Button>
+                </CardFooter>
+              </Card>
+
+              {/* Form States */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Input States</CardTitle>
+                  <CardDescription>Various form input states for reference.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-2">
+                    <Label>Default</Label>
+                    <Input placeholder="Default input" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>With Value</Label>
+                    <Input defaultValue="PT Dried Fruits Total Indonesia" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Disabled</Label>
+                    <Input disabled placeholder="Disabled input" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-destructive">Error State</Label>
+                    <Input className="border-destructive" defaultValue="invalid@" />
+                    <p className="text-xs text-destructive">Please enter a valid email address.</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </SubSection>
+
+          {/* Accordion */}
+          <SubSection title="Accordion">
+            <Card>
+              <CardContent className="pt-6">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>What is the minimum order quantity?</AccordionTrigger>
+                    <AccordionContent>
+                      Our minimum order quantity varies by product. For most dried fruits, the MOQ is 500kg per variety. For private label orders, the MOQ is 1,000kg. Contact us for specific product requirements.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger>Do you offer free samples?</AccordionTrigger>
+                    <AccordionContent>
+                      Yes, we provide free product samples for qualified B2B buyers. Sample packs include up to 5 different dried fruit varieties. Shipping costs may apply depending on your location.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-3">
+                    <AccordionTrigger>What certifications do your products have?</AccordionTrigger>
+                    <AccordionContent>
+                      Our products are certified USDA Organic, EU Organic, HACCP, and Halal. We maintain strict quality control throughout our manufacturing process in Central Java, Indonesia.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </CardContent>
+            </Card>
+          </SubSection>
+
+          {/* Tabs */}
+          <SubSection title="Tabs">
+            <Card>
+              <CardContent className="pt-6">
+                <Tabs defaultValue="overview">
+                  <TabsList>
+                    <TabsTrigger value="overview">Overview</TabsTrigger>
+                    <TabsTrigger value="specs">Specifications</TabsTrigger>
+                    <TabsTrigger value="shipping">Shipping</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="overview" className="mt-4">
+                    <p className="text-sm text-muted-foreground">
+                      Our premium dried mango slices are sourced from the finest Indonesian farms.
+                      Each batch is carefully selected and processed to preserve natural sweetness and nutrients.
+                    </p>
+                  </TabsContent>
+                  <TabsContent value="specs" className="mt-4">
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      <div className="text-muted-foreground">Moisture</div><div className="font-medium text-foreground">14-16%</div>
+                      <div className="text-muted-foreground">Sugar</div><div className="font-medium text-foreground">No added sugar</div>
+                      <div className="text-muted-foreground">Shelf Life</div><div className="font-medium text-foreground">12 months</div>
+                      <div className="text-muted-foreground">Storage</div><div className="font-medium text-foreground">Cool, dry place</div>
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="shipping" className="mt-4">
+                    <p className="text-sm text-muted-foreground">
+                      We ship worldwide via sea freight (20ft / 40ft containers) or air freight for smaller orders.
+                      FOB Semarang, Indonesia. Lead time: 2-4 weeks from order confirmation.
+                    </p>
+                  </TabsContent>
+                </Tabs>
+              </CardContent>
+            </Card>
+          </SubSection>
+
+          {/* Badges */}
+          <SubSection title="Badges">
+            <div className="flex flex-wrap gap-3 p-6 rounded-lg bg-card border border-border">
+              <Badge>Default</Badge>
+              <Badge variant="secondary">Secondary</Badge>
+              <Badge variant="outline">Outline</Badge>
+              <Badge variant="destructive">Destructive</Badge>
+              <Badge className="bg-tropical-green text-on-primary">Organic</Badge>
+              <Badge className="bg-gold text-earth-brown-dark">Premium</Badge>
+              <Badge className="bg-whatsapp text-on-primary">WhatsApp</Badge>
+            </div>
+          </SubSection>
         </section>
       </div>
     </Layout>
