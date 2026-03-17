@@ -114,9 +114,12 @@ const App = () => (
             />
           ))}
 
-          {/* Admin */}
+          {/* Admin / Internal */}
           <Route path="/admin/products" element={
             <Suspense fallback={<LayoutSkeleton />}><ProductEditorPage /></Suspense>
+          } />
+          <Route path="/design-system" element={
+            <Suspense fallback={<LayoutSkeleton />}><DesignSystemPage /></Suspense>
           } />
 
           <Route path="*" element={
