@@ -1,6 +1,23 @@
 import { Layout } from "@/components/layout/Layout";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Home, Search, Settings, User, Mail, Phone, MapPin, Clock,
+  Package, Leaf, Award, Shield, Truck, Globe, FileText, Download,
+  ChevronRight, ArrowRight, ExternalLink, Check, X, AlertTriangle,
+  Star, Heart, Share2, Eye, Edit, Trash2, Plus, Minus,
+  Sun, Moon, Menu, Filter, SortAsc, BarChart3, PieChart, TrendingUp,
+  MessageCircle, Send, Camera, Image, Upload, Clipboard, Copy,
+  Lock, Unlock, Key, Bell, BellOff, Bookmark, BookmarkCheck,
+  Calendar, CreditCard, ShoppingCart, Tag, Percent, Zap
+} from "lucide-react";
 import { useEffect, useState } from "react";
 
 // HSL string to hex converter
