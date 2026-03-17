@@ -1,29 +1,29 @@
 
 
-## Change Photo Grid to 4 Columns on Desktop
+## Design System / Style Guide Page
 
-### Findings
-- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
-- Captions are present in the code with `label` fields and `<p>` tags
-- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
-- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
+Create a new `/design-system` page that documents all visual parameters for designers. This page will be internal-facing (not linked in main navigation) and will pull values directly from the existing CSS variables and Tailwind config.
 
-### Problem
-Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
-- Factory: reduce from 15 to 12, or increase to 16
-- Farmers: keep 8 (reduce from 10), or increase to 12
+### Page sections
 
-### Recommendation
-- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
-- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
+1. **Color Palette** — Render swatches for all theme colors (primary, secondary, accent, tropical-green, earth-brown, gold, whatsapp, muted, destructive) with HSL values and hex equivalents. Include light/dark variants.
 
-### Changes
+2. **Typography** — Show font families (heading, body), all heading sizes (h1-h6) with rendered examples, body text sizes, and line heights.
 
-**`src/components/home/FactoryGallerySection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
+3. **Spacing & Layout** — Document container widths, padding scale (4px base), and standard section spacing used across the site.
 
-**`src/components/home/FarmersSection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
+4. **Border Radius** — Show the 3 radius tokens (lg, md, sm) with visual examples.
+
+5. **Shadows** — Render shadow-soft, shadow-glow, and elevation levels with examples.
+
+6. **Buttons** — All button variants (default, outline, ghost, gold, whatsapp, accent, etc.) and sizes rendered live.
+
+7. **Contrast & Accessibility** — Document WCAG AA rules, contrast utility classes (`text-on-primary`, `text-on-dark`, etc.) with rendered examples on colored backgrounds.
+
+### Technical approach
+
+- **New file**: `src/pages/DesignSystemPage.tsx` — standalone page using `Layout` wrapper
+- **Route**: Add `/design-system` route in `App.tsx` (lazy loaded, no nav link)
+- No database changes needed
+- Values are read from CSS custom properties at runtime using `getComputedStyle` to always stay in sync
 
