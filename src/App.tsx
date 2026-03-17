@@ -37,6 +37,7 @@ const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const TermsPage = lazy(() => import("./pages/TermsPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ProductEditorPage = lazy(() => import("./pages/ProductEditorPage"));
+const DesignSystemPage = lazy(() => import("./pages/DesignSystemPage"));
 
 const App = () => (
   <TooltipProvider>
@@ -113,9 +114,12 @@ const App = () => (
             />
           ))}
 
-          {/* Admin */}
+          {/* Admin / Internal */}
           <Route path="/admin/products" element={
             <Suspense fallback={<LayoutSkeleton />}><ProductEditorPage /></Suspense>
+          } />
+          <Route path="/design-system" element={
+            <Suspense fallback={<LayoutSkeleton />}><DesignSystemPage /></Suspense>
           } />
 
           <Route path="*" element={
