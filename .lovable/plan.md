@@ -1,29 +1,22 @@
 
 
-## Change Photo Grid to 4 Columns on Desktop
+## Create `public/humans.txt`
 
-### Findings
-- Both sections currently use `grid-cols-2 md:grid-cols-3 lg:grid-cols-5` 
-- Captions are present in the code with `label` fields and `<p>` tags
-- Factory Photos has 15 photos (not evenly divisible by 4 — 3 rows of 4 + 3 orphans)
-- Farmers Section has 10 photos (not evenly divisible by 4 — 2 rows of 4 + 2 orphans)
+A single new file at `public/humans.txt` following the style of the uploaded Medium example (ASCII art header, structured sections, casual tone).
 
-### Problem
-Switching to 4 columns creates uneven last rows. To fix: adjust photo counts to multiples of 4.
-- Factory: reduce from 15 to 12, or increase to 16
-- Farmers: keep 8 (reduce from 10), or increase to 12
+### Content structure
 
-### Recommendation
-- **Factory**: reduce to 12 photos (remove 3 duplicates — e.g. one cold storage, one blanching, one container loading) = 3 full rows of 4
-- **Farmers**: reduce to 8 photos (remove 2) = 2 full rows of 4
+1. **ASCII art banner** — "DFT INDONESIA" styled header
+2. **About** — Factory name, established year, tagline, legal IDs (NIB/NPWP), address
+3. **Team** — All 9 team members from `companyInfo.ts` with roles and emails
+4. **Contact** — Phone, WhatsApp, email, working hours, website
+5. **Products** — Short list of dried fruits (Dragon Fruit, Papaya, Mango, Pineapple, Guava, Jackfruit, Longan, Coconut, Banana, Breadfruit)
+6. **Certifications** — USDA Organic, EU Organic, HACCP, Halal, Fair Trade, Kosher
+7. **Export reach** — 18 countries summary
 
-### Changes
+### Technical details
 
-**`src/components/home/FactoryGallerySection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 3 photos to bring total to 12 (remove Cold Storage Unit 2, Blanching Line 2, Container Loading Container 2)
-
-**`src/components/home/FarmersSection.tsx`**
-- Change grid class from `lg:grid-cols-5` to `lg:grid-cols-4`
-- Remove 2 photos to bring total to 8 (remove Farmer Family 4 and Jackfruit Plantation)
+- Static `.txt` file in `public/` — served as-is by Vite
+- No code changes needed beyond creating the file
+- Data sourced from `companyInfo.ts` and `ManufacturingSection.tsx`
 
