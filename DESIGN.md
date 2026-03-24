@@ -313,6 +313,70 @@ Activated via `.dark` class on `<html>`. Key overridden tokens:
 
 ---
 
+## Component Inventory
+
+### Layout Components
+
+| Component | Props | Notes |
+|-----------|-------|-------|
+| `Layout` | `children` | Main page wrapper with Header, Footer, MobileBottomNav |
+| `PageHero` | `title`, `subtitle?`, `children?`, `className?` | Gradient banner for content pages |
+| `Header` | — | Responsive nav with mobile drawer |
+| `Footer` | — | Site-wide footer with links and contact info |
+| `MobileBottomNav` | — | Fixed bottom nav on mobile viewports |
+
+### CTA & Button Components
+
+| Component | Props | Notes |
+|-----------|-------|-------|
+| `CTAButton` | `to?`, `href?`, `children`, + `ButtonProps` | Base CTA — renders `<Link>`, `<a>`, or `<button>` |
+| `PrimaryButton` | Same as CTAButton | `variant="default"` preset |
+| `SecondaryButton` | Same as CTAButton | `variant="outline"` preset |
+| `SecondaryLightButton` | Same as CTAButton | `variant="outline-light"` — for dark backgrounds |
+| `AccentButton` | Same as CTAButton | `variant="accent"` preset |
+| `GoldButton` | Same as CTAButton | `variant="gold"` gradient preset |
+| `IconButton` | Same as CTAButton | `variant="ghost" size="icon"` preset |
+| `WhatsAppButton` | `message?`, `className?`, `variant?: "floating" \| "inline" \| "full"`, `size?` | Floating FAB, inline chip, or full button |
+
+### UI Primitives
+
+| Component | Props | Notes |
+|-----------|-------|-------|
+| `OptimizedImage` | `src`, `alt`, `aspectRatio?: "square" \| "video" \| "portrait" \| "auto"`, `placeholderSrc?`, `priority?`, `fallbackIcon?`, `width?`, `height?` | Lazy-loaded with blur placeholder and error fallback |
+| `GradientCard` | `to`, `children`, `className?` | Linked card with gradient hover effect |
+| `FAQAccordion` | `items: FAQItem[]`, `variant?: "separated" \| "contained"`, `className?` | Collapsible Q&A list |
+
+### Form Components
+
+| Component | Props | Notes |
+|-----------|-------|-------|
+| `FormInput` | `label`, `error?`, `helperText?` + native `<input>` attrs | Auto-generates `id` from label |
+| `FormTextarea` | `label`, `error?`, `helperText?` + native `<textarea>` attrs | Resizable, min-height 120px |
+| `FormSelect` | `label`, `error?`, `helperText?`, `options: {value, label}[]`, `placeholder?` | Native `<select>` with consistent styling |
+| `FormCheckbox` | `label`, `error?`, `checked?`, `onCheckedChange?`, `disabled?`, `required?` | 48px touch target |
+| `ContactForm` | `variant?: "contact" \| "quote" \| "sample"` | Multi-purpose form with GA4 + FB Pixel tracking |
+| `CatalogForm` | — | Catalog download request form |
+
+### Product Components
+
+| Component | Props | Notes |
+|-----------|-------|-------|
+| `ProductCard` | `product`, `animationDelay?`, `showImage?` | Grid card with image, name, tagline |
+| `CategoryCard` | `category: {id, name, description, productCount}` | Category overview card |
+| `StickyInquiryBar` | `product: Product` | Fixed bottom bar on product detail pages |
+| `ContainerCalculator` | — | Uses ProductsContext for calculations |
+| `ImagePreview` | `src` | Lightbox-style image preview |
+
+### Utility Components
+
+| Component | Props | Notes |
+|-----------|-------|-------|
+| `SEO` | `title?`, `description?`, `keywords?`, `canonical?`, `ogType?`, `ogImage?`, `noIndex?`, `prerenderStatusCode?` | `<Helmet>` wrapper for meta tags and JSON-LD |
+| `ErrorBoundary` | `children`, `fallback?` | Catches render errors with fallback UI |
+| `ScrollToTop` | — | Scrolls to top on route change |
+
+---
+
 ## File Reference
 
 | File | Purpose |
