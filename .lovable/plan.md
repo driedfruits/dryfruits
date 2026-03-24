@@ -1,37 +1,49 @@
 
 
-## Generate `DESIGN.md` — Design System Reference
+## Add Component Inventory to DESIGN.md
 
-Create a single Markdown file at project root documenting the complete design system, extracted from `index.css`, `tailwind.config.ts`, and component files.
+Append a new **Component Inventory** section before the existing "File Reference" section at the end of `DESIGN.md`.
 
-### File: `DESIGN.md`
+### Content
 
-### Sections
+Documents all reusable components organized by category, with their props and usage notes:
 
-1. **Overview** — Theme description (tropical greens, earthy browns, warm accents), tech stack (Tailwind + CSS custom properties + HSL)
+**Layout Components**
+- `Layout` — `children`
+- `PageHero` — `title`, `subtitle?`, `children?`, `className?`
+- `Header` / `Footer` / `MobileBottomNav` — no custom props
 
-2. **Color Tokens** — Full table of all CSS variables with HSL values for both light and dark modes:
-   - Core (background, foreground, card, popover)
-   - Brand (primary, secondary, accent, destructive)
-   - Custom (tropical-green, earth-brown, gold, whatsapp) with light/dark variants
-   - Contrast utilities (on-primary, on-dark, on-dark-muted, on-dark-subtle)
-   - Chart colors
+**CTA & Button Components**
+- `CTAButton` — `to?`, `href?`, `children`, plus all `ButtonProps`
+- `PrimaryButton`, `SecondaryButton`, `SecondaryLightButton`, `AccentButton`, `GoldButton`, `IconButton` — same interface as CTAButton
+- `WhatsAppButton` — `message?`, `className?`, `variant?: "floating" | "inline" | "full"`, `size?: "sm" | "default" | "lg"`
 
-3. **Typography** — Font stacks (heading, body, sans, serif, mono), heading hierarchy rules (`font-heading font-bold tracking-tight`), recommended sizes
+**UI Primitives**
+- `OptimizedImage` — `src`, `alt`, `aspectRatio?: "square" | "video" | "portrait" | "auto"`, `placeholderSrc?`, `priority?`, `fallbackIcon?`, `width?`, `height?`
+- `GradientCard` — `to`, `children`, `className?`
+- `FAQAccordion` — `items: FAQItem[]`, `variant?: "separated" | "contained"`, `className?`
 
-4. **Spacing & Layout** — 4px base unit, container config (max 1400px, responsive padding 1rem/1.5rem/2rem), section spacing conventions
+**Form Components**
+- `FormInput` — `label`, `error?`, `helperText?` + native input attrs
+- `FormTextarea` — `label`, `error?`, `helperText?` + native textarea attrs
+- `FormSelect` — `label`, `error?`, `helperText?`, `options: {value, label}[]`, `placeholder?`
+- `FormCheckbox` — `label`, `error?`, `checked?`, `onCheckedChange?`, `disabled?`, `required?`
+- `ContactForm` — `variant?: "contact" | "quote" | "sample"`
+- `CatalogForm` — no custom props
 
-5. **Border Radius** — Three tokens: lg (0.75rem), md (0.5rem), sm (0.25rem)
+**Product Components**
+- `ProductCard` — `product: {...}`, `animationDelay?`, `showImage?`
+- `CategoryCard` — `category: {id, name, description, productCount}`
+- `StickyInquiryBar` — `product: Product`
+- `ContainerCalculator` — no custom props (uses context)
+- `ImagePreview` — `src`
 
-6. **Shadows** — Custom utilities (shadow-soft, shadow-glow) plus standard elevation scale (2xs through 2xl)
+**Utility Components**
+- `SEO` — `title?`, `description?`, `keywords?`, `canonical?`, `ogType?`, `ogImage?`, `noIndex?`, `prerenderStatusCode?`
+- `ErrorBoundary` — `children`, `fallback?`
+- `ScrollToTop` — no props
 
-7. **Buttons** — All 10 variants (default, destructive, outline, outline-light, secondary, ghost, link, whatsapp, accent, gold) and 5 sizes (default, sm, lg, xl, icon) with Tailwind classes
-
-8. **Animations** — Keyframes (accordion, float, pulse-glow, fadeIn, slideUp, scaleIn, blurUp, shimmer) and delay utilities
-
-9. **Accessibility** — WCAG AA contrast ratios, focus-visible ring styles, touch target sizes (48px/44px), contrast utility classes
-
-10. **Dark Mode** — Toggle via `.dark` class, list of overridden tokens
-
-No code changes to existing files. Single new file creation.
+### Technical approach
+- Edit `DESIGN.md` only — insert new section before "File Reference" (before line 315)
+- Markdown tables for each category with columns: Component, Props, Notes
 
