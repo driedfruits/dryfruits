@@ -97,6 +97,7 @@ export function ContactForm({ variant = "contact", preselectedProduct, className
           message: formData.message,
           page: window.location.pathname,
           website: window.location.hostname,
+          ...getUtmParams(),
         }),
       });
 

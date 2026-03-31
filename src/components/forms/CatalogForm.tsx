@@ -57,6 +57,7 @@ export function CatalogForm({ className }: CatalogFormProps) {
           company: formData.company,
           page: window.location.pathname,
           website: window.location.hostname,
+          ...getUtmParams(),
         }),
       });
 
