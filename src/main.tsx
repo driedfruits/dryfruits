@@ -1,8 +1,11 @@
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { captureUtmParams } from "@/lib/utm";
 import App from "./App.tsx";
 import "./index.css";
+
+captureUtmParams();
 
 createRoot(document.getElementById("root")!).render(
   <HelmetProvider>

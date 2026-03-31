@@ -6,6 +6,7 @@ import { useProducts } from "@/contexts/ProductsContext";
 import { Loader2, Send, CheckCircle2 } from "lucide-react";
 import { WEB3FORMS_ACCESS_KEY } from "@/lib/constants";
 import { trackGA4Event, trackFBPixelEvent } from "@/lib/analytics";
+import { getUtmParams } from "@/lib/utm";
 
 interface ContactFormProps {
   variant?: "contact" | "quote" | "sample";
