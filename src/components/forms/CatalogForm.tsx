@@ -54,6 +54,8 @@ export function CatalogForm({ className }: CatalogFormProps) {
           name: formData.name,
           email: formData.email,
           company: formData.company,
+          page: window.location.pathname,
+          website: window.location.hostname,
         }),
       });
 

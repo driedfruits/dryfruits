@@ -94,6 +94,8 @@ export function ContactForm({ variant = "contact", preselectedProduct, className
           product: formData.product || "N/A",
           quantity: formData.quantity || "N/A",
           message: formData.message,
+          page: window.location.pathname,
+          website: window.location.hostname,
         }),
       });
 
