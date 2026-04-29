@@ -4,6 +4,7 @@ import { socialImages } from "@/lib/socialImages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { ContactForm } from "@/components/forms";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { PrimaryButton } from "@/components/CTAButton";
 import { companyInfo, socialLinks } from "@/data/companyData";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { socialIcons } from "@/lib/socialIcons";
@@ -40,6 +41,17 @@ export default function ContactPage() {
             <p className="text-xl text-on-primary-muted">
               Get in touch with our export team. We typically respond within 24 hours.
             </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={`tel:${companyInfo.phone.replace(/\s/g, "")}`}
+                className="inline-flex items-center gap-3 rounded-xl bg-background/10 backdrop-blur px-6 py-4 min-h-[56px] text-primary-foreground border border-primary-foreground/20 hover:bg-background/20 transition-colors"
+                aria-label={`Call ${companyInfo.phone}`}
+              >
+                <Phone className="h-6 w-6" />
+                <span className="text-lg font-semibold tracking-wide">{companyInfo.phone}</span>
+              </a>
+              <WhatsAppButton variant="full" size="lg" />
+            </div>
           </div>
         </div>
       </section>
@@ -75,7 +87,7 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium text-foreground">Phone / WhatsApp</p>
                     <a 
-                      href={`tel:${companyInfo.phone}`}
+                      href={`tel:${companyInfo.phone.replace(/\s/g, "")}`}
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       {companyInfo.phone}
@@ -106,8 +118,20 @@ export default function ContactPage() {
 
               {/* Quick Contact */}
               <div className="mt-8 p-6 rounded-xl bg-muted">
-                <h3 className="font-semibold text-foreground mb-4">Quick Contact</h3>
-                <WhatsAppButton variant="full" className="w-full" />
+                <h3 className="font-semibold text-foreground mb-2">Quick Contact</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Reach our export team instantly — tap to call or chat.
+                </p>
+                <div className="space-y-2">
+                  <PrimaryButton
+                    href={`tel:${companyInfo.phone.replace(/\s/g, "")}`}
+                    className="w-full"
+                  >
+                    <Phone className="h-5 w-5" />
+                    Call {companyInfo.phone}
+                  </PrimaryButton>
+                  <WhatsAppButton variant="full" className="w-full" />
+                </div>
               </div>
 
               {/* Social Links */}
