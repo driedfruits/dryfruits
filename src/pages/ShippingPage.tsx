@@ -26,8 +26,8 @@ export default function ShippingPage() {
   return (
     <Layout>
       <SEO
-        title="Shipping & Export - Global Dried Fruit Delivery"
-        description={`Seamless export process to ${companyInfo.stats.exportCountries} countries. FOB & CIF terms available. Complete documentation for customs clearance. Lead time ${companyInfo.paymentTerms.leadTime}.`}
+        title="Shipping & Export to 18+ Countries"
+        description={`Export to ${companyInfo.stats.exportCountries} countries. FOB & CIF terms with full customs documentation. Lead time ${companyInfo.paymentTerms.leadTime}.`}
         keywords={["dried fruit shipping", "FOB Indonesia", "export dried fruit", "container shipping fruit", "international fruit delivery"]}
         canonical="/shipping"
         ogImage={socialImages.shipping}
