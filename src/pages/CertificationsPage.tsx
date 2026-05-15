@@ -27,8 +27,8 @@ export default function CertificationsPage() {
   return (
     <Layout>
       <SEO
-        title="Certifications & Quality - USDA Organic, EU Organic, HACCP"
-        description="View our food safety and organic certifications: USDA Organic, EU Organic, HACCP, and Halal. Complete export documentation for seamless customs clearance."
+        title="Certifications – USDA Organic, HACCP, Halal"
+        description="Our food safety and organic certifications: USDA Organic, EU Organic, HACCP, and Halal. Complete export documentation for customs clearance."
         keywords={["USDA organic dried fruit", "EU organic certification", "HACCP certified manufacturer", "Halal dried fruit", "food safety certifications"]}
         canonical="/certifications"
         ogImage={socialImages.certifications}

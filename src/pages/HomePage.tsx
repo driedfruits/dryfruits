@@ -20,8 +20,8 @@ export default function HomePage() {
   return (
     <Layout>
       <SEO
-        title="Dehydrated Dried Tropical Fruits OEM Manufacturer from Indonesia"
-        description="Fully export licensed OEM manufacturer of organic and non-organic dehydrated dried fruits from Indonesia. Chunks, slices, cuts packed with your brand. MOQ 800kg. HACCP & Fair Trade certified."
+        title="Dried Tropical Fruit OEM Manufacturer"
+        description="Indonesia OEM manufacturer of dehydrated tropical dried fruits. Private label, MOQ 800kg, HACCP & Fair Trade certified. Export to 18+ countries."
         keywords={["OEM dried fruit manufacturer", "dehydrated tropical fruits Indonesia", "private label dried fruit manufacturer", "wholesale dried fruit Indonesia", "B2B dried fruit supplier", "Indonesian fruit exporter"]}
         canonical="/"
         ogImage={socialImages.home}

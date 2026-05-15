@@ -14,7 +14,7 @@ export default function TermsPage() {
     <Layout>
       <SEO
         title="Terms of Service"
-        description="Terms and conditions for conducting business with DFT Indonesia. Understand our wholesale dried fruit ordering, payment, and shipping policies."
+        description="B2B terms governing wholesale orders with DFT Indonesia: quotes, payment, Incoterms, lead times, claims, and shipping policies for importers."
         keywords={["terms of service", "business terms", "wholesale terms", "DFT Indonesia terms"]}
         canonical="/terms"
       />

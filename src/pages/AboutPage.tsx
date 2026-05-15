@@ -31,8 +31,8 @@ export default function AboutPage() {
   return (
     <Layout>
       <SEO
-        title="About DFT Indonesia - Dried Fruit Manufacturer Since 2015"
-        description={`Learn about ${companyInfo.name}, Indonesia's leading dried fruit manufacturer. Established ${companyInfo.established}, exporting to ${companyInfo.stats.exportCountries} countries with ${companyInfo.stats.productionCapacity} capacity.`}
+        title="About Us – Manufacturer Since 2015"
+        description={`${companyInfo.shortName}: Indonesian dried fruit manufacturer since ${companyInfo.established}. Exporting to ${companyInfo.stats.exportCountries} countries; ${companyInfo.stats.productionCapacity} capacity.`}
         keywords={["about DFT Indonesia", "dried fruit manufacturer Indonesia", "Indonesian food exporter", "tropical fruit processor"]}
         canonical="/about"
         ogImage={socialImages.about}

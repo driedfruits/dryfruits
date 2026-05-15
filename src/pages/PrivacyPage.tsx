@@ -14,7 +14,7 @@ export default function PrivacyPage() {
     <Layout>
       <SEO
         title="Privacy Policy"
-        description="Privacy policy for DFT Indonesia. Learn how we collect, use, and protect your data when you interact with our wholesale dried fruit services."
+        description="How DFT Indonesia collects, uses, stores, and safeguards data from B2B buyers, importers, and visitors interacting with our wholesale services."
         keywords={["privacy policy", "data protection", "DFT Indonesia privacy"]}
         canonical="/privacy"
       />
