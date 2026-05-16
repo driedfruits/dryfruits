@@ -69,7 +69,7 @@ export function ProductDescriptionPackaging({ product }: ProductDescriptionPacka
                   aspectRatio="video"
                   width={400}
                   height={225}
-                  fallbackIcon={<ShoppingBag className="h-16 w-16 text-muted-foreground/30" />}
+                  fallbackIcon={<ShoppingBag className="h-16 w-16 text-muted-foreground/60" />}
                 />
                 <div className="p-5">
                   <h3 className="font-semibold text-foreground mb-1">Retail / Private Label Pouches</h3>
@@ -88,7 +88,7 @@ export function ProductDescriptionPackaging({ product }: ProductDescriptionPacka
                   aspectRatio="video"
                   width={400}
                   height={225}
-                  fallbackIcon={<Package className="h-16 w-16 text-muted-foreground/30" />}
+                  fallbackIcon={<Package className="h-16 w-16 text-muted-foreground/60" />}
                 />
                 <div className="p-5">
                   <h3 className="font-semibold text-foreground mb-1">Bulk / HORECA Pack</h3>

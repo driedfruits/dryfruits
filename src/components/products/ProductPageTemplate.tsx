@@ -137,7 +137,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                   placeholderSrc={product.images?.thumbnail}
                   priority={true}
                   className="rounded-2xl"
-                  fallbackIcon={<Package className="h-32 w-32 text-muted-foreground/30" />}
+                  fallbackIcon={<Package className="h-32 w-32 text-muted-foreground/60" />}
                 />
                 {product.isOrganic && (
                   <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground z-10">
@@ -165,7 +165,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                         aspectRatio="square"
                         width={80}
                         height={80}
-                        fallbackIcon={<Package className="h-6 w-6 text-muted-foreground/30" />}
+                        fallbackIcon={<Package className="h-6 w-6 text-muted-foreground/60" />}
                       />
                     </button>
                   ))}

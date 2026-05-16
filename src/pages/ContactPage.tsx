@@ -172,7 +172,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="aspect-[21/9] rounded-2xl bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
             <div className="text-center">
-              <MapPin className="h-16 w-16 text-muted-foreground/30 mx-auto mb-4" />
+              <MapPin className="h-16 w-16 text-muted-foreground/60 mx-auto mb-4" />
               <p className="text-muted-foreground">Map placeholder - {companyInfo.address.city}, Indonesia</p>
             </div>
           </div>

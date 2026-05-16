@@ -38,7 +38,7 @@ export const ProductCard = memo(function ProductCard({
               width={400}
               height={400}
               placeholderSrc={product.images?.thumbnail}
-              fallbackIcon={<Package className="h-20 w-20 text-muted-foreground/30 group-hover:scale-110 transition-transform" />}
+              fallbackIcon={<Package className="h-20 w-20 text-muted-foreground/60 group-hover:scale-110 transition-transform" />}
             />
             {product.isOrganic && (
               <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full flex items-center gap-1 z-10">
@@ -48,7 +48,7 @@ export const ProductCard = memo(function ProductCard({
           </div>
         ) : (
           <div className="aspect-square bg-gradient-to-br from-secondary to-muted flex items-center justify-center relative">
-            <Package className="h-16 w-16 text-muted-foreground/30 group-hover:scale-110 transition-transform" />
+            <Package className="h-16 w-16 text-muted-foreground/60 group-hover:scale-110 transition-transform" />
             {product.isOrganic && (
               <span className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full flex items-center gap-1">
                 <Leaf className="h-3 w-3" />Organic
