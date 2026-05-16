@@ -34,6 +34,15 @@ export default {
       return fetch(request);
     }
 
+    // SSG bypass: every public route is now pre-rendered to static HTML
+    // at build time (vite-react-ssg), so bots get fully-rendered pages
+    // from the origin without needing Prerender.io. Only fall back to
+    // Prerender.io for paths that are NOT pre-rendered (admin, etc.).
+    const PRERENDERED_PUBLIC_ROUTE = !pathname.startsWith('/admin/') && pathname !== '/design-system';
+    if (PRERENDERED_PUBLIC_ROUTE) {
+      return fetch(request);
+    }
+
     // Check if request is from a bot
     const isBot = BOT_AGENTS.some(bot => userAgent.includes(bot));
 
