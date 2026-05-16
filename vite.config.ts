@@ -26,6 +26,6 @@ export default defineConfig(({ mode }) => ({
     formatting: "none",
     dirStyle: "nested",
     mock: true,
-    includedRoutes: (paths) => paths.filter((p) => !SSG_EXCLUDED.has(p)),
+    includedRoutes: (paths: string[]) => paths.filter((p: string) => !SSG_EXCLUDED.has(p)),
   },
 }));
