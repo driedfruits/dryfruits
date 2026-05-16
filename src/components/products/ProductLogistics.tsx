@@ -47,7 +47,7 @@ export function ProductLogistics({ product }: ProductLogisticsProps) {
               aspectRatio="video"
               width={600}
               height={338}
-              fallbackIcon={<Ship className="h-16 w-16 text-muted-foreground/30" />}
+              fallbackIcon={<Ship className="h-16 w-16 text-muted-foreground/60" />}
             />
             <div className="p-6">
               <h3 className="font-semibold text-foreground mb-3">LCL — Pallet Shipment</h3>
@@ -69,7 +69,7 @@ export function ProductLogistics({ product }: ProductLogisticsProps) {
               aspectRatio="video"
               width={600}
               height={338}
-              fallbackIcon={<Container className="h-16 w-16 text-muted-foreground/30" />}
+              fallbackIcon={<Container className="h-16 w-16 text-muted-foreground/60" />}
             />
             <div className="p-6">
               <h3 className="font-semibold text-foreground mb-3">FCL — Full Container Load</h3>

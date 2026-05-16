@@ -57,7 +57,7 @@ export function OptimizedImage({
         )}
       >
         {fallbackIcon || (
-          <Package className="h-20 w-20 text-muted-foreground/30" />
+          <Package className="h-20 w-20 text-muted-foreground/60" />
         )}
       </div>
     );

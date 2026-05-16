@@ -336,7 +336,7 @@ export default function AboutPage() {
             </div>
 
             <div className="aspect-video rounded-2xl bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-              <Factory className="h-24 w-24 text-muted-foreground/30" />
+              <Factory className="h-24 w-24 text-muted-foreground/60" />
             </div>
           </div>
         </div>

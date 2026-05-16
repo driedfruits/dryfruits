@@ -29,7 +29,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
                 width={280}
                 height={280}
                 className="group-hover:scale-105 transition-transform duration-300"
-                fallbackIcon={<Package className="h-12 w-12 text-muted-foreground/30 group-hover:scale-110 transition-transform" />}
+                fallbackIcon={<Package className="h-12 w-12 text-muted-foreground/60 group-hover:scale-110 transition-transform" />}
               />
               <div className="p-4">
                 <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
