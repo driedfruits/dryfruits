@@ -1,16 +1,17 @@
-import { createRoot } from "react-dom/client";
-import { HelmetProvider } from "react-helmet-async";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { ViteReactSSG } from "vite-react-ssg";
+import { routes } from "./routes";
 import { captureUtmParams } from "@/lib/utm";
-import App from "./App.tsx";
 import "./index.css";
 
-captureUtmParams();
-
-createRoot(document.getElementById("root")!).render(
-  <HelmetProvider>
-    <ErrorBoundary>
-      <App />
-    </ErrorBoundary>
-  </HelmetProvider>
+// vite-react-ssg renders this entry both in Node (during `vite-react-ssg build`)
+// and in the browser (hydration). The default export is invoked by the runtime;
+// providers live inside the root route in `./routes` so they wrap both passes.
+export const createRoot = ViteReactSSG(
+  { routes },
+  ({ isClient }) => {
+    if (isClient) {
+      // Browser-only side effects (no-op during SSG).
+      captureUtmParams();
+    }
+  },
 );
