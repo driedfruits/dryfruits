@@ -5,6 +5,7 @@ type UtmData = Partial<Record<(typeof UTM_PARAMS)[number], string>>;
 
 /** Capture UTM params from URL on first visit, persist to sessionStorage */
 export function captureUtmParams(): void {
+  if (typeof window === "undefined") return;
   const params = new URLSearchParams(window.location.search);
   const utm: UtmData = {};
   let hasUtm = false;
@@ -18,12 +19,17 @@ export function captureUtmParams(): void {
   }
 
   if (hasUtm) {
-    sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(utm));
+    try {
+      sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(utm));
+    } catch {
+      /* sessionStorage unavailable (private mode / SSG) */
+    }
   }
 }
 
 /** Return stored UTM params (or empty object) for form payloads */
 export function getUtmParams(): UtmData {
+  if (typeof window === "undefined") return {};
   try {
     const raw = sessionStorage.getItem(UTM_STORAGE_KEY);
     return raw ? JSON.parse(raw) : {};
