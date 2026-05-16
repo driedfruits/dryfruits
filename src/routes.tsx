@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useSearchParams } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { HelmetProvider } from "react-helmet-async";
 import type { RouteRecord } from "vite-react-ssg";
 
 import { Toaster } from "@/components/ui/toaster";
@@ -47,7 +48,8 @@ function SearchRedirect() {
 // (Node) and CSR (browser) so providers stay identical in both passes.
 function RootLayout() {
   return (
-    <ErrorBoundary>
+    <HelmetProvider>
+      <ErrorBoundary>
         <TooltipProvider>
           <Toaster />
           <Sonner />
@@ -56,7 +58,8 @@ function RootLayout() {
             <Outlet />
           </ProductsProvider>
         </TooltipProvider>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </HelmetProvider>
   );
 }
 
