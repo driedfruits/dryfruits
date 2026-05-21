@@ -11,7 +11,7 @@ const catalogBenefits = [
 
 export const CatalogDownloadSection = memo(function CatalogDownloadSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-primary to-tropical-green-light">
+    <section className="py-12 lg:py-20 bg-gradient-to-br from-primary to-tropical-green-light">
       <div className="container">
         <div className="mx-auto max-w-5xl">
           {/* Centered Heading */}

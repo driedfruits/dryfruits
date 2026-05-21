@@ -24,7 +24,7 @@ export const ProductionProcessSection = memo(function ProductionProcessSection()
   }, []);
 
   return (
-    <section id="production-process" className="py-20 bg-background">
+    <section id="production-process" className="py-12 lg:py-20 bg-background">
       <div className="container">
         {/* ── Top Row: Carousel + Stats ── */}
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center mb-16">
