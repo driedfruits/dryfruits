@@ -106,14 +106,14 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
 
       <div className="min-h-screen bg-background pb-36 lg:pb-0">
         {/* Breadcrumb */}
-        <div className="bg-muted/50 py-4">
+        <div className="bg-muted/50 py-2 sm:py-4">
           <div className="container">
             <nav className="flex items-center gap-2 text-sm text-muted-foreground overflow-x-auto scrollbar-hide whitespace-nowrap pb-1">
-              <Link to="/" className="hover:text-primary transition-colors shrink-0 min-h-[44px] flex items-center">Home</Link>
-              <ChevronRight className="h-4 w-4 shrink-0" />
+              <Link to="/" className="hidden sm:flex hover:text-primary transition-colors shrink-0 min-h-[44px] items-center">Home</Link>
+              <ChevronRight className="hidden sm:block h-4 w-4 shrink-0" />
               <Link to="/products" className="hover:text-primary transition-colors shrink-0 min-h-[44px] flex items-center">Products</Link>
-              <ChevronRight className="h-4 w-4 shrink-0" />
-              <Link to="/products" className="hover:text-primary transition-colors shrink-0 min-h-[44px] flex items-center">
+              <ChevronRight className="hidden sm:block h-4 w-4 shrink-0" />
+              <Link to="/products" className="hidden sm:flex hover:text-primary transition-colors shrink-0 min-h-[44px] items-center">
                 {categoryLabels[product.category]}
               </Link>
               <ChevronRight className="h-4 w-4 shrink-0" />
@@ -123,7 +123,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
         </div>
 
         {/* Hero Section */}
-        <section className="py-12 lg:py-16">
+        <section className="py-8 lg:py-16">
           <div className="container">
             <div className="grid gap-10 lg:grid-cols-2">
               {/* Product Image Gallery */}
@@ -140,7 +140,7 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                   fallbackIcon={<Package className="h-32 w-32 text-muted-foreground/60" />}
                 />
                 {product.isOrganic && (
-                  <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground z-10">
+                  <Badge className="absolute top-3 left-3 bg-primary/95 text-primary-foreground z-10 shadow-md backdrop-blur-sm">
                     <Leaf className="h-3 w-3 mr-1" />
                     Organic Certified
                   </Badge>
@@ -177,8 +177,8 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                 <Badge variant="outline" className="w-fit mb-3">
                   {categoryLabels[product.category]}
                 </Badge>
-                <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-2">
-                  Wholesale {product.name}
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2">
+                  Wholesale {product.shortName}
                 </h1>
                 {product.tagline && (
                   <p className="text-lg text-muted-foreground mb-2">{product.tagline}</p>
@@ -197,12 +197,12 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
                 <ProductQuickHighlights product={product} />
 
                 {/* CTA Buttons */}
-                <div className="flex flex-wrap gap-3">
-                  <PrimaryButton to="/contact" size="lg">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
+                  <PrimaryButton to="/contact" size="lg" className="w-full sm:w-auto">
                     <FileText className="h-5 w-5 mr-2" />
                     Request Bulk Quote
                   </PrimaryButton>
-                  <SecondaryButton to="/samples" size="lg">
+                  <SecondaryButton to="/samples" size="lg" className="w-full sm:w-auto">
                     <Package className="h-5 w-5 mr-2" />
                     Get Free Samples
                   </SecondaryButton>
@@ -234,22 +234,22 @@ export function ProductPageTemplate({ product }: ProductPageTemplateProps) {
         <RelatedProducts products={relatedProducts} />
 
         {/* Final CTA */}
-        <section className="py-16">
+        <section className="py-12 lg:py-16">
           <div className="container text-center">
             <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
-              Ready to Order Bulk {product.name}?
+              Ready to Order Bulk {product.shortName}?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               Get in touch with our export team for pricing, samples, and custom requirements.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <PrimaryButton to="/contact" size="lg">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3">
+              <PrimaryButton to="/contact" size="lg" className="w-full sm:w-auto">
                 Request Quote
               </PrimaryButton>
               <WhatsAppButton 
                 variant="full" 
                 size="lg"
-                message={`Hi! I want to order bulk ${product.name}. Please share pricing and availability.`}
+                message={`Hi! I want to order bulk ${product.shortName}. Please share pricing and availability.`}
               />
             </div>
           </div>

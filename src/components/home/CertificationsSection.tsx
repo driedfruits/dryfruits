@@ -6,7 +6,7 @@ import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export const CertificationsSection = memo(function CertificationsSection() {
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-12 lg:py-20 bg-muted/30">
       <div className="container">
         <div className="mx-auto max-w-3xl text-center mb-16">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl">

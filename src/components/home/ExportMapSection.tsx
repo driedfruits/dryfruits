@@ -6,7 +6,7 @@ import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export const ExportMapSection = memo(function ExportMapSection() {
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-12 lg:py-20 bg-muted/30">
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>

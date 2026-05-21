@@ -9,7 +9,7 @@ const fruits = [
 
 export const ManufacturingSection = memo(function ManufacturingSection() {
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-12 lg:py-20 bg-muted/30">
       <div className="container">
         <div className="grid gap-12 md:grid-cols-2 items-center">
           {/* Left Column — Text */}

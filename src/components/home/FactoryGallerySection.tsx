@@ -21,7 +21,7 @@ const galleryPhotos = [
 
 export const FactoryGallerySection = memo(function FactoryGallerySection() {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-12 lg:py-20 bg-background">
       <div className="container">
         <h2 className="text-3xl font-bold text-foreground sm:text-4xl mb-12 text-center">
           Factory Photos
