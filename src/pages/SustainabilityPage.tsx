@@ -195,7 +195,7 @@ export default function SustainabilityPage() {
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
                     <p className="text-4xl font-bold">{stat.value}</p>
-                    <p className="text-primary-foreground/70">{stat.label}</p>
+                    <p className="text-primary-foreground/90">{stat.label}</p>
                   </div>
                 ))}
               </div>

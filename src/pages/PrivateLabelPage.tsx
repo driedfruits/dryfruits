@@ -164,15 +164,15 @@ export default function PrivateLabelPage() {
               <h3 className="text-2xl font-bold mb-4">MOQ & Pricing</h3>
               <div className="space-y-4">
                 <div>
-                  <p className="text-primary-foreground/70 text-sm">Minimum Order</p>
+                  <p className="text-primary-foreground/90 text-sm">Minimum Order</p>
                   <p className="text-xl font-bold">{companyInfo.paymentTerms.moq}</p>
                 </div>
                 <div>
-                  <p className="text-primary-foreground/70 text-sm">Lead Time</p>
+                  <p className="text-primary-foreground/90 text-sm">Lead Time</p>
                   <p className="text-xl font-bold">{companyInfo.paymentTerms.leadTime} + design approval</p>
                 </div>
                 <div>
-                  <p className="text-primary-foreground/70 text-sm">Artwork Support</p>
+                  <p className="text-primary-foreground/90 text-sm">Artwork Support</p>
                   <p className="text-xl font-bold">Included</p>
                 </div>
               </div>
