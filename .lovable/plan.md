@@ -1,73 +1,55 @@
-# Mobile Audit (320–480px) — Findings & Fix Plan
+## Goal
 
-I audited every primary route at 375×812 (Home, Products, Product detail, Contact, About) and reviewed the relevant source. The site is already in solid shape for mobile — the foundation is correct:
+Fire a single GA4 `qualify_lead` event for four lead actions (WhatsApp / email / phone link clicks + successful contact form submit), without touching layout, copy, styling, or behavior.
 
-**What's already good — leave alone**
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">` is present in `index.html`.
-- `body` has `overflow-x-hidden`; no horizontal scroll on any audited route.
-- Hamburger drawer in `Header.tsx` collapses below `lg`, plus a `MobileBottomNav` with Products / Samples / WhatsApp tabs.
-- Tap targets: shadcn `Button` icon variant is `h-11 w-11 sm:h-10 sm:w-10` (44×44 on mobile), breadcrumb links have `min-h-[44px]`, mobile bottom nav tabs are full-width.
-- Base typography inherits Tailwind's 16px body — no iOS zoom risk.
-- Sticky `StickyInquiryBar` on product pages and bottom nav padding (`pb-36 lg:pb-0`) prevent CTA occlusion.
+## Approach
 
-So the work below is **targeted polish**, not a rebuild.
+Add one small util module and wire it in two places: a global delegated click listener (mounted once at app start) and the contact form's existing success path.
 
----
+## Files to add
 
-## Issues to fix
+**`src/lib/trackLeadEvents.ts`** — new module, exports:
 
-### 1. Product H1 reads "Wholesale Wholesale Bulk Dried Dehydrated Mango…"
-`ProductPageTemplate.tsx:181` renders `Wholesale {product.name}`, but `product.name` in the DB already starts with "Wholesale Bulk Dried Dehydrated…". On a 375px screen the H1 wraps to 5+ lines of duplicate words and pushes the price/CTA below the fold.
+- `fireQualifyLead(channel, link_url)` — internal helper. Guards `typeof window.gtag === "function"`; otherwise no-op. Sends:
+  ```
+  { lead_channel, link_url, page_path: window.location.pathname }
+  ```
+  If `window.gtag` has never been seen during the session, log a one-time `// TODO: GA4 not detected` console.info (dev only) — no hardcoded Measurement ID.
+- `initLeadTracking()` — attaches ONE delegated `click` listener to `document` (capture phase off, passive). Logic:
+  - `const a = (e.target as Element).closest("a[href]")`; bail if none.
+  - Read `href` (use `a.getAttribute("href")` for `tel:`/`mailto:` to avoid URL normalization, and `a.href` for absolute matches).
+  - Branch:
+    - starts with `tel:` → `"phone"`
+    - starts with `mailto:` → `"email"`
+    - matches `/wa\.me|api\.whatsapp\.com|whatsapp\.com\/send/` → `"whatsapp"`
+    - else: ignore.
+  - Call `fireQualifyLead(channel, href)`. Do NOT `preventDefault`.
+  - Idempotency: module-level `initialized` flag so StrictMode double-invoke / repeated mounts don't double-attach. Returns a no-op cleanup that does NOT remove the listener (keeps it global for the app lifetime; safe because flag prevents duplicates).
+- `trackFormLead()` — thin wrapper: `fireQualifyLead("form", "contact_form")`.
 
-**Fix:** Use `product.shortName` for the H1 (matches the project memory rule: *"Use shortName for UI labels; full descriptive names for SEO and alt text."*). The long descriptive name stays in `<title>`, OG tags, and JSON-LD untouched.
+**De-duping clicks**: since `WhatsAppButton` uses a programmatic `window.open` (not a real `<a href>`), the delegated listener will NOT catch it — good, no double-fire risk there. We add an explicit `fireQualifyLead("whatsapp", whatsappUrl)` call inside `useWhatsApp.handleClick` (the single source for all WhatsApp buttons). For real `<a href="https://wa.me/...">` anchors (e.g. in Footer), the delegated listener handles them. No element is both — no double counting.
 
-```tsx
-<h1>Wholesale {product.shortName}</h1>   // "Wholesale Mango"
-```
+## Files to edit
 
-### 2. Overlapping badges on product hero image
-"Organic Certified" badge (top-left) overlaps the product image's own baked-in label on narrow screens (visible on Mango). Two badges fight for the same top-4 corner.
+1. **`src/main.tsx`** — inside the existing `isClient` block, call `initLeadTracking()` once alongside `captureUtmParams()`.
 
-**Fix:** On `<lg` move the Organic Certified badge to **top-center** with a small backdrop, or stack badges vertically with `flex-col gap-2`. Keep desktop position unchanged.
+2. **`src/hooks/useWhatsApp.ts`** — in `handleClick`, add one line: `fireQualifyLead("whatsapp", whatsappUrl)` before `window.open`. (Existing `trackGA4Event("whatsapp_click", …)` stays — separate event, untouched.)
 
-### 3. Header logo loses brand text on mobile
-`Header.tsx:30` hides "DFT Indonesia / Dried Fruits Exporter" with `hidden sm:block`. On 375px the header is just a leaf icon + hamburger — no brand recognition above the fold. The `sm` breakpoint (640px) is too aggressive.
+3. **`src/components/forms/ContactForm.tsx`** — in `handleSubmit`, inside the existing `if (result.success)` branch (after validation passes and Web3Forms confirms success), call `trackFormLead()`. No other changes.
 
-**Fix:** Show a compact "DFT Indonesia" wordmark at all widths (drop the subtitle on mobile only), so the breakpoint becomes "subtitle hidden below sm" instead of "everything hidden below sm".
+## Non-goals / explicit no-ops
 
-### 4. Breadcrumb overflow on narrow screens
-Already uses `overflow-x-auto scrollbar-hide whitespace-nowrap` — works, but the row is 44px tall *and* horizontally scrollable, which adds visual weight at the top of every product page on mobile.
+- No new GA4 install, no Measurement ID, no script tag changes.
+- No changes to `ContactForm` validation, UI, copy, or submit behavior beyond the one tracking call on success.
+- No changes to existing `trackGA4Event` helper or other analytics events.
+- `CatalogForm` and other forms are NOT contact forms — not in scope per spec ("the contact form").
+- Phone/email/WhatsApp anchors elsewhere (Header, Footer, ContactPage, MobileBottomNav, product pages) need no per-component edits — the delegated listener covers them all, including dynamically added links.
 
-**Fix:** On `<sm`, render only the last two crumbs (`Products › Mango`) and keep the full chain on tablet+. Lower-impact alternative: shrink the row to `py-2` on mobile.
+## Verification
 
-### 5. Final-CTA buttons stack awkwardly
-On the product page's "Ready to Order Bulk…" section, the `flex-wrap gap-3` row puts the two CTAs side-by-side at ~170px each on a 375px viewport — text wraps inside the buttons.
-
-**Fix:** Add `flex-col sm:flex-row` and `w-full sm:w-auto` to those CTAs so they go full-width on mobile, side-by-side from `sm` upward. Same treatment for the hero CTAs.
-
-### 6. ProductSpecsTable and ProductComparisonTable
-Native `<table>` elements can blow past viewport width on mobile when a single cell has long text (origin, certifications). Worth verifying both are wrapped in `overflow-x-auto` containers — quick read + patch if missing.
-
-### 7. Section vertical rhythm on mobile
-Most sections use `py-16` / `py-20`. On a 667–812px tall mobile screen that's a lot of dead space between sections, making scrolling feel slow.
-
-**Fix:** Add `py-12 lg:py-20` (or `py-10 md:py-16 lg:py-20`) site-wide on the home sections. Pure spacing change, zero layout risk.
-
----
-
-## Out of scope (explicitly NOT touching)
-- Desktop layouts (≥`lg`)
-- Copy / SEO meta / JSON-LD
-- Product data model
-- Color/theme tokens
-- The `/placeholder.svg` image gaps flagged in the previous audit — separate workstream
-
----
-
-## Files I'll touch
-- `src/components/products/ProductPageTemplate.tsx` — H1, badges, breadcrumb, final-CTA row
-- `src/components/layout/Header.tsx` — wordmark visibility
-- `src/components/products/ProductSpecsTable.tsx` + `ProductComparisonTable.tsx` — overflow wrappers if missing
-- `src/components/home/*.tsx` — `py-16/20` → `py-12 lg:py-20` (find/replace)
-
-Want me to proceed with all 7, or pick a subset?
+- Click a `tel:` link in ContactPage → one `qualify_lead` with `lead_channel:"phone"`.
+- Click a `mailto:` link → `"email"`.
+- Click the floating WhatsApp button (programmatic) → one event via `useWhatsApp`.
+- Click a Footer WhatsApp `<a href="https://wa.me/...">` → one event via delegated listener.
+- Submit the contact form with invalid fields → no event. Submit with valid fields and Web3Forms success → one `"form"` event.
+- Open DevTools with `window.gtag` undefined → no errors, single dev-only info log.
