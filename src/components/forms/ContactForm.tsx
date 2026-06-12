@@ -6,6 +6,7 @@ import { useProducts } from "@/contexts/ProductsContext";
 import { Loader2, Send, CheckCircle2 } from "lucide-react";
 import { WEB3FORMS_ACCESS_KEY } from "@/lib/constants";
 import { trackGA4Event, trackFBPixelEvent } from "@/lib/analytics";
+import { trackFormLead } from "@/lib/trackLeadEvents";
 import { getUtmParams } from "@/lib/utm";
 
 interface ContactFormProps {
@@ -106,6 +107,8 @@ export function ContactForm({ variant = "contact", preselectedProduct, className
       if (result.success) {
         trackGA4Event("form_submit", { form_type: variant });
         trackFBPixelEvent("Lead", { content_name: variant });
+        // Unified lead-quality event (qualify_lead, channel=form). Success path only.
+        trackFormLead();
         toast({
           title: variant === "sample" ? "Sample Request Sent!" : "Message Sent!",
           description: "We'll get back to you within 24 hours.",
