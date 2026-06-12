@@ -1,6 +1,7 @@
 import { ViteReactSSG } from "vite-react-ssg";
 import { routes } from "./routes";
 import { captureUtmParams } from "@/lib/utm";
+import { initLeadTracking } from "@/lib/trackLeadEvents";
 import "./index.css";
 
 // vite-react-ssg renders this entry both in Node (during `vite-react-ssg build`)
@@ -12,6 +13,7 @@ export const createRoot = ViteReactSSG(
     if (isClient) {
       // Browser-only side effects (no-op during SSG).
       captureUtmParams();
+      initLeadTracking();
     }
   },
 );
