@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { companyInfo } from "@/data/companyData";
 import { trackGA4Event, trackFBPixelEvent } from "@/lib/analytics";
+import { trackWhatsAppLead } from "@/lib/trackLeadEvents";
 
 interface UseWhatsAppOptions {
   message?: string;
@@ -27,6 +28,8 @@ export function useWhatsApp({
         content_name: "WhatsApp",
         source,
       });
+      // Unified lead-quality event (qualify_lead, channel=whatsapp).
+      trackWhatsAppLead(whatsappUrl);
       window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     },
     [whatsappUrl, source, message]
