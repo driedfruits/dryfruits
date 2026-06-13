@@ -121,7 +121,7 @@ export default function CertificationsPage() {
                 doesn't meet the agreed quality standards, we'll work with you to make it right.
               </p>
               <PrimaryButton to="/contact">
-                Learn More
+                View Quality Standards
               </PrimaryButton>
             </div>
           </div>

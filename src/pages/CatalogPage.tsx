@@ -15,7 +15,7 @@ export default function CatalogPage() {
   return (
     <Layout>
       <SEO
-        title="Download Product Catalog - Specifications & Pricing"
+        title="Product Catalog & Pricing"
         description="Download our complete dried fruit catalog with product specifications, FOB pricing guidelines, packaging options, MOQs, and certification details. PDF format."
         keywords={["dried fruit catalog", "product catalog download", "price list dried fruit", "wholesale catalog"]}
         canonical="/catalog"

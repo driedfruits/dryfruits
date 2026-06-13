@@ -26,7 +26,7 @@ const ImagePreview = ({ src }: ImagePreviewProps) => {
   return (
     <img
       src={src}
-      alt="Preview"
+      alt="Product image preview"
       onError={() => setError(true)}
       className="w-16 h-16 rounded border border-border object-cover shrink-0"
     />

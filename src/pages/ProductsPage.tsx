@@ -19,7 +19,7 @@ export default function ProductsPage() {
   return (
     <Layout>
       <SEO
-        title="Wholesale Dried Fruit Products - Bulk Export from Indonesia"
+        title="Wholesale Dried Fruit Products"
         description="Browse our complete range of premium dried tropical fruits. USDA & EU Organic certified. MOQ 500kg. Direct from Indonesian manufacturer."
         keywords={["wholesale dried fruit products", "bulk dried fruit Indonesia", "dried fruit catalog", "organic dried fruit range"]}
         canonical="/products"

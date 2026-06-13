@@ -90,7 +90,7 @@ const ImageUploader = ({ currentSrc, productId, slot, onUploaded, onRemove }: Im
         {currentSrc ? (
           <img
             src={currentSrc}
-            alt="Preview"
+            alt="Uploaded image preview"
             className="w-16 h-16 rounded border border-border object-cover shrink-0"
           />
         ) : (
