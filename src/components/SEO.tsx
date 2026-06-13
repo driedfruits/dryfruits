@@ -29,11 +29,11 @@ export function SEO({
 }: SEOProps) {
   const fullTitle = title
     ? `${title} | ${companyInfo.shortName}`
-    : `${companyInfo.name} | Wholesale Dried Fruit Manufacturer & Exporter`;
+    : `${companyInfo.shortName} | Wholesale Dried Fruit Exporter`;
 
   const fullDescription =
     description ||
-    "Indonesia's leading B2B dried fruit OEM manufacturer. Premium dehydrated tropical fruits & private label solutions. HACCP & Fair Trade certified. Export to 18+ countries.";
+    "Indonesia's B2B dried fruit OEM manufacturer. Bulk dehydrated tropical fruits & private label. HACCP & Fair Trade certified.";
 
   const fullCanonical = canonical
     ? canonical.startsWith("http")
