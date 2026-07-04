@@ -34,6 +34,7 @@ const TermsPage = lazy(() => import("./pages/TermsPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ProductEditorPage = lazy(() => import("./pages/ProductEditorPage"));
 const DesignSystemPage = lazy(() => import("./pages/DesignSystemPage"));
+const AuthPage = lazy(() => import("./pages/AuthPage"));
 
 // Handles legacy WordPress /?s= search redirects on the home page
 function SearchRedirect() {
@@ -137,6 +138,7 @@ export const routes: RouteRecord[] = [
 
       // Internal (excluded from SSG via SSG_EXCLUDED_PATHS below)
       { path: "admin/products", element: wrap(LayoutSkeleton, ProductEditorPage) },
+      { path: "auth", element: wrap(LayoutSkeleton, AuthPage) },
       { path: "design-system", element: wrap(LayoutSkeleton, DesignSystemPage) },
 
       // 404
