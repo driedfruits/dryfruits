@@ -150,6 +150,7 @@ export const routes: RouteRecord[] = [
 /** Paths excluded from static generation (kept client-side only). */
 export const SSG_EXCLUDED_PATHS = new Set<string>([
   "/admin/products",
+  "/auth",
   "/design-system",
   "/*",
 ]);
