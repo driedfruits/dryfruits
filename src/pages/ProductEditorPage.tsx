@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import type { Session } from "@supabase/supabase-js";
+import { supabase } from "@/integrations/supabase/client";
 import { useProductEditor } from "@/hooks/useProductEditor";
-import { FormInput, FormTextarea, FormSelect } from "@/components/forms/FormElements";
+import { FormTextarea, FormSelect, FormInput } from "@/components/forms/FormElements";
 import { Button } from "@/components/ui/button";
-import { Save, Plus, Trash2, AlertTriangle, Loader2, Lock } from "lucide-react";
+import { Save, Plus, Trash2, AlertTriangle, Loader2, LogOut } from "lucide-react";
 import {
   EditorSeoSection,
   EditorImagesSection,
@@ -17,54 +20,75 @@ import {
   EditorSpecificationsSection,
 } from "@/components/editor";
 
-const ADMIN_PASSWORD = "dryfruits2024";
-
 const ProductEditorPage = () => {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [password, setPassword] = useState("");
-  const [authError, setAuthError] = useState(false);
+  const navigate = useNavigate();
+  const [session, setSession] = useState<Session | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!authenticated) {
+  useEffect(() => {
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, s) => {
+      setSession(s);
+      if (!s) {
+        setIsAdmin(null);
+        setLoading(false);
+      }
+    });
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      if (!data.session) setLoading(false);
+    });
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    if (!session) return;
+    setLoading(true);
+    supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", session.user.id)
+      .eq("role", "admin")
+      .maybeSingle()
+      .then(({ data }) => {
+        setIsAdmin(!!data);
+        setLoading(false);
+      });
+  }, [session]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (!session) {
+    navigate("/auth", { replace: true });
+    return null;
+  }
+
+  if (!isAdmin) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <div className="w-full max-w-sm space-y-4">
-          <div className="text-center">
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-4">
-              <Lock className="h-6 w-6 text-primary" />
-            </div>
-            <h1 className="text-xl font-bold text-foreground">Admin Access</h1>
-            <p className="text-sm text-muted-foreground mt-1">Enter the admin password to continue</p>
-          </div>
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            if (password === ADMIN_PASSWORD) {
-              setAuthenticated(true);
-              setAuthError(false);
-            } else {
-              setAuthError(true);
-            }
-          }} className="space-y-3">
-            <FormInput
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => { setPassword(e.target.value); setAuthError(false); }}
-              placeholder="Enter admin password"
-              error={authError ? "Incorrect password" : undefined}
-            />
-            <Button type="submit" className="w-full">
-              <Lock className="h-4 w-4 mr-2" /> Unlock
-            </Button>
-          </form>
+        <div className="max-w-sm text-center space-y-4">
+          <h1 className="text-xl font-bold text-foreground">Access Denied</h1>
+          <p className="text-sm text-muted-foreground">
+            Your account ({session.user.email}) is signed in but does not have admin privileges.
+          </p>
+          <Button variant="outline" onClick={() => supabase.auth.signOut()}>
+            <LogOut className="h-4 w-4 mr-2" /> Sign Out
+          </Button>
         </div>
       </div>
     );
   }
 
-  return <ProductEditorContent />;
+  return <ProductEditorContent email={session.user.email ?? ""} />;
 };
 
-const ProductEditorContent = () => {
+const ProductEditorContent = ({ email }: { email: string }) => {
   const editor = useProductEditor();
 
   if (editor.productsLoading) {
@@ -80,7 +104,15 @@ const ProductEditorContent = () => {
 
   return (
     <div className="min-h-screen bg-background p-4 sm:p-8 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6 text-foreground">Product Data Editor</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold text-foreground">Product Data Editor</h1>
+        <div className="flex items-center gap-3 text-sm text-muted-foreground">
+          <span className="hidden sm:inline">{email}</span>
+          <Button variant="outline" size="sm" onClick={() => supabase.auth.signOut()}>
+            <LogOut className="h-4 w-4 mr-1" /> Sign Out
+          </Button>
+        </div>
+      </div>
 
       <div className="flex items-end gap-3 mb-4">
         <div className="flex-1">
