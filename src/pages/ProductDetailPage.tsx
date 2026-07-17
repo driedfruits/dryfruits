@@ -1,11 +1,10 @@
 import { Suspense, lazy } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, useLoaderData } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { ProductPageSkeleton } from "@/components/products";
 import { useProducts } from "@/contexts/ProductsContext";
-import { getProductById } from "@/data/products";
+import { getProductById, type Product } from "@/data/products";
 import { getProductRedirect } from "@/lib/redirects";
-import { Loader2 } from "lucide-react";
 
 // Lazy load the heavy template component
 const ProductPageTemplate = lazy(() =>
@@ -16,7 +15,12 @@ const ProductPageTemplate = lazy(() =>
 
 export default function ProductDetailPage() {
   const { category, productId } = useParams();
-  const { products, loading } = useProducts();
+  const { products } = useProducts();
+  // Loader data is populated at build-time SSG and on direct navigation, so
+  // the pre-rendered HTML contains real per-product SEO/OG/JSON-LD tags and
+  // content instead of a loading spinner. Falls back to context lookup for
+  // in-app client-side navigation.
+  const loaderProduct = (useLoaderData() as Product | null) ?? null;
 
   // Check if productId is an alias that needs redirecting
   const redirectProductId = productId ? getProductRedirect(productId) : null;
@@ -24,17 +28,8 @@ export default function ProductDetailPage() {
     return <Navigate to={`/products/${category}/${redirectProductId}`} replace />;
   }
 
-  if (loading) {
-    return (
-      <Layout>
-        <div className="flex items-center justify-center py-20">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        </div>
-      </Layout>
-    );
-  }
-
-  const product = getProductById(products, productId || "");
+  const product =
+    getProductById(products, productId || "") ?? loaderProduct ?? undefined;
 
   if (!product) {
     return (
