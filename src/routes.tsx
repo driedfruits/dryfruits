@@ -2,6 +2,8 @@ import { Navigate, Outlet, useSearchParams } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import type { RouteRecord } from "vite-react-ssg";
+import type { LoaderFunctionArgs } from "react-router-dom";
+import { mapRowToProduct } from "@/lib/productMapper";
 
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -88,6 +90,29 @@ async function getProductStaticPaths(): Promise<string[]> {
   }
 }
 
+/**
+ * Route loader for a single product. Runs at build time during SSG (so pre-
+ * rendered HTML contains real per-product SEO tags, OG image, JSON-LD, and
+ * body content) AND at request time for direct client navigation. Returns
+ * `null` when the product is missing so the component can render its 404.
+ */
+async function productLoader({ params }: LoaderFunctionArgs) {
+  const productId = params.productId;
+  if (!productId) return null;
+  try {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("id", productId)
+      .maybeSingle();
+    if (error) throw error;
+    return data ? mapRowToProduct(data) : null;
+  } catch (err) {
+    console.warn("[loader] failed to fetch product", productId, err);
+    return null;
+  }
+}
+
 export const routes: RouteRecord[] = [
   {
     path: "/",
@@ -113,6 +138,7 @@ export const routes: RouteRecord[] = [
       {
         path: "products/:category/:productId",
         element: wrap(LayoutSkeleton, ProductDetailPage),
+        loader: productLoader,
         getStaticPaths: getProductStaticPaths,
       },
 
