@@ -156,12 +156,21 @@ export function generateFAQSchema(faqs: ReadonlyArray<{ readonly question: strin
 // Product Schema - enhanced for B2B
 export function generateProductSchema(product: Product) {
 
+  const galleryImages = product.images?.gallery?.map((g) =>
+    g.src.startsWith("http") ? g.src : `${SITE_URL}${g.src}`
+  ) ?? [];
+  const mainImage = product.images?.main
+    ? (product.images.main.startsWith("http") ? product.images.main : `${SITE_URL}${product.images.main}`)
+    : undefined;
+  const productImages = [mainImage, ...galleryImages].filter(Boolean) as string[];
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
     "@id": `${SITE_URL}/products/${product.category}/${product.id}`,
     name: `Wholesale ${product.name} - Indonesian Origin`,
     description: product.metaDescription || product.description,
+    image: productImages.length > 0 ? productImages : `${SITE_URL}/logo.png`,
     sku: product.sku,
     gtin: product.hsCode,
     brand: {
